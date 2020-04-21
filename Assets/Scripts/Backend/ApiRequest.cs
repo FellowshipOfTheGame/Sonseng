@@ -2,26 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using UnityEngine.UI;
 public class ApiRequest : MonoBehaviour {
 
-    public void StartRequest() {
-        StartCoroutine(GetRequest());
+    public InputField playerText;
+    public static int playerScore;
+    public static string playerName;
+
+    public Text scoreText, receivedText;
+    private void Start() {
+        System.Random random = new System.Random();
+        playerScore = random.Next(0, 101);
+        scoreText.text = "Score: " + playerScore;
     }
-    private IEnumerator GetRequest() {
-        UnityWebRequest www = UnityWebRequest.Get("https://34.95.247.47:5000");
+
+    public void StartRequest() {
+        playerName = playerText.text;
+        //StartCoroutine(GetRequest());
+        StartCoroutine(PostRequest());
+    }
+
+    public void GetScoreFromServer() {
+        StartCoroutine(GetScore());
+    }
+
+    private IEnumerator GetScore() {
+        WWWForm form = new WWWForm();
+        form.AddField("userName", playerText.text);
+
+        UnityWebRequest uwr = UnityWebRequest.Post("https://localhost:5000/getScore", form);
         CustomCertificateHandler certHandler = new CustomCertificateHandler();
-        www.certificateHandler = certHandler;
-        
-
-
-        yield return www.SendWebRequest();
-        if (www.isNetworkError || www.isHttpError) {
-            Debug.Log(www.error);
+        uwr.certificateHandler = certHandler;
+        yield return uwr.SendWebRequest();
+        if (uwr.isNetworkError) {
+            Debug.Log("Error while sending: " + uwr.error);
         } else {
-            Message json = JsonUtility.FromJson<Message>(www.downloadHandler.text); 
-
-            Debug.Log(json.message);
+            receivedText.text = "Score Recebida: " + uwr.downloadHandler.text;
         }
+    }
+
+    private IEnumerator PostRequest() {
+        User user = new User();
+        WWWForm form = new WWWForm();
+        form.AddField("userScore", user.userScore);
+        form.AddField("userName", user.userName);
+
+        UnityWebRequest uwr = UnityWebRequest.Post("https://localhost:5000/test", form);
+        CustomCertificateHandler certHandler = new CustomCertificateHandler();
+        uwr.certificateHandler = certHandler;
+        yield return uwr.SendWebRequest();
+        if (uwr.isNetworkError) {
+            Debug.Log("Error while sending: " + uwr.error);
+        } else {
+            Debug.Log("Received: " + uwr.responseCode);
+        }
+
     }
 }
