@@ -11,9 +11,14 @@ const credentials = { key: privateKey, cert: certificate }
 const firebase = require('firebase')
 
 const firebaseConfig = {
- /*
-  Paste configs here
- */
+  apiKey: 'AIzaSyBYy8ShFigxjhrZKAWMYjDqvL5ZS0dT0DM',
+  authDomain: 'sonseng2020-1586957105557.firebaseapp.com',
+  databaseURL: 'https://sonseng2020-1586957105557.firebaseio.com',
+  projectId: 'sonseng2020-1586957105557',
+  storageBucket: 'sonseng2020-1586957105557.appspot.com',
+  messagingSenderId: '321646647310',
+  appId: '1:321646647310:web:d21a8045f7c3b96fbbc45f',
+  measurementId: 'G-1PWQPC720F',
 }
 firebase.initializeApp(firebaseConfig)
 const database = firebase.database()
