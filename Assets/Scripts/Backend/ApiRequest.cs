@@ -30,7 +30,7 @@ public class ApiRequest : MonoBehaviour {
         WWWForm form = new WWWForm();
         form.AddField("userName", playerText.text);
 
-        UnityWebRequest uwr = UnityWebRequest.Post("https://localhost:5000/getScore", form);
+        UnityWebRequest uwr = UnityWebRequest.Post("https://34.95.247.47:5000/getScore", form);
         CustomCertificateHandler certHandler = new CustomCertificateHandler();
         uwr.certificateHandler = certHandler;
         yield return uwr.SendWebRequest();
@@ -47,7 +47,7 @@ public class ApiRequest : MonoBehaviour {
         form.AddField("userScore", user.userScore);
         form.AddField("userName", user.userName);
 
-        UnityWebRequest uwr = UnityWebRequest.Post("https://localhost:5000/test", form);
+        UnityWebRequest uwr = UnityWebRequest.Post("https://34.95.247.47:5000/test", form);
         CustomCertificateHandler certHandler = new CustomCertificateHandler();
         uwr.certificateHandler = certHandler;
         yield return uwr.SendWebRequest();
