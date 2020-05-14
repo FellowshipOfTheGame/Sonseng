@@ -54,14 +54,33 @@ public class Player : MonoBehaviour {
         // If is falling, check if it is reaching ground
         if (!isGrounded && rBody.velocity.y < 0f) {
             isGrounded = CheckGround();
-            Debug.Log(isGrounded);
         }
 
-        swipeDirection = GetSwipe();
+#if !UNITY_ANDROID
+        // In case of playing on a computer, gets keyboard input
+        swipeDirection = GetKeyboardInput();
+        if (swipeDirection != Vector3.zero) {
+            OnSwipe(swipeDirection);
+        }
+#endif
 
+        // Stops the movement when it arrives the destination lane
+        if (ArrivedDestination()) {
+            moveDirection = 0;
+            rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
+            currentLane = NextLane;
+        }
+    }
+
+    /// <summary>
+    /// This method is called by Swipe Listener when it detects a swipe (but can be called manual as well).
+    /// According to the swipe direction, move the player vertically or horizontally.
+    /// </summary>
+    /// <param name="swipeDirection"></param>
+    public void OnSwipe(Vector3 swipeDirection) {
         // Horizontal movement
         if (swipeDirection.x != 0) {
-            MoveSideways(swipeDirection.x);
+            MoveSideways((int)swipeDirection.x);
         }
 
         // Vertical movement
@@ -75,13 +94,6 @@ public class Player : MonoBehaviour {
             } else {
                 FallFast();
             }
-        }
-
-        // Stops the movement when it arrives the destination lane
-        if (ArrivedDestination()) {
-            moveDirection = 0;
-            rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
-            currentLane = NextLane;
         }
     }
 
@@ -107,7 +119,6 @@ public class Player : MonoBehaviour {
     private void ResetCollider() {
         normalCollider.enabled = true;
         smallCollider.enabled = false;
-        Debug.Log("Normal collider");
     }
 
     /// <summary>
@@ -116,7 +127,6 @@ public class Player : MonoBehaviour {
     private void ShrinkCollider() {
         normalCollider.enabled = false;
         smallCollider.enabled = true;
-        Debug.Log("Small collider");
     }
 
     /// <summary>
@@ -191,10 +201,10 @@ public class Player : MonoBehaviour {
     }
 
     /// <summary>
-    /// Gets the swipe direction. Currently, only gets keyboard input.
+    /// Gets keyboard arrows input and converts into a Vector3Int
     /// </summary>
-    /// <returns>Returns the direction swipe</returns>
-    private Vector3Int GetSwipe() {
+    /// <returns>Pressed key direction</returns>
+    private Vector3Int GetKeyboardInput() {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) 
             return Vector3Int.left;
         if (Input.GetKeyDown(KeyCode.RightArrow)) 
