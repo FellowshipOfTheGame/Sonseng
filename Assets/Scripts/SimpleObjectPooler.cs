@@ -15,14 +15,16 @@ public class SimpleObjectPooler : MonoBehaviour
     public void Initialization(GameObject[] poolables)
     {
         _pool = Instantiate(new GameObject("Object Pool"), transform);
+        Debug.Log("Initialized pooler");
         PoolableObjects = new List<GameObject>();
 
         Debug.Log(poolables.Length);
         foreach(var obj in poolables)
         {
             GameObject ins = Instantiate(obj, _pool.transform);
-            PoolableObjects.Add(ins);
             ins.SetActive(false);
+            ins.name = obj.name;
+            PoolableObjects.Add(ins);
             _possibleNames.Add(ins.name);
         }
     }
@@ -31,7 +33,7 @@ public class SimpleObjectPooler : MonoBehaviour
     {
         if (!_possibleNames.Contains(prefab.name) && !_possibleNames.Contains(prefab.name + "(Clone)"))
         {
-            Debug.Log("Does not contain name");
+            Debug.LogWarning($"Does not contain name {prefab.name}");
             return null;
         }
 
@@ -39,7 +41,6 @@ public class SimpleObjectPooler : MonoBehaviour
         {
             if(!obj.activeInHierarchy && (obj.name.Equals(prefab.name) || obj.name.Equals(prefab.name + "(Clone)")))
             {
-                obj.SetActive(true);
                 return obj;
             }
         }
@@ -47,8 +48,9 @@ public class SimpleObjectPooler : MonoBehaviour
         if (isExpandable)
         {
             GameObject ins = Instantiate(prefab, _pool.transform);
-            PoolableObjects.Add(ins);
             ins.SetActive(true);
+            ins.name = prefab.name;
+            PoolableObjects.Add(ins);
             return ins;
         }
 
