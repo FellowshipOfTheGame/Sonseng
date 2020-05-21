@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     private Rigidbody rBody;
+    private Animator animator;
 
     // There are 5 lanes, but lanes 0 and 5 are not reachable.
     // Player starts on the middle lane
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform[] lanes;
 
     private bool isGrounded = true;
-    private int moveDirection = 0;
+    private int moveDirection;
     private Vector3Int swipeDirection;
 
     private int NextLane {
@@ -43,7 +44,16 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private int MoveDirection {
+        get { return moveDirection; }
+        set {
+            moveDirection = value;
+            animator.SetInteger("MoveDirection", moveDirection);
+        }
+    }
+
     private void Start() {
+        animator = GetComponentInChildren<Animator>();
         rBody = GetComponent<Rigidbody>();
         rBody.useGravity = false;
         ResetCollider();
@@ -54,7 +64,6 @@ public class Player : MonoBehaviour {
         // If is falling, check if it is reaching ground
         if (!isGrounded && rBody.velocity.y < 0f) {
             isGrounded = CheckGround();
-            Debug.Log(isGrounded);
         }
 
         swipeDirection = GetSwipe();
@@ -79,7 +88,7 @@ public class Player : MonoBehaviour {
 
         // Stops the movement when it arrives the destination lane
         if (ArrivedDestination()) {
-            moveDirection = 0;
+            MoveDirection = 0;
             rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
             currentLane = NextLane;
         }
@@ -107,7 +116,6 @@ public class Player : MonoBehaviour {
     private void ResetCollider() {
         normalCollider.enabled = true;
         smallCollider.enabled = false;
-        Debug.Log("Normal collider");
     }
 
     /// <summary>
@@ -116,17 +124,16 @@ public class Player : MonoBehaviour {
     private void ShrinkCollider() {
         normalCollider.enabled = false;
         smallCollider.enabled = true;
-        Debug.Log("Small collider");
     }
 
     /// <summary>
-    /// According to the direction passed as parameter, 
+    /// According to the direction passed as parameter, changes the next lane and moves towards it.
     /// </summary>
     /// <param name="direction"></param>
     private void MoveSideways(int direction) {
         /*  Resets movement and goes back to the current lane if input direction is the opposite of 
         current movement direction. Just increments NextLane otherwise. */
-        if (moveDirection == -direction) {
+        if (MoveDirection == -direction) {
             NextLane = currentLane;
         } else {
             NextLane += direction;
@@ -134,13 +141,13 @@ public class Player : MonoBehaviour {
 
         // Finds out the movement direction by checking the destination and the current x position
         if (lanes[NextLane].position.x > this.transform.position.x) {
-            moveDirection = 1;
+            MoveDirection = 1;
         } else {
-            moveDirection = -1;
+            MoveDirection = -1;
         }
 
         // Sets the velocity according to movement direction
-        rBody.velocity = new Vector3(moveDirection * speed, rBody.velocity.y, rBody.velocity.z);
+        rBody.velocity = new Vector3(MoveDirection * speed, rBody.velocity.y, rBody.velocity.z);
     }
 
     /// <summary>
@@ -151,6 +158,8 @@ public class Player : MonoBehaviour {
         isGrounded = false;
         CancelInvoke(nameof(ResetCollider));
         ResetCollider();
+
+        animator.SetTrigger("Jump");
     }
 
     /// <summary>
@@ -175,12 +184,12 @@ public class Player : MonoBehaviour {
     /// </summary>
     /// <returns>Returns true if player has already reached the destination lane</returns>
     private bool ArrivedDestination() {
-        if (moveDirection == 1) {
+        if (MoveDirection == 1) {
             if (this.transform.position.x > lanes[NextLane].position.x)
                 return true;
             else
                 return false;
-        } else if (moveDirection == -1) {
+        } else if (MoveDirection == -1) {
             if (this.transform.position.x < lanes[NextLane].position.x)
                 return true;
             else
