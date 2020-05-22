@@ -19,12 +19,13 @@ public class Player : MonoBehaviour {
 
     [Space(5f)]
     [SerializeField] float jumpForce;
+    [SerializeField] float fallFastSpeed;
     [Tooltip("Multiplies the gravity force")]
     [SerializeField] float gravityModifier;
 
     [Space(5)]
-    [SerializeField] float fallFastSpeed;
-    [SerializeField] float boxCastDistance;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float groundCheckRadius;
 
     [Space(5f)]
     [SerializeField] Collider normalCollider;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform[] lanes;
 
     private bool isGrounded = true;
+    private bool isFallingFast = false;
     private int moveDirection;
     private Vector3Int swipeDirection;
 
@@ -52,6 +54,19 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private bool IsGrounded {
+        get { return isGrounded; }
+        set {
+            isGrounded = value;
+
+            // Rolls after falling fast
+            if (isFallingFast && isGrounded) {
+                isFallingFast = false;
+                Roll();
+            }
+        }
+    }
+
     private void Start() {
         animator = GetComponentInChildren<Animator>();
         rBody = GetComponent<Rigidbody>();
@@ -62,8 +77,8 @@ public class Player : MonoBehaviour {
 
     private void Update() {
         // If is falling, check if it is reaching ground
-        if (!isGrounded && rBody.velocity.y < 0f) {
-            isGrounded = CheckGround();
+        if (!IsGrounded && rBody.velocity.y < 0f) {
+            IsGrounded = CheckGround();
         }
 
         swipeDirection = GetSwipe();
@@ -75,11 +90,11 @@ public class Player : MonoBehaviour {
 
         // Vertical movement
         if (swipeDirection.y > 0) {
-            if (isGrounded) {
+            if (IsGrounded) {
                 Jump();
             }
         } else if (swipeDirection.y < 0) {
-            if (isGrounded) {
+            if (IsGrounded) {
                 Roll();
             } else {
                 FallFast();
@@ -106,7 +121,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     private bool CheckGround() {
-        return Physics.BoxCast(this.transform.position, Vector3.one/2f, Vector3.down, Quaternion.identity, boxCastDistance);
+        return Physics.OverlapSphere(groundCheck.position, groundCheckRadius, LayerMask.GetMask("Ground")).Length > 0;
     }
 
 
@@ -155,7 +170,7 @@ public class Player : MonoBehaviour {
     /// </summary>    
     private void Jump() {
         rBody.AddForce(Vector3.up * jumpForce);
-        isGrounded = false;
+        IsGrounded = false;
         CancelInvoke(nameof(ResetCollider));
         ResetCollider();
 
@@ -166,6 +181,7 @@ public class Player : MonoBehaviour {
     /// Shrinks collider for some time 
     /// </summary>    
     private void Roll() {
+        Debug.Log("Rolling");
         ShrinkCollider();
         Invoke(nameof(ResetCollider), rollTime);
         //TODO use animation event to reset collider
@@ -176,6 +192,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     private void FallFast() {
         rBody.velocity = new Vector3(rBody.velocity.x, -fallFastSpeed, rBody.velocity.z);
+        isFallingFast = true;
     }
 
     /// <summary>
@@ -213,5 +230,11 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.DownArrow))
             return Vector3Int.down;
         return Vector3Int.zero;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
     }
 }

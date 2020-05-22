@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 694805635}
   - component: {fileID: 694805634}
   - component: {fileID: 694805633}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,6 +714,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1.3058119, z: 3}
   m_Center: {x: 0, y: -0.84709406, z: 0}
+--- !u!1 &2002538253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2002538254}
+  m_Layer: 0
+  m_Name: Ground Check
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2002538254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002538253}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6998532058843117216}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &129350256236927663
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +980,7 @@ Transform:
   - {fileID: 5006512736212139561}
   - {fileID: 68387934}
   - {fileID: 1912682348}
+  - {fileID: 2002538254}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1003,9 +1034,10 @@ MonoBehaviour:
   speed: 10
   rollTime: 1.5
   jumpForce: 1250
-  gravityModifier: 4
   fallFastSpeed: 10
-  boxCastDistance: 0.7
+  gravityModifier: 4
+  groundCheck: {fileID: 2002538254}
+  groundCheckRadius: 0.7
   normalCollider: {fileID: 68387935}
   smallCollider: {fileID: 1912682349}
   lanes:
