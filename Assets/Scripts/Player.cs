@@ -34,9 +34,11 @@ public class Player : MonoBehaviour {
     [SerializeField] Transform[] lanes;
 
     private bool isGrounded = true;
+    private bool isJumping = false;
     private bool isFallingFast = false;
+    private bool isRolling = false;
     private int moveDirection;
-    private Vector3Int swipeDirection;
+    private Vector2Int swipeDirection;
 
     private int NextLane {
         get { return nextLane; }
@@ -58,17 +60,47 @@ public class Player : MonoBehaviour {
         get { return isGrounded; }
         set {
             isGrounded = value;
+            animator.SetBool("IsGrounded", isGrounded);
 
             // Rolls after falling fast
-            if (isFallingFast && isGrounded) {
-                isFallingFast = false;
+            if (IsFallingFast && isGrounded) {
+                IsFallingFast = false;
                 Roll();
+            }
+
+        }
+    }
+
+    private bool IsJumping {
+        get { return isJumping; }
+        set {
+            isJumping = value;
+            animator.SetBool("IsJumping", isJumping);
+        }
+    }
+
+    private bool IsFallingFast {
+        get { return isFallingFast; }
+        set {
+            isFallingFast = value;
+            animator.SetBool("IsFallingFast", isFallingFast);
+
+            if (isFallingFast) {
+                IsJumping = false;
             }
         }
     }
 
+    private bool IsRolling {
+        get { return isRolling; }
+        set {
+            isRolling = value;
+            animator.SetBool("IsRolling", isRolling);
+        }
+    }
+
     private void Start() {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody>();
         rBody.useGravity = false;
         ResetCollider();
@@ -76,12 +108,17 @@ public class Player : MonoBehaviour {
 
 
     private void Update() {
-        // If is falling, check if it is reaching ground
-        if (!IsGrounded && rBody.velocity.y < 0f) {
-            IsGrounded = CheckGround();
+        swipeDirection = GetSwipe();
+
+        // Checks if it is not jumping anymore
+        if (IsJumping && rBody.velocity.y < 0) {
+            IsJumping = false;
         }
 
-        swipeDirection = GetSwipe();
+        // If is falling, checks if it is reaching ground
+        if (!IsGrounded && !IsJumping && rBody.velocity.y <= 0f) {
+            IsGrounded = CheckGround();
+        }
 
         // Horizontal movement
         if (swipeDirection.x != 0) {
@@ -95,8 +132,10 @@ public class Player : MonoBehaviour {
             }
         } else if (swipeDirection.y < 0) {
             if (IsGrounded) {
-                Roll();
-            } else {
+                if (!IsRolling) {
+                    Roll();
+                }
+            } else if (!IsFallingFast){
                 FallFast();
             }
         }
@@ -131,6 +170,7 @@ public class Player : MonoBehaviour {
     private void ResetCollider() {
         normalCollider.enabled = true;
         smallCollider.enabled = false;
+        IsRolling = false;
     }
 
     /// <summary>
@@ -170,18 +210,19 @@ public class Player : MonoBehaviour {
     /// </summary>    
     private void Jump() {
         rBody.AddForce(Vector3.up * jumpForce);
+
+        IsJumping = true;
         IsGrounded = false;
+
         CancelInvoke(nameof(ResetCollider));
         ResetCollider();
-
-        animator.SetTrigger("Jump");
     }
 
     /// <summary>
     /// Shrinks collider for some time 
     /// </summary>    
     private void Roll() {
-        Debug.Log("Rolling");
+        IsRolling = true;
         ShrinkCollider();
         Invoke(nameof(ResetCollider), rollTime);
         //TODO use animation event to reset collider
@@ -192,7 +233,7 @@ public class Player : MonoBehaviour {
     /// </summary>
     private void FallFast() {
         rBody.velocity = new Vector3(rBody.velocity.x, -fallFastSpeed, rBody.velocity.z);
-        isFallingFast = true;
+        IsFallingFast = true;
     }
 
     /// <summary>
@@ -220,16 +261,16 @@ public class Player : MonoBehaviour {
     /// Gets the swipe direction. Currently, only gets keyboard input.
     /// </summary>
     /// <returns>Returns the direction swipe</returns>
-    private Vector3Int GetSwipe() {
+    private Vector2Int GetSwipe() {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) 
-            return Vector3Int.left;
+            return Vector2Int.left;
         if (Input.GetKeyDown(KeyCode.RightArrow)) 
-            return Vector3Int.right;
+            return Vector2Int.right;
         if (Input.GetKeyDown(KeyCode.UpArrow))
-            return Vector3Int.up;
+            return Vector2Int.up;
         if (Input.GetKeyDown(KeyCode.DownArrow))
-            return Vector3Int.down;
-        return Vector3Int.zero;
+            return Vector2Int.down;
+        return Vector2Int.zero;
     }
 
     private void OnDrawGizmos()
