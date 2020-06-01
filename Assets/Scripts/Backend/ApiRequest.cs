@@ -11,7 +11,7 @@ public class ApiRequest : MonoBehaviour {
 
     public Text statusText;
 
-    public string webClientId = "321646647310-693rmelrk5re3cm29f2jc969n6t2mnpd.apps.googleusercontent.com";
+    public string webClientId;
 
     private GoogleSignInConfiguration configuration;
     private FirebaseAuth auth;
