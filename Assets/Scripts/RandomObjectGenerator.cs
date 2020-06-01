@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class RandomObjectGenerator : MonoBehaviour
 {
-    //TODO: Use Object Pooling
     public static RandomObjectGenerator Instance = null;
     public float Speed { get => speed; set => SetSpeed(value); }
 
-    //[SerializeField] private float time_to_spawn;
     [SerializeField] private GameObject[] objects_prefabs;
-    [SerializeField] private float[] x_offsets = { -1f, 0f, 1f };
-    [SerializeField] private float z_offset = 10f;
+    [SerializeField] private Transform[] spawn_points;
+    [SerializeField] private int maximum_spawn_per_tick;
+    //[SerializeField] private float[] x_offsets = { -1f, 0f, 1f };
+    //[SerializeField] private float z_offset = 10f;
 
     private float Time_to_spawn { get => 10 / Speed;}
     private float speed = 4f;
+
+    protected Vector3 _lastSpawnPoint = Vector3.zero;
+    protected Vector3 _newSpawnPoint = Vector3.zero;
+    protected SimpleObjectPooler _pooler = null;
 
     private void Awake()
     {
@@ -22,25 +26,31 @@ public class RandomObjectGenerator : MonoBehaviour
             Destroy(gameObject);
         else Instance = this;
 
-        InvokeRepeating("SpawnRandomObject", Time_to_spawn, Time_to_spawn);
+        _pooler = GetComponent<SimpleObjectPooler>();
+        _pooler.Initialization(objects_prefabs);
+        InvokeRepeating("SpawnRandomObjects", Time_to_spawn, Time_to_spawn);
     }
-
-    private void SpawnRandomObject()
+    
+    /// <summary>
+    /// Spawns from 1 to maximum_spawn_per_tick random objects on random locations
+    /// </summary>
+    private void SpawnRandomObjects()
     {
-        float last_x = x_offsets[0]-1f;
-        for (int i = Random.Range(0, 2); i < 2; i++)
+        _lastSpawnPoint = Vector3.zero;
+        for(int i = Random.Range(0, maximum_spawn_per_tick); i < maximum_spawn_per_tick; i++)
         {
-            //Get Random Values
-            float x = 0f;
             do
             {
-                x = x_offsets[Random.Range(0, 3)];
-            } while (last_x == x);
-            GameObject prefab = objects_prefabs[Random.Range(0, objects_prefabs.Length - 1)];
+                _newSpawnPoint = spawn_points[Random.Range((int)0, (int)spawn_points.Length)].position;
+            } while (_lastSpawnPoint == _newSpawnPoint);
 
-            //Spawn Object
-            Instantiate(prefab, new Vector3(x, 0, z_offset), transform.rotation, transform);
-            last_x = x;
+            GameObject prefab = objects_prefabs[Random.Range((int)0, (int)objects_prefabs.Length)];
+
+            prefab = _pooler.GetObject(prefab);
+            if (prefab == null) continue;
+            prefab.transform.position = _newSpawnPoint;
+            //Instantiate(prefab, _newSpawnPoint, transform.rotation, transform);
+            _lastSpawnPoint = _newSpawnPoint;
         }
     }
 
@@ -49,7 +59,7 @@ public class RandomObjectGenerator : MonoBehaviour
         speed = value;
         if (IsInvoking())
             CancelInvoke();
-        InvokeRepeating("SpawnRandomObject", Time_to_spawn, Time_to_spawn);
+        InvokeRepeating("SpawnRandomObjects", Time_to_spawn, Time_to_spawn);
     }
 
     private void OnDestroy()
