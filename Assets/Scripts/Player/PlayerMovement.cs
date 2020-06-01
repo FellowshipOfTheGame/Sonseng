@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
     private Rigidbody rBody;
     private Animator animator;
 
@@ -15,7 +15,6 @@ public class Player : MonoBehaviour {
 
     [Tooltip("Horizontal speed")]
     [SerializeField] float speed;
-    [SerializeField] float rollTime;
 
     [Space(5f)]
     [SerializeField] float jumpForce;
@@ -37,6 +36,7 @@ public class Player : MonoBehaviour {
     private bool isJumping = false;
     private bool isFallingFast = false;
     private bool isRolling = false;
+    private bool isDead = false;
     private int moveDirection;
     private Vector2Int swipeDirection;
 
@@ -108,6 +108,9 @@ public class Player : MonoBehaviour {
 
 
     private void Update() {
+        if (isDead) 
+            return;
+
         swipeDirection = GetSwipe();
 
         // Checks if it is not jumping anymore
@@ -166,6 +169,7 @@ public class Player : MonoBehaviour {
 
     /// <summary>
     /// Changes the active collider to the normal sized 
+    /// This method is called by animation event
     /// </summary>
     private void ResetCollider() {
         normalCollider.enabled = true;
@@ -214,7 +218,6 @@ public class Player : MonoBehaviour {
         IsJumping = true;
         IsGrounded = false;
 
-        CancelInvoke(nameof(ResetCollider));
         ResetCollider();
     }
 
@@ -224,8 +227,6 @@ public class Player : MonoBehaviour {
     private void Roll() {
         IsRolling = true;
         ShrinkCollider();
-        Invoke(nameof(ResetCollider), rollTime);
-        //TODO use animation event to reset collider
     }
 
     /// <summary>
@@ -273,8 +274,19 @@ public class Player : MonoBehaviour {
         return Vector2Int.zero;
     }
 
-    private void OnDrawGizmos()
-    {
+    /// <summary>
+    /// Disables movement
+    /// </summary>
+    public void Die() {
+        if (isDead)
+            return;
+            
+        isDead = true;
+        rBody.velocity = Vector3.zero;
+        animator.SetTrigger("Death");
+    }
+
+    private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
     }
