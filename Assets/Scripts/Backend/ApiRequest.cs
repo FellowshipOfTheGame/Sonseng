@@ -89,9 +89,8 @@ public class ApiRequest : MonoBehaviour {
             FirebaseAuth(credential);
         }
     }
-
-    private FirebaseUser newUser;
     private void FirebaseAuth(Credential cred) {
+
         AddStatusText("Auth Started!");
         auth.SignInWithCredentialAsync(cred).ContinueWith(task => {
             if (task.IsCanceled) {
@@ -105,6 +104,7 @@ public class ApiRequest : MonoBehaviour {
 
             AddStatusText("Login sucessfully");
         });
+        
     }
 
 
