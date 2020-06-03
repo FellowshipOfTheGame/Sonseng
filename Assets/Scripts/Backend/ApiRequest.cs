@@ -1,61 +1,126 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Firebase;
+using Firebase.Auth;
+using Google;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 public class ApiRequest : MonoBehaviour {
 
-    public InputField playerText;
-    public static int playerScore;
-    public static string playerName;
+    public Text statusText;
 
-    public Text scoreText, receivedText;
-    private void Start() {
-        System.Random random = new System.Random();
-        playerScore = random.Next(0, 101);
-        scoreText.text = "Score: " + playerScore;
+    public string webClientId;
+
+    private GoogleSignInConfiguration configuration;
+    private FirebaseAuth auth;
+    private FirebaseApp app;
+
+    // Defer the configuration creation until Awake so the web Client ID
+    // Can be set via the property inspector in the Editor.
+    void Awake() {
+        Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
+            var dependencyStatus = task.Result;
+            if (dependencyStatus == Firebase.DependencyStatus.Available) {
+                // Create and hold a reference to your FirebaseApp,
+                // where app is a Firebase.FirebaseApp property of your application class.
+                app = Firebase.FirebaseApp.DefaultInstance;
+                auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+                // Set a flag here to indicate whether Firebase is ready to use by your app.
+            } else {
+                UnityEngine.Debug.LogError(System.String.Format(
+                    "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
+                // Firebase Unity SDK is not safe to use here.
+            }
+        });
+
+        configuration = new GoogleSignInConfiguration {
+            WebClientId = webClientId,
+            RequestIdToken = true,
+            RequestAuthCode = true,
+            RequestEmail = true
+        };
+
     }
 
-    public void StartRequest() {
-        playerName = playerText.text;
-        //StartCoroutine(GetRequest());
-        StartCoroutine(PostRequest());
+    public void OnSignIn() {
+        GoogleSignIn.Configuration = configuration;
+        GoogleSignIn.Configuration.UseGameSignIn = false;
+        GoogleSignIn.Configuration.RequestIdToken = true;
+        GoogleSignIn.Configuration.RequestAuthCode = true;
+        AddStatusText("Calling SignIn");
+
+        GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
+            OnAuthenticationFinished);
     }
 
-    public void GetScoreFromServer() {
-        StartCoroutine(GetScore());
+    public void OnSignOut() {
+        AddStatusText("Calling SignOut");
+        GoogleSignIn.DefaultInstance.SignOut();
+        auth.SignOut();
     }
 
-    private IEnumerator GetScore() {
-        WWWForm form = new WWWForm();
-        form.AddField("userName", playerText.text);
+    public void OnDisconnect() {
+        AddStatusText("Calling Disconnect");
+        GoogleSignIn.DefaultInstance.Disconnect();
+    }
 
-        UnityWebRequest uwr = UnityWebRequest.Post("https://localhost:5000/getScore", form);
-        CustomCertificateHandler certHandler = new CustomCertificateHandler();
-        uwr.certificateHandler = certHandler;
-        yield return uwr.SendWebRequest();
-        if (uwr.isNetworkError) {
-            Debug.Log("Error while sending: " + uwr.error);
+    internal void OnAuthenticationFinished(Task<GoogleSignInUser> task) {
+        if (task.IsFaulted) {
+            using(IEnumerator<System.Exception> enumerator =
+                task.Exception.InnerExceptions.GetEnumerator()) {
+                if (enumerator.MoveNext()) {
+                    GoogleSignIn.SignInException error =
+                        (GoogleSignIn.SignInException)enumerator.Current;
+                    AddStatusText("Got Error: " + error.Status + " " + error.Message);
+                } else {
+                    AddStatusText("Got Unexpected Exception?!?" + task.Exception);
+                }
+            }
+        } else if (task.IsCanceled) {
+            AddStatusText("Canceled");
         } else {
-            receivedText.text = "Score Recebida: " + uwr.downloadHandler.text;
+            AddStatusText("Welcome: " + task.Result.DisplayName + "!");
+            AddStatusText("Email = " + task.Result.Email);
+            AddStatusText("Auth code = " + task.Result.AuthCode);
+            Credential credential = GoogleAuthProvider.GetCredential(task.Result.IdToken, task.Result.AuthCode);
+            AddStatusText("Credentials set!");
+            FirebaseAuth(credential);
         }
     }
 
-    private IEnumerator PostRequest() {
-        User user = new User();
-        WWWForm form = new WWWForm();
-        form.AddField("userScore", user.userScore);
-        form.AddField("userName", user.userName);
+    private FirebaseUser newUser;
+    private void FirebaseAuth(Credential cred) {
+        AddStatusText("Auth Started!");
+        auth.SignInWithCredentialAsync(cred).ContinueWith(task => {
+            if (task.IsCanceled) {
+                AddStatusText("LinkWithCredentialAsync was canceled.");
+                return;
+            }
+            if (task.IsFaulted) {
+                AddStatusText("LinkWithCredentialAsync encountered an error: " + task.Exception);
+                return;
+            }
 
-        UnityWebRequest uwr = UnityWebRequest.Post("https://localhost:5000/test", form);
-        CustomCertificateHandler certHandler = new CustomCertificateHandler();
-        uwr.certificateHandler = certHandler;
-        yield return uwr.SendWebRequest();
-        if (uwr.isNetworkError) {
-            Debug.Log("Error while sending: " + uwr.error);
-        } else {
-            Debug.Log("Received: " + uwr.responseCode);
-        }
-
+            AddStatusText("Login sucessfully");
+        });
     }
+
+
+
+    private List<string> messages = new List<string>();
+    void AddStatusText(string text) {
+        if (messages.Count == 25) {
+            messages.RemoveAt(0);
+        }
+        messages.Add(text);
+        string txt = "";
+        foreach (string s in messages) {
+            txt += "\n" + s;
+        }
+        statusText.text = "\n" + txt;
+    }
+
+    
 }

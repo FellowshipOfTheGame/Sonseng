@@ -106,12 +106,9 @@ public class PlayerMovement : MonoBehaviour {
         ResetCollider();
     }
 
-
     private void Update() {
         if (isDead) 
             return;
-
-        swipeDirection = GetSwipe();
 
         // Checks if it is not jumping anymore
         if (IsJumping && rBody.velocity.y < 0) {
@@ -122,7 +119,35 @@ public class PlayerMovement : MonoBehaviour {
         if (!IsGrounded && !IsJumping && rBody.velocity.y <= 0f) {
             IsGrounded = CheckGround();
         }
+        
+#if !UNITY_ANDROID
+        // In case of playing on a computer, gets keyboard input
+        swipeDirection = GetKeyboardInput();
+        if (swipeDirection != Vector2Int.zero) {
+            OnSwipe((Vector3)(Vector2)swipeDirection);
+        }
+#endif
 
+        // Stops the movement when it arrives the destination lane
+        if (ArrivedDestination()) {
+            MoveDirection = 0;
+            rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
+            currentLane = NextLane;
+        }
+
+    }
+
+    /// <summary>
+    /// This method is called by Swipe Listener when it detects a swipe (but can be called manual as well).
+    /// According to the swipe direction, move the player vertically or horizontally.
+    /// </summary>
+    /// <param name="swipeDir">Swipe direction</param>
+    public void OnSwipe(Vector3 swipeDir) {
+        if (isDead) 
+            return;
+
+        Vector2Int swipeDirection = new Vector2Int((int)swipeDir.x, (int)swipeDir.y);
+    
         // Horizontal movement
         if (swipeDirection.x != 0) {
             MoveSideways(swipeDirection.x);
@@ -141,13 +166,6 @@ public class PlayerMovement : MonoBehaviour {
             } else if (!IsFallingFast){
                 FallFast();
             }
-        }
-
-        // Stops the movement when it arrives the destination lane
-        if (ArrivedDestination()) {
-            MoveDirection = 0;
-            rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
-            currentLane = NextLane;
         }
     }
 
@@ -259,10 +277,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     /// <summary>
-    /// Gets the swipe direction. Currently, only gets keyboard input.
+    /// Gets keyboard arrows input and converts into a Vector3Int
     /// </summary>
-    /// <returns>Returns the direction swipe</returns>
-    private Vector2Int GetSwipe() {
+    /// <returns>Pressed key direction</returns>
+    private Vector2Int GetKeyboardInput() {
         if (Input.GetKeyDown(KeyCode.LeftArrow)) 
             return Vector2Int.left;
         if (Input.GetKeyDown(KeyCode.RightArrow)) 

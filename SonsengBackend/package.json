@@ -1,10 +1,14 @@
 {
-    "scripts": {
-        "start": "node app.js"
-    },
-    "dependencies": {
-        "express": "^4.17.1",
-        "firebase": "^7.14.1",
-        "node-fetch": "^2.6.0"
-    }
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "firebase": "^7.14.1",
+    "node-fetch": "^2.6.0",
+    "passport": "^0.4.1",
+    "passport-google-id-token": "^0.4.7",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0"
+  }
 }
