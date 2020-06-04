@@ -9,15 +9,20 @@ public class TakeDamageOnContact : MonoBehaviour
     public LayerMask CollisionMask;
 
     public Action OnContact;
+    private PowerUps powerUps;
 
     private void Start()
     {
+        powerUps = GetComponent<PowerUps>();
         OnContact += DieOnContact;
     }
 
     protected void DieOnContact()
     {
-        gameObject.SetActive(false);
+        if (powerUps.Shield)
+            powerUps.ShieldDeactivate();
+        else 
+            gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

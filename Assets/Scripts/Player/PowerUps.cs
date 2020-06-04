@@ -6,6 +6,7 @@ public class PowerUps : MonoBehaviour {
     [Space(5)]
     [SerializeField] bool mirror;
     [SerializeField] float mirrorTime;
+
     [Space(5)]
     [SerializeField] bool magnet;
     [SerializeField] float magnetTime;
@@ -13,10 +14,13 @@ public class PowerUps : MonoBehaviour {
     [SerializeField] float magnetForce;
     private Collider[] magnetAttractionResults = new Collider[25];
     private HashSet<Transform> coins = new HashSet<Transform>();
+    [Space(5)]
+    [SerializeField] public bool shield;
+    [SerializeField] float shieldTime;
 
     public bool Mirror => mirror;
     public bool Magnet => magnet;
-
+    public bool Shield => shield;
 
     private void Update() {
         // Searches for new coins when the magnet is active
@@ -55,6 +59,10 @@ public class PowerUps : MonoBehaviour {
                 StopCoroutine(MagnetActivate());
                 StartCoroutine(MagnetActivate());
                 break;
+            case "Shield":
+                StopCoroutine(ShieldActivate());
+                StartCoroutine(ShieldActivate());
+                break;
         }
     }
 
@@ -77,6 +85,20 @@ public class PowerUps : MonoBehaviour {
         magnet = true;
         yield return new WaitForSeconds(magnetTime);
         magnet = false;
+    }
+
+    /// <summary>
+    /// Enables shield and disables it after shieldTime
+    /// </summary>
+    /// <returns>Power up duration</returns>
+    private IEnumerator ShieldActivate() {
+        shield = true;
+        yield return new WaitForSeconds(shieldTime);
+        shield = false;
+    }
+
+    public void ShieldDeactivate() {
+        shield = false;
     }
 
     private void OnDrawGizmos() {

@@ -226,11 +226,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mirror: 0
-  mirrorTime: 0
+  mirrorTime: 5
   magnet: 0
-  magnetTime: 0
+  magnetTime: 5
   magnetRadius: 10
   magnetForce: 15
+  shield: 0
+  shieldTime: 5
 --- !u!1 &2582453507552265522
 GameObject:
   m_ObjectHideFlags: 0
