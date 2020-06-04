@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     private Rigidbody rBody;
     private Animator animator;
+    private PowerUps powerUps;
 
     // There are 5 lanes, but lanes 0 and 5 are not reachable.
     // Player starts on the middle lane
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
     [Space(5)]
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius;
+    private Collider[] groundCheckResults = new Collider[1];
 
     [Space(5f)]
     [SerializeField] Collider normalCollider;
@@ -102,6 +104,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Start() {
         animator = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody>();
+        powerUps = GetComponent<PowerUps>();
         rBody.useGravity = false;
         ResetCollider();
     }
@@ -147,6 +150,11 @@ public class PlayerMovement : MonoBehaviour {
             return;
 
         Vector2Int swipeDirection = new Vector2Int((int)swipeDir.x, (int)swipeDir.y);
+
+        // Inverts swipe if mirror power up is active
+        if (powerUps.Mirror) {
+            swipeDirection *= -1;
+        }
     
         // Horizontal movement
         if (swipeDirection.x != 0) {
@@ -181,7 +189,7 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     private bool CheckGround() {
-        return Physics.OverlapSphere(groundCheck.position, groundCheckRadius, LayerMask.GetMask("Ground")).Length > 0;
+        return Physics.OverlapSphereNonAlloc(groundCheck.position, groundCheckRadius, groundCheckResults, LayerMask.GetMask("Ground")) > 0;
     }
 
 
