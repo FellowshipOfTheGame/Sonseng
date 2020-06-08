@@ -71,13 +71,14 @@ public class SpawnableMatrix : ScriptableObject
             for(int jtnha = 0; jtnha < w; jtnha++)
             {
                 int index = i * w + jtnha;
+                int width, height;
                 //Se ainda nao foi verificado e faz parte de algum grupo, procura por sub matriz
                 if (verified[index] == 0 && matrix[index] != ObjectGroup.None)
                 {
-                    int width = 1, height = 1;
-                    FindSubMatrix(i, jtnha, matrix[index], ref width, ref height);
+                    width = 0; height = 0;
+                    FindSubMatrix(i, jtnha, matrix[index], ref height, ref width);
+                    width += 1 - jtnha; height += 1 - i;
                     byte[] sub = new byte[height * width];
-                    Debug.Log($"{width} e {height}");
                     for (int k = 0; k < height; k++)
                     {
                         for(int j = 0; j < width; j++)
@@ -98,10 +99,9 @@ public class SpawnableMatrix : ScriptableObject
                 }
             }
         }
-        LogSubMatrices();
     }
 
-    private bool FindSubMatrix(int i, int j, ObjectGroup group, ref int width, ref int height)
+    private bool FindSubMatrix(int i, int j, ObjectGroup group, ref int maxi, ref int maxj)
     {
         //Check if it is inbounds
         if(i < 0 || i >= h || j < 0 || j >= w)
@@ -119,21 +119,21 @@ public class SpawnableMatrix : ScriptableObject
         {
             //Verify passage
             verified[index] = 1;
-            int nw = width + 1, nh = height;
+            maxi = i;
+            maxj = j;
+            int ni = maxi, nj = maxj;
             // Direita
-            if (FindSubMatrix(i, j + 1, group, ref nw, ref nh))
+            if (FindSubMatrix(i, j + 1, group, ref ni, ref nj))
             {
-                width = Mathf.Max(nw, width);
-                height = Mathf.Max(nh, height);
+                maxi = Mathf.Max(maxi, ni);
+                maxj = Mathf.Max(maxj, nj);
             }
-
-            nw = width;
-            nh++;
+            ni = maxi; nj = maxj;
             //Baixo
-            if (FindSubMatrix(i + 1, j, group, ref nw, ref nh))
+            if (FindSubMatrix(i + 1, j, group, ref ni, ref nj))
             {
-                width = Mathf.Max(nw, width);
-                height = Mathf.Max(nh, height);
+                maxi = Mathf.Max(maxi, ni);
+                maxj = Mathf.Max(maxj, nj);
             } 
             return true;
         }
