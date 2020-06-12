@@ -30,12 +30,12 @@ public class BlocksGenerator : MonoBehaviour
 
     private void Start()
     {
-        _pooler.Initialization(objects_prefabs);
         foreach (var obj in objects_prefabs)
         {
             obj.name = obj.GetComponent<BlockDimensions>().GetSerialization();
             _serializedObjects[obj.name] = obj;
         }
+        _pooler.Initialization(objects_prefabs);
         foreach(var sm in matrices)
         {
             sm.CalculateSubMatrices();
@@ -86,7 +86,6 @@ public class BlocksGenerator : MonoBehaviour
                 continue;
             }
             prefab.transform.position = spawn_points[subM.index].position;
-            Debug.Log($"spawning at position: {subM.index}");
             prefab.SetActive(true);
         }
 

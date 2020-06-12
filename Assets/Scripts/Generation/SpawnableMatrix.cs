@@ -12,6 +12,7 @@ public class SpawnableMatrix : ScriptableObject
         public byte[] matrix;
         public string serial;
         public int index;
+        public int w, h;
     }
 
     public int w, h;
@@ -83,7 +84,7 @@ public class SpawnableMatrix : ScriptableObject
                     {
                         for(int j = 0; j < width; j++)
                         {
-                            if(matrix[index + (k*w+j)] == matrix[index])
+                            if(matrix[index + (k*w+j)] == matrix[index] && verified[index + (k * w + j)] == 1)
                             {
                                 sub[k * width + j] = 1;
                             }
@@ -95,7 +96,13 @@ public class SpawnableMatrix : ScriptableObject
                     }
                     SubMPos subStruct = new SubMPos { matrix = sub, index = index + (width - 1) + (height - 1) * h };
                     subStruct.serial = BlockDimensions.GetSerialization(width, height, sub);
+                    subStruct.w = width;
+                    subStruct.h = height;
                     subMatrices.Add(subStruct);
+                }
+                else
+                {
+                    verified[index] = 1;
                 }
             }
         }
@@ -121,6 +128,7 @@ public class SpawnableMatrix : ScriptableObject
             verified[index] = 1;
             maxi = i;
             maxj = j;
+
             int ni = maxi, nj = maxj;
             // Direita
             if (FindSubMatrix(i, j + 1, group, ref ni, ref nj))
@@ -128,13 +136,30 @@ public class SpawnableMatrix : ScriptableObject
                 maxi = Mathf.Max(maxi, ni);
                 maxj = Mathf.Max(maxj, nj);
             }
+
             ni = maxi; nj = maxj;
-            //Baixo
+            // Esquerda
+            if (FindSubMatrix(i, j - 1, group, ref ni, ref nj))
+            {
+                maxi = Mathf.Max(maxi, ni);
+                maxj = Mathf.Max(maxj, nj);
+            }
+
+            ni = maxi; nj = maxj;
+            // Baixo
             if (FindSubMatrix(i + 1, j, group, ref ni, ref nj))
             {
                 maxi = Mathf.Max(maxi, ni);
                 maxj = Mathf.Max(maxj, nj);
-            } 
+            }
+
+            ni = maxi; nj = maxj;
+            // Cima
+            if (FindSubMatrix(i - 1, j, group, ref ni, ref nj))
+            {
+                maxi = Mathf.Max(maxi, ni);
+                maxj = Mathf.Max(maxj, nj);
+            }
             return true;
         }
         return false;
