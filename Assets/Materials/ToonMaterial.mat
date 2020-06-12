@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ToonShaderGraph
+  m_Name: ToonMaterial
   m_Shader: {fileID: -6465566751694194690, guid: ee9fbdf37ef66b248a763d25dd2b2d27,
     type: 3}
   m_ShaderKeywords: 
@@ -19,6 +19,16 @@ Material:
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
-    m_Floats: []
-    m_Colors: []
+    m_TexEnvs:
+    - Texture2D_91EC249:
+        m_Texture: {fileID: 2800000, guid: ced424d61f6c03d458dbe9474e302296, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_19B04F07: -0.05
+    - Vector1_3114642B: 0.039
+    - Vector1_6ADCD27E: 0
+    - Vector1_DFC32FA9: 0
+    m_Colors:
+    - Color_3B7D8C6A: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 0}
+    - Color_A2F9F872: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
