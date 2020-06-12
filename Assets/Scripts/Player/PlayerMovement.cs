@@ -123,13 +123,11 @@ public class PlayerMovement : MonoBehaviour {
             IsGrounded = CheckGround();
         }
         
-#if !UNITY_ANDROID
         // In case of playing on a computer, gets keyboard input
         swipeDirection = GetKeyboardInput();
         if (swipeDirection != Vector2Int.zero) {
             OnSwipe((Vector3)(Vector2)swipeDirection);
         }
-#endif
 
         // Stops the movement when it arrives the destination lane
         if (ArrivedDestination()) {
