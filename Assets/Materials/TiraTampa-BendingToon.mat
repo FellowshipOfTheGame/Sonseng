@@ -66,13 +66,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - BENDING_AMOUNT: 0.005
+    - BENDING_AMOUNT: 0
+    - BENDING_AMOUNT_1: 0
     - Vector1_4C5A6F84: 0
     - Vector1_5806439B: 0
     - Vector1_58DC4AF3: 0
     - Vector1_CD688EF9: 0
     - Vector1_E9436488: 0
     - _AlphaClip: 0
+    - _BendingAmountX: 0
+    - _BendingAmountY: 0
     - _Blend: 0
     - _BumpScale: 1
     - _Cull: 2

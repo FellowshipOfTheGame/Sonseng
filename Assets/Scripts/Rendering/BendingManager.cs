@@ -11,8 +11,11 @@ public class BendingManager : MonoBehaviour
 
   private const string PLANET_FEATURE = "ENABLE_BENDING_PLANET";
 
-  private static readonly int BENDING_AMOUNT =
-    Shader.PropertyToID("_BendingAmount");
+  private static readonly int BENDING_AMOUNT_X =
+    Shader.PropertyToID("_BendingAmountX");
+
+  private static readonly int BENDING_AMOUNT_Y =
+    Shader.PropertyToID("_BendingAmountY");
 
   #endregion
 
@@ -23,9 +26,12 @@ public class BendingManager : MonoBehaviour
   private bool enablePlanet = default;
 
   [SerializeField]
-  [Range(0.005f, 0.1f)]
-  private float bendingAmount = 0.015f;
+  [Range(-0.01f, 0.01f)]
+  private float bendingAmountX = 0.0f;
 
+  [SerializeField]
+  [Range(-0.01f, 0.01f)]
+  private float bendingAmountY = 0.0f;
   #endregion
 
 
@@ -50,7 +56,8 @@ public class BendingManager : MonoBehaviour
     else
       Shader.DisableKeyword(PLANET_FEATURE);
 
-    UpdateBendingAmount();
+    UpdateBendingAmountX();
+    UpdateBendingAmountY();
   }
 
   private void OnEnable ()
@@ -64,8 +71,11 @@ public class BendingManager : MonoBehaviour
 
   private void Update ()
   {
-    if ( Math.Abs(_prevAmount - bendingAmount) > Mathf.Epsilon )
-      UpdateBendingAmount();
+    if ( Math.Abs(_prevAmount - bendingAmountX) > Mathf.Epsilon )
+      UpdateBendingAmountX();
+    
+    if( Math.Abs(_prevAmount - bendingAmountY) > Mathf.Epsilon )
+      UpdateBendingAmountY();
   }
 
   private void OnDisable ()
@@ -79,11 +89,18 @@ public class BendingManager : MonoBehaviour
 
   #region Methods
 
-  private void UpdateBendingAmount ()
+  private void UpdateBendingAmountX ()
   {
-    _prevAmount = bendingAmount;
-    Shader.SetGlobalFloat(BENDING_AMOUNT, bendingAmount);
+    _prevAmount = bendingAmountX;
+    Shader.SetGlobalFloat(BENDING_AMOUNT_X, bendingAmountX);
   }
+
+  private void UpdateBendingAmountY ()
+  {
+    _prevAmount = bendingAmountY;
+    Shader.SetGlobalFloat(BENDING_AMOUNT_Y, bendingAmountY);
+  }
+
 
   private static void OnBeginCameraRendering (ScriptableRenderContext ctx,
                                               Camera cam)
