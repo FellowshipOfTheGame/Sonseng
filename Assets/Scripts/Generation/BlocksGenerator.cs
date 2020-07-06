@@ -30,16 +30,20 @@ public class BlocksGenerator : MonoBehaviour
 
     private void Start()
     {
+        //Populate object pool and serialize objects name's
         foreach (var obj in objects_prefabs)
         {
             obj.name = obj.GetComponent<BlockDimensions>().GetSerialization();
             _serializedObjects[obj.name] = obj;
         }
         _pooler.Initialization(objects_prefabs);
+
+        // Calculate sub matrices for every matrix
         foreach(var sm in matrices)
         {
             sm.CalculateSubMatrices();
         }
+        // Invoke spawn function
         InvokeRepeating(_spawnFuncName, _timeToSpawn, _timeToSpawn);
     }
 

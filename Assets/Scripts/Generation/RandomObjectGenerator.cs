@@ -7,9 +7,9 @@ public class RandomObjectGenerator : MonoBehaviour
     public static RandomObjectGenerator Instance = null;
     public float Speed { get => speed; set => SetSpeed(value); }
 
-    [SerializeField] private GameObject[] objects_prefabs;
-    [SerializeField] private Transform[] spawn_points;
-    [SerializeField] private int maximum_spawn_per_tick;
+    [SerializeField] private GameObject[] objects_prefabs = null;
+    [SerializeField] private Transform[] spawn_points = null;
+    [SerializeField] private int maximum_spawn_per_tick = 0;
     //[SerializeField] private float[] x_offsets = { -1f, 0f, 1f };
     //[SerializeField] private float z_offset = 10f;
 

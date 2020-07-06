@@ -23,6 +23,7 @@ public class SimpleObjectPooler : MonoBehaviour
         {
             GameObject ins = Instantiate(obj, _pool.transform);
             ins.SetActive(false);
+            ins.name = obj.name;
             PoolableObjects.Add(ins);
             _possibleNames.Add(ins.name);
         }
@@ -47,7 +48,7 @@ public class SimpleObjectPooler : MonoBehaviour
         if (isExpandable)
         {
             GameObject ins = Instantiate(prefab, _pool.transform);
-            ins.SetActive(true);
+            ins.name = prefab.name;
             PoolableObjects.Add(ins);
             return ins;
         }
