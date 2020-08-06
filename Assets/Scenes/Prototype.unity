@@ -4814,6 +4814,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: SpawnSpeedCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: spawnTimeConstant
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539101854342863578, guid: 58d9954518aae60478111ae4d52dd392,
+        type: 3}
+      propertyPath: speed
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6539101854342863579, guid: 58d9954518aae60478111ae4d52dd392,
         type: 3}
       propertyPath: m_Name
