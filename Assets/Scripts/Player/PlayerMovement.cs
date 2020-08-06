@@ -135,7 +135,6 @@ public class PlayerMovement : MonoBehaviour {
             rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
             currentLane = NextLane;
         }
-
     }
 
     /// <summary>
@@ -237,6 +236,7 @@ public class PlayerMovement : MonoBehaviour {
     /// Add a force to make the player go up and resets the collider to normal size
     /// </summary>    
     private void Jump() {
+        rBody.velocity = new Vector3(rBody.velocity.x, 0f, 0f);
         rBody.AddForce(Vector3.up * jumpForce);
 
         IsJumping = true;

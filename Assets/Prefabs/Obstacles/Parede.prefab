@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6847669312738183306}
   - component: {fileID: 7378803607908028542}
   - component: {fileID: 985034300732394589}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Parede
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 3313677002547879159}
   - component: {fileID: 8174695082274373191}
   - component: {fileID: 7489743235192965415}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlocoDeConstrucao (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313391160063643924}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}

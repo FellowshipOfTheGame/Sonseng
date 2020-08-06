@@ -7,15 +7,20 @@ public class BlocksGenerator : MonoBehaviour
     public static BlocksGenerator Instance = null;
     public float Speed { get => speed; set => SetSpeed(value); }
 
+    [Header("Speed Settings")]
+    public AnimationCurve SpawnSpeedCurve = null;
+    [SerializeField] private float speed = 4f;
+    [SerializeField] private float spawnTimeConstant = 10f;
+
+    [Header("Spawn Prefabs/Assets")]
     [SerializeField] private SpawnableMatrix[] matrices;
     [SerializeField] private GameObject[] objects_prefabs;
     [SerializeField] private Transform[] spawn_points;
-    [SerializeField] private float speed = 4f;
 
     private SpawnableMatrix _lastMatrix = null;
     private SimpleObjectPooler _pooler = null;
     private Dictionary<string, GameObject> _serializedObjects;
-    private float _timeToSpawn { get => 10 / Speed; }
+    private float _timeToSpawn { get => spawnTimeConstant * SpawnSpeedCurve.Evaluate(Speed); }
     private const string _spawnFuncName = "SpawnObjects";
 
     private void Awake()
@@ -30,16 +35,20 @@ public class BlocksGenerator : MonoBehaviour
 
     private void Start()
     {
+        //Populate object pool and serialize objects name's
         foreach (var obj in objects_prefabs)
         {
             obj.name = obj.GetComponent<BlockDimensions>().GetSerialization();
             _serializedObjects[obj.name] = obj;
         }
         _pooler.Initialization(objects_prefabs);
+
+        // Calculate sub matrices for every matrix
         foreach(var sm in matrices)
         {
             sm.CalculateSubMatrices();
         }
+        // Invoke spawn function
         InvokeRepeating(_spawnFuncName, _timeToSpawn, _timeToSpawn);
     }
 
