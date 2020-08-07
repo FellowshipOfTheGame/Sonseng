@@ -23,6 +23,8 @@ public class BlocksGenerator : MonoBehaviour
     private float _timeToSpawn { get => spawnTimeConstant * SpawnSpeedCurve.Evaluate(Speed); }
     private const string _spawnFuncName = "SpawnObjects";
 
+    [SerializeField] private TakeDamageOnContact collisionDetector;
+
     private void Awake()
     {
         if (Instance)
@@ -31,6 +33,8 @@ public class BlocksGenerator : MonoBehaviour
 
         _pooler = GetComponent<SimpleObjectPooler>();
         _serializedObjects = new Dictionary<string, GameObject>();
+
+        collisionDetector.OnDeath += Stop;
     }
 
     private void Start()
@@ -112,5 +116,10 @@ public class BlocksGenerator : MonoBehaviour
     {
         if (Instance == this)
             Instance = null;
+    }
+
+    private void Stop() {
+        speed = 0;
+        CancelInvoke();
     }
 }
