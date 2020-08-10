@@ -8,7 +8,7 @@ public class BlockDimensionsEditor : Editor
     public override void OnInspectorGUI()
     {
         BlockDimensions blockDim = (BlockDimensions) target;
-         
+        
         oldH = blockDim.height;
         oldW = blockDim.width;
 
@@ -21,7 +21,8 @@ public class BlockDimensionsEditor : Editor
             blockDim.matrix = new byte[blockDim.width * blockDim.height];
             oldH = blockDim.height; 
             oldW = blockDim.width;
-        } 
+        }
+        
 
         EditorGUILayout.LabelField("Matrix");
         for (int i = 0; i < blockDim.height; i++)
