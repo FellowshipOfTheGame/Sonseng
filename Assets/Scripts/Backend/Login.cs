@@ -6,7 +6,6 @@ using Firebase;
 using Firebase.Auth;
 using Google;
 using UnityEngine;
-using UnityEngine.UI;
 public class Login : MonoBehaviour {
 
     [SerializeField]
@@ -15,7 +14,6 @@ public class Login : MonoBehaviour {
     private GoogleSignInConfiguration configuration;
     private FirebaseAuth auth;
     private FirebaseApp app;
-    private FirebaseUser user;
 
     public GameObject buttonsPanel, loginButton;
     public TMPro.TextMeshProUGUI title;
@@ -33,6 +31,14 @@ public class Login : MonoBehaviour {
                 app = Firebase.FirebaseApp.DefaultInstance;
                 auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
                 isLogged = auth.CurrentUser != null;
+                if (auth.CurrentUser != null) {
+                    isLogged = true;
+                    if (auth.CurrentUser.IsAnonymous) {
+                        title.SetText("Olá Convidado!");
+                    } else {
+                        title.SetText("Olá " + auth.CurrentUser.DisplayName);
+                    }
+                }
                 hasLogged = false;
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
             } else {
@@ -88,10 +94,11 @@ public class Login : MonoBehaviour {
     }
 
     public void OnSignOut() {
-        GoogleSignIn.DefaultInstance.SignOut();
+        if (!auth.CurrentUser.IsAnonymous) {
+            GoogleSignIn.DefaultInstance.SignOut();
+        }
         isLogged = false;
-        auth.SignOut();
-
+        title.SetText("Sonseng 23: O Jogo");
     }
 
     public void OnDisconnect() {

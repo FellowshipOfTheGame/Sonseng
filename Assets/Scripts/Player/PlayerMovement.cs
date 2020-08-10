@@ -43,6 +43,9 @@ public class PlayerMovement : MonoBehaviour {
     private int moveDirection;
     private Vector2Int swipeDirection;
 
+    [SerializeField]
+    private RegisterScore registerScore;
+
     private int NextLane {
         get { return nextLane; }
         set {
@@ -313,6 +316,7 @@ public class PlayerMovement : MonoBehaviour {
         isDead = true;
         rBody.velocity = Vector3.zero;
         animator.SetTrigger("Death");
+        registerScore.SaveScoreOnDeath();
     }
 
     private void OnDrawGizmos() {
