@@ -7,19 +7,24 @@ using Firebase.Auth;
 using Google;
 using UnityEngine;
 using UnityEngine.UI;
-public class ApiRequest : MonoBehaviour {
+public class Login : MonoBehaviour {
 
-    public Text statusText;
-
-    public string webClientId;
+    [SerializeField]
+    private string webClientId;
 
     private GoogleSignInConfiguration configuration;
     private FirebaseAuth auth;
     private FirebaseApp app;
+    private FirebaseUser user;
+
+    public GameObject buttonsPanel, loginButton;
+    public TMPro.TextMeshProUGUI title;
+
+    private bool isLogged, hasLogged;
 
     // Defer the configuration creation until Awake so the web Client ID
     // Can be set via the property inspector in the Editor.
-    void Awake() {
+    void Start() {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
             if (dependencyStatus == Firebase.DependencyStatus.Available) {
@@ -27,6 +32,8 @@ public class ApiRequest : MonoBehaviour {
                 // where app is a Firebase.FirebaseApp property of your application class.
                 app = Firebase.FirebaseApp.DefaultInstance;
                 auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
+                isLogged = auth.CurrentUser != null;
+                hasLogged = false;
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
             } else {
                 UnityEngine.Debug.LogError(System.String.Format(
@@ -44,25 +51,50 @@ public class ApiRequest : MonoBehaviour {
 
     }
 
+    void Update() {
+        if (isLogged && !hasLogged) {
+            buttonsPanel.SetActive(true);
+            loginButton.SetActive(false);
+            hasLogged = true;
+        } else if (!isLogged && hasLogged) {
+            buttonsPanel.SetActive(false);
+            loginButton.SetActive(true);
+            hasLogged = false;
+        }
+    }
+
+    public void OnGuestSignIn() {
+        auth.SignInAnonymouslyAsync().ContinueWith(task => {
+            if (task.IsCanceled) {
+                Debug.LogError("Firebase Task canceled");
+                return;
+            }
+            if (task.IsFaulted) {
+                Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
+                return;
+            }
+            isLogged = true;
+            title.SetText("Olá Convidado!");
+        });
+    }
     public void OnSignIn() {
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = false;
         GoogleSignIn.Configuration.RequestIdToken = true;
         GoogleSignIn.Configuration.RequestAuthCode = true;
-        AddStatusText("Calling SignIn");
 
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
             OnAuthenticationFinished);
     }
 
     public void OnSignOut() {
-        AddStatusText("Calling SignOut");
         GoogleSignIn.DefaultInstance.SignOut();
+        isLogged = false;
         auth.SignOut();
+
     }
 
     public void OnDisconnect() {
-        AddStatusText("Calling Disconnect");
         GoogleSignIn.DefaultInstance.Disconnect();
     }
 
@@ -73,54 +105,30 @@ public class ApiRequest : MonoBehaviour {
                 if (enumerator.MoveNext()) {
                     GoogleSignIn.SignInException error =
                         (GoogleSignIn.SignInException)enumerator.Current;
-                    AddStatusText("Got Error: " + error.Status + " " + error.Message);
-                } else {
-                    AddStatusText("Got Unexpected Exception?!?" + task.Exception);
                 }
             }
         } else if (task.IsCanceled) {
-            AddStatusText("Canceled");
+            Debug.LogError("Task canceled");
         } else {
-            AddStatusText("Welcome: " + task.Result.DisplayName + "!");
-            AddStatusText("Email = " + task.Result.Email);
-            AddStatusText("Auth code = " + task.Result.AuthCode);
             Credential credential = GoogleAuthProvider.GetCredential(task.Result.IdToken, task.Result.AuthCode);
-            AddStatusText("Credentials set!");
             FirebaseAuth(credential);
         }
     }
     private void FirebaseAuth(Credential cred) {
 
-        AddStatusText("Auth Started!");
         auth.SignInWithCredentialAsync(cred).ContinueWith(task => {
             if (task.IsCanceled) {
-                AddStatusText("LinkWithCredentialAsync was canceled.");
+                Debug.LogError("Firebase Task canceled");
                 return;
             }
             if (task.IsFaulted) {
-                AddStatusText("LinkWithCredentialAsync encountered an error: " + task.Exception);
+                Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
                 return;
             }
-
-            AddStatusText("Login sucessfully");
+            title.SetText("Olá " + task.Result.DisplayName);
+            isLogged = true;
         });
-        
+
     }
 
-
-
-    private List<string> messages = new List<string>();
-    void AddStatusText(string text) {
-        if (messages.Count == 25) {
-            messages.RemoveAt(0);
-        }
-        messages.Add(text);
-        string txt = "";
-        foreach (string s in messages) {
-            txt += "\n" + s;
-        }
-        statusText.text = "\n" + txt;
-    }
-
-    
 }
