@@ -277,6 +277,13 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     /// <summary>
+    /// Moves the player away from the wall, resetting it to the nearest lane
+    /// </summary>
+    public void MoveAwayFromWall() {
+        MoveSideways(-MoveDirection);
+    } 
+
+    /// <summary>
     /// Checks if player has already reached the destination lane comparing its x position with 
     /// the next lane x position
     /// </summary>
