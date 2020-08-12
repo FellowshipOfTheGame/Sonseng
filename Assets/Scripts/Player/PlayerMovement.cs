@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rBody;
     private Animator animator;
     private PowerUps powerUps;
-    private TakeDamageOnContact collisionDetector;
+    private CollisionDetector collisionDetector;
 
     // There are 5 lanes, but lanes 0 and 5 are not reachable.
     // Player starts on the middle lane
@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour {
         animator = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody>();
         powerUps = GetComponent<PowerUps>();
-        collisionDetector = GetComponent<TakeDamageOnContact>();
+        collisionDetector = GetComponent<CollisionDetector>();
 
         collisionDetector.OnDeath += Die;
         

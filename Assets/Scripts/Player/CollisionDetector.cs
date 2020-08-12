@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class TakeDamageOnContact : MonoBehaviour {
+public class CollisionDetector : MonoBehaviour {
     public LayerMask CollisionMask;
     public Action OnDeath;
     private PowerUps powerUps;

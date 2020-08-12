@@ -1,13 +1,21 @@
 using UnityEngine;
 
 public class Obstacle : DestructableObject {
-    //TODO
-    public override void Destroy() {
-        Debug.Log("Destroyed")   ;
+    private void Start() {
+        PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
     }
 
-    //TODO
+    public override void Destroy() {
+        // TODO add any effects here
+        this.transform.parent.gameObject.SetActive(false);
+    }
+
     public override void TransformIntoCoin() {
-        Debug.Log("Transformed into a coin");
+        if (this.gameObject.activeInHierarchy) {
+            // TODO add any effects here
+            // TODO use object pooling
+            Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
+            this.transform.parent.gameObject.SetActive(false);
+        }
     }
 }

@@ -23,7 +23,7 @@ public class BlocksGenerator : MonoBehaviour
     private float _timeToSpawn { get => spawnTimeConstant * SpawnSpeedCurve.Evaluate(Speed); }
     private const string _spawnFuncName = "SpawnObjects";
 
-    [SerializeField] private TakeDamageOnContact collisionDetector;
+    [SerializeField] private CollisionDetector collisionDetector;
 
     private void Awake()
     {

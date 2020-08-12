@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour {
-    [SerializeField] TakeDamageOnContact collisionDetector;
+    [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
     [SerializeField] GameObject pauseMenu;
 
