@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1728,7 +1728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871dff0f17c56f117a457bc75e20eb9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreboard: {fileID: 685763864}
   userId: 
 --- !u!114 &685763864
 MonoBehaviour:
@@ -1742,7 +1741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4d2f3e2102f394f86555a10bf4c64b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   scoreText: {fileID: 13153370}
   speed: 1
   defaultBonusScore: 1000
@@ -5621,6 +5619,36 @@ PrefabInstance:
       propertyPath: registerScore
       value: 
       objectReference: {fileID: 685763863}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: starDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: starBaseBonus
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: starBonusMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: shieldDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: mirrorDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: magnetDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_Name
@@ -5703,7 +5731,7 @@ GameObject:
   - component: {fileID: 6730672980413418623}
   m_Layer: 10
   m_Name: P-Switch
-  m_TagString: P-Switch
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

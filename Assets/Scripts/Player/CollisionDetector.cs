@@ -15,16 +15,23 @@ public class CollisionDetector : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         // If collided with object of specified layer mask
         if ((CollisionMask.value & LayerMask.GetMask(LayerMask.LayerToName(other.gameObject.layer))) != 0) {
-            if (powerUps.Shield) {
-                // if collided with a destructable object, destroys it
+            if (powerUps.Star || powerUps.Shield) {
+                // if collided with a destructable object, destroys it (and count points, if with star power up)
                 // if the object is not destructable, that means there was a collision with the wall, so moves the player away from wall
                 if (other.TryGetComponent(out DestructableObject obj)) {
                     obj.Destroy();
+
+                    // Add bonus points if destroyed using star power up
+                    if (powerUps.Star) {
+                        PowerUps.instance.AddStarBonus();
+                    }
                 } else {
                     movement.MoveAwayFromWall();
                 }
 
-                powerUps.ShieldDeactivate();
+                if (!powerUps.Star) {
+                    powerUps.ShieldDeactivate();
+                }
             } else {
                 OnDeath?.Invoke();
             }

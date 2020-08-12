@@ -11,7 +11,7 @@ public class RegisterScore : MonoBehaviour {
     private DatabaseReference reference;
     private FirebaseUser user;
     [SerializeField]
-    private Scoreboard scoreboard;
+    // private Scoreboard scoreboard
     public string userId;
     void Start() {
 #if UNITY_EDITOR
@@ -26,14 +26,14 @@ public class RegisterScore : MonoBehaviour {
 
     private IEnumerator SaveScore() {
 
-        reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(scoreboard.instance.Score);
+        reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(Scoreboard.instance.Score);
         yield return new WaitForSeconds(10);
         StartCoroutine(SaveScore());
     }
 
     public void SaveScoreOnDeath() {
         StopAllCoroutines();
-        scoreboard.StopScore();
-        reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(scoreboard.instance.Score);
+        Scoreboard.instance.StopScore();
+        reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(Scoreboard.instance.Score);
     }
 }
