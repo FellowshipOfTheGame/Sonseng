@@ -5,12 +5,21 @@ public class InGameMenu : MonoBehaviour {
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] AudioClip songIntro, songLoop;
+    [SerializeField] AudioClip deathJingle;
+
+    [SerializeField] AudioSource _audioIntro, _audioLoop;
 
     private void Start() {
         endGameMenu.SetActive(false);
         pauseMenu.SetActive(false);
 
         collisionDetector.OnDeath += ShowEndGameMenu;
+
+        _audioIntro.clip = songIntro;
+        _audioLoop.clip = songLoop;
+        _audioIntro.Play();
+        _audioLoop.PlayDelayed(songIntro.length);
     }
 
     private void Update() {
@@ -38,6 +47,10 @@ public class InGameMenu : MonoBehaviour {
 
     private void ShowEndGameMenu() {
         endGameMenu.SetActive(true); 
+        _audioLoop.Stop();
+        _audioIntro.Stop();
+        _audioIntro.clip = deathJingle;
+        _audioIntro.Play();
     }
 
     public void Restart() {
