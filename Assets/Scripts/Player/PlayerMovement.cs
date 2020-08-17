@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody rBody;
     private Animator animator;
     private PowerUps powerUps;
-    private TakeDamageOnContact collisionDetector;
+    private CollisionDetector collisionDetector;
 
     // There are 5 lanes, but lanes 0 and 5 are not reachable.
     // Player starts on the middle lane
@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour {
     private int currentLane = 2;
     private int nextLane = 2;
 
+    // Event called every time player's destionation changes, so that the camera can follow it
+    public delegate void DestinationChangeHandler(int newDestination);
+    public event DestinationChangeHandler OnDestinationChange;
 
     [Tooltip("Horizontal speed")]
     [SerializeField] float speed;
@@ -43,14 +46,18 @@ public class PlayerMovement : MonoBehaviour {
     private int moveDirection;
     private Vector2Int swipeDirection;
 
-    [SerializeField]
-    private RegisterScore registerScore;
+    [SerializeField] RegisterScore registerScore;
 
     private int NextLane {
         get { return nextLane; }
         set {
             // Keeps lane number between 0 and the number of lanes - 1 
-            nextLane = Mathf.Clamp(value, 0, numberOfLanes - 1);
+            value = Mathf.Clamp(value, 0, numberOfLanes - 1);
+            
+            if (value != nextLane) {
+                nextLane = value;
+                OnDestinationChange?.Invoke(nextLane);
+            }
         }
     }
 
@@ -109,7 +116,7 @@ public class PlayerMovement : MonoBehaviour {
         animator = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody>();
         powerUps = GetComponent<PowerUps>();
-        collisionDetector = GetComponent<TakeDamageOnContact>();
+        collisionDetector = GetComponent<CollisionDetector>();
 
         collisionDetector.OnDeath += Die;
         
@@ -270,18 +277,25 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     /// <summary>
+    /// Moves the player away from the wall, resetting it to the nearest lane
+    /// </summary>
+    public void MoveAwayFromWall() {
+        MoveSideways(-MoveDirection);
+    } 
+
+    /// <summary>
     /// Checks if player has already reached the destination lane comparing its x position with 
     /// the next lane x position
     /// </summary>
     /// <returns>Returns true if player has already reached the destination lane</returns>
     private bool ArrivedDestination() {
         if (MoveDirection == 1) {
-            if (this.transform.position.x > lanes[NextLane].position.x)
+            if (this.transform.position.x >= lanes[NextLane].position.x)
                 return true;
             else
                 return false;
         } else if (MoveDirection == -1) {
-            if (this.transform.position.x < lanes[NextLane].position.x)
+            if (this.transform.position.x <= lanes[NextLane].position.x)
                 return true;
             else
                 return false;

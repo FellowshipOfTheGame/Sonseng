@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUps : MonoBehaviour {
+    public static PowerUps instance;
+    public delegate void OnPSwtichActivatedHandler();
+    public event OnPSwtichActivatedHandler OnPSwtichActivated;
+
+    [Tooltip("Coin prefab in which obstacles will be transformed when p-switch is activated")]
+    public GameObject coinPrefab;
+
     [Space(5)]
     [SerializeField] bool mirror;
     [SerializeField] float mirrorTime;
@@ -21,6 +28,15 @@ public class PowerUps : MonoBehaviour {
     public bool Mirror => mirror;
     public bool Magnet => magnet;
     public bool Shield => shield;
+
+    private void Start() {
+        // Signleton
+        if (instance == null) {
+            instance = this;
+        } else if (instance != this) {
+            Destroy(this.gameObject);
+        }
+    }
 
     private void Update() {
         // Searches for new coins when the magnet is active
@@ -63,6 +79,9 @@ public class PowerUps : MonoBehaviour {
                 StopCoroutine(ShieldActivate());
                 StartCoroutine(ShieldActivate());
                 break;
+            case "P-Switch":
+                ActivatePSwitch();
+                break;
         }
     }
 
@@ -99,6 +118,11 @@ public class PowerUps : MonoBehaviour {
 
     public void ShieldDeactivate() {
         shield = false;
+    }
+
+
+    private void ActivatePSwitch() {
+        OnPSwtichActivated?.Invoke();
     }
 
     private void OnDrawGizmos() {
