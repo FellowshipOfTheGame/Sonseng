@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 3313677002547879159}
   - component: {fileID: 8174695082274373191}
   - component: {fileID: 7489743235192965415}
+  - component: {fileID: 1287864474416744790}
   m_Layer: 8
   m_Name: BlocoDeConstrucao (1)
   m_TagString: Untagged
@@ -167,3 +168,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1287864474416744790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313391160063643924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
