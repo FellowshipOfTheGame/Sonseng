@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &6850431454814979091
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6992967226451053560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.019757474, y: 0.025407907, z: 0.039843764}
-  m_Center: {x: -0.000000005623221, y: 0.009751556, z: 0.012052976}
---- !u!65 &3284220342607171188
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6183070769460155635}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.074720174, y: 0.03514061, z: 0.0041215853}
-  m_Center: {x: -0.00005920997, y: 0.0010781481, z: 0.012102257}
 --- !u!65 &1624903027396494895
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51,6 +25,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3284220342607171188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183070769460155635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.074720174, y: 0.03514061, z: 0.0041215853}
+  m_Center: {x: -0.00005920997, y: 0.0010781481, z: 0.012102257}
+--- !u!65 &6850431454814979091
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992967226451053560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019757474, y: 0.025407907, z: 0.039843764}
+  m_Center: {x: -0.000000005623221, y: 0.009751556, z: 0.012052976}
 --- !u!1001 &1232390194814278453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ PrefabInstance:
     - target: {fileID: 3964231532894112654, guid: e4829d726cece1e438b43f79c68754f7,
         type: 3}
       propertyPath: m_Name
-      value: Obstacle-Computer Variant
+      value: 23111111
       objectReference: {fileID: 0}
     - target: {fileID: 5950054785157850157, guid: e4829d726cece1e438b43f79c68754f7,
         type: 3}
