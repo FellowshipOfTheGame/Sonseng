@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SimpleObjectPooler))]
 public class ScenarySpawner : MonoBehaviour
 {
 
@@ -12,41 +13,41 @@ public class ScenarySpawner : MonoBehaviour
         Time
     }
 
-    public SpawnConditionType ConditionType = SpawnConditionType.CharacterDistance;
+    public SpawnConditionType SpawnCondition = SpawnConditionType.CharacterDistance;
 
-    [SerializeField] private int InitialScenaryNumber = 1;
-    [SerializeField] private GameObject InitialScenary = null;
-    [SerializeField] private GameObject[] Scenaries = null;
+    [SerializeField] protected int InitialPrefabNumber = 1;
+    [SerializeField] protected GameObject InitialPrefabs = null;
+    [SerializeField] protected GameObject[] Prefabs = null;
 
-    [SerializeField] private float DistanceToPlayer = 20f;
+    [SerializeField] protected float DistanceToPlayer = 20f;
 
 
     protected SimpleObjectPooler _pooler = null;
     protected Transform _lastTransform = null;
     protected Transform player = null;
 
-    void Awake()
+    protected virtual void Awake()
     {
         // Prepare Spawn condition variables
-        if (ConditionType.Equals(SpawnConditionType.CharacterDistance))
+        if (SpawnCondition.Equals(SpawnConditionType.CharacterDistance))
         {
             player = FindObjectOfType<PlayerMovement>().transform;
         }
         // Get pooler reference
         _pooler = GetComponent<SimpleObjectPooler>();
-        _pooler.Initialization(Scenaries);
+        _pooler.Initialization(Prefabs);
 
         // Get initial end position
-        _lastTransform = InitialScenary.transform.Find("EndPosition");
+        _lastTransform = InitialPrefabs.transform.Find("EndPosition");
 
         // Spawn Ahead Scenaries
-        for(int i = 0; i < InitialScenaryNumber; i++)
+        for(int i = 0; i < InitialPrefabNumber; i++)
         {
             InstantiateScenary();
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (CheckSpawnCondition())
         {
@@ -54,33 +55,33 @@ public class ScenarySpawner : MonoBehaviour
         }    
     }
 
-    private bool CheckSpawnCondition()
+    protected virtual bool CheckSpawnCondition()
     {
-        if (ConditionType.Equals(SpawnConditionType.CharacterDistance))
+        if (SpawnCondition.Equals(SpawnConditionType.CharacterDistance))
         {
-            return (Vector3.Distance(player.position, _lastTransform.position) < DistanceToPlayer * InitialScenaryNumber);
+            return (Vector3.Distance(player.position, _lastTransform.position) < DistanceToPlayer * InitialPrefabNumber);
         }
 
         return false;
     }
 
-    private void InstantiateScenary()
+    protected virtual void InstantiateScenary()
     {
         // Get random scenary from pool
         GameObject scenary = null;
         int tries = 0;
         while (scenary == null)
         {
-            if(tries >= Scenaries.Length)
+            if(tries >= Prefabs.Length)
             {
-                Debug.Log("No available object in pool");
+                Debug.Log($"No available object in pool of {gameObject.name}");
                 return;
             }
-            int random_index = UnityEngine.Random.Range((int)0, (int)Scenaries.Length);
-            scenary = _pooler.GetObject(Scenaries[random_index]);
+            int random_index = UnityEngine.Random.Range((int)0, (int)Prefabs.Length);
+            scenary = _pooler.GetObject(Prefabs[random_index]);
             if (scenary == null)
             {
-                Debug.Log($"Couldnt find scenary {Scenaries[random_index].name} of index {random_index}");
+                Debug.Log($"Couldnt find scenary {Prefabs[random_index].name} of index {random_index} from {gameObject.name}");
             }
             tries++;
         }
