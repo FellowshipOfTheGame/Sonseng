@@ -10,7 +10,7 @@ public class RegisterScore : MonoBehaviour {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private FirebaseUser user;
-    [SerializeField]
+    [SerializeField] bool debugMode;
     // private Scoreboard scoreboard
     public string userId;
     void Start() {
@@ -34,6 +34,8 @@ public class RegisterScore : MonoBehaviour {
     public void SaveScoreOnDeath() {
         StopAllCoroutines();
         Scoreboard.instance.StopScore();
-        reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(Scoreboard.instance.Score);
+
+        if (!debugMode)
+            reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(Scoreboard.instance.Score);
     }
 }
