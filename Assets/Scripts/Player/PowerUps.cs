@@ -33,6 +33,9 @@ public class PowerUps : MonoBehaviour {
     [SerializeField] bool shield;
     [SerializeField] float shieldDuration;
 
+    [Space(5)]
+    [SerializeField] Animator ink;
+
     public bool Mirror => mirror;
     public bool Magnet => magnet;
     public bool Star   => star;
@@ -104,6 +107,10 @@ public class PowerUps : MonoBehaviour {
             case "P-Switch":
                 PSwitchActivate();
                 break;
+
+            case "Ink":
+                InkActivate();
+                break;
         }
     }
 
@@ -162,6 +169,12 @@ public class PowerUps : MonoBehaviour {
         OnPSwtichActivated?.Invoke();
     }
 
+
+    // Ink
+    private void InkActivate() {
+        ink.gameObject.SetActive(true);
+        ink.Play("Start");
+    }
 
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
