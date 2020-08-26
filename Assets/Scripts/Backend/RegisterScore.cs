@@ -34,8 +34,6 @@ public class RegisterScore : MonoBehaviour {
     public void SaveScoreOnDeath() {
         StopAllCoroutines();
         Scoreboard.instance.StopScore();
-
-        if (!debugMode)
-            reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(Scoreboard.instance.Score);
+        reference.Child("users").Child(user.UserId).Child("score").SetValueAsync(Scoreboard.instance.Score);
     }
 }
