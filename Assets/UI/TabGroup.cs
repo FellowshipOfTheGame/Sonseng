@@ -17,7 +17,7 @@ public class TabGroup : MonoBehaviour {
         }
         tabButtons.Add(button);
     }
-
+    
     public void OnTabEnter(TabButton button) {
         ResetTabs();
         if(selectedTab == null || button!=selectedTab)
