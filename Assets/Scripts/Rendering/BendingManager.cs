@@ -105,7 +105,7 @@ public class BendingManager : MonoBehaviour
   private static void OnBeginCameraRendering (ScriptableRenderContext ctx,
                                               Camera cam)
   {
-    cam.cullingMatrix = Matrix4x4.Ortho(-99, 99, -99, 99, 0.001f, 99) *
+    cam.cullingMatrix = Matrix4x4.Ortho(-cam.farClipPlane, cam.farClipPlane, -cam.farClipPlane, cam.farClipPlane, 0.001f, cam.farClipPlane) *
                         cam.worldToCameraMatrix;
   }
 
