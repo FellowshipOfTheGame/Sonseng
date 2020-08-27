@@ -12,21 +12,33 @@ public class PowerUps : MonoBehaviour {
 
     [Space(5)]
     [SerializeField] bool mirror;
-    [SerializeField] float mirrorTime;
+    [SerializeField] float mirrorDuration;
 
     [Space(5)]
     [SerializeField] bool magnet;
-    [SerializeField] float magnetTime;
+    [SerializeField] float magnetDuration;
     [SerializeField] float magnetRadius;
     [SerializeField] float magnetForce;
     private Collider[] magnetAttractionResults = new Collider[25];
     private HashSet<Transform> coins = new HashSet<Transform>();
+
     [Space(5)]
-    [SerializeField] public bool shield;
-    [SerializeField] float shieldTime;
+    [SerializeField] bool star;
+    [SerializeField] float starDuration;
+    [SerializeField] float starBaseBonus;
+    [SerializeField] float starBonusMultiplier;
+    private float starCurrentBonus;
+
+    [Space(5)]
+    [SerializeField] bool shield;
+    [SerializeField] float shieldDuration;
+
+    [Space(5)]
+    [SerializeField] Animator ink;
 
     public bool Mirror => mirror;
     public bool Magnet => magnet;
+    public bool Star   => star;
     public bool Shield => shield;
 
     private void Start() {
@@ -63,66 +75,105 @@ public class PowerUps : MonoBehaviour {
             case "Coin":
                 coins.Remove(other.transform);
                 //TODO Let the coin destroy itself and count points
+                //TODO use object pooling
                 Destroy(other.gameObject);
                 break;
 
             // Power Ups
             case "Mirror":
-                StopCoroutine(MirrorActivate());
-                StartCoroutine(MirrorActivate());
+                MirrorActivate();
+                CancelInvoke(nameof(MirrorDeactivate));
+                Invoke(nameof(MirrorDeactivate), mirrorDuration);
                 break;
+
             case "Magnet":
-                StopCoroutine(MagnetActivate());
-                StartCoroutine(MagnetActivate());
+                MagnetActivate();
+                CancelInvoke(nameof(MagnetDeactivate));
+                Invoke(nameof(MagnetDeactivate), magnetDuration);
                 break;
+
+            case "Star":
+                StarActivate();
+                CancelInvoke(nameof(StarDeactivate));
+                Invoke(nameof(StarDeactivate), starDuration);
+                break;
+
             case "Shield":
-                StopCoroutine(ShieldActivate());
-                StartCoroutine(ShieldActivate());
+                ShieldActivate();
+                CancelInvoke(nameof(ShieldDeactivate));
+                Invoke(nameof(ShieldDeactivate), shieldDuration);
                 break;
+
             case "P-Switch":
-                ActivatePSwitch();
+                PSwitchActivate();
+                break;
+
+            case "Ink":
+                InkActivate();
                 break;
         }
     }
 
-    /// <summary>
-    /// Enables mirror power up and disables it after mirrorTime
-    /// </summary>
-    /// <returns>Power up duration</returns>
-    private IEnumerator MirrorActivate() {
+
+    // Mirror
+    private void MirrorActivate() {
         mirror = true;
-        yield return new WaitForSeconds(mirrorTime);
+    }
+
+    private void MirrorDeactivate() {
         mirror = false;
     }
 
-
-    /// <summary>
-    /// Enables magnet power up and disables it after magnetTime
-    /// </summary>
-    /// <returns>Power up duration</returns>
-    private IEnumerator MagnetActivate() {
+    // Magnet
+    private void MagnetActivate() {
         magnet = true;
-        yield return new WaitForSeconds(magnetTime);
+    }
+
+    private void MagnetDeactivate() {
         magnet = false;
     }
 
+    // Star
+    private void StarActivate() {
+        if (!star) {
+            starCurrentBonus = starBaseBonus;
+            star = true;
+        }
+    }
+
+    private void StarDeactivate() {
+        star = false;
+    }
+
     /// <summary>
-    /// Enables shield and disables it after shieldTime
+    /// Adds score bonus after destroying a block
+    /// After each block, the bonus earned gets bigger
     /// </summary>
-    /// <returns>Power up duration</returns>
-    private IEnumerator ShieldActivate() {
+    public void AddStarBonus() {
+        Scoreboard.instance.AddBonus(starCurrentBonus);
+        Debug.Log("Object destroyed: " + starCurrentBonus);
+        starCurrentBonus *= starBonusMultiplier;
+    }
+
+    // Shield
+    private void ShieldActivate() {
         shield = true;
-        yield return new WaitForSeconds(shieldTime);
-        shield = false;
     }
 
     public void ShieldDeactivate() {
         shield = false;
     }
 
-
-    private void ActivatePSwitch() {
+    // P-Switch
+    private void PSwitchActivate() {
         OnPSwtichActivated?.Invoke();
+    }
+
+
+    // Ink
+    private void InkActivate() {
+        ink.gameObject.SetActive(true);
+        ink.Play("Start");
     }
 
     private void OnDrawGizmos() {
