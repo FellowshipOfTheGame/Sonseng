@@ -10,11 +10,13 @@ public class InGameMenu : MonoBehaviour {
 
     [SerializeField] AudioSource _audioIntro, _audioLoop;
 
+    private void OnEnable() {
+        collisionDetector.OnDeath += ShowEndGameMenu;
+    }
+
     private void Start() {
         endGameMenu.SetActive(false);
         pauseMenu.SetActive(false);
-
-        collisionDetector.OnDeath += ShowEndGameMenu;
 
         _audioIntro.clip = songIntro;
         _audioLoop.clip = songLoop;
@@ -61,5 +63,9 @@ public class InGameMenu : MonoBehaviour {
     public void GoBackToMenu() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 }
