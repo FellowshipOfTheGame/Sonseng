@@ -13,7 +13,7 @@ public class ScenarySpawner : MonoBehaviour
         Time
     }
 
-    public SpawnConditionType SpawnCondition = SpawnConditionType.CharacterDistance;
+    [HideInInspector] public SpawnConditionType SpawnCondition = SpawnConditionType.CharacterDistance;
 
     [SerializeField] protected int InitialPrefabNumber = 1;
     [SerializeField] protected GameObject InitialPrefabs = null;
