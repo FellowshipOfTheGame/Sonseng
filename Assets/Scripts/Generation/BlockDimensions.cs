@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BlockDimensions : MonoBehaviour
 {
-    public int width = 1;
-    public int height = 1;
+    public int width = 0;
+    public int height = 0;
     public byte[] matrix = { };
 
     private void Awake()

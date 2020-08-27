@@ -11,7 +11,7 @@ public class SpawnableMatrixEditor : Editor
     {
         spawnableMatrix = (SpawnableMatrix) target;
         size = EditorGUILayout.IntField("Size", spawnableMatrix.w);
-        if (size != spawnableMatrix.w)
+        if (size != spawnableMatrix.w && size > 0)
         {
             spawnableMatrix.matrix = new ObjectGroup[size * size];
             spawnableMatrix.w = spawnableMatrix.h = size;

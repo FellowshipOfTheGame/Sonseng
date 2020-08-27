@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 7709925801896827892}
   - component: {fileID: 2748525402787323222}
   - component: {fileID: 3670235424074847358}
-  - component: {fileID: 2694374255656551115}
   m_Layer: 8
   m_Name: BlocoDeConstrucao (1)
   m_TagString: Untagged
@@ -134,7 +133,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec88f88fab6fe6447a0728bff724000f, type: 2}
+  - {fileID: 2100000, guid: 4c48c6dd9c860aa4b9420cb246c87560, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -155,19 +154,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2694374255656551115
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7014268747779751309}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8657991370664922265
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +166,7 @@ GameObject:
   - component: {fileID: 1089966834196371446}
   - component: {fileID: 6047796891260264553}
   - component: {fileID: 7841342415248913898}
+  - component: {fileID: 1588937609011733013}
   m_Layer: 8
   m_Name: BlocoDeConstrucao (2)
   m_TagString: Untagged
@@ -227,7 +214,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec88f88fab6fe6447a0728bff724000f, type: 2}
+  - {fileID: 2100000, guid: 4c48c6dd9c860aa4b9420cb246c87560, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -259,5 +246,17 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.4533299, z: 1}
+  m_Center: {x: 0, y: -0.22666402, z: 0}
+--- !u!114 &1588937609011733013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8657991370664922265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,15 +2,20 @@
 using TMPro;
 
 public class Scoreboard : MonoBehaviour {
-    [HideInInspector] public Scoreboard instance;
+    [HideInInspector] public static Scoreboard instance;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] float speed;
     [SerializeField] float defaultBonusScore;
+    private bool isPlayerAlive = true;
     private float score;
 
-    private float Score {
+    public void StopScore(){
+        isPlayerAlive = false;
+    }
+
+    public float Score {
         get { return score; }
-        set {
+        private set {
             score = value;
             scoreText.text = "Score: " + Mathf.Round(score).ToString();
         }
@@ -29,7 +34,7 @@ public class Scoreboard : MonoBehaviour {
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        Score += speed;
+        if(isPlayerAlive) Score += speed;
     }
 
     /// <summary>
