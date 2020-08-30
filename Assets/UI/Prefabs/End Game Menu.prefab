@@ -7011,25 +7011,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a,
+        type: 3}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7477243571625039507, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Name
       value: Upgrade Button (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7477243571625039509, guid: dacbf10dc26e10eba8a3a89d5c231621,
-        type: 3}
-      propertyPath: cost
-      value: 2000
-      objectReference: {fileID: 0}
     - target: {fileID: 7477243572685186291, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
@@ -7049,14 +7055,15 @@ PrefabInstance:
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_text
-      value: \uf0ad
+      value: \uf3fd
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_textInfo.materialCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dacbf10dc26e10eba8a3a89d5c231621, type: 3}
 --- !u!224 &1187898790743776633 stripped
 RectTransform:
@@ -7236,25 +7243,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a,
+        type: 3}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7477243571625039507, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Name
       value: Upgrade Button (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 7477243571625039509, guid: dacbf10dc26e10eba8a3a89d5c231621,
-        type: 3}
-      propertyPath: cost
-      value: 3000
-      objectReference: {fileID: 0}
     - target: {fileID: 7477243572685186291, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
@@ -7274,14 +7287,15 @@ PrefabInstance:
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_text
-      value: \uf004
+      value: \uf3fd
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_textInfo.materialCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dacbf10dc26e10eba8a3a89d5c231621, type: 3}
 --- !u!224 &1187898790934149910 stripped
 RectTransform:
@@ -7742,6 +7756,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a,
+        type: 3}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7477243571625039507, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Name
@@ -7777,7 +7802,8 @@ PrefabInstance:
       propertyPath: m_text
       value: \uf005
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dacbf10dc26e10eba8a3a89d5c231621, type: 3}
 --- !u!224 &1187898792206670446 stripped
 RectTransform:
@@ -7957,20 +7983,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a,
+        type: 3}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7477243571625039507, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Name
       value: Upgrade Button
       objectReference: {fileID: 0}
-    - target: {fileID: 7477243571625039509, guid: dacbf10dc26e10eba8a3a89d5c231621,
-        type: 3}
-      propertyPath: cost
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 7477243572685186291, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572685186291, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
@@ -7985,7 +8017,7 @@ PrefabInstance:
     - target: {fileID: 7477243572685186291, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_padding
-      value: 1.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236222, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
@@ -8032,7 +8064,8 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dacbf10dc26e10eba8a3a89d5c231621, type: 3}
 --- !u!224 &1187898792583125467 stripped
 RectTransform:
@@ -8452,25 +8485,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a,
+        type: 3}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7477243571625039507, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Name
       value: Upgrade Button (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7477243571625039509, guid: dacbf10dc26e10eba8a3a89d5c231621,
-        type: 3}
-      propertyPath: cost
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 7477243572685186291, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
@@ -8490,14 +8529,15 @@ PrefabInstance:
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_text
-      value: \uf076
+      value: \uf3fd
       objectReference: {fileID: 0}
     - target: {fileID: 7477243572968236223, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}
       propertyPath: m_textInfo.materialCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: dacbf10dc26e10eba8a3a89d5c231621, type: 3}
 --- !u!224 &1187898792447446210 stripped
 RectTransform:
@@ -8631,6 +8671,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a,
+        type: 3}
+    - target: {fileID: 7477243571625039505, guid: dacbf10dc26e10eba8a3a89d5c231621,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7477243571625039507, guid: dacbf10dc26e10eba8a3a89d5c231621,
         type: 3}

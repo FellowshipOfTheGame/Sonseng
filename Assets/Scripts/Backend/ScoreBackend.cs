@@ -11,7 +11,6 @@ public class ScoreBackend : MonoBehaviour {
     private DatabaseReference reference;
     private FirebaseUser user;
     [SerializeField] bool debugMode;
-    private Scoreboard scoreboard;
     public string userId;
 
     void Start() {
@@ -28,15 +27,15 @@ public class ScoreBackend : MonoBehaviour {
 
     private IEnumerator SaveScore() {
 
-        reference.Child("users").Child(user.UserId).Child("last-score").SetValueAsync(scoreboard.instance.Score);
+        reference.Child("users").Child(user.UserId).Child("last-score").SetValueAsync(Scoreboard.instance.Score);
         yield return new WaitForSeconds(10);
         StartCoroutine(SaveScore());
     }
 
     public void SaveScoreOnDeath() {
         StopAllCoroutines();
-        scoreboard.StopScore();
-        reference.Child("users").Child(user.UserId).Child("last-score").SetValueAsync(scoreboard.instance.Score);
+        Scoreboard.instance.StopScore();
+        reference.Child("users").Child(user.UserId).Child("last-score").SetValueAsync(Scoreboard.instance.Score);
     }
 
     public void GetHighestScore() {
@@ -47,7 +46,7 @@ public class ScoreBackend : MonoBehaviour {
             } else if (task.IsCompleted) {
                 DataSnapshot snapshot = task.Result;
                 Debug.Log(snapshot.GetRawJsonValue());
-                scoreboard.instance.highestScore = float.Parse(snapshot.GetRawJsonValue());
+                Scoreboard.instance.highestScore = float.Parse(snapshot.GetRawJsonValue());
             }
         });
     }

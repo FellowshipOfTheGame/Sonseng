@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7477243571625039511}
   - component: {fileID: 7477243571625039510}
   - component: {fileID: 7477243571625039505}
-  - component: {fileID: 7477243571625039509}
+  - component: {fileID: 2996265297701403591}
   m_Layer: 0
   m_Name: Upgrade Button
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7477243571625039509}
+      - m_Target: {fileID: 2996265297701403591}
         m_MethodName: HandleClick
         m_Mode: 1
         m_Arguments:
@@ -146,7 +146,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7477243571625039509
+--- !u!114 &2996265297701403591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costTxt: {fileID: 5795705110045978279}
-  cost: 1500
+  cost: 5000
 --- !u!1 &7477243572685186301
 GameObject:
   m_ObjectHideFlags: 0
