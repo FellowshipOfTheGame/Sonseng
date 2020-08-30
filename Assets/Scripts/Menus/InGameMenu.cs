@@ -4,11 +4,15 @@ using UnityEngine.SceneManagement;
 public class InGameMenu : MonoBehaviour {
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pauseMenu, header;
     [SerializeField] AudioClip songIntro, songLoop;
     [SerializeField] AudioClip deathJingle;
 
     [SerializeField] AudioSource _audioIntro, _audioLoop;
+
+    [SerializeField] TMPro.TextMeshProUGUI pauseScoreText;
+
+    [SerializeField] Scoreboard scoreboard;
 
     private void Start() {
         endGameMenu.SetActive(false);
@@ -38,15 +42,18 @@ public class InGameMenu : MonoBehaviour {
             if (!pauseMenu.activeInHierarchy) {
                 Time.timeScale = 0f;
                 pauseMenu.SetActive(true);
+                header.SetActive(false);
             } else {
                 Time.timeScale = 1f;
                 pauseMenu.SetActive(false);
+                header.SetActive(true);
             }
         }
     }
 
     private void ShowEndGameMenu() {
-        endGameMenu.SetActive(true); 
+        endGameMenu.SetActive(true);
+        header.SetActive(false);
         _audioLoop.Stop();
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
