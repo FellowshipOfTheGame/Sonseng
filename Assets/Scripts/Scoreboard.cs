@@ -2,7 +2,7 @@
 using TMPro;
 
 public class Scoreboard : MonoBehaviour {
-    [HideInInspector] public Scoreboard instance;
+    [HideInInspector] public static Scoreboard instance;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] float speed;
     [SerializeField] float defaultBonusScore;

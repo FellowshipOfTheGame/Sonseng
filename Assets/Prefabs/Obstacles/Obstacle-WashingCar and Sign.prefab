@@ -35,9 +35,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5084967857196001652}
-  - component: {fileID: 6071635810323617363}
-  - component: {fileID: 8270681545858851822}
-  - component: {fileID: 364718581963370658}
   m_Layer: 8
   m_Name: Obstacle-WashingCar and Sign
   m_TagString: Untagged
@@ -60,46 +57,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6071635810323617363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476274424816348318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155e044a97984824e9e20b886f6787e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeSpan: 30
---- !u!114 &8270681545858851822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476274424816348318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3c88eba2f7ad8647b3b7ded76694fb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 2
-  height: 3
-  matrix: 010001010101
---- !u!114 &364718581963370658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476274424816348318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b717a80667a6743ba66fa1b55137f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &8686912281574937757
 BoxCollider:
   m_ObjectHideFlags: 0

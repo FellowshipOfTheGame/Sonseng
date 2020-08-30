@@ -16,9 +16,8 @@ public class PoolableObject : MonoBehaviour
         CancelInvoke("Deactivate");
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         gameObject.SetActive(false);
     }
-
 }
