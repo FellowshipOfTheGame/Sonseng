@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Obstacle : DestructableObject {
-    private void Start() {
+    private void Awake() {
         PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
     }
 

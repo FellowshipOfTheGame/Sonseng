@@ -10,7 +10,7 @@ public class ScoreBackend : MonoBehaviour {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private FirebaseUser user;
-    [SerializeField]
+    [SerializeField] bool debugMode;
     private Scoreboard scoreboard;
     public string userId;
 

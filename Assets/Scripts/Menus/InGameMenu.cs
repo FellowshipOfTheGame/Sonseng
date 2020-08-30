@@ -18,8 +18,6 @@ public class InGameMenu : MonoBehaviour {
         endGameMenu.SetActive(false);
         pauseMenu.SetActive(false);
 
-        collisionDetector.OnDeath += ShowEndGameMenu;
-
         _audioIntro.clip = songIntro;
         _audioLoop.clip = songLoop;
         _audioIntro.Play();
@@ -68,5 +66,9 @@ public class InGameMenu : MonoBehaviour {
     public void GoBackToMenu() {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 }
