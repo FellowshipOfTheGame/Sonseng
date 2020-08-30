@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class EndGameMenu : MonoBehaviour {
     [SerializeField] TextMeshProUGUI scoreText, recordText;
-    [SerializeField] private Scoreboard scoreboard;
 
     void OnEnable() {
-        if(scoreboard.instance.Score > scoreboard.instance.highestScore){
-            scoreboard.instance.highestScore = scoreboard.instance.Score;
+        if(Scoreboard.instance.Score > Scoreboard.instance.highestScore){
+            Scoreboard.instance.highestScore = Scoreboard.instance.Score;
         }
-        scoreText.text = scoreboard.instance.Score + " metros";
-        recordText.text = scoreboard.instance.highestScore.ToString();
+        scoreText.text = Scoreboard.instance.Score + " metros";
+        recordText.text = Scoreboard.instance.highestScore.ToString();
 
     }
 }

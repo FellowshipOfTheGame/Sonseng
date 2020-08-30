@@ -22,6 +22,11 @@ public class InGameMenu : MonoBehaviour {
         _audioLoop.clip = songLoop;
         _audioIntro.Play();
         _audioLoop.PlayDelayed(songIntro.length);
+
+    }
+
+    void OnEnable() {
+        collisionDetector.OnDeath += ShowEndGameMenu;
     }
 
     private void Update() {
@@ -56,6 +61,7 @@ public class InGameMenu : MonoBehaviour {
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
         _audioIntro.Play();
+        collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
     public void Restart() {
