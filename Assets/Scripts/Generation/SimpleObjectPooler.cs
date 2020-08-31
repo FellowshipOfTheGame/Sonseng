@@ -13,9 +13,9 @@ public class SimpleObjectPooler : MonoBehaviour
 
     public void Initialization(GameObject[] poolables)
     {
-        _pool = new GameObject("Object Pool");
+        _pool = new GameObject($"[{name}] ObjectPool");
         _pool.transform.SetParent(transform);
-        Debug.Log("Initialized pooler");
+        Debug.Log($"Initialized pooler for  {name}");
         PoolableObjects = new List<GameObject>();
 
         foreach(var obj in poolables)
