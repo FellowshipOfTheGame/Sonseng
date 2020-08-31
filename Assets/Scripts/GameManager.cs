@@ -18,14 +18,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] protected float TimeForMaxSpeed = 1f;
 
     protected float _timeThatGameStarted = 0f;
-
-    // Get Time since game started in seconds
+    /// <summary>
+    /// Get Time since game started in seconds
+    /// </summary>
     public float TimeSinceGameStarted => Time.timeSinceLevelLoad - _timeThatGameStarted;
 
-    // Get Game Speed in interval [0,1]
+    /// <summary>
+    /// Get Game Speed in interval [0,1]
+    /// </summary>
     public float EvaluatedSpeed => TimeToSpeedCurve.Evaluate(Mathf.Min(TimeSinceGameStarted / TimeForMaxSpeed, TimeForMaxSpeed));
-    
-    // Get Actual Game Speed
+
+    /// <summary>
+    /// Get Actual Game Speed
+    /// </summary>
     public float Speed => MinSpeed + EvaluatedSpeed * (MaxSpeed - MinSpeed);
 
 

@@ -65,7 +65,8 @@ public class PowerUps : MonoBehaviour {
     private void FixedUpdate() {
         // Atract coins that are in the list
         foreach (var coin in coins) {
-            coin.position = Vector3.MoveTowards(coin.position, this.transform.position, magnetForce * Time.fixedDeltaTime);
+            if (coin.gameObject.activeSelf == true) // Don't recycled coins
+                coin.position = Vector3.MoveTowards(coin.position, this.transform.position, (magnetForce + GameManager.instance.Speed) * Time.fixedDeltaTime);
         }
     }
 

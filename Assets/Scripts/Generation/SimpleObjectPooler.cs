@@ -14,13 +14,14 @@ public class SimpleObjectPooler : MonoBehaviour
     public void Initialization(GameObject[] poolables)
     {
         _pool = new GameObject($"[{name}] ObjectPool");
-        _pool.transform.SetParent(transform);
+        //_pool.transform.SetParent(transform);
+        _pool.transform.position = transform.position;
         Debug.Log($"Initialized pooler for  {name}");
         PoolableObjects = new List<GameObject>();
 
         foreach(var obj in poolables)
         {
-            GameObject ins = Instantiate(obj, _pool.transform);
+            GameObject ins = Instantiate(obj, _pool.transform, false);
             ins.SetActive(false);
             ins.name = obj.name;
             PoolableObjects.Add(ins);
@@ -46,10 +47,10 @@ public class SimpleObjectPooler : MonoBehaviour
 
         if (isExpandable)
         {
-            GameObject ins = Instantiate(prefab, _pool.transform);
+            GameObject ins = Instantiate(prefab, _pool.transform, false);
+            ins.SetActive(false);
             ins.name = prefab.name;
             PoolableObjects.Add(ins);
-            ins.SetActive(false);
             return ins;
         }
 
@@ -58,7 +59,7 @@ public class SimpleObjectPooler : MonoBehaviour
 
     public void AddObject(GameObject obj)
     {
-        GameObject ins = Instantiate(obj, _pool.transform);
+        GameObject ins = Instantiate(obj, _pool.transform, false);
         ins.SetActive(false);
         ins.name = obj.name;
         PoolableObjects.Add(ins);

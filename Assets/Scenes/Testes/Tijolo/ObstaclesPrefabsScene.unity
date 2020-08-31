@@ -1377,6 +1377,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2350643672384171081, guid: 1984b0c35d4ae444ebc609dd7d393522,
         type: 3}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: magnetDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_Name
@@ -1552,8 +1557,9 @@ PrefabInstance:
     - target: {fileID: 1600952393206938236, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: LifeSpan
-      value: 10
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 11400000, guid: 85599912c2a241442b6cde4ae9a77ef9,
+        type: 2}
     - target: {fileID: 6438310646435286997, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -1591,7 +1597,7 @@ PrefabInstance:
     - target: {fileID: 7659378177619989777, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.403022
+      value: 40.9
       objectReference: {fileID: 0}
     - target: {fileID: 7659378177619989777, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
@@ -2033,6 +2039,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TimeToSpeedManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522019121615264804, guid: a27cff37badf8344ea355af4e7263944,
+        type: 3}
+      propertyPath: TimeForMaxSpeed
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522019121615264804, guid: a27cff37badf8344ea355af4e7263944,
+        type: 3}
+      propertyPath: MaxSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8522019121615264805, guid: a27cff37badf8344ea355af4e7263944,
         type: 3}

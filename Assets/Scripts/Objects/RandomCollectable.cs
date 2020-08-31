@@ -18,8 +18,8 @@ public class RandomCollectable : MonoBehaviour
     private void OnEnable()
     {
         _activeCollectable = RandomCollectableSystem.Instance.GetRandomCollectable();
-        _activeCollectable.transform.position = transform.position;
-        _activeCollectable.transform.rotation = transform.rotation;
+        _activeCollectable.transform.SetPositionAndRotation(transform.position, transform.rotation);
         _activeCollectable.SetActive(true);
+        _activeCollectable.transform.SetParent(transform);
     }
 }
