@@ -7,7 +7,6 @@ public class SimpleObjectPooler : MonoBehaviour
 {
     public List<GameObject> PoolableObjects = null;
     public bool isExpandable = true;
-    //public Dictionary<string, bool> PossibleNames;
 
     private GameObject _pool;
     private HashSet<string> _possibleNames = new HashSet<string>();
@@ -50,9 +49,19 @@ public class SimpleObjectPooler : MonoBehaviour
             GameObject ins = Instantiate(prefab, _pool.transform);
             ins.name = prefab.name;
             PoolableObjects.Add(ins);
+            ins.SetActive(false);
             return ins;
         }
 
         return null;
+    }
+
+    public void AddObject(GameObject obj)
+    {
+        GameObject ins = Instantiate(obj, _pool.transform);
+        ins.SetActive(false);
+        ins.name = obj.name;
+        PoolableObjects.Add(ins);
+        _possibleNames.Add(ins.name);
     }
 }

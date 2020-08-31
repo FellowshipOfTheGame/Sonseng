@@ -16,7 +16,7 @@ public class ObstacleSpawner : ScenarySpawner
     {
         base.Awake();
     #if UNITY_EDITOR
-        Assert.IsNotNull(GameManager.instance);
+        Assert.IsNotNull(GameManager.instance, $"GameManager instance is null for {name}");
     # endif
     }
 

@@ -1,8 +1,9 @@
 using UnityEngine;
 
 public class Obstacle : DestructableObject {
-    private void Awake() {
-        PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
+    private void Start() {
+        if(PowerUps.instance)
+            PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
     }
 
     public override void Destroy() {
@@ -17,5 +18,10 @@ public class Obstacle : DestructableObject {
             Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
             this.transform.parent.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        PowerUps.instance.OnPSwtichActivated -= TransformIntoCoin;
     }
 }
