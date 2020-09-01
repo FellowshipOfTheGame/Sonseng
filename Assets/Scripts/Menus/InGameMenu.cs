@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 public class InGameMenu : MonoBehaviour {
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pauseMenu, header;
     [SerializeField] AudioClip songIntro, songLoop;
     [SerializeField] AudioClip deathJingle;
 
     [SerializeField] AudioSource _audioIntro, _audioLoop;
 
-    private void OnEnable() {
-        collisionDetector.OnDeath += ShowEndGameMenu;
-    }
+    [SerializeField] TMPro.TextMeshProUGUI pauseScoreText;
+
+    [SerializeField] Scoreboard scoreboard;
 
     private void Start() {
         endGameMenu.SetActive(false);
@@ -22,6 +22,11 @@ public class InGameMenu : MonoBehaviour {
         _audioLoop.clip = songLoop;
         _audioIntro.Play();
         _audioLoop.PlayDelayed(songIntro.length);
+
+    }
+
+    void OnEnable() {
+        collisionDetector.OnDeath += ShowEndGameMenu;
     }
 
     private void Update() {
@@ -40,19 +45,23 @@ public class InGameMenu : MonoBehaviour {
             if (!pauseMenu.activeInHierarchy) {
                 Time.timeScale = 0f;
                 pauseMenu.SetActive(true);
+                header.SetActive(false);
             } else {
                 Time.timeScale = 1f;
                 pauseMenu.SetActive(false);
+                header.SetActive(true);
             }
         }
     }
 
     private void ShowEndGameMenu() {
-        endGameMenu.SetActive(true); 
+        endGameMenu.SetActive(true);
+        header.SetActive(false);
         _audioLoop.Stop();
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
         _audioIntro.Play();
+        collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
     public void Restart() {

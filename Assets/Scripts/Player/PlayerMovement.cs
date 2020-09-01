@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
     private int moveDirection;
     private Vector2Int swipeDirection;
 
-    [SerializeField] RegisterScore registerScore;
+    [SerializeField] ScoreBackend registerScore;
 
     private int NextLane {
         get { return nextLane; }

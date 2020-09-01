@@ -9,6 +9,8 @@ public class Scoreboard : MonoBehaviour {
     private bool isPlayerAlive = true;
     private float score;
 
+    public float highestScore;
+
     public void StopScore(){
         isPlayerAlive = false;
     }
@@ -17,7 +19,7 @@ public class Scoreboard : MonoBehaviour {
         get { return score; }
         private set {
             score = value;
-            scoreText.text = "Score: " + Mathf.Round(score).ToString();
+            scoreText.text = Mathf.Round(score).ToString() + " metros";
         }
     }
 
