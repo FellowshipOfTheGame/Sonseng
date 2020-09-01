@@ -29,6 +29,10 @@ public class InGameMenu : MonoBehaviour {
         collisionDetector.OnDeath += ShowEndGameMenu;
     }
 
+    private void OnDisable() {
+        collisionDetector.OnDeath -= ShowEndGameMenu;
+    }
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             PauseOrResume();
@@ -74,7 +78,4 @@ public class InGameMenu : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
-    private void OnDisable() {
-        collisionDetector.OnDeath -= ShowEndGameMenu;
-    }
 }
