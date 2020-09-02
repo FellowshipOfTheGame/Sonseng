@@ -1,0 +1,17 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".write": "auth!= null && $uid === auth.uid",
+        ".read": "auth!=null && $uid === auth.uid",
+        "highest-score": {
+          ".validate": "newData.val() > data.val()"
+        }
+      }
+    },
+    "power-ups": {
+      ".read": true,
+      ".write": false
+    }
+  }
+}
