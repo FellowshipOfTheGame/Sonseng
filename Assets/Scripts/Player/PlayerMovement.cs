@@ -116,12 +116,18 @@ public class PlayerMovement : MonoBehaviour {
         animator = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody>();
         powerUps = GetComponent<PowerUps>();
-        collisionDetector = GetComponent<CollisionDetector>();
-
-        collisionDetector.OnDeath += Die;
         
         rBody.useGravity = false;
         ResetCollider();
+    }
+
+    private void OnEnable() {
+        collisionDetector = GetComponent<CollisionDetector>();
+        collisionDetector.OnDeath += Die;
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= Die;
     }
 
     private void Update() {

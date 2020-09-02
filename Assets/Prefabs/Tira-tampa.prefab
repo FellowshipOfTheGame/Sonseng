@@ -538,7 +538,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5773927840210352221}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -722,14 +722,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 2570973210667553596, guid: 1984b0c35d4ae444ebc609dd7d393522,
     type: 3}
+  powerUpUI: {fileID: 0}
+  powerUpLogo: {fileID: 0}
+  powerUpBar: {fileID: 0}
   mirror: 0
-  mirrorTime: 5
+  mirrorDuration: 5
+  mirrorLogo: {fileID: 21300000, guid: e081333a52895610bbb5ef0bea0bd2f7, type: 3}
   magnet: 0
-  magnetTime: 5
+  magnetDuration: 5
   magnetRadius: 10
   magnetForce: 15
+  magnetLogo: {fileID: 21300000, guid: a1cebc8a6f09ecf8e9f3e9c108d6e978, type: 3}
+  star: 0
+  starDuration: 5
+  starBaseBonus: 100
+  starBonusMultiplier: 1.5
+  starLogo: {fileID: 3286163911610860551, guid: 50f62f92d1636a1e7807226f65c8b410,
+    type: 3}
   shield: 0
-  shieldTime: 5
+  shieldDuration: 5
+  ink: {fileID: 0}
+  inkDuration: 5
 --- !u!114 &5773927840210352210
 MonoBehaviour:
   m_ObjectHideFlags: 0

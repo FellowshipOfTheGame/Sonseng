@@ -12,12 +12,10 @@ public class Obstacle : DestructableObject {
     }
 
     public override void TransformIntoCoin() {
-        if (this.gameObject.activeInHierarchy) {
-            // TODO add any effects here
-            // TODO use object pooling
-            Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
-            this.transform.parent.gameObject.SetActive(false);
-        }
+        // TODO add any effects here
+        // TODO use object pooling
+        Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
+        this.transform.parent.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
