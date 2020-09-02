@@ -8,6 +8,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] protected AnimationCurve TimeToSpeedCurve = null;
 
+    /// <summary>
+    /// Use StopGame() to pause the objects spawn and IsGamePaused to check game pause condition. 
+    /// </summary>
+    [SerializeField] public bool IsGamePaused { get; private set; }
+
+    private bool _gamePaused = false;
+
     [Header("Speed Properties")]
     [Tooltip("Values for minimum and maximum speed in a run")]
     [SerializeField] protected float MaxSpeed = 1f;
@@ -26,12 +33,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Get Game Speed in interval [0,1]
     /// </summary>
-    public float EvaluatedSpeed => TimeToSpeedCurve.Evaluate(Mathf.Min(TimeSinceGameStarted / TimeForMaxSpeed, TimeForMaxSpeed));
+    public float EvaluatedSpeed => _gamePaused ? 0f : TimeToSpeedCurve.Evaluate(Mathf.Min(TimeSinceGameStarted / TimeForMaxSpeed, TimeForMaxSpeed));
 
     /// <summary>
     /// Get Actual Game Speed
     /// </summary>
-    public float Speed => MinSpeed + EvaluatedSpeed * (MaxSpeed - MinSpeed);
+    public float Speed => _gamePaused ? 0f : MinSpeed + EvaluatedSpeed * (MaxSpeed - MinSpeed);
 
 
     private void Awake()
@@ -50,5 +57,24 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         _timeThatGameStarted = Time.timeSinceLevelLoad;
+        ResumeGame();
+    }
+
+    /// <summary>
+    /// Pauses the game (object spawning)
+    /// </summary>
+    public void StopGame()
+    {
+        Time.timeScale = 0f;
+        _gamePaused = true;
+    }
+
+    /// <summary>
+    /// Resumes the game (object spawning)
+    /// </summary>
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        _gamePaused = false;
     }
 }
