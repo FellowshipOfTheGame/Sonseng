@@ -10,8 +10,12 @@ public class PlayerFollower : MonoBehaviour {
     [SerializeField] Transform[] positions;
     [SerializeField] float speed;
 
-    private void Start() {
+    private void OnEnable() {
         player.OnDestinationChange += UpdateDestination;
+    }
+
+    private void OnDisable() {
+        player.OnDestinationChange -= UpdateDestination;
     }
 
     /// <summary>

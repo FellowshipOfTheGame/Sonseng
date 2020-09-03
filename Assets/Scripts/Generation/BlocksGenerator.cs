@@ -31,8 +31,14 @@ public class BlocksGenerator : MonoBehaviour
 
         _pooler = GetComponent<SimpleObjectPooler>();
         _serializedObjects = new Dictionary<string, GameObject>();
+    }
 
+    private void OnEnable() {
         collisionDetector.OnDeath += Stop;
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= Stop;
     }
 
     private void Start()

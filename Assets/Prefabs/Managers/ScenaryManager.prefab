@@ -54,22 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17acb3a4098edc5468a610aae3ea7811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConditionType: 0
-  InitialScenaryNumber: 4
-  InitialScenary: {fileID: 5652792379196562743}
-  Scenaries:
-  - {fileID: 5652792379276932652, guid: 309879644a7640345b57080c0453ce6b, type: 3}
-  - {fileID: 5652792379276932652, guid: 81d5a90f33b142948ac35b4ac9ef7644, type: 3}
-  - {fileID: 5652792379276932652, guid: 9afc881b34324b24480f08b9b5922ff2, type: 3}
-  - {fileID: 5652792379276932652, guid: 5a779ebf2544a1a46895ecd75a02869e, type: 3}
-  - {fileID: 5652792379276932652, guid: 446e10f87f6b7564791f47e3e54a17f3, type: 3}
-  - {fileID: 5652792379276932652, guid: 9f37f76082810874c986bfb420e5880f, type: 3}
-  - {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
-  - {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
-  - {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
-  - {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
-  - {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
-  - {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
+  SpawnCondition: 0
+  InitialPrefabNumber: 1
+  InitialPrefabs: {fileID: 0}
+  Prefabs: []
   DistanceToPlayer: 40
 --- !u!114 &1023139128754335186
 MonoBehaviour:
@@ -334,12 +322,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f26cbadc6992e9746a011a3f558bf94a, type: 3}
---- !u!1 &5652792379196562743 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
-    type: 3}
-  m_PrefabInstance: {fileID: 215870235}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5488960654736628892 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5488960654665709447, guid: f26cbadc6992e9746a011a3f558bf94a,

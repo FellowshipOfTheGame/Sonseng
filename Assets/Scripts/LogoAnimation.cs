@@ -21,15 +21,18 @@ public class LogoAnimation : MonoBehaviour
         ballon.localScale = Vector3.zero;
         sparks.localScale = Vector3.zero;
         title.localScale = Vector3.zero; 
+
+
+
         sparks.DOScale(bufferSparks, animationTime).OnComplete(()=>{
-            sparks.DOScale(sparks.localScale*9/10, 1.5f).SetLoops(-1, LoopType.Yoyo); 
-        });   
+            sparks.DOScale(sparks.localScale*9/10, 1.5f).SetLoops(-1, LoopType.Yoyo).SetUpdate(true); 
+        }).SetUpdate(true);   
        
         ballon.DOScale(bufferBallon, animationTime).OnComplete(()=>{
-            title.DOScale(bufferTitle, animationTime);
-        });
+            title.DOScale(bufferTitle, animationTime).SetUpdate(true);
+        }).SetUpdate(true);
 
-        playText.DOScale(playText.localScale*0.92f, 2).SetLoops(-1, LoopType.Yoyo);
+        playText.DOScale(playText.localScale*0.92f, 2).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
 
     }
 

@@ -16,7 +16,7 @@ public class Login : MonoBehaviour {
     private FirebaseApp app;
 
     public GameObject buttonsPanel, loginButton;
-    public TMPro.TextMeshProUGUI title;
+    // public TMPro.TextMeshProUGUI title;
 
     private bool isLogged, hasLogged;
 
@@ -33,11 +33,11 @@ public class Login : MonoBehaviour {
                 isLogged = auth.CurrentUser != null;
                 if (auth.CurrentUser != null) {
                     isLogged = true;
-                    if (auth.CurrentUser.IsAnonymous) {
-                        title.SetText("Olá Convidado!");
-                    } else {
-                        title.SetText("Olá " + auth.CurrentUser.DisplayName);
-                    }
+                    // if (auth.CurrentUser.IsAnonymous) {
+                    //     title.SetText("Olá Convidado!");
+                    // } else {
+                    //     title.SetText("Olá " + auth.CurrentUser.DisplayName);
+                    // }
                 }
                 hasLogged = false;
                 // Set a flag here to indicate whether Firebase is ready to use by your app.
@@ -80,7 +80,7 @@ public class Login : MonoBehaviour {
                 return;
             }
             isLogged = true;
-            title.SetText("Olá Convidado!");
+            // title.SetText("Olá Convidado!");
         });
     }
     public void OnSignIn() {
@@ -98,7 +98,7 @@ public class Login : MonoBehaviour {
             GoogleSignIn.DefaultInstance.SignOut();
         }
         isLogged = false;
-        title.SetText("Sonseng 23: O Jogo");
+        // title.SetText("Sonseng 23: O Jogo");
     }
 
     public void OnDisconnect() {
@@ -132,7 +132,7 @@ public class Login : MonoBehaviour {
                 Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
                 return;
             }
-            title.SetText("Olá " + task.Result.DisplayName);
+            // title.SetText("Olá " + task.Result.DisplayName);
             isLogged = true;
         });
 

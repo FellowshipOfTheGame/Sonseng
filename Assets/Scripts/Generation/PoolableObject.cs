@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PoolableObject : MonoBehaviour
 {
-    public float LifeSpan = 5f;
     private bool invokedFlag = false;
+    public FloatSharedVariable LifeSpan;
 
     private void Update()
     {
-        if(!invokedFlag && ScenarySpawner.Instance.spawnActive)
+        if(!invokedFlag )
         {
-            Invoke("Deactivate", LifeSpan);
+            Invoke("Deactivate", LifeSpan.Value);
             invokedFlag = true;
         }
     }
@@ -21,9 +21,8 @@ public class PoolableObject : MonoBehaviour
        CancelInvoke("Deactivate");
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
        gameObject.SetActive(false);
     }
-
 }

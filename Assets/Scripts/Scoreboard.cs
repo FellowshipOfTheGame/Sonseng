@@ -2,12 +2,14 @@
 using TMPro;
 
 public class Scoreboard : MonoBehaviour {
-    [HideInInspector] public Scoreboard instance;
+    [HideInInspector] public static Scoreboard instance;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] float speed;
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
+
+    public float highestScore;
 
     public void StopScore(){
         isPlayerAlive = false;
@@ -17,7 +19,7 @@ public class Scoreboard : MonoBehaviour {
         get { return score; }
         private set {
             score = value;
-            scoreText.text = "Score: " + Mathf.Round(score).ToString();
+            scoreText.text = Mathf.Round(score).ToString() + " metros";
         }
     }
 
