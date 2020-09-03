@@ -5,28 +5,31 @@ using UnityEngine;
 
 public class ScenarySpawner : MonoBehaviour
 {
-
+    public static ScenarySpawner Instance = null;
     public enum SpawnConditionType
     {
         CharacterDistance,
         Time
     }
-
     public SpawnConditionType ConditionType = SpawnConditionType.CharacterDistance;
-
     [SerializeField] private int InitialScenaryNumber = 1;
     [SerializeField] private GameObject InitialScenary = null;
     [SerializeField] private GameObject[] Scenaries = null;
-
     [SerializeField] private float DistanceToPlayer = 20f;
-
-
+    public bool spawnActive = false;
     protected SimpleObjectPooler _pooler = null;
     protected Transform _lastTransform = null;
     protected Transform player = null;
 
     void Awake()
-    {
+    {   
+        if(Instance == null){
+            Instance = this;
+        }
+        else{
+            Destroy(this);
+        }   
+
         // Prepare Spawn condition variables
         if (ConditionType.Equals(SpawnConditionType.CharacterDistance))
         {
@@ -38,17 +41,11 @@ public class ScenarySpawner : MonoBehaviour
 
         // Get initial end position
         _lastTransform = InitialScenary.transform.Find("EndPosition");
-
-        // Spawn Ahead Scenaries
-        for(int i = 0; i < InitialScenaryNumber; i++)
-        {
-            InstantiateScenary();
-        }
     }
 
     private void Update()
     {
-        if (CheckSpawnCondition())
+        if (CheckSpawnCondition() && spawnActive)
         {
             InstantiateScenary();
         }    
@@ -91,5 +88,15 @@ public class ScenarySpawner : MonoBehaviour
 
         // Update End Position
         _lastTransform = scenary.transform.Find("EndPosition");
+    }
+
+    public void StartSpawn()
+    {
+        // // Spawn Ahead Scenaries
+        // for(int i = 0; i < InitialScenaryNumber; i++)
+        // {
+        //     InstantiateScenary();
+        // }
+        spawnActive = true;
     }
 }
