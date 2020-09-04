@@ -33,7 +33,7 @@ public class GameStarter : MonoBehaviour
     }
 
     private void Start() {
-        if(isSceneLoaded(mainMenuSceneName)){
+        if(SceneUtility.IsSceneLoaded(mainMenuSceneName)){
             GameManager.instance.StopGame();
 
             bufferPosition = playerCamera.transform.position;
@@ -51,6 +51,7 @@ public class GameStarter : MonoBehaviour
     public void StartRunFromMainMenu()
     {
         // gameHasStarted = true;
+        SceneManager.UnloadSceneAsync(mainMenuSceneName);
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
         GameManager.instance.StartNewGame();
@@ -63,32 +64,5 @@ public class GameStarter : MonoBehaviour
         GameManager.instance.StartNewGame();
     }
     
-    //Checks if a scene with a name is loaded
-    private bool isSceneLoaded(string sceneName)
-    {
-        Scene[] loadedScenes = GetOpenScenes();
-        foreach (Scene scene in loadedScenes)
-        {
-            if(scene.name == sceneName)
-            {
-                return true;
-            }
-        }
-        Debug.Log("Menu não está carregado");
-        return false;
-    }
-
-    //Get all loaded scenes
-    private Scene[] GetOpenScenes()
-    {
-        int countLoaded = SceneManager.sceneCount;
-        Scene[] loadedScenes = new Scene[countLoaded];
- 
-        for (int i = 0; i < countLoaded; i++)
-        {
-            loadedScenes[i] = SceneManager.GetSceneAt(i);
-        }
-
-        return loadedScenes;
-    }
+  
 }

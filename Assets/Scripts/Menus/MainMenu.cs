@@ -7,19 +7,22 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] float translationTime  =  0f;
     [SerializeField] float rotationTime  =  0f;
-    private Camera cam = null;
+    [SerializeField] string gameSceneName = null;
 
 
  
     private void Awake() {
-        cam = Camera.main;
+
     }
     private void Start() {
-       
+        if(!SceneUtility.IsSceneLoaded(gameSceneName))
+        {
+            SceneManager.LoadSceneAsync(gameSceneName,LoadSceneMode.Additive);
+        }
     }
     public void Play() {
         GameStarter.instance.StartRunFromMainMenu();
-        SceneManager.UnloadSceneAsync("Menu 1");
+
     }
 
     public void Quit() {

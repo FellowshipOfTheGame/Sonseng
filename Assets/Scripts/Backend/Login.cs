@@ -59,6 +59,7 @@ public class Login : MonoBehaviour {
 
     void Update() {
         if (isLogged && !hasLogged) {
+            print("teste");
             buttonsPanel.SetActive(true);
             loginButton.SetActive(false);
             hasLogged = true;
