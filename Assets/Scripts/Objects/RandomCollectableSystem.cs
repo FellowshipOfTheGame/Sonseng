@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -25,6 +24,10 @@ public class RandomCollectableSystem : MonoBehaviour
 
         // Initiate Object Pool
         Pool = GetComponent<SimpleObjectPooler>();
+    }
+
+    internal void Initialize()
+    {
         Pool.Initialization(UnlockedCollectables.ToArray());
     }
 
@@ -45,7 +48,7 @@ public class RandomCollectableSystem : MonoBehaviour
     public GameObject GetRandomCollectable()
     {
         // Get random index
-        int index = Random.Range(0, UnlockedCollectables.Count);
+        int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
         return Pool.GetObject(UnlockedCollectables[index]);
     }
 

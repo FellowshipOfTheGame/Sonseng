@@ -32,13 +32,17 @@ public class ScenarySpawner : MonoBehaviour
         }
         // Get pooler reference
         _pooler = GetComponent<SimpleObjectPooler>();
-        _pooler.Initialization(Prefabs);
-
+        
         // Get initial end position
         _lastTransform = InitialPrefabs.transform.Find("EndPosition");
+    }
+
+    public void Initialize()
+    {
+        _pooler.Initialization(Prefabs);
 
         // Spawn Ahead Scenaries
-        for(int i = 0; i < InitialPrefabNumber; i++)
+        for (int i = 0; i < InitialPrefabNumber; i++)
         {
             InstantiateScenary();
         }

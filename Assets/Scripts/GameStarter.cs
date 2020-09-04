@@ -60,9 +60,17 @@ public class GameStarter : MonoBehaviour
 
     public void StartRun()
     {
+        InitializeSpawners();
         inGameUI.SetActive(true);
         GameManager.instance.StartNewGame();
     }
     
+    public void InitializeSpawners()
+    {
+        FindObjectOfType<RandomCollectableSystem>().Initialize();
+        var spawners = FindObjectsOfType<ScenarySpawner>();
+        foreach (var s in spawners)
+            s.Initialize();
+    }
   
 }

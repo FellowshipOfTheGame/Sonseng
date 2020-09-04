@@ -11,18 +11,29 @@ public class MainMenu : MonoBehaviour
 
 
  
-    private void Awake() {
+    private void Awake()
+    {
 
     }
-    private void Start() {
+
+    private void Start()
+    {
         if(!SceneUtility.IsSceneLoaded(gameSceneName))
         {
-            SceneManager.LoadSceneAsync(gameSceneName,LoadSceneMode.Additive);
+            var gameScene = SceneManager.LoadSceneAsync(gameSceneName,LoadSceneMode.Additive);
+            gameScene.completed += GameSceneCompleted;
         }
     }
-    public void Play() {
-        GameStarter.instance.StartRunFromMainMenu();
 
+    private void GameSceneCompleted(AsyncOperation obj)
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(gameSceneName));
+        GameStarter.instance.InitializeSpawners();
+    }
+
+    public void Play()
+    {
+        GameStarter.instance.StartRunFromMainMenu();
     }
 
     public void Quit() {
