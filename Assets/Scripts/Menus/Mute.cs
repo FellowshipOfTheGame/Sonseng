@@ -8,10 +8,7 @@ public class Mute : MonoBehaviour {
     private void OnEnable()
     {
         if (AudioListener.volume == 0f)
-        {
             muteUI.isOn = false;
-            Debug.Log("already muted");
-        }
     }
 
     public void MuteGame()
