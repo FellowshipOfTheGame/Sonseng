@@ -339,8 +339,8 @@ public class PlayerMovement : MonoBehaviour {
         registerScore.SaveScoreOnDeath();
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
-    }
+    // private void OnDrawGizmos() {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    // }
 }

@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PowerUps : MonoBehaviour {
     public static PowerUps instance;
-    public delegate void OnPSwtichActivatedHandler();
-    public event OnPSwtichActivatedHandler OnPSwtichActivated;
+    public event Action OnPSwtichActivated;
 
     [Tooltip("Coin prefab in which obstacles will be transformed when p-switch is activated")]
     public GameObject coinPrefab;
@@ -93,7 +93,8 @@ public class PowerUps : MonoBehaviour {
     private void FixedUpdate() {
         // Atract coins that are in the list
         foreach (var coin in coins) {
-            coin.position = Vector3.MoveTowards(coin.position, this.transform.position, magnetForce * Time.fixedDeltaTime);
+            if (coin.gameObject.activeSelf == true) // Don't recycled coins
+                coin.position = Vector3.MoveTowards(coin.position, this.transform.position, (magnetForce + GameManager.instance.Speed) * Time.fixedDeltaTime);
         }
     }
 
@@ -104,7 +105,7 @@ public class PowerUps : MonoBehaviour {
                 coins.Remove(other.transform);
                 //TODO Let the coin destroy itself and count points
                 //TODO use object pooling
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
                 break;
 
             // Power Ups

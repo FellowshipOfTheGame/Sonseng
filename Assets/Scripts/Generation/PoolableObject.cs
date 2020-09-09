@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class PoolableObject : MonoBehaviour
 {
-    public float LifeSpan = 5f;
+    private bool invokedFlag = false;
+    public FloatSharedVariable LifeSpan;
 
-    private void OnEnable()
+    private void Update()
     {
-        Invoke("Deactivate", LifeSpan);
+        if(!invokedFlag )
+        {
+            Invoke("Deactivate", LifeSpan.Value);
+            invokedFlag = true;
+        }
     }
 
     private void OnDisable()
     {
-        CancelInvoke("Deactivate");
+       CancelInvoke("Deactivate");
     }
 
     public void Deactivate()
     {
-        gameObject.SetActive(false);
+       gameObject.SetActive(false);
     }
 }

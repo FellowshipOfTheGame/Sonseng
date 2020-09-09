@@ -16,12 +16,15 @@ public class ObstacleSpawner : ScenarySpawner
     {
         base.Awake();
     #if UNITY_EDITOR
-        Assert.IsNotNull(GameManager.instance);
+        Assert.IsNotNull(GameManager.instance, $"GameManager instance is null for {name}");
     # endif
     }
 
     protected override void InstantiateScenary()
     {
+        // Don't do nothing if game is paused
+        if (GameManager.instance.IsGamePaused) return;
+
         // Get random scenary from pool
         GameObject scenary = null;
         int tries = 0;
@@ -36,7 +39,7 @@ public class ObstacleSpawner : ScenarySpawner
             scenary = _pooler.GetObject(Prefabs[random_index]);
             if (scenary == null)
             {
-                Debug.Log($"Couldnt find scenary {Prefabs[random_index].name} of index {random_index} from {gameObject.name}");
+                Debug.Log($"Couldnt find object {Prefabs[random_index].name} of index {random_index} from {gameObject.name}");
             }
             tries++;
         }

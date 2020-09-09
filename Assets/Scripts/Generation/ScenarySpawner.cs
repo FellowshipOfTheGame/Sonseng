@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(SimpleObjectPooler))]
 public class ScenarySpawner : MonoBehaviour
 {
-
+    public static ScenarySpawner Instance = null;
     public enum SpawnConditionType
     {
         CharacterDistance,
@@ -18,10 +18,7 @@ public class ScenarySpawner : MonoBehaviour
     [SerializeField] protected int InitialPrefabNumber = 1;
     [SerializeField] protected GameObject InitialPrefabs = null;
     [SerializeField] protected GameObject[] Prefabs = null;
-
-    [SerializeField] protected float DistanceToPlayer = 20f;
-
-
+    [SerializeField] private float DistanceToPlayer = 20f;
     protected SimpleObjectPooler _pooler = null;
     protected Transform _lastTransform = null;
     protected Transform player = null;
@@ -35,13 +32,17 @@ public class ScenarySpawner : MonoBehaviour
         }
         // Get pooler reference
         _pooler = GetComponent<SimpleObjectPooler>();
-        _pooler.Initialization(Prefabs);
-
+        
         // Get initial end position
         _lastTransform = InitialPrefabs.transform.Find("EndPosition");
+    }
+
+    public void Initialize()
+    {
+        _pooler.Initialization(Prefabs);
 
         // Spawn Ahead Scenaries
-        for(int i = 0; i < InitialPrefabNumber; i++)
+        for (int i = 0; i < InitialPrefabNumber; i++)
         {
             InstantiateScenary();
         }
@@ -57,6 +58,9 @@ public class ScenarySpawner : MonoBehaviour
 
     protected virtual bool CheckSpawnCondition()
     {
+        // Don't spawn if game is paused
+        if (GameManager.instance.IsGamePaused) return false;
+
         if (SpawnCondition.Equals(SpawnConditionType.CharacterDistance))
         {
             return (Vector3.Distance(player.position, _lastTransform.position) < DistanceToPlayer * InitialPrefabNumber);
@@ -93,4 +97,6 @@ public class ScenarySpawner : MonoBehaviour
         // Update End Position
         _lastTransform = scenary.transform.Find("EndPosition");
     }
+
+
 }
