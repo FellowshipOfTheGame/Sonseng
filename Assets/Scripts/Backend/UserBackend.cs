@@ -17,16 +17,13 @@ public class UserBackend : MonoBehaviour {
     private DatabaseReference reference;
     public string userId;
 
-    public List<GameObject> boughtUpgrades = new List<GameObject>();
+    public Dictionary<string, Upgrade> boughtUpgrades = new Dictionary<string, Upgrade>();
 
     private void Awake() {
         if (instance == null)
             instance = this;
         else if (instance != this)
             Destroy(this.gameObject);
-    }
-
-    void Start() {
 #if UNITY_EDITOR
         Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
 #endif
@@ -49,14 +46,13 @@ public class UserBackend : MonoBehaviour {
     }
 
     public void GetBoughtUpgrades() {
+
         reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted) {
                 DataSnapshot data = task.Result;
                 var upgrades = data.Value as Dictionary<string, object>;
                 foreach (var upgrade in upgrades) {
-                    var gameObject = Instantiate(new GameObject(upgrade.Key));
-                    gameObject.AddComponent<Upgrade>();
-                    Upgrade up = gameObject.GetComponent<Upgrade>();
+                    Upgrade up = new Upgrade();
                     up.upgradeName = upgrade.Key;
                     var infos = upgrade.Value as Dictionary<string, object>;
                     foreach (var info in infos) {
@@ -66,7 +62,7 @@ public class UserBackend : MonoBehaviour {
                             up.multiplier = float.Parse(info.Value.ToString());
                         }
                     }
-                    boughtUpgrades.Add(gameObject);
+                    boughtUpgrades.Add(up.upgradeName, up);
                 }
 
             } else if (task.IsFaulted) {

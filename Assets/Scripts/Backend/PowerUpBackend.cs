@@ -13,7 +13,9 @@ public class PowerUpBackend : MonoBehaviour {
     private string userId;
     private FirebaseDatabase database;
     private DatabaseReference reference;
-
+    public struct PostResponse{
+        public int cogs;
+    }
     [SerializeField] private TextMeshProUGUI cogsText;
 
     void Start() {
@@ -27,9 +29,17 @@ public class PowerUpBackend : MonoBehaviour {
     }
 
     public void BuyPowerUp(string powerUp) {
-        UserBackend.instance.GetCogs();
-        reference.Child($"users/{UserBackend.instance.userId}/bought-powerUps/{powerUp}").SetValueAsync(true);
-        cogsText.text = UserBackend.instance.cogs.ToString();
+        WWWForm form = new WWWForm();
+        form.AddField("uid",UserBackend.instance.userId);
+        form.AddField("powerUp", powerUp);
+        StartCoroutine(RequestManager.PostRequest<PostResponse>("purchasePowerUp",form, FinishPurchase, LoadError));
+    }
+
+    public void LoadError(string errorMessage){
+        Debug.Log(errorMessage);
+    }
+    public void FinishPurchase(PostResponse newCogs){
+        Debug.Log(newCogs.cogs);
     }
 
 }

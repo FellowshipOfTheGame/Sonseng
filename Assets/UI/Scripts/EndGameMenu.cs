@@ -12,6 +12,5 @@ public class EndGameMenu : MonoBehaviour {
         }
         scoreText.text = Scoreboard.instance.Score + " metros";
         recordText.text = Scoreboard.instance.highestScore.ToString();
-        Debug.Log(UserBackend.instance.boughtUpgrades[0].name);
-    }
+     }
 }

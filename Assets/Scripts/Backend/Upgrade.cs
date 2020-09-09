@@ -1,7 +1,5 @@
-using UnityEngine;
-using System.Collections.Generic;
 
-public class Upgrade : MonoBehaviour {
+public class Upgrade {
     
     public string upgradeName;
 

@@ -158,8 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1427193438278627e99ef34fbda5cb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costTxt: {fileID: 5795705110045978279}
+  iconTxt: {fileID: 7477243572968236223}
   cost: 5000
+  iconString: 
+  upgradeName: 
 --- !u!1 &7477243572685186301
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,8 +197,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000015258789, y: 0}
-  m_SizeDelta: {x: 150, y: 75.1}
+  m_AnchoredPosition: {x: -0.00000023842, y: -65.62999}
+  m_SizeDelta: {x: 136.78, y: 131.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7477243572685186288
 CanvasRenderer:
@@ -266,10 +268,10 @@ RectTransform:
   m_Father: {fileID: 7477243571625039504}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.4, y: 0}
-  m_SizeDelta: {x: 96.1, y: 77.4}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -13.12, y: -18.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7477243572968236220
 CanvasRenderer:
@@ -326,15 +328,15 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 80
+  m_fontSize: 72
   m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 258
-  m_characterSpacing: 0
+  m_textAlignment: 514
+  m_characterSpacing: 10
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -343,7 +345,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -570,15 +572,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7477243572086649591}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5795705110045978279 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4011293839724174416, guid: 2749028bf91e93a9d96923456e1f4a7f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7477243572086649591}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
