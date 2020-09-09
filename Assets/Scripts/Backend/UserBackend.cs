@@ -10,12 +10,14 @@ using UnityEngine;
 
 public class UserBackend : MonoBehaviour {
     [HideInInspector] public static UserBackend instance;
-    
+
     public int cogs;
     private FirebaseUser user;
     private FirebaseDatabase database;
     private DatabaseReference reference;
     public string userId;
+
+    public List<GameObject> boughtUpgrades = new List<GameObject>();
 
     private void Awake() {
         if (instance == null)
@@ -33,6 +35,7 @@ public class UserBackend : MonoBehaviour {
         user = FirebaseAuth.DefaultInstance.CurrentUser;
         userId = user.UserId;
         GetCogs();
+        GetBoughtUpgrades();
     }
 
     public void GetCogs() {
@@ -42,5 +45,38 @@ public class UserBackend : MonoBehaviour {
                 cogs = int.Parse(data.GetRawJsonValue());
             }
         });
+
+    }
+
+    public void GetBoughtUpgrades() {
+        reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
+            if (task.IsCompleted) {
+                DataSnapshot data = task.Result;
+                var upgrades = data.Value as Dictionary<string, object>;
+                foreach (var upgrade in upgrades) {
+                    var gameObject = Instantiate(new GameObject(upgrade.Key));
+                    gameObject.AddComponent<Upgrade>();
+                    Upgrade up = gameObject.GetComponent<Upgrade>();
+                    up.upgradeName = upgrade.Key;
+                    var infos = upgrade.Value as Dictionary<string, object>;
+                    foreach (var info in infos) {
+                        if (info.Key == "level") {
+                            up.level = int.Parse(info.Value.ToString());
+                        } else {
+                            up.multiplier = float.Parse(info.Value.ToString());
+                        }
+                    }
+                    boughtUpgrades.Add(gameObject);
+                }
+
+            } else if (task.IsFaulted) {
+                Debug.Log(task.Exception);
+            }
+        });
+    }
+
+    public void AddCogs(int newCogs) {
+        GetCogs();
+        reference.Child($"/users/{userId}/coins").SetValueAsync(cogs + newCogs);
     }
 }

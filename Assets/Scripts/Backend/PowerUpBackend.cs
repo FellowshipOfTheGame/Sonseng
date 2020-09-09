@@ -27,8 +27,8 @@ public class PowerUpBackend : MonoBehaviour {
     }
 
     public void BuyPowerUp(string powerUp) {
-        reference.Child($"users/{UserBackend.instance.userId}/bought-powerUps/{powerUp}").SetValueAsync(true);
         UserBackend.instance.GetCogs();
+        reference.Child($"users/{UserBackend.instance.userId}/bought-powerUps/{powerUp}").SetValueAsync(true);
         cogsText.text = UserBackend.instance.cogs.ToString();
     }
 
