@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
  
     private void Awake()
     {
-
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
     }
 
     private void Start()
