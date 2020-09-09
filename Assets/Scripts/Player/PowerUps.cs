@@ -1,24 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUps : MonoBehaviour {
     public static PowerUps instance;
-    public delegate void OnPSwtichActivatedHandler();
-    public event OnPSwtichActivatedHandler OnPSwtichActivated;
+    public event Action OnPSwtichActivated;
 
     [Tooltip("Coin prefab in which obstacles will be transformed when p-switch is activated")]
     public GameObject coinPrefab;
 
     [Space(5)]
+    [SerializeField] GameObject powerUpUI;
+    [SerializeField] Image powerUpLogo;
+    [SerializeField] Image powerUpBar;
+    private bool powerUpActive;
+    private float timeRemaining;
+    private float maxTimeRemaining;
+
+    [Space(5)]
     [SerializeField] bool mirror;
     [SerializeField] float mirrorDuration;
+    [SerializeField] Sprite mirrorLogo;
 
     [Space(5)]
     [SerializeField] bool magnet;
     [SerializeField] float magnetDuration;
     [SerializeField] float magnetRadius;
     [SerializeField] float magnetForce;
+    [SerializeField] Sprite magnetLogo;
     private Collider[] magnetAttractionResults = new Collider[25];
     private HashSet<Transform> coins = new HashSet<Transform>();
 
@@ -27,6 +38,7 @@ public class PowerUps : MonoBehaviour {
     [SerializeField] float starDuration;
     [SerializeField] float starBaseBonus;
     [SerializeField] float starBonusMultiplier;
+    [SerializeField] Sprite starLogo;
     private float starCurrentBonus;
 
     [Space(5)]
@@ -35,19 +47,24 @@ public class PowerUps : MonoBehaviour {
 
     [Space(5)]
     [SerializeField] Animator ink;
+    [SerializeField] float inkDuration;
 
+    public bool PowerUpActive => powerUpActive;
     public bool Mirror => mirror;
     public bool Magnet => magnet;
     public bool Star   => star;
     public bool Shield => shield;
 
-    private void Start() {
+    private void Awake() {
         // Signleton
         if (instance == null) {
             instance = this;
         } else if (instance != this) {
             Destroy(this.gameObject);
         }
+
+        powerUpUI.SetActive(false);
+        ink.gameObject.SetActive(false);
     }
 
     private void Update() {
@@ -60,12 +77,24 @@ public class PowerUps : MonoBehaviour {
                 }
             }
         }
+
+        // Moves power up time bar if there is any power up active
+        if (powerUpActive) {
+            powerUpBar.fillAmount = timeRemaining / maxTimeRemaining;
+            timeRemaining = Mathf.Clamp(timeRemaining - Time.deltaTime, 0f, maxTimeRemaining);
+
+            if (timeRemaining <= 0f) {
+                powerUpUI.SetActive(false);
+                powerUpActive = false;
+            }
+        }
     }
 
     private void FixedUpdate() {
         // Atract coins that are in the list
         foreach (var coin in coins) {
-            coin.position = Vector3.MoveTowards(coin.position, this.transform.position, magnetForce * Time.fixedDeltaTime);
+            if (coin.gameObject.activeSelf == true) // Don't recycled coins
+                coin.position = Vector3.MoveTowards(coin.position, this.transform.position, (magnetForce + GameManager.instance.Speed) * Time.fixedDeltaTime);
         }
     }
 
@@ -76,7 +105,7 @@ public class PowerUps : MonoBehaviour {
                 coins.Remove(other.transform);
                 //TODO Let the coin destroy itself and count points
                 //TODO use object pooling
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
                 break;
 
             // Power Ups
@@ -110,6 +139,8 @@ public class PowerUps : MonoBehaviour {
 
             case "Ink":
                 InkActivate();
+                CancelInvoke(nameof(InkDeactivate));
+                Invoke(nameof(InkDeactivate), inkDuration);
                 break;
         }
     }
@@ -118,19 +149,33 @@ public class PowerUps : MonoBehaviour {
     // Mirror
     private void MirrorActivate() {
         mirror = true;
+        timeRemaining = mirrorDuration;
+        maxTimeRemaining = timeRemaining;
+
+        powerUpActive = mirror | magnet | star;
+        powerUpLogo.sprite = mirrorLogo;
+        powerUpUI.SetActive(true);
     }
 
     private void MirrorDeactivate() {
         mirror = false;
+        powerUpActive = mirror | magnet | star;
     }
 
     // Magnet
     private void MagnetActivate() {
         magnet = true;
+        timeRemaining = magnetDuration;
+        maxTimeRemaining = timeRemaining;
+
+        powerUpActive = mirror | magnet | star;
+        powerUpLogo.sprite = magnetLogo;
+        powerUpUI.SetActive(true);
     }
 
     private void MagnetDeactivate() {
         magnet = false;
+        powerUpActive = mirror | magnet | star;
     }
 
     // Star
@@ -138,11 +183,21 @@ public class PowerUps : MonoBehaviour {
         if (!star) {
             starCurrentBonus = starBaseBonus;
             star = true;
+
+            timeRemaining = starDuration;
+            maxTimeRemaining = timeRemaining;
+
+            powerUpActive = mirror | magnet | star;
+            powerUpLogo.sprite = starLogo;
+            powerUpUI.SetActive(true);
         }
     }
 
     private void StarDeactivate() {
         star = false;
+        timeRemaining = starDuration;
+        maxTimeRemaining = timeRemaining;
+        powerUpActive = mirror | magnet | star;
     }
 
     /// <summary>
@@ -174,6 +229,10 @@ public class PowerUps : MonoBehaviour {
     private void InkActivate() {
         ink.gameObject.SetActive(true);
         ink.Play("Start");
+    }
+
+    private void InkDeactivate() {
+        ink.SetTrigger("Fade");
     }
 
     private void OnDrawGizmos() {

@@ -16,13 +16,11 @@ public class BlocksGenerator : MonoBehaviour
     [SerializeField] private SpawnableMatrix[] matrices;
     [SerializeField] private GameObject[] objects_prefabs;
     [SerializeField] private Transform[] spawn_points;
-
     private SpawnableMatrix _lastMatrix = null;
     private SimpleObjectPooler _pooler = null;
     private Dictionary<string, GameObject> _serializedObjects;
     private float _timeToSpawn { get => spawnTimeConstant * SpawnSpeedCurve.Evaluate(Speed); }
     private const string _spawnFuncName = "SpawnObjects";
-
     [SerializeField] private CollisionDetector collisionDetector;
 
     private void Awake()
@@ -33,8 +31,14 @@ public class BlocksGenerator : MonoBehaviour
 
         _pooler = GetComponent<SimpleObjectPooler>();
         _serializedObjects = new Dictionary<string, GameObject>();
+    }
 
+    private void OnEnable() {
         collisionDetector.OnDeath += Stop;
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= Stop;
     }
 
     private void Start()
@@ -52,15 +56,21 @@ public class BlocksGenerator : MonoBehaviour
         {
             sm.CalculateSubMatrices();
         }
+        
+    }
+
+    public void StartSpawn() {
         // Invoke spawn function
         InvokeRepeating(_spawnFuncName, _timeToSpawn, _timeToSpawn);
     }
 
+    
     /// <summary>
     /// Spawns all objects from matrix
     /// </summary>
     private void SpawnObjects()
     {
+
         SpawnableMatrix m;
         do
         {

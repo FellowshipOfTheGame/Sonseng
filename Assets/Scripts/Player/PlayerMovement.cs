@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
     private int moveDirection;
     private Vector2Int swipeDirection;
 
-    [SerializeField] RegisterScore registerScore;
+    [SerializeField] ScoreBackend registerScore;
 
     private int NextLane {
         get { return nextLane; }
@@ -116,12 +116,18 @@ public class PlayerMovement : MonoBehaviour {
         animator = GetComponent<Animator>();
         rBody = GetComponent<Rigidbody>();
         powerUps = GetComponent<PowerUps>();
-        collisionDetector = GetComponent<CollisionDetector>();
-
-        collisionDetector.OnDeath += Die;
         
         rBody.useGravity = false;
         ResetCollider();
+    }
+
+    private void OnEnable() {
+        collisionDetector = GetComponent<CollisionDetector>();
+        collisionDetector.OnDeath += Die;
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= Die;
     }
 
     private void Update() {
@@ -333,8 +339,8 @@ public class PlayerMovement : MonoBehaviour {
         registerScore.SaveScoreOnDeath();
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
-    }
+    // private void OnDrawGizmos() {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    // }
 }
