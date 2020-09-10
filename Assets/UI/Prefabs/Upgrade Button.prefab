@@ -159,9 +159,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iconTxt: {fileID: 7477243572968236223}
+  costTxt: {fileID: 5795705110045978279}
   cost: 5000
-  iconString: 
   upgradeName: 
+  backend: {fileID: 0}
 --- !u!1 &7477243572685186301
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,3 +573,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7477243572086649591}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5795705110045978279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4011293839724174416, guid: 2749028bf91e93a9d96923456e1f4a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7477243572086649591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15,13 +15,11 @@ public class ScoreBackend : MonoBehaviour {
     public string userId;
 
     void Start() {
-        user = FirebaseAuth.DefaultInstance.CurrentUser;
-#if UNITY_EDITOR
-        Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
-#endif
-        database = FirebaseDatabase.DefaultInstance;
-        reference = database.RootReference;
-        userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+        user = FirebaseInitializer.instance.user;
+
+        database = FirebaseInitializer.instance.database;
+        reference = FirebaseInitializer.instance.reference;
+        userId = FirebaseInitializer.instance.user.UserId;
         GetHighestScore();
         StartCoroutine(SaveScore());
     }

@@ -24,12 +24,9 @@ public class UserBackend : MonoBehaviour {
             instance = this;
         else if (instance != this)
             Destroy(this.gameObject);
-#if UNITY_EDITOR
-        Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
-#endif
-        database = FirebaseDatabase.DefaultInstance;
-        reference = database.RootReference;
-        user = FirebaseAuth.DefaultInstance.CurrentUser;
+        database = FirebaseInitializer.instance.database;
+        reference = FirebaseInitializer.instance.reference;
+        user = FirebaseInitializer.instance.user;
         userId = user.UserId;
         GetCogs();
         GetBoughtUpgrades();
@@ -46,7 +43,7 @@ public class UserBackend : MonoBehaviour {
     }
 
     public void GetBoughtUpgrades() {
-
+        boughtUpgrades = new Dictionary<string, Upgrade>();
         reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted) {
                 DataSnapshot data = task.Result;
