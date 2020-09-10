@@ -21,7 +21,8 @@ public class TextureAnimation : MonoBehaviour
     void Update()
     {
         index++; //Mathf.FloorToInt(Time.time / changeInterval);
+        Debug.Log(t_Renderer.material);
         index = index % tTexture.Length;
-        t_Renderer.material.SetTexture("_MainTex", tTexture[index]);
+        t_Renderer.material.SetTexture("Texture2D_A9881C30", tTexture[index]);
     }
 }
