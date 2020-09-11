@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using Firebase.Auth;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class RequestManager : MonoBehaviour {
     public static RequestManager instance;
     [SerializeField] int timeout;
-
+    public static string token;
     private void Start() {
         if (instance == null)
             instance = this;
         else if (instance != this)
             Destroy(this);
+
     }
 
-    public static string baseUrl = "https://us-central1-sonseng2020-1586957105557.cloudfunctions.net/";
+    public static string baseUrl = "https://us-central1-sonseng2020-1586957105557.cloudfunctions.net/app/";
     // public static string baseUrl = "http://localhost:3000";
-    public static string token = null;
-    private static string unity_token = "66B1132A0173910B01EE3A15EF4E69583BBF2F7F1E4462C99EFBE1B9AB5BF808";
     public static string version = "1.6.2";
 
     public delegate void OnStringAnswer(string data);
@@ -37,6 +37,8 @@ public class RequestManager : MonoBehaviour {
         uwr.SetRequestHeader("unity_token", unity_token);
         uwr.SetRequestHeader("version", version);*/
 
+        uwr.SetRequestHeader("Authorization", "Bearer " + token);
+        uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
         yield return uwr.SendWebRequest();
 
         if (uwr.isNetworkError) {
@@ -62,6 +64,8 @@ public class RequestManager : MonoBehaviour {
         uwr.SetRequestHeader("unity_token", unity_token);
         uwr.SetRequestHeader("version", version);
         */
+        uwr.SetRequestHeader("Authorization", "Bearer " + token);
+        uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
         yield return uwr.SendWebRequest();
 
         if (uwr.isNetworkError) {

@@ -46,7 +46,7 @@ public class PowerUpBackend : MonoBehaviour {
         form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("purchasePowerUp", form, FinishPurchasePowerUp, LoadErrorPurchase));
+        yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchasePowerUp", form, FinishPurchasePowerUp, LoadErrorPurchase));
         beingClicked = false;
     }
 
@@ -61,7 +61,7 @@ public class PowerUpBackend : MonoBehaviour {
         form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("purchaseUpgrade", form, FinishPurchaseUpgrade, LoadErrorPurchase));
+        yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchaseUpgrade", form, FinishPurchaseUpgrade, LoadErrorPurchase));
         beingClicked = false;
     }
 
@@ -109,7 +109,7 @@ public class PowerUpBackend : MonoBehaviour {
         WWWForm form = new WWWForm();
         form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
-        yield return StartCoroutine(RequestManager.PostRequest<PriceResponse>("getCurrentPrice", form, FinishGetPrice, LoadErrorPrice));
+        yield return StartCoroutine(RequestManager.PostRequest<PriceResponse>("powerup/getCurrentPrice", form, FinishGetPrice, LoadErrorPrice));
 
     }
 

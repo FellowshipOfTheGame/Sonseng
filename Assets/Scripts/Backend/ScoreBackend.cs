@@ -12,23 +12,21 @@ public class ScoreBackend : MonoBehaviour {
     private DatabaseReference reference;
     [SerializeField] bool debugMode;
     private FirebaseUser user;
-    public string userId;
 
     void Start() {
 #if UNITY_EDITOR
         Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
 #endif
+        user = FirebaseAuth.DefaultInstance.CurrentUser;
         database = FirebaseDatabase.DefaultInstance;
         reference = database.RootReference;
-        user = FirebaseAuth.DefaultInstance.CurrentUser;
-        Debug.Log(user.UserId);
         GetHighestScore();
         StartCoroutine(SaveScore());
     }
 
     private IEnumerator SaveScore() {
 
-        reference.Child("users").Child(userId).Child("last-score").SetValueAsync(Scoreboard.instance.Score);
+        reference.Child($"users/{user.UserId}/last-score").SetValueAsync(Scoreboard.instance.Score);
         yield return new WaitForSeconds(10);
         StartCoroutine(SaveScore());
     }
@@ -36,11 +34,11 @@ public class ScoreBackend : MonoBehaviour {
     public void SaveScoreOnDeath() {
         StopAllCoroutines();
         Scoreboard.instance.StopScore();
-        reference.Child("users").Child(userId).Child("last-score").SetValueAsync(Scoreboard.instance.Score);
+        reference.Child($"users/{user.UserId}/last-score").SetValueAsync(Scoreboard.instance.Score);
     }
 
     public void GetHighestScore() {
-        reference.Child($"/users/{userId}/")
+        reference.Child($"/users/{user.UserId}/")
             .GetValueAsync().ContinueWith(task => {
                 if (task.IsFaulted) {
                     Debug.LogError(task.Exception);

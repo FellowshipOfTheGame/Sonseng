@@ -32,8 +32,10 @@ public class Login : MonoBehaviour {
                 auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
                 isLogged = auth.CurrentUser != null;
                 if (auth.CurrentUser != null) {
+                    SetToken();
                     loginButton.SetActive(false);
                     playButton.SetActive(true);
+                    UserBackend.instance.UpdateUserReference();
                 }
             } else {
                 UnityEngine.Debug.LogError(System.String.Format(
@@ -51,6 +53,15 @@ public class Login : MonoBehaviour {
 
     }
 
+    private void SetToken(){
+        auth.CurrentUser.TokenAsync(true).ContinueWith(task=>{
+            if(task.IsCompleted){
+                string token = task.Result;
+                Debug.Log("Token :"+token);
+                RequestManager.token = token;
+            }
+        });
+    }
     void Update() {
         if (isLogged && !hasLogged) {
             playButton.SetActive(true);
@@ -69,6 +80,7 @@ public class Login : MonoBehaviour {
         auth.SignInAnonymouslyAsync().ContinueWith(task => {
             if (task.IsCompleted) {
                 isLogged = true;
+                SetToken();
                 UserBackend.instance.UpdateUserReference();
             } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
@@ -122,6 +134,7 @@ public class Login : MonoBehaviour {
         auth.SignInWithCredentialAsync(cred).ContinueWith(task => {
             if (task.IsCompleted) {
                 isLogged = true;
+                SetToken();
                 UserBackend.instance.UpdateUserReference();
             } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");

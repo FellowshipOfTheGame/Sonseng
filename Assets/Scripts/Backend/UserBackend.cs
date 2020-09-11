@@ -10,9 +10,8 @@ using UnityEngine;
 
 public class UserBackend : MonoBehaviour {
     [HideInInspector] public static UserBackend instance;
-
     public int cogs;
-    private FirebaseUser user;
+    public FirebaseUser user;
     private FirebaseDatabase database;
     private DatabaseReference reference;
     public string userId;
