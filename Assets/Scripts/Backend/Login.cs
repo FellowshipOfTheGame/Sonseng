@@ -57,7 +57,6 @@ public class Login : MonoBehaviour {
         auth.CurrentUser.TokenAsync(true).ContinueWith(task=>{
             if(task.IsCompleted){
                 string token = task.Result;
-                Debug.Log("Token :"+token);
                 RequestManager.token = token;
             }
         });
