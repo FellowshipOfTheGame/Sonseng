@@ -33,8 +33,7 @@ public class Login : MonoBehaviour {
                 isLogged = auth.CurrentUser != null;
                 if (auth.CurrentUser != null) {
                     SetToken();
-                    loginButton.SetActive(false);
-                    playButton.SetActive(true);
+                    isLogged = true;
                     UserBackend.instance.UpdateUserReference();
                 }
             } else {
