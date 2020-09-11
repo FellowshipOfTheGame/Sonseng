@@ -15,11 +15,13 @@ public class ScoreBackend : MonoBehaviour {
     public string userId;
 
     void Start() {
-        user = FirebaseInitializer.instance.user;
-
-        database = FirebaseInitializer.instance.database;
-        reference = FirebaseInitializer.instance.reference;
-        userId = FirebaseInitializer.instance.user.UserId;
+#if UNITY_EDITOR
+        Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
+#endif
+        database = FirebaseDatabase.DefaultInstance;
+        reference = database.RootReference;
+        user = FirebaseAuth.DefaultInstance.CurrentUser;
+        Debug.Log(user.UserId);
         GetHighestScore();
         StartCoroutine(SaveScore());
     }
@@ -38,13 +40,15 @@ public class ScoreBackend : MonoBehaviour {
     }
 
     public void GetHighestScore() {
-        reference.Child($"/users/{userId}/highest-score")
+        reference.Child($"/users/{userId}/")
             .GetValueAsync().ContinueWith(task => {
                 if (task.IsFaulted) {
                     Debug.LogError(task.Exception);
                 } else if (task.IsCompleted) {
                     DataSnapshot snapshot = task.Result;
-                    Scoreboard.instance.highestScore = float.Parse(snapshot.GetRawJsonValue());
+                    if (snapshot.Exists) {
+                        Scoreboard.instance.highestScore = float.Parse(snapshot.Child("highest-score").GetRawJsonValue());
+                    }
                 }
             });
     }

@@ -1,13 +1,13 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class MainMenu : MonoBehaviour {
     [SerializeField] float translationTime = 0f;
     [SerializeField] float rotationTime = 0f;
     [SerializeField] string gameSceneName = null;
 
-    [SerializeField] GameObject shop, panel, leaderboard, logo;
+    [SerializeField] GameObject shop, panel, leaderboard, logo, play, login;
 
     private void Awake() {
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour {
     public void OpenShop() {
         panel.SetActive(true);
         shop.SetActive(true);
+        play.GetComponent<Button>().enabled = false;
         logo.SetActive(false);
         leaderboard.SetActive(false);
     }
@@ -47,8 +48,16 @@ public class MainMenu : MonoBehaviour {
         leaderboard.SetActive(true);
     }
 
-    public void ClosePanel(){
+    public void ClosePanel() {
         panel.SetActive(false);
         logo.SetActive(true);
+        play.GetComponent<Button>().enabled = true;
+
+    }
+
+    public void OpenOptions() {
+        panel.SetActive(false);
+        play.SetActive(false);
+        login.SetActive(true);
     }
 }

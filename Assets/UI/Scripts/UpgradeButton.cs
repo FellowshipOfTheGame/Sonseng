@@ -10,16 +10,14 @@ public class UpgradeButton : MonoBehaviour {
     private const string shield = "\uf004";
     private const string invincibility = "\uf005";
     private const string pButton = "\uf552";
+    public Color disabled;
 
     public TextMeshProUGUI iconTxt, costTxt;
 
-    public string cost, upgradeName;
+    public string upgradeName;
 
     public PowerUpBackend backend;
 
-    void Start() {
-        costTxt.text = cost.ToString();
-    }
     public void UpdateIcon() {
         switch (upgradeName) {
             case "double":
@@ -51,9 +49,20 @@ public class UpgradeButton : MonoBehaviour {
 
     private IEnumerator GetPrices() {
         yield return StartCoroutine(backend.GetCurrentPrice(upgradeName));
-        costTxt.text = backend.prices[upgradeName].ToString();
+        if (backend.prices[upgradeName] == -1) {
+            DisableButton();
+        } else {
+            costTxt.text = backend.prices[upgradeName].ToString();
+        }
     }
 
+    public void DisableButton() {
+        costTxt.text = "MAX";
+        GetComponent<Image>().color = disabled;
+        GetComponent<Button>().enabled = false;
+    }
+
+    
     void OnEnable() {
         if (UserBackend.instance.boughtUpgrades.ContainsKey(upgradeName)) {
             StartCoroutine(GetPrices());

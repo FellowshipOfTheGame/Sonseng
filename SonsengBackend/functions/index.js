@@ -20,10 +20,9 @@ exports.purchasePowerUp = functions.https.onRequest(async (req, res) => {
       .database()
       .ref(`power-ups/${powerUp}/price`)
       .once('value')
-    const newCoin = coins.val() - price.val()
 
-    if (newCoin >= 0) {
-      await coins.ref.parent.update({ coins: newCoin })
+    if (coins.val() >= price.val()) {
+      await coins.ref.parent.update({ coins: coins.val() - price.val() })
       await coins.ref.parent.child('bought-powerUps').update({
         [powerUp]: {
           level: 0,
@@ -32,9 +31,14 @@ exports.purchasePowerUp = functions.https.onRequest(async (req, res) => {
       })
       const nextPrice = await admin
         .database()
-        .ref(`power-ups/${powerUp}/upgrades/1/price`)
+        .ref(`/power-ups/${powerUp}/upgrades/1/price`)
         .once('value')
-      return res.send({ powerUp, cogs: newCoin, nextPrice: nextPrice.val() })
+
+      return res.send({
+        powerUp,
+        cogs: coins.val() - price.val(),
+        nextPrice: nextPrice.exists() ? nextPrice.val() : 0,
+      })
     } else {
       return res
         .status(500)
@@ -64,7 +68,9 @@ exports.purchaseUpgrade = functions.https.onRequest(async (req, res) => {
       .once('value')
 
     if (!price.exists()) {
-      return res.status(404).send({ message: 'Upgrade máximo!' })
+      return res
+        .status(500)
+        .send({ message: `!${powerUp}! Upgrade nível máximo` })
     }
     if (coins.val() > price.val()) {
       await coins.ref.parent.update({ coins: coins.val() - price.val() })
@@ -78,15 +84,20 @@ exports.purchaseUpgrade = functions.https.onRequest(async (req, res) => {
         multiplier: newMultiplier.val(),
       })
 
-      const nextPrice = await powerUpLevel.ref.parent
-        .child(`/upgrades/${nextLevel}/price`)
+      const nextPrice = await admin
+        .database()
+        .ref(`/power-ups/${powerUp}/upgrades/${nextLevel + 1}/price`)
         .once('value')
-
-      return res.send({
-        powerUp,
-        cogs: coins.val() - price.val(),
-        nextPrice: nextPrice.exists() ? nextPrice.val() : 0,
-      })
+      if (nextPrice.exists())
+        return res.send({
+          powerUp,
+          cogs: coins.val() - price.val(),
+          nextPrice: nextPrice.val(),
+        })
+      else
+        return res
+          .status(500)
+          .send({ message: `!${powerUp}! Upgrade nível máximo` })
     } else {
       return res
         .status(500)
@@ -114,7 +125,9 @@ exports.getCurrentPrice = functions.https.onRequest(async (req, res) => {
       if (price.exists()) {
         return res.send({ powerUp, price: price.val() })
       } else {
-        return res.status(404).send({ message: 'Upgrade nível máximo' })
+        return res
+          .status(500)
+          .send({ message: `!${powerUp}! Upgrade nível máximo` })
       }
     }
     const basePrice = await admin

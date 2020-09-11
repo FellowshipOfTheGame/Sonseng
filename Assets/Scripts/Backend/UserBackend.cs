@@ -24,14 +24,22 @@ public class UserBackend : MonoBehaviour {
             instance = this;
         else if (instance != this)
             Destroy(this.gameObject);
-        database = FirebaseInitializer.instance.database;
-        reference = FirebaseInitializer.instance.reference;
-        user = FirebaseInitializer.instance.user;
+#if UNITY_EDITOR
+        Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
+#endif
+        database = FirebaseDatabase.DefaultInstance;
+        reference = database.RootReference;
+        if (FirebaseAuth.DefaultInstance.CurrentUser != null) {
+            UpdateUserReference();
+        }
+    }
+
+    public void UpdateUserReference() {
+        user = FirebaseAuth.DefaultInstance.CurrentUser;
         userId = user.UserId;
         GetCogs();
         GetBoughtUpgrades();
     }
-
     public void GetCogs() {
         reference.Child($"/users/{userId}/coins").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted) {
