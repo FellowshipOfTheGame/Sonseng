@@ -63,7 +63,6 @@ Transform:
   m_Children:
   - {fileID: 7832762458631995434}
   - {fileID: 3430609461653115337}
-  - {fileID: 3354087770540286548}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,81 +220,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b288dc969d0ed0940b15b663dd9b6396,
     type: 3}
   m_PrefabInstance: {fileID: 4404807237521092180}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7502278299553057568
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5488960654665709447}
-    m_Modifications:
-    - target: {fileID: 1476274424816348318, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_Name
-      value: Obstacle-WashingCar and Sign
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.5416
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.7668
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.6639
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7e107e885559f8442b64fa31d12ffc45, type: 3}
---- !u!4 &3354087770540286548 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
-    type: 3}
-  m_PrefabInstance: {fileID: 7502278299553057568}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8491180718036138260
 PrefabInstance:

@@ -11,11 +11,9 @@ public class BendingManager : MonoBehaviour
 
   private const string PLANET_FEATURE = "ENABLE_BENDING_PLANET";
 
-  private static readonly int BENDING_AMOUNT_X =
-    Shader.PropertyToID("_BendingAmountX");
+  private static readonly int BENDING_AMOUNT_X = Shader.PropertyToID("_BendingAmountX");
 
-  private static readonly int BENDING_AMOUNT_Y =
-    Shader.PropertyToID("_BendingAmountY");
+  private static readonly int BENDING_AMOUNT_Y = Shader.PropertyToID("_BendingAmountY");
 
   #endregion
 
@@ -58,6 +56,9 @@ public class BendingManager : MonoBehaviour
 
     UpdateBendingAmountX();
     UpdateBendingAmountY();
+
+
+    print(BENDING_AMOUNT_X);
   }
 
   private void OnEnable ()

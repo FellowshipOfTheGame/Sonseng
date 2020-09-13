@@ -213,7 +213,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: b288dc969d0ed0940b15b663dd9b6396,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b288dc969d0ed0940b15b663dd9b6396, type: 3}
@@ -230,10 +230,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5488960654665709447}
     m_Modifications:
+    - target: {fileID: 76469360198186782, guid: 7e107e885559f8442b64fa31d12ffc45,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1476274424816348318, guid: 7e107e885559f8442b64fa31d12ffc45,
         type: 3}
       propertyPath: m_Name
       value: Obstacle-WashingCar and Sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099936781297473851, guid: 7e107e885559f8442b64fa31d12ffc45,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392730136899853025, guid: 7e107e885559f8442b64fa31d12ffc45,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5084967857196001652, guid: 7e107e885559f8442b64fa31d12ffc45,
         type: 3}
@@ -388,7 +403,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 2ccf7a6c43e442b45b811eaf795f43b1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 2ccf7a6c43e442b45b811eaf795f43b1,
         type: 3}
@@ -414,6 +429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -725198430672648635, guid: 4b1fe5b4641438841b613ae887547cd2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.73
       objectReference: {fileID: 0}
     - target: {fileID: 2949641062735234248, guid: 4b1fe5b4641438841b613ae887547cd2,
         type: 3}
@@ -474,6 +494,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Obstacle-Computer Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080106426616639535, guid: 4b1fe5b4641438841b613ae887547cd2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.6984
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080106426616639535, guid: 4b1fe5b4641438841b613ae887547cd2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.954342
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b1fe5b4641438841b613ae887547cd2, type: 3}
