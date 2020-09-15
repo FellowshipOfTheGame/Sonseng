@@ -8,6 +8,7 @@ public class RandomCollectableSystem : MonoBehaviour
     public static RandomCollectableSystem Instance = null;
 
     [SerializeField] private List<GameObject> UnlockedCollectables = new List<GameObject>();
+    [SerializeField] private GameObject CoinPrefab = null;
     [SerializeField] private SimpleObjectPooler Pool = null;
     
     // Start is called before the first frame update
@@ -49,7 +50,17 @@ public class RandomCollectableSystem : MonoBehaviour
     {
         // Get random index
         int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
-        return Pool.GetObject(UnlockedCollectables[index]);
+        //return Pool.GetObject(UnlockedCollectables[index]);
+        return Instantiate(UnlockedCollectables[index]);
+    }
+
+    /// <summary>
+    /// Returns a coin prefab clone.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetCoin()
+    {
+        return Instantiate(CoinPrefab);
     }
 
     private void OnDestroy()

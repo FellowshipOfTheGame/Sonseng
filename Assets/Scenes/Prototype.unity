@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -223,6 +223,16 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352216, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352217, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: powerUpUI
@@ -243,6 +253,12 @@ PrefabInstance:
       propertyPath: ink
       value: 
       objectReference: {fileID: 863947494}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
+        type: 3}
     - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_Name
@@ -2576,6 +2592,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomCollectableSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: UnlockedCollectables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: UnlockedCollectables.Array.data[0]
+      value: 
+      objectReference: {fileID: 2728227575352566936, guid: 0847b21badc907643bc8d412bd5ec396,
+        type: 3}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: UnlockedCollectables.Array.data[1]
+      value: 
+      objectReference: {fileID: 8267922849721307377, guid: 84058e04de5248648bad31a232a7d842,
+        type: 3}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: UnlockedCollectables.Array.data[2]
+      value: 
+      objectReference: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
+        type: 3}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: CoinPrefab
+      value: 
+      objectReference: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
+        type: 3}
     - target: {fileID: 7659378177619989777, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2939,9 +2984,38 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
+      propertyPath: Prefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
       propertyPath: InitialPrefabNumber
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2022034353857588202, guid: d7db960814bc33447acce303cd47f0b6,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 2022034353857588202, guid: f051696aeacfeb449a83dcad4cc83c14,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 2022034353857588202, guid: f051696aeacfeb449a83dcad4cc83c14,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 2022034353857588202, guid: d7db960814bc33447acce303cd47f0b6,
+        type: 3}
     - target: {fileID: 1546368312875657661, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: m_Name
