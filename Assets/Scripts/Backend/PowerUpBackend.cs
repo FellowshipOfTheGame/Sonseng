@@ -15,18 +15,26 @@ public class PowerUpBackend : MonoBehaviour {
     private UpgradeButton upgradeButton;
     public GameObject buttonClicked;
     private bool beingClicked = false;
-    public Dictionary<string, int> prices = new Dictionary<string, int>() { { "double", -1 }, { "shield", -1 }, { "magnet", -1 }, { "p-button", -1 }, { "invincibility", -1 }, { "speed", -1 },
-    };
+    public bool finishedGettingPrice = false;
+    public Dictionary<string, PriceResponse> prices = new Dictionary<string, PriceResponse>();
     public struct PurchaseResponse {
         public int cogs;
         public int nextPrice;
         public string powerUp;
     }
 
+    [Serializable]
     public struct PriceResponse {
-        public string powerUp;
+        public string name;
         public int price;
+        public bool max;
+        public int level;
 
+    }
+
+    [Serializable]
+    public struct PricesRoot {
+        public PriceResponse[] prices;
     }
 
     [SerializeField] private TextMeshProUGUI cogsText;
@@ -35,6 +43,9 @@ public class PowerUpBackend : MonoBehaviour {
         cogsText.text = UserBackend.instance.cogs.ToString();
     }
 
+    void Awake() {
+        StartCoroutine(GetAllPrices());
+    }
     public void BuyPowerUp(string powerUp) {
         if (!beingClicked)
             StartCoroutine(BuyPowerUpCourotine(powerUp));
@@ -69,14 +80,7 @@ public class PowerUpBackend : MonoBehaviour {
         Debug.Log(errorMessage);
     }
     public void LoadErrorPurchase(string errorMessage) {
-        if (errorMessage == "Você não tem engrenagens suficientes!") {} else {
-            Regex rx = new Regex(@"(?<=\!).+?(?=\!)");
-            MatchCollection match = rx.Matches(errorMessage);
-            Debug.Log(match[0].Value);
-            prices[match[0].Value] = -1;
-            buttonClicked.GetComponent<UpgradeButton>().DisableButton();
-            UserBackend.instance.GetCogs();
-        }
+        if (errorMessage == "Você não tem engrenagens suficientes!") {}
     }
 
     public void FinishPurchasePowerUp(PurchaseResponse res) {
@@ -91,7 +95,9 @@ public class PowerUpBackend : MonoBehaviour {
 
         UserBackend.instance.cogs = res.cogs;
         cogsText.text = res.cogs.ToString();
-        prices[res.powerUp] = res.nextPrice;
+        PriceResponse temp = prices[res.powerUp];
+        temp.price = res.nextPrice;
+        prices[res.powerUp] = temp;
         currentButton.costTxt.text = res.nextPrice.ToString();
     }
 
@@ -100,21 +106,30 @@ public class PowerUpBackend : MonoBehaviour {
         UserBackend.instance.GetBoughtUpgrades();
         currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
-        prices[res.powerUp] = res.nextPrice;
-        cogsText.text = res.cogs.ToString();
-        buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
+        PriceResponse temp = prices[res.powerUp];
+        if (res.nextPrice == -1) {
+            currentButton.DisableButton();
+        } else {
+            temp.price = res.nextPrice;
+            prices[res.powerUp] = temp;
+            cogsText.text = res.cogs.ToString();
+            buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
+        }
     }
 
-    public IEnumerator GetCurrentPrice(string powerUp) {
+    public IEnumerator GetAllPrices() {
+        LoadingCircle.instance.EnableOrDisable(true);
         WWWForm form = new WWWForm();
         form.AddField("uid", UserBackend.instance.userId);
-        form.AddField("powerUp", powerUp);
-        yield return StartCoroutine(RequestManager.PostRequest<PriceResponse>("powerup/getCurrentPrice", form, FinishGetPrice, LoadErrorPrice));
-
+        yield return StartCoroutine(RequestManager.PostRequest<PricesRoot>("powerup/getAllPrices", form, FinishGetAllPrices, LoadErrorPrice));
+        LoadingCircle.instance.EnableOrDisable(false);
     }
 
-    public void FinishGetPrice(PriceResponse priceRes) {
-        prices[priceRes.powerUp] = priceRes.price;
+    public void FinishGetAllPrices(PricesRoot root) {
+        foreach (var price in root.prices) {
+            prices.Add(price.name, price);
+        }
+        finishedGettingPrice = true;
     }
 
 }

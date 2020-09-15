@@ -44,6 +44,7 @@ public class MainMenu : MonoBehaviour {
     public void OpenLeaderboard() {
         panel.SetActive(true);
         shop.SetActive(false);
+        play.GetComponent<Button>().enabled = false;
         logo.SetActive(false);
         leaderboard.SetActive(true);
     }

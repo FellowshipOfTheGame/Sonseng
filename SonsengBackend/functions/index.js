@@ -5,6 +5,7 @@ const app = express()
 const functions = require('firebase-functions')
 const bodyParser = require('body-parser')
 
+require('./controller/leaderboardController')(app)
 require('./controller/powerUpController')(app)
 
 app.use(cors)
