@@ -97,6 +97,4 @@ public class ScenarySpawner : MonoBehaviour
         // Update End Position
         _lastTransform = scenary.transform.Find("EndPosition");
     }
-
-
 }

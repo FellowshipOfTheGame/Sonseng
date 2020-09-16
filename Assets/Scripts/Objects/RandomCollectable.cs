@@ -26,7 +26,9 @@ public class RandomCollectable : MonoBehaviour
     private void OnDisable()
     {
         if(_activeCollectable != null)
+        {
             Destroy(_activeCollectable);
+        }
     }
 
     protected virtual GameObject GetCollectable()

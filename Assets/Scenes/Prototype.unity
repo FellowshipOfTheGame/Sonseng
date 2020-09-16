@@ -264,6 +264,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tira-tampa
       objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
 --- !u!114 &187144143 stripped
@@ -493,7 +498,7 @@ PrefabInstance:
     - target: {fileID: 5488960653843558382, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5488960653843558382, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
@@ -503,7 +508,7 @@ PrefabInstance:
     - target: {fileID: 5488960654273017416, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5488960654273017416, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
@@ -553,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 5488960654748978951, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5488960654748978951, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
@@ -563,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 5488960655109865667, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5488960655109865667, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
@@ -573,7 +578,7 @@ PrefabInstance:
     - target: {fileID: 5488960655162249166, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5488960655162249166, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
@@ -583,7 +588,7 @@ PrefabInstance:
     - target: {fileID: 5488960655420201366, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5488960655420201366, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
@@ -2595,7 +2600,7 @@ PrefabInstance:
     - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
       propertyPath: UnlockedCollectables.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
@@ -2985,7 +2990,7 @@ PrefabInstance:
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: Prefabs.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
@@ -2996,13 +3001,13 @@ PrefabInstance:
         type: 3}
       propertyPath: Prefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 2022034353857588202, guid: d7db960814bc33447acce303cd47f0b6,
+      objectReference: {fileID: 5652792379276932652, guid: 2d5b15cbf42cc8b45806b68871780a8f,
         type: 3}
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: Prefabs.Array.data[3]
       value: 
-      objectReference: {fileID: 2022034353857588202, guid: f051696aeacfeb449a83dcad4cc83c14,
+      objectReference: {fileID: 5652792379276932652, guid: 6d8c9cf2d62b32941903a38b03275d61,
         type: 3}
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
@@ -3080,6 +3085,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546368312875657663, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: isExpandable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6438310646435286997, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
