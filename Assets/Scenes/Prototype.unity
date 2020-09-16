@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2979,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: Prefabs.Array.size
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
@@ -3009,6 +3009,30 @@ PrefabInstance:
       propertyPath: Prefabs.Array.data[1]
       value: 
       objectReference: {fileID: 2022034353857588202, guid: d7db960814bc33447acce303cd47f0b6,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 2908754502401266710, guid: d955a6cd057f8583581cb4173fa3dfac,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 1785960821097983314, guid: c71660e9d6e03664a9239bf0103ee60e,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 4823207966831176932, guid: 1d1f9b6267c110162899c9cc47f5020b,
+        type: 3}
+    - target: {fileID: 1546368312875657660, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: Prefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 1437448730631025962, guid: ad113eb4d16b4431280cbca07e67c31e,
         type: 3}
     - target: {fileID: 1546368312875657661, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
