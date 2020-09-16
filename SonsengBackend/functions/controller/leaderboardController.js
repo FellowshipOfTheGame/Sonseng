@@ -20,7 +20,9 @@ router.get('/getLeaders', async (req, res) => {
           }
           leadersArray.push(leader)
         })
-      )
+      ).catch(err=>{
+        return res.status(500).send({message:err})
+      })
       return res.send({ leaders: leadersArray })
     })
 })
