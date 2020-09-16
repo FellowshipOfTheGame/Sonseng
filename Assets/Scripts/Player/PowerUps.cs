@@ -104,8 +104,8 @@ public class PowerUps : MonoBehaviour {
             case "Coin":
                 coins.Remove(other.transform);
                 //TODO Let the coin destroy itself and count points
-                //TODO use object pooling
-                other.gameObject.SetActive(false);
+                Destroy(other.gameObject);
+                //Debug.Break();
                 break;
 
             // Power Ups
