@@ -34,9 +34,7 @@ public class LeaderboardBackend : MonoBehaviour {
         List<Leader> lRec = new List<Leader>(root.leaders);
         lRec.Sort((a, b) => b.highestScore.CompareTo(a.highestScore));
         int rank = 1;
-        Debug.Log(lRec.Count);
         foreach (Leader l in lRec) {
-            Debug.Log(l.highestScore);
             var newRank = Instantiate(rankHolder, rec.position, rec.rotation, rec);
             newRank.GetComponent<RankHolder>().playerName = l.name;
             newRank.GetComponent<RankHolder>().rank = rank.ToString();

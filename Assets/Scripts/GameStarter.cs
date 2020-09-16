@@ -14,6 +14,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private Transform mainMenuCameraPosition = null;
     [SerializeField] float translationTime  =  0f;
     [SerializeField] float rotationTime  =  0f;
+    [SerializeField] PlayerMovement playerMovement;
     [HideInInspector] public bool gameHasStarted;   
 
     private Vector3 bufferPosition;
@@ -55,6 +56,7 @@ public class GameStarter : MonoBehaviour
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
         GameManager.instance.StartNewGame();
+        playerMovement.isInMainMenu = false;
         inGameUI.SetActive(true);
     }
 
@@ -62,6 +64,7 @@ public class GameStarter : MonoBehaviour
     {
         InitializeSpawners();
         inGameUI.SetActive(true);
+        playerMovement.isInMainMenu = false;
         GameManager.instance.StartNewGame();
     }
     

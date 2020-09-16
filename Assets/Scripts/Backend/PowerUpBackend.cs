@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class PowerUpBackend : MonoBehaviour {
 
     private UpgradeButton upgradeButton;
-    public GameObject buttonClicked;
+    public GameObject buttonClicked, errorPanel;
     private bool beingClicked = false;
     public bool finishedGettingPrice = false;
     public Dictionary<string, PriceResponse> prices = new Dictionary<string, PriceResponse>();
@@ -43,7 +43,8 @@ public class PowerUpBackend : MonoBehaviour {
         cogsText.text = UserBackend.instance.cogs.ToString();
     }
 
-    void Awake() {
+    void OnEnable() {
+        finishedGettingPrice = false;
         StartCoroutine(GetAllPrices());
     }
     public void BuyPowerUp(string powerUp) {
@@ -52,6 +53,7 @@ public class PowerUpBackend : MonoBehaviour {
     }
 
     private IEnumerator BuyPowerUpCourotine(string powerUp) {
+        LoadingCircle.instance.EnableOrDisable(true);
         beingClicked = true;
         WWWForm form = new WWWForm();
         form.AddField("uid", UserBackend.instance.userId);
@@ -59,6 +61,7 @@ public class PowerUpBackend : MonoBehaviour {
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
         yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchasePowerUp", form, FinishPurchasePowerUp, LoadErrorPurchase));
         beingClicked = false;
+        LoadingCircle.instance.EnableOrDisable(false);
     }
 
     public void BuyUpgrade(string powerUp) {
@@ -67,6 +70,7 @@ public class PowerUpBackend : MonoBehaviour {
     }
 
     private IEnumerator BuyUpgradeCourotine(string powerUp) {
+        LoadingCircle.instance.EnableOrDisable(true);
         beingClicked = true;
         WWWForm form = new WWWForm();
         form.AddField("uid", UserBackend.instance.userId);
@@ -74,13 +78,16 @@ public class PowerUpBackend : MonoBehaviour {
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
         yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchaseUpgrade", form, FinishPurchaseUpgrade, LoadErrorPurchase));
         beingClicked = false;
+        LoadingCircle.instance.EnableOrDisable(false);
     }
 
     public void LoadErrorPrice(string errorMessage) {
         Debug.Log(errorMessage);
     }
     public void LoadErrorPurchase(string errorMessage) {
-        if (errorMessage == "Você não tem engrenagens suficientes!") {}
+        if (errorMessage == "Você não tem engrenagens suficientes!") {
+            errorPanel.SetActive(true);
+        }
     }
 
     public void FinishPurchasePowerUp(PurchaseResponse res) {
@@ -127,7 +134,8 @@ public class PowerUpBackend : MonoBehaviour {
 
     public void FinishGetAllPrices(PricesRoot root) {
         foreach (var price in root.prices) {
-            prices.Add(price.name, price);
+            if (!prices.ContainsKey(price.name))
+                prices.Add(price.name, price);
         }
         finishedGettingPrice = true;
     }

@@ -19,7 +19,7 @@ public class LoadingCircle : MonoBehaviour {
         rect = circleImage.GetComponent<RectTransform>();
     }
 
-    public void EnableOrDisable(bool enabled){
+    public void EnableOrDisable(bool enabled) {
         circleImage.enabled = enabled;
         fakePanel.enabled = enabled;
         isEnabled = enabled;
@@ -28,9 +28,7 @@ public class LoadingCircle : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (isEnabled) {
-
-            t += Time.deltaTime;
-            rect.Rotate(Vector3.forward * t * rotateSpeed);
+            rect.Rotate( -Vector3.forward * Time.unscaledDeltaTime * rotateSpeed);
         }
     }
 }
