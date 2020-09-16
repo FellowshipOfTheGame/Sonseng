@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1168,7 +1168,7 @@ PrefabInstance:
         type: 3}
       propertyPath: backend
       value: 
-      objectReference: {fileID: 747448978}
+      objectReference: {fileID: 0}
     - target: {fileID: 1887002396095301015, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: m_Color.r
@@ -1938,12 +1938,12 @@ PrefabInstance:
         type: 3}
       propertyPath: backend
       value: 
-      objectReference: {fileID: 747448978}
+      objectReference: {fileID: 0}
     - target: {fileID: 3657941431761322005, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: backend
       value: 
-      objectReference: {fileID: 747448978}
+      objectReference: {fileID: 0}
     - target: {fileID: 3921929829652567803, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: m_Enabled
@@ -1969,7 +1969,7 @@ PrefabInstance:
         type: 3}
       propertyPath: backend
       value: 
-      objectReference: {fileID: 747448978}
+      objectReference: {fileID: 0}
     - target: {fileID: 4616661686688936450, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: m_IsActive
@@ -1999,7 +1999,7 @@ PrefabInstance:
         type: 3}
       propertyPath: backend
       value: 
-      objectReference: {fileID: 747448978}
+      objectReference: {fileID: 0}
     - target: {fileID: 8693776773426144216, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -2029,7 +2029,7 @@ PrefabInstance:
         type: 3}
       propertyPath: backend
       value: 
-      objectReference: {fileID: 747448978}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b1d9b4ab208cd9daab3ffff34f76464, type: 3}
 --- !u!224 &747448976 stripped
@@ -2048,18 +2048,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 521e1e238b938184b861321bb6946614, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &747448978 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4202899481157874991, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
-    type: 3}
-  m_PrefabInstance: {fileID: 747448975}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60b429b7ab9f66953960b22244daa549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &863947493
@@ -2965,6 +2953,7 @@ MonoBehaviour:
   mainMenuCameraPosition: {fileID: 1319477718}
   translationTime: 4
   rotationTime: 2
+  playerMovement: {fileID: 187144143}
   gameHasStarted: 0
 --- !u!4 &1268958504
 Transform:
