@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -59,16 +60,23 @@ public class InGameMenu : MonoBehaviour {
     }
 
     private void ShowEndGameMenu() {
-        endGameMenu.SetActive(true);
-        header.SetActive(false);
         _audioLoop.Stop();
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
         _audioIntro.Play();
         GameManager.instance.StopGame();
+        StartCoroutine(WaitForJingleToEnd(3.3f));
         collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
+    private IEnumerator WaitForJingleToEnd(float seconds) {
+        float startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < seconds) {
+            yield return null;
+        }
+        header.SetActive(false);
+        endGameMenu.SetActive(true);
+    }
     public void Restart() {
         Time.timeScale = 1f;
         GameManager.instance.StartNewGame();

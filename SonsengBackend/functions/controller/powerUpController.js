@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const admin = require('./fb')
-const verifyMiddleware = require('../middleware/verifyFirebaseToken')
+const verifyMiddleWare = require('../middleware/verifyFirebaseToken')
 
-router.use(verifyMiddleware)
+router.use(verifyMiddleWare)
 
 router.post('/purchasePowerUp', async (req, res) => {
   const { uid, powerUp } = req.body
@@ -80,16 +80,19 @@ router.post('/purchaseUpgrade', async (req, res) => {
       .database()
       .ref(`/power-ups/${powerUp}/upgrades/${nextLevel + 1}/price`)
       .once('value')
-    if (nextPrice.exists())
+    if (nextPrice.exists()) {
       return res.send({
         powerUp,
         cogs: coins.val() - price.val(),
         nextPrice: nextPrice.val(),
       })
-    else
-      return res
-        .status(401)
-        .send({ message: `!${powerUp}! Upgrade nível máximo` })
+    } else {
+      return res.send({
+        powerUp,
+        cogs: coins.val(),
+        nextPrice: -1,
+      })
+    }
   } else {
     return res
       .status(401)
@@ -97,32 +100,50 @@ router.post('/purchaseUpgrade', async (req, res) => {
   }
 })
 
-router.post('/getCurrentPrice', async (req, res) => {
-  const { uid, powerUp } = req.body
-  const powerUpLevel = await admin
-    .database()
-    .ref(`/users/${uid}/bought-powerUps/${powerUp}/level`)
-    .once('value')
+router.post('/getAllPrices', async (req, res) => {
+  const { uid } = req.body
+  const powerUps = await admin.database().ref(`/power-ups/`).once('value')
+  let prices = []
+  let children = []
+  powerUps.forEach((child) => {
+    children.push(child)
+  })
 
-  if (powerUpLevel.exists()) {
-    const price = await admin
+  const childPromises = children.map(async (child) => {
+    const name = child.key
+    const powerUpLevel = await admin
       .database()
-      .ref(`/power-ups/${powerUp}/upgrades/${powerUpLevel.val() + 1}/price`)
+      .ref(`/users/${uid}/bought-powerUps/${name}/level`)
       .once('value')
+    console.log(name, powerUpLevel.exists())
+    if (powerUpLevel.exists()) {
+      const price = await admin
+        .database()
+        .ref(`/power-ups/${name}/upgrades/${powerUpLevel.val() + 1}/price`)
+        .once('value')
 
-    if (price.exists()) {
-      return res.send({ powerUp, price: price.val() })
+      if (price.exists()) {
+        prices.push({
+          name,
+          price: price.val(),
+          max: false,
+          level: powerUpLevel.val(),
+        })
+      } else {
+        prices.push({ name, price: -1, max: true, level: powerUpLevel.val() })
+      }
     } else {
-      return res
-        .status(401)
-        .send({ message: `!${powerUp}! Upgrade nível máximo` })
+      const price = await admin
+        .database()
+        .ref(`/power-ups/${name}/price`)
+        .once('value')
+      prices.push({ name, price: price.val(), max: false, level: 0 })
     }
-  }
-  const basePrice = await admin
-    .database()
-    .ref(`/power-ups/${powerUp}/price`)
-    .once('value')
-  return res.send({ powerUp, price: basePrice.val() })
+  })
+  await Promise.all(childPromises).catch((err) => {
+    return res.status(500).send({ message: err })
+  })
+  return res.send({ prices })
 })
 
 module.exports = (app) => app.use('/powerup', router)

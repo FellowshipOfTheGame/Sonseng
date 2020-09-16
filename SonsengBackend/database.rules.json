@@ -4,6 +4,7 @@
       "$uid": {
         ".write": "auth!= null && $uid === auth.uid",
         ".read": "auth!=null && $uid === auth.uid",
+        ".indexOn": "highest-score",
         "highest-score": {
           ".validate": "newData.val() > data.val()"
         }

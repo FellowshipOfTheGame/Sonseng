@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour {
     [SerializeField] float rotationTime = 0f;
     [SerializeField] string gameSceneName = null;
 
-    [SerializeField] GameObject shop, panel, leaderboard, logo, play, login;
+    [SerializeField] GameObject shop, panel, leaderboard, logo, play, options, errorPanel;
 
     private void Awake() {
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
@@ -44,8 +44,10 @@ public class MainMenu : MonoBehaviour {
     public void OpenLeaderboard() {
         panel.SetActive(true);
         shop.SetActive(false);
+        play.GetComponent<Button>().enabled = false;
         logo.SetActive(false);
         leaderboard.SetActive(true);
+        errorPanel.SetActive(false);
     }
 
     public void ClosePanel() {
@@ -58,6 +60,9 @@ public class MainMenu : MonoBehaviour {
     public void OpenOptions() {
         panel.SetActive(false);
         play.SetActive(false);
-        login.SetActive(true);
+        options.SetActive(true);
+    }
+    public void CloseErrorPanel(){
+        errorPanel.SetActive(false);
     }
 }
