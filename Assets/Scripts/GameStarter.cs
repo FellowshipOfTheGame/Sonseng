@@ -70,7 +70,6 @@ public class GameStarter : MonoBehaviour
     
     public void InitializeSpawners()
     {
-        FindObjectOfType<RandomCollectableSystem>().Initialize();
         var spawners = FindObjectsOfType<ScenarySpawner>();
         foreach (var s in spawners)
             s.Initialize();

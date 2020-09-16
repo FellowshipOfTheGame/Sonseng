@@ -2,13 +2,12 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(SimpleObjectPooler))]
 public class RandomCollectableSystem : MonoBehaviour
 {
     public static RandomCollectableSystem Instance = null;
 
     [SerializeField] private List<GameObject> UnlockedCollectables = new List<GameObject>();
-    [SerializeField] private SimpleObjectPooler Pool = null;
+    [SerializeField] private GameObject CoinPrefab = null;
     
     // Start is called before the first frame update
     private void Awake()
@@ -21,35 +20,36 @@ public class RandomCollectableSystem : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-
-        // Initiate Object Pool
-        Pool = GetComponent<SimpleObjectPooler>();
-    }
-
-    internal void Initialize()
-    {
-        Pool.Initialization(UnlockedCollectables.ToArray());
     }
 
     /// <summary>
-    /// Adds new collectable to the unlocked collectables list and pool.
+    /// Adds new collectable to the unlocked collectables list.
     /// </summary>
     /// <param name="prefab"></param>
     public void AddCollectable(GameObject prefab)
     {
         UnlockedCollectables.Add(prefab);
-        Pool.AddObject(prefab);
     }
 
     /// <summary>
-    /// Returns a random collectable prefab from the unlocked collectables pool.
+    /// Returns a random collectable prefab clone from the unlocked collectables.
     /// </summary>
     /// <returns></returns>
     public GameObject GetRandomCollectable()
     {
         // Get random index
         int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
-        return Pool.GetObject(UnlockedCollectables[index]);
+        //return Pool.GetObject(UnlockedCollectables[index]);
+        return Instantiate(UnlockedCollectables[index]);
+    }
+
+    /// <summary>
+    /// Returns a coin prefab clone.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetCoin()
+    {
+        return Instantiate(CoinPrefab);
     }
 
     private void OnDestroy()
