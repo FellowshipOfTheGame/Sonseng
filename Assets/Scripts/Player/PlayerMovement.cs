@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool isFallingFast = false;
     private bool isRolling = false;
     private bool isDead = false;
+    public bool isInMainMenu = true;
     private int moveDirection;
     private Vector2Int swipeDirection;
 
@@ -164,7 +165,7 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     /// <param name="swipeDir">Swipe direction</param>
     public void OnSwipe(Vector3 swipeDir) {
-        if (isDead) 
+        if (isDead || isInMainMenu) 
             return;
 
         Vector2Int swipeDirection = new Vector2Int((int)swipeDir.x, (int)swipeDir.y);

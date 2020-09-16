@@ -15,7 +15,7 @@ public class UpgradeButton : MonoBehaviour {
     public TextMeshProUGUI iconTxt, costTxt;
 
     public string upgradeName;
-
+    private bool hasRead = false;
     public PowerUpBackend backend;
 
     public void UpdateIcon() {
@@ -47,31 +47,29 @@ public class UpgradeButton : MonoBehaviour {
         costTxt.text = backend.prices[upgradeName].ToString();
     }
 
-    private IEnumerator GetPrices() {
-        yield return StartCoroutine(backend.GetCurrentPrice(upgradeName));
-        if (backend.prices[upgradeName] == -1) {
-            DisableButton();
-        } else {
-            costTxt.text = backend.prices[upgradeName].ToString();
-        }
-    }
-
     public void DisableButton() {
         costTxt.text = "MAX";
         GetComponent<Image>().color = disabled;
         GetComponent<Button>().enabled = false;
     }
 
-    
-    void OnEnable() {
-        if (UserBackend.instance.boughtUpgrades.ContainsKey(upgradeName)) {
-            StartCoroutine(GetPrices());
-            UpdateIcon();
-            GetComponent<Button>().onClick.RemoveAllListeners();
-            GetComponent<Button>().onClick.AddListener(delegate() {
-                backend.BuyUpgrade(upgradeName);
-            });
-
+    void Update() {
+        if (!hasRead && backend.finishedGettingPrice) {
+            if (UserBackend.instance.boughtUpgrades.ContainsKey(upgradeName)) {
+                if (backend.prices[upgradeName].max) {
+                    DisableButton();
+                } else {
+                    costTxt.text = backend.prices[upgradeName].price.ToString();
+                    if (backend.prices[upgradeName].level > 0) {
+                        UpdateIcon();
+                        GetComponent<Button>().onClick.RemoveAllListeners();
+                        GetComponent<Button>().onClick.AddListener(delegate() {
+                            backend.BuyUpgrade(upgradeName);
+                        });
+                    }
+                }
+                hasRead=true;
+            }
         }
     }
 
