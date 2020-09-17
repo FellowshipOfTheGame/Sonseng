@@ -1,24 +1,23 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolableObject : MonoBehaviour
 {
-    public float LifeSpan = 5f;
+    public FloatSharedVariable LifeSpan;
 
     private void OnEnable()
     {
-        Invoke("Deactivate", LifeSpan);
+        Invoke("Deactivate", LifeSpan.Value);
     }
 
     private void OnDisable()
     {
-        CancelInvoke("Deactivate");
+       CancelInvoke("Deactivate");
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
-        gameObject.SetActive(false);
+       gameObject.SetActive(false);
     }
-
 }

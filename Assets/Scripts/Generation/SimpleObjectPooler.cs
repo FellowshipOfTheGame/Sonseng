@@ -7,21 +7,21 @@ public class SimpleObjectPooler : MonoBehaviour
 {
     public List<GameObject> PoolableObjects = null;
     public bool isExpandable = true;
-    //public Dictionary<string, bool> PossibleNames;
 
     private GameObject _pool;
     private HashSet<string> _possibleNames = new HashSet<string>();
 
     public void Initialization(GameObject[] poolables)
     {
-        _pool = new GameObject("Object Pool");
-        _pool.transform.SetParent(transform);
-        Debug.Log("Initialized pooler");
+        _pool = new GameObject($"[{name}] ObjectPool");
+        //_pool.transform.SetParent(transform);
+        _pool.transform.position = transform.position;
+        Debug.Log($"Initialized pooler for  {name}");
         PoolableObjects = new List<GameObject>();
 
         foreach(var obj in poolables)
         {
-            GameObject ins = Instantiate(obj, _pool.transform);
+            GameObject ins = Instantiate(obj, _pool.transform, false);
             ins.SetActive(false);
             ins.name = obj.name;
             PoolableObjects.Add(ins);
@@ -47,12 +47,22 @@ public class SimpleObjectPooler : MonoBehaviour
 
         if (isExpandable)
         {
-            GameObject ins = Instantiate(prefab, _pool.transform);
+            GameObject ins = Instantiate(prefab, _pool.transform, false);
+            ins.SetActive(false);
             ins.name = prefab.name;
             PoolableObjects.Add(ins);
             return ins;
         }
 
         return null;
+    }
+
+    public void AddObject(GameObject obj)
+    {
+        GameObject ins = Instantiate(obj, _pool.transform, false);
+        ins.SetActive(false);
+        ins.name = obj.name;
+        PoolableObjects.Add(ins);
+        _possibleNames.Add(ins.name);
     }
 }

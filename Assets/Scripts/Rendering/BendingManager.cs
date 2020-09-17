@@ -11,11 +11,9 @@ public class BendingManager : MonoBehaviour
 
   private const string PLANET_FEATURE = "ENABLE_BENDING_PLANET";
 
-  private static readonly int BENDING_AMOUNT_X =
-    Shader.PropertyToID("_BendingAmountX");
+  private static readonly int BENDING_AMOUNT_X = Shader.PropertyToID("_BendingAmountX");
 
-  private static readonly int BENDING_AMOUNT_Y =
-    Shader.PropertyToID("_BendingAmountY");
+  private static readonly int BENDING_AMOUNT_Y = Shader.PropertyToID("_BendingAmountY");
 
   #endregion
 
@@ -58,6 +56,9 @@ public class BendingManager : MonoBehaviour
 
     UpdateBendingAmountX();
     UpdateBendingAmountY();
+
+
+
   }
 
   private void OnEnable ()
@@ -105,7 +106,7 @@ public class BendingManager : MonoBehaviour
   private static void OnBeginCameraRendering (ScriptableRenderContext ctx,
                                               Camera cam)
   {
-    cam.cullingMatrix = Matrix4x4.Ortho(-99, 99, -99, 99, 0.001f, 99) *
+    cam.cullingMatrix = Matrix4x4.Ortho(-cam.farClipPlane, cam.farClipPlane, -cam.farClipPlane, cam.farClipPlane, 0.001f, cam.farClipPlane) *
                         cam.worldToCameraMatrix;
   }
 

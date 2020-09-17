@@ -1,25 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour {
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
-    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject pauseMenu, header;
     [SerializeField] AudioClip songIntro, songLoop;
     [SerializeField] AudioClip deathJingle;
 
     [SerializeField] AudioSource _audioIntro, _audioLoop;
 
+    [SerializeField] TMPro.TextMeshProUGUI pauseScoreText;
+
+    [SerializeField] Scoreboard scoreboard;
+
     private void Start() {
         endGameMenu.SetActive(false);
         pauseMenu.SetActive(false);
-
-        collisionDetector.OnDeath += ShowEndGameMenu;
 
         _audioIntro.clip = songIntro;
         _audioLoop.clip = songLoop;
         _audioIntro.Play();
         _audioLoop.PlayDelayed(songIntro.length);
+
+    }
+
+    void OnEnable() {
+        collisionDetector.OnDeath += ShowEndGameMenu;
+    }
+
+    private void OnDisable() {
+        collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
     private void Update() {
@@ -36,25 +48,38 @@ public class InGameMenu : MonoBehaviour {
         if (!endGameMenu.activeInHierarchy) {
             // If not paused, pause. Else, resume
             if (!pauseMenu.activeInHierarchy) {
-                Time.timeScale = 0f;
+                GameManager.instance.StopGame();
                 pauseMenu.SetActive(true);
+                header.SetActive(false);
             } else {
-                Time.timeScale = 1f;
+                GameManager.instance.ResumeGame();
                 pauseMenu.SetActive(false);
+                header.SetActive(true);
             }
         }
     }
 
     private void ShowEndGameMenu() {
-        endGameMenu.SetActive(true); 
         _audioLoop.Stop();
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
         _audioIntro.Play();
+        GameManager.instance.StopGame();
+        StartCoroutine(WaitForJingleToEnd(3.3f));
+        collisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
+    private IEnumerator WaitForJingleToEnd(float seconds) {
+        float startTime = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup - startTime < seconds) {
+            yield return null;
+        }
+        header.SetActive(false);
+        endGameMenu.SetActive(true);
+    }
     public void Restart() {
         Time.timeScale = 1f;
+        GameManager.instance.StartNewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -62,4 +87,5 @@ public class InGameMenu : MonoBehaviour {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
+
 }

@@ -66,4 +66,9 @@ public class PlayerSoundEffects : MonoBehaviour
             _audioLoops.Play();
         }
     }
+
+    public void Duck()
+    {
+        _audioSFX.PlayOneShot(duck);
+    }
 }
