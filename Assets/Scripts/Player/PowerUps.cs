@@ -106,6 +106,7 @@ public class PowerUps : MonoBehaviour {
                 //TODO Let the coin destroy itself and count points
                 Destroy(other.gameObject);
                 //Debug.Break();
+                Scoreboard.instance.AddCog();
                 break;
 
             // Power Ups

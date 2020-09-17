@@ -15,12 +15,13 @@ public class RequestManager : MonoBehaviour {
             instance = this;
         else if (instance != this)
             Destroy(this);
+        
+        version = Application.version;
 
     }
 
     public static string baseUrl = "https://us-central1-sonseng2020-1586957105557.cloudfunctions.net/app/";
-    // public static string baseUrl = "http://localhost:3000";
-    public static string version = "1.6.2";
+    public static string version;
 
     public delegate void OnStringAnswer(string data);
     public delegate void OnObjectReturn<T>(T stats);
@@ -34,8 +35,8 @@ public class RequestManager : MonoBehaviour {
         if (token != null)
             uwr.SetRequestHeader("authorization", token);
 
-        uwr.SetRequestHeader("unity_token", unity_token);
-        uwr.SetRequestHeader("version", version);*/
+        uwr.SetRequestHeader("unity_token", unity_token);*/
+        uwr.SetRequestHeader("version", version);
 
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
         uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
@@ -61,9 +62,9 @@ public class RequestManager : MonoBehaviour {
         if (token != null)
             uwr.SetRequestHeader("authorization", token);
 
-        uwr.SetRequestHeader("unity_token", unity_token);
+        uwr.SetRequestHeader("unity_token", unity_token);*/
         uwr.SetRequestHeader("version", version);
-        */
+
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
         uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
         yield return uwr.SendWebRequest();

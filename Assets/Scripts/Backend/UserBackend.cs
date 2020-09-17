@@ -16,6 +16,12 @@ public class UserBackend : MonoBehaviour {
     private DatabaseReference reference;
     public string userId;
 
+    public struct Upgrade {
+        public string upgradeName;
+        public float baseValue;
+        public int level;
+        public float multiplier;
+    }
     public Dictionary<string, Upgrade> boughtUpgrades = new Dictionary<string, Upgrade>();
 
     private void Awake() {
@@ -62,17 +68,23 @@ public class UserBackend : MonoBehaviour {
                     foreach (var info in infos) {
                         if (info.Key == "level") {
                             up.level = int.Parse(info.Value.ToString());
-                        } else {
+                        } else if (info.Key == "multiplier") {
                             up.multiplier = float.Parse(info.Value.ToString());
+                        } else {
+                            up.baseValue = float.Parse(info.Value.ToString());
                         }
                     }
                     boughtUpgrades.Add(up.upgradeName, up);
+                    RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
                 }
-
             } else if (task.IsFaulted) {
                 Debug.Log(task.Exception);
             }
         });
+    }
+
+    public void LoadError(string errorMessage) {
+        Debug.Log(errorMessage);
     }
 
     public void AddCogs(int newCogs) {

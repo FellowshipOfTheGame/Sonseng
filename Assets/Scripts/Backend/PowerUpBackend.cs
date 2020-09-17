@@ -59,26 +59,16 @@ public class PowerUpBackend : MonoBehaviour {
         form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchasePowerUp", form, FinishPurchasePowerUp, LoadErrorPurchase));
-        beingClicked = false;
-        LoadingCircle.instance.EnableOrDisable(false);
-    }
-
-    public void BuyUpgrade(string powerUp) {
-        if (!beingClicked)
-            StartCoroutine(BuyUpgradeCourotine(powerUp));
-    }
-
-    private IEnumerator BuyUpgradeCourotine(string powerUp) {
-        LoadingCircle.instance.EnableOrDisable(true);
-        beingClicked = true;
-        WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
-        form.AddField("powerUp", powerUp);
-        buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchaseUpgrade", form, FinishPurchaseUpgrade, LoadErrorPurchase));
-        beingClicked = false;
-        LoadingCircle.instance.EnableOrDisable(false);
+        Debug.Log("New Level: "+ powerUp + " "+ prices[powerUp].level);
+        if (prices[powerUp].level == -1) {
+            yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchasePowerUp", form, FinishPurchasePowerUp, LoadErrorPurchase));
+            beingClicked = false;
+            LoadingCircle.instance.EnableOrDisable(false);
+        } else {
+            yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchaseUpgrade", form, FinishPurchaseUpgrade, LoadErrorPurchase));
+            beingClicked = false;
+            LoadingCircle.instance.EnableOrDisable(false);
+        }
     }
 
     public void LoadErrorPrice(string errorMessage) {
@@ -94,18 +84,14 @@ public class PowerUpBackend : MonoBehaviour {
         UpgradeButton currentButton = buttonClicked.GetComponent<UpgradeButton>();
         UserBackend.instance.GetBoughtUpgrades();
         currentButton.UpdateIcon();
-
-        buttonClicked.GetComponent<Button>().onClick.RemoveAllListeners();
-        buttonClicked.GetComponent<Button>().onClick.AddListener(delegate() {
-            BuyUpgrade(currentButton.upgradeName);
-        });
-
         UserBackend.instance.cogs = res.cogs;
         cogsText.text = res.cogs.ToString();
         PriceResponse temp = prices[res.powerUp];
         temp.price = res.nextPrice;
+        temp.level++;
         prices[res.powerUp] = temp;
         currentButton.costTxt.text = res.nextPrice.ToString();
+        RandomCollectableSystem.Instance.AddCollectable(res.powerUp);
     }
 
     public void FinishPurchaseUpgrade(PurchaseResponse res) {
@@ -118,6 +104,7 @@ public class PowerUpBackend : MonoBehaviour {
             currentButton.DisableButton();
         } else {
             temp.price = res.nextPrice;
+            temp.level++;
             prices[res.powerUp] = temp;
             cogsText.text = res.cogs.ToString();
             buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
@@ -134,8 +121,10 @@ public class PowerUpBackend : MonoBehaviour {
 
     public void FinishGetAllPrices(PricesRoot root) {
         foreach (var price in root.prices) {
-            if (!prices.ContainsKey(price.name))
+            if (!prices.ContainsKey(price.name)) {
+                Debug.Log(price.name + " " + price.level);
                 prices.Add(price.name, price);
+            }
         }
         finishedGettingPrice = true;
     }

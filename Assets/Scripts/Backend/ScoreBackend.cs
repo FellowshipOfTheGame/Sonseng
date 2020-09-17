@@ -21,15 +21,15 @@ public class ScoreBackend : MonoBehaviour {
         database = FirebaseDatabase.DefaultInstance;
         reference = database.RootReference;
         GetHighestScore();
-        StartCoroutine(SaveScore());
+        //StartCoroutine(SaveScore());
     }
 
-    private IEnumerator SaveScore() {
+    /*private IEnumerator SaveScore() {
 
         reference.Child($"users/{user.UserId}/last-score").SetValueAsync(Scoreboard.instance.Score);
         yield return new WaitForSeconds(10);
         StartCoroutine(SaveScore());
-    }
+    }*/
 
     public void SaveScoreOnDeath() {
         StopAllCoroutines();
