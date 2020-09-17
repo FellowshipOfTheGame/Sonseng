@@ -15,7 +15,7 @@ public class Login : MonoBehaviour {
     private FirebaseAuth auth;
     private FirebaseApp app;
 
-    public GameObject buttonsPanel, loginButton;
+    public GameObject playButton, loginButton, bottomButtons;
     // public TMPro.TextMeshProUGUI title;
 
     private bool isLogged, hasLogged;
@@ -32,15 +32,10 @@ public class Login : MonoBehaviour {
                 auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
                 isLogged = auth.CurrentUser != null;
                 if (auth.CurrentUser != null) {
+                    SetToken();
                     isLogged = true;
-                    // if (auth.CurrentUser.IsAnonymous) {
-                    //     title.SetText("Olá Convidado!");
-                    // } else {
-                    //     title.SetText("Olá " + auth.CurrentUser.DisplayName);
-                    // }
+                    UserBackend.instance.UpdateUserReference();
                 }
-                hasLogged = false;
-                // Set a flag here to indicate whether Firebase is ready to use by your app.
             } else {
                 UnityEngine.Debug.LogError(System.String.Format(
                     "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
@@ -57,14 +52,23 @@ public class Login : MonoBehaviour {
 
     }
 
+    private void SetToken(){
+        auth.CurrentUser.TokenAsync(true).ContinueWith(task=>{
+            if(task.IsCompleted){
+                string token = task.Result;
+                RequestManager.token = token;
+            }
+        });
+    }
     void Update() {
         if (isLogged && !hasLogged) {
-            print("teste");
-            buttonsPanel.SetActive(true);
+            playButton.SetActive(true);
+            bottomButtons.SetActive(true);
             loginButton.SetActive(false);
             hasLogged = true;
         } else if (!isLogged && hasLogged) {
-            buttonsPanel.SetActive(false);
+            playButton.SetActive(false);
+            bottomButtons.SetActive(false);
             loginButton.SetActive(true);
             hasLogged = false;
         }
@@ -72,16 +76,17 @@ public class Login : MonoBehaviour {
 
     public void OnGuestSignIn() {
         auth.SignInAnonymouslyAsync().ContinueWith(task => {
-            if (task.IsCanceled) {
+            if (task.IsCompleted) {
+                isLogged = true;
+                SetToken();
+                UserBackend.instance.UpdateUserReference();
+            } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
                 return;
-            }
-            if (task.IsFaulted) {
+            } else if (task.IsFaulted) {
                 Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
                 return;
             }
-            isLogged = true;
-            // title.SetText("Olá Convidado!");
         });
     }
     public void OnSignIn() {
@@ -95,11 +100,11 @@ public class Login : MonoBehaviour {
     }
 
     public void OnSignOut() {
-        if (!auth.CurrentUser.IsAnonymous) {
+        if (auth.CurrentUser != null && !auth.CurrentUser.IsAnonymous) {
             GoogleSignIn.DefaultInstance.SignOut();
         }
+        auth.SignOut();
         isLogged = false;
-        // title.SetText("Sonseng 23: O Jogo");
     }
 
     public void OnDisconnect() {
@@ -125,16 +130,17 @@ public class Login : MonoBehaviour {
     private void FirebaseAuth(Credential cred) {
 
         auth.SignInWithCredentialAsync(cred).ContinueWith(task => {
-            if (task.IsCanceled) {
+            if (task.IsCompleted) {
+                isLogged = true;
+                SetToken();
+                UserBackend.instance.UpdateUserReference();
+            } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
                 return;
-            }
-            if (task.IsFaulted) {
+            } else if (task.IsFaulted) {
                 Debug.LogError("SignInWithCredentialAsync encountered an error: " + task.Exception);
                 return;
             }
-            // title.SetText("Olá " + task.Result.DisplayName);
-            isLogged = true;
         });
 
     }

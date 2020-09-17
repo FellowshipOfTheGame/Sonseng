@@ -17,9 +17,23 @@ public class RandomCollectable : MonoBehaviour
 
     private void OnEnable()
     {
-        _activeCollectable = RandomCollectableSystem.Instance.GetRandomCollectable();
+        _activeCollectable = GetCollectable();
         _activeCollectable.transform.SetPositionAndRotation(transform.position, transform.rotation);
         _activeCollectable.SetActive(true);
         _activeCollectable.transform.SetParent(transform);
     }
+
+    private void OnDisable()
+    {
+        if(_activeCollectable != null)
+        {
+            Destroy(_activeCollectable);
+        }
+    }
+
+    protected virtual GameObject GetCollectable()
+    {
+        return RandomCollectableSystem.Instance.GetRandomCollectable();
+    }
+
 }
