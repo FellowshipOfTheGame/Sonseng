@@ -58,7 +58,7 @@ public class BendingManager : MonoBehaviour
     UpdateBendingAmountY();
 
 
-    print(BENDING_AMOUNT_X);
+
   }
 
   private void OnEnable ()
