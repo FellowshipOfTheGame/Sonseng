@@ -9,6 +9,10 @@ public class Scoreboard : MonoBehaviour {
     private bool isPlayerAlive = true;
     private float score;
     private int cogs = 0;
+    public int Cogs {
+        get{ return cogs; }
+        set{ cogs = value;}
+    }
     public float highestScore;
 
     public void StopScore() {

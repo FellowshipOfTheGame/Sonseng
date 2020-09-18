@@ -47,9 +47,13 @@ public class RandomCollectableSystem : MonoBehaviour {
     /// <returns></returns>
     public GameObject GetRandomCollectable() {
         // Get random index
-        int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
-        //return Pool.GetObject(UnlockedCollectables[index]);
-        return Instantiate(UnlockedCollectables[index]);
+        if (UnlockedCollectables.Count > 0) {
+
+            int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
+            return Instantiate(UnlockedCollectables[index]);
+        }
+        return Instantiate(new GameObject("empty"));
+
     }
 
     /// <summary>

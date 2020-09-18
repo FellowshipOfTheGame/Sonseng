@@ -61,7 +61,6 @@ public class UpgradeButton : MonoBehaviour {
                     DisableButton();
                 } else {
                     costTxt.text = backend.prices[upgradeName].price.ToString();
-                    Debug.Log(GetComponent<Button>().onClick.ToString());
                     if (backend.prices[upgradeName].level >= 0) {
                         UpdateIcon();
                     }

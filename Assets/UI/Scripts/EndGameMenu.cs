@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class EndGameMenu : MonoBehaviour {
-    [SerializeField] TextMeshProUGUI scoreText, recordText;
+    [SerializeField] TextMeshProUGUI scoreText, recordText, cogsText;
 
     void OnEnable() {
         if(Scoreboard.instance.Score > Scoreboard.instance.highestScore){
@@ -12,5 +12,6 @@ public class EndGameMenu : MonoBehaviour {
         }
         scoreText.text = Scoreboard.instance.Score + " metros";
         recordText.text = Scoreboard.instance.highestScore.ToString();
+        cogsText.text = Scoreboard.instance.Cogs.ToString().PadLeft(3 , '0');
      }
 }

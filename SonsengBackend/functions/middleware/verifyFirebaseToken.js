@@ -26,7 +26,6 @@ module.exports = async (req, res, next) => {
   }
   const version = req.headers.version
   const latestVersion = await admin.database().ref('latestVersion').once('value')
-  console.log(version,latestVersion.val())
   if(Number.parseFloat(version) !== Number.parseFloat(latestVersion.val())){
     return res.status(403).send({message:'Atualize seu jogo para continuar jogando!'})
   }
