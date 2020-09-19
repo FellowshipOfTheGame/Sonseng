@@ -22,10 +22,13 @@ router.post('/purchasePowerUp', async (req, res) => {
 
   if (coins.val() >= price.val()) {
     await coins.ref.parent.update({ coins: coins.val() - price.val() })
+    const baseValue = await price.ref.parent.child('base-value').once('value')
+    console.log('base value: ', baseValue)
     await coins.ref.parent.child('bought-powerUps').update({
       [powerUp]: {
         level: 0,
         multiplier: 1,
+        baseValue: baseValue.val(),
       },
     })
     const nextPrice = await admin
@@ -115,7 +118,6 @@ router.post('/getAllPrices', async (req, res) => {
       .database()
       .ref(`/users/${uid}/bought-powerUps/${name}/level`)
       .once('value')
-    console.log(name, powerUpLevel.exists())
     if (powerUpLevel.exists()) {
       const price = await admin
         .database()
@@ -137,13 +139,17 @@ router.post('/getAllPrices', async (req, res) => {
         .database()
         .ref(`/power-ups/${name}/price`)
         .once('value')
-      prices.push({ name, price: price.val(), max: false, level: 0 })
+      prices.push({ name, price: price.val(), max: false, level: -1 })
     }
   })
-  await Promise.all(childPromises).catch((err) => {
-    return res.status(500).send({ message: err })
-  })
-  return res.send({ prices })
+  Promise.all(childPromises)
+    .then(() => {
+      return res.send({ prices })
+    })
+    .catch((err) => {
+      return res.status(500).send({ message: err })
+    })
+    
 })
 
 module.exports = (app) => app.use('/powerup', router)

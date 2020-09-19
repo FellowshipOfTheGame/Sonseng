@@ -1,17 +1,21 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
 public class Scoreboard : MonoBehaviour {
     [HideInInspector] public static Scoreboard instance;
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreText, cogText;
     [SerializeField] float speed;
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
-
+    private int cogs = 0;
+    public int Cogs {
+        get{ return cogs; }
+        set{ cogs = value;}
+    }
     public float highestScore;
 
-    public void StopScore(){
+    public void StopScore() {
         isPlayerAlive = false;
     }
 
@@ -32,11 +36,15 @@ public class Scoreboard : MonoBehaviour {
         Score = 0;
     }
 
+    public void AddCog(){
+        cogs++;
+        cogText.text = cogs.ToString().PadLeft(3,'0');
+    }
     /// <summary>
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        if(isPlayerAlive) Score += speed;
+        if (isPlayerAlive)Score += speed;
     }
 
     /// <summary>

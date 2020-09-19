@@ -34,7 +34,7 @@ public class Login : MonoBehaviour {
                 if (auth.CurrentUser != null) {
                     SetToken();
                     isLogged = true;
-                    UserBackend.instance.UpdateUserReference();
+                    
                 }
             } else {
                 UnityEngine.Debug.LogError(System.String.Format(
@@ -56,6 +56,7 @@ public class Login : MonoBehaviour {
         auth.CurrentUser.TokenAsync(true).ContinueWith(task=>{
             if(task.IsCompleted){
                 string token = task.Result;
+                Debug.Log(token);
                 RequestManager.token = token;
             }
         });
@@ -79,7 +80,7 @@ public class Login : MonoBehaviour {
             if (task.IsCompleted) {
                 isLogged = true;
                 SetToken();
-                UserBackend.instance.UpdateUserReference();
+                
             } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
                 return;
@@ -133,7 +134,7 @@ public class Login : MonoBehaviour {
             if (task.IsCompleted) {
                 isLogged = true;
                 SetToken();
-                UserBackend.instance.UpdateUserReference();
+                
             } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
                 return;
