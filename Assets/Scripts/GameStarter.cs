@@ -41,9 +41,9 @@ public class GameStarter : MonoBehaviour
 
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
-            UserBackend.instance.UpdateUserReference();
             playerCamera.transform.position = mainMenuCameraPosition.position; 
             playerCamera.transform.rotation = mainMenuCameraPosition.rotation;
+            UserBackend.instance.UpdateUserReference();
         }
         else
         {
