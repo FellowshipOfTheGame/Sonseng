@@ -35,7 +35,7 @@ public class GameStarter : MonoBehaviour
 
     private void Start() {
         if(SceneUtility.IsSceneLoaded(mainMenuSceneName)){
-            GameManager.instance.StopGame();
+            TimeToSpeedManager.instance.StopGame();
 
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
@@ -56,7 +56,7 @@ public class GameStarter : MonoBehaviour
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
-        GameManager.instance.StartNewGame();
+        TimeToSpeedManager.instance.StartNewGame();
         playerMovement.isInMainMenu = false;
         inGameUI.SetActive(true);
     }
@@ -67,7 +67,7 @@ public class GameStarter : MonoBehaviour
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
         UserBackend.instance.UpdateUserReference();
-        GameManager.instance.StartNewGame();
+        TimeToSpeedManager.instance.StartNewGame();
     }
     
     public void InitializeSpawners()

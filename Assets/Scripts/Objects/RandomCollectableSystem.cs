@@ -13,7 +13,7 @@ public class RandomCollectableSystem : MonoBehaviour
     private void Awake()
     {
 #if UNITY_EDITOR
-        Assert.IsNotNull(GameManager.instance, $"GameManager instance is null for {name}");
+        Assert.IsNotNull(TimeToSpeedManager.instance, $"GameManager instance is null for {name}");
 #endif
         // Singleton pattern
         if (Instance == null)

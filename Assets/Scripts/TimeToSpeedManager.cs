@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class TimeToSpeedManager : MonoBehaviour
 {
-    [HideInInspector] public static GameManager instance = null;
+    [HideInInspector] public static TimeToSpeedManager instance = null;
 
     [SerializeField] protected AnimationCurve TimeToSpeedCurve = null;
 
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StopGame()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         _gamePaused = true;
     }
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ResumeGame()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         _gamePaused = false;
     }
 }
