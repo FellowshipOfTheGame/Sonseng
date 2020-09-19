@@ -11,7 +11,7 @@ public class TimeToSpeedManager : MonoBehaviour
     /// <summary>
     /// Use StopGame() to pause the objects spawn and IsGamePaused to check game pause condition. 
     /// </summary>
-    [SerializeField] public bool IsGamePaused { get; private set; }
+    [SerializeField] public bool IsGamePaused { get => _gamePaused; }
 
     private bool _gamePaused = false;
 
@@ -24,11 +24,11 @@ public class TimeToSpeedManager : MonoBehaviour
     [Tooltip("Time, in seconds, taken to reach Max Speed since start of the run/game")]
     [SerializeField] protected float TimeForMaxSpeed = 1f;
 
-    protected float _timeThatGameStarted = 0f;
+    protected float _currentTime = 0f;
     /// <summary>
     /// Get Time since game started in seconds
     /// </summary>
-    public float TimeSinceGameStarted => Time.timeSinceLevelLoad - _timeThatGameStarted;
+    public float TimeSinceGameStarted => _currentTime;
 
     /// <summary>
     /// Get Game Speed in interval [0,1]
@@ -57,7 +57,7 @@ public class TimeToSpeedManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        _timeThatGameStarted = Time.timeSinceLevelLoad;
+        _currentTime = 0f;
         ResumeGame();
     }
 
@@ -77,5 +77,13 @@ public class TimeToSpeedManager : MonoBehaviour
     {
         //Time.timeScale = 1f;
         _gamePaused = false;
+    }
+
+    private void Update()
+    {
+        if (_gamePaused)
+            return;
+
+        _currentTime += Time.deltaTime;
     }
 }
