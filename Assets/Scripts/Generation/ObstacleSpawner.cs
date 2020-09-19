@@ -16,14 +16,14 @@ public class ObstacleSpawner : ScenarySpawner
     {
         base.Awake();
     #if UNITY_EDITOR
-        Assert.IsNotNull(GameManager.instance, $"GameManager instance is null for {name}");
+        Assert.IsNotNull(TimeToSpeedManager.instance, $"GameManager instance is null for {name}");
     # endif
     }
 
     protected override void InstantiateScenary()
     {
         // Don't do nothing if game is paused
-        if (GameManager.instance.IsGamePaused) return;
+        if (TimeToSpeedManager.instance.IsGamePaused) return;
 
         // Get random scenary from pool
         GameObject scenary = null;
@@ -45,7 +45,7 @@ public class ObstacleSpawner : ScenarySpawner
         }
 
         // Update Last transform
-        float distance = MinDistance + SpeedToDistanceCurve.Evaluate(GameManager.instance.EvaluatedSpeed) * (MaxDistance - MinDistance);
+        float distance = MinDistance + SpeedToDistanceCurve.Evaluate(TimeToSpeedManager.instance.EvaluatedSpeed) * (MaxDistance - MinDistance);
         Vector3 offset = Vector3.forward * distance;
         scenary.transform.position = _lastTransform.position + offset;
         scenary.SetActive(true);

@@ -5,9 +5,12 @@ public class Scoreboard : MonoBehaviour {
     [HideInInspector] public static Scoreboard instance;
     [SerializeField] TextMeshProUGUI scoreText, cogText, shopCogText, homeCogText;
     [SerializeField] float speed;
+
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
+    public float scoreMultiplier = 1f;
+
     private int cogs = 0;
     public int Cogs {
         get{ return cogs; }
@@ -23,7 +26,7 @@ public class Scoreboard : MonoBehaviour {
         get { return score; }
         private set {
             score = value;
-            scoreText.text = Mathf.Round(score).ToString() + " metros";
+            scoreText.text = Mathf.Round(score).ToString() + " pontos";
         }
     }
 
@@ -44,7 +47,7 @@ public class Scoreboard : MonoBehaviour {
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        if (isPlayerAlive)Score += speed;
+        if(isPlayerAlive) Score += TimeToSpeedManager.instance.Speed * scoreMultiplier;
     }
 
     /// <summary>
