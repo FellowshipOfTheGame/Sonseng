@@ -55,9 +55,7 @@ public class GameStarter : MonoBehaviour
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
-        GameManager.instance.StartNewGame();
-        playerMovement.isInMainMenu = false;
-        inGameUI.SetActive(true);
+        StartRun();
     }
 
     public void StartRun()

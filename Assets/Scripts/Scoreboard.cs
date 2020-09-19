@@ -19,7 +19,7 @@ public class Scoreboard : MonoBehaviour {
         get { return score; }
         private set {
             score = value;
-            scoreText.text = Mathf.Round(score).ToString() + " metros";
+            scoreText.text = Mathf.Round(score).ToString() + " pontos";
         }
     }
 
