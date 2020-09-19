@@ -75,6 +75,38 @@ public class PowerUps : MonoBehaviour {
         ink.gameObject.SetActive(false);
     }
 
+    public void SetPowerUpValue(UserBackend.Upgrade upgrade) {
+        print("Upgrade " + upgrade.upgradeName + "\nBase: " + upgrade.baseValue + "\nMultiplier: " + upgrade.multiplier);
+        // foreach (var upgrade in upgrades) {
+            switch (upgrade.upgradeName) {
+                case "double":
+                    doubleScoreMultiplier = upgrade.baseValue * upgrade.multiplier;
+                    break;
+                case "invincibility":
+                    starDuration = upgrade.baseValue * upgrade.multiplier;
+                    break;
+                case "shield":
+                    shieldDuration = upgrade.baseValue * upgrade.multiplier;
+                    print("Shield duration: " + shieldDuration + " AAAAAAAAAAAAAAAA");
+                    break;
+                case "magnet":
+                    print(magnetDuration + "antes");
+                    magnetDuration = upgrade.baseValue * upgrade.multiplier;
+                    print(magnetDuration + "depois");
+                    break;
+                case "coffee":
+                    inkDuration = upgrade.baseValue * upgrade.multiplier;
+                    break;
+                case "mirror":
+                    mirrorDuration = upgrade.baseValue * upgrade.multiplier;
+                    break;
+                default:
+                    Debug.LogError("Unknown power up: " + upgrade.upgradeName);
+                    break;
+            }
+        // }
+    }
+
     private void Update() {
         // Searches for new coins when the magnet is active
         if (magnet) {
