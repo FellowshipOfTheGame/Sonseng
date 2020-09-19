@@ -8,6 +8,7 @@ public class Scoreboard : MonoBehaviour {
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
+    public float scoreMultiplier = 1f;
 
     public float highestScore;
 
@@ -36,7 +37,7 @@ public class Scoreboard : MonoBehaviour {
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        if(isPlayerAlive) Score += speed;
+        if(isPlayerAlive) Score += speed * scoreMultiplier;
     }
 
     /// <summary>
