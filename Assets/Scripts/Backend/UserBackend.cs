@@ -11,11 +11,10 @@ using UnityEngine;
 public class UserBackend : MonoBehaviour {
     [HideInInspector] public static UserBackend instance;
     public int cogs;
-    public FirebaseUser user;
     private FirebaseDatabase database;
     private DatabaseReference reference;
     public string userId;
-
+    public bool finishGetUpgrades = false;
     public struct Upgrade {
         public string upgradeName;
         public float baseValue;
@@ -25,23 +24,20 @@ public class UserBackend : MonoBehaviour {
     public Dictionary<string, Upgrade> boughtUpgrades = new Dictionary<string, Upgrade>();
 
     private void Awake() {
-        if (instance == null)
+        if (instance == null) {
             instance = this;
-        else if (instance != this)
+            DontDestroyOnLoad(instance);
+        } else if (instance != this)
             Destroy(this.gameObject);
 #if UNITY_EDITOR
         Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
 #endif
         database = FirebaseDatabase.DefaultInstance;
         reference = database.RootReference;
-        if (FirebaseAuth.DefaultInstance.CurrentUser != null) {
-            UpdateUserReference();
-        }
     }
 
     public void UpdateUserReference() {
-        user = FirebaseAuth.DefaultInstance.CurrentUser;
-        userId = user.UserId;
+        userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         GetCogs();
         GetBoughtUpgrades();
     }
@@ -56,6 +52,7 @@ public class UserBackend : MonoBehaviour {
     }
 
     public void GetBoughtUpgrades() {
+        finishGetUpgrades = false;
         boughtUpgrades = new Dictionary<string, Upgrade>();
         reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted) {
@@ -77,18 +74,11 @@ public class UserBackend : MonoBehaviour {
                     boughtUpgrades.Add(up.upgradeName, up);
                     RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
                 }
+                finishGetUpgrades = true;
             } else if (task.IsFaulted) {
                 Debug.Log(task.Exception);
             }
         });
     }
 
-    public void LoadError(string errorMessage) {
-        Debug.Log(errorMessage);
-    }
-
-    public void AddCogs(int newCogs) {
-        GetCogs();
-        reference.Child($"/users/{userId}/coins").SetValueAsync(cogs + newCogs);
-    }
 }

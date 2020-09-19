@@ -113,6 +113,8 @@ public class PowerUpBackend : MonoBehaviour {
 
     public IEnumerator GetAllPrices() {
         LoadingCircle.instance.EnableOrDisable(true);
+        UserBackend.instance.UpdateUserReference();
+        finishedGettingPrice = false;
         WWWForm form = new WWWForm();
         form.AddField("uid", UserBackend.instance.userId);
         yield return StartCoroutine(RequestManager.PostRequest<PricesRoot>("powerup/getAllPrices", form, FinishGetAllPrices, LoadErrorPrice));
@@ -122,7 +124,6 @@ public class PowerUpBackend : MonoBehaviour {
     public void FinishGetAllPrices(PricesRoot root) {
         foreach (var price in root.prices) {
             if (!prices.ContainsKey(price.name)) {
-                Debug.Log(price.name + " " + price.level);
                 prices.Add(price.name, price);
             }
         }

@@ -53,9 +53,12 @@ public class UpgradeButton : MonoBehaviour {
         GetComponent<Button>().enabled = false;
     }
 
+    void OnEnable() {
+        hasRead = false;
+    }
 
     void Update() {
-        if (!hasRead && backend.finishedGettingPrice) {
+        if (!hasRead && backend.finishedGettingPrice && UserBackend.instance.finishGetUpgrades) {
             if (UserBackend.instance.boughtUpgrades.ContainsKey(upgradeName)) {
                 if (backend.prices[upgradeName].max) {
                     DisableButton();

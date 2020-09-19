@@ -28,7 +28,7 @@ router.post('/purchasePowerUp', async (req, res) => {
       [powerUp]: {
         level: 0,
         multiplier: 1,
-        baseValue:baseValue.val(),
+        baseValue: baseValue.val(),
       },
     })
     const nextPrice = await admin
@@ -142,10 +142,14 @@ router.post('/getAllPrices', async (req, res) => {
       prices.push({ name, price: price.val(), max: false, level: -1 })
     }
   })
-  await Promise.all(childPromises).catch((err) => {
-    return res.status(500).send({ message: err })
-  })
-  return res.send({ prices })
+  Promise.all(childPromises)
+    .then(() => {
+      return res.send({ prices })
+    })
+    .catch((err) => {
+      return res.status(500).send({ message: err })
+    })
+    
 })
 
 module.exports = (app) => app.use('/powerup', router)

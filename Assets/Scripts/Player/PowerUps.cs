@@ -103,12 +103,9 @@ public class PowerUps : MonoBehaviour {
             // Removes collected coins from coin list
             case "Coin":
                 coins.Remove(other.transform);
-                //TODO Let the coin destroy itself and count points
                 Destroy(other.gameObject);
-                //Debug.Break();
                 Scoreboard.instance.AddCog();
                 break;
-
             // Power Ups
             case "Mirror":
                 MirrorActivate();
