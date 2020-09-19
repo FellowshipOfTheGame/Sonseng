@@ -21,6 +21,7 @@ public class UserBackend : MonoBehaviour {
         public int level;
         public float multiplier;
     }
+
     [Serializable]
     public struct UpgradeRoot {
         public Upgrade[] powerUps;
@@ -69,6 +70,7 @@ public class UserBackend : MonoBehaviour {
         boughtUpgrades = new Dictionary<string, Upgrade>();
         foreach (Upgrade up in root.powerUps) {
             boughtUpgrades.Add(up.upgradeName, up);
+            PowerUps.instance.SetPowerUpValue(up);
             RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
         }
     }
@@ -99,7 +101,6 @@ public class UserBackend : MonoBehaviour {
                     }
                     // print("UP: " + up.upgradeName);
                     boughtUpgrades.Add(up.upgradeName, up);
-                    PowerUps.instance.SetPowerUpValue(up);
                     RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
                 }
             } else if (task.IsFaulted) {
