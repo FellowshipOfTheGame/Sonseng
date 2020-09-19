@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PowerUps : MonoBehaviour {
     public static PowerUps instance;
     public event Action OnPSwtichActivated;
+    public event Action OnPowerPicked;
 
     [Tooltip("Coin prefab in which obstacles will be transformed when p-switch is activated")]
     public GameObject coinPrefab;
@@ -119,6 +120,7 @@ public class PowerUps : MonoBehaviour {
                 CancelInvoke(nameof(MirrorDeactivate));
                 Invoke(nameof(MirrorDeactivate), mirrorDuration);
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
             case "Magnet":
@@ -126,6 +128,7 @@ public class PowerUps : MonoBehaviour {
                 CancelInvoke(nameof(MagnetDeactivate));
                 Invoke(nameof(MagnetDeactivate), magnetDuration);
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
             case "Star":
@@ -133,6 +136,7 @@ public class PowerUps : MonoBehaviour {
                 CancelInvoke(nameof(StarDeactivate));
                 Invoke(nameof(StarDeactivate), starDuration);
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
             case "Shield":
@@ -140,11 +144,13 @@ public class PowerUps : MonoBehaviour {
                 CancelInvoke(nameof(ShieldDeactivate));
                 Invoke(nameof(ShieldDeactivate), shieldDuration);
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
             case "P-Switch":
                 PSwitchActivate();
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
             case "Ink":
@@ -152,6 +158,7 @@ public class PowerUps : MonoBehaviour {
                 CancelInvoke(nameof(InkDeactivate));
                 Invoke(nameof(InkDeactivate), inkDuration);
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
             case "DoubleScore":
@@ -159,6 +166,7 @@ public class PowerUps : MonoBehaviour {
                 CancelInvoke(nameof(DoubleScoreDeactivate));
                 Invoke(nameof(DoubleScoreDeactivate), doubleScoreDuration);
                 Destroy(other.gameObject);
+                OnPowerPicked?.Invoke();
                 break;
 
         }
