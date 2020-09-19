@@ -40,4 +40,25 @@ router.post('/saveStats', async (req, res) => {
   }
 })
 
+router.post('/getBoughtUpgrades', async (req, res)=>{
+  const {uid} = req.body
+  const boughtUps = await admin
+    .database()
+    .ref(`/users/${uid}/bought-powerUps`)
+    .once('value')
+  let powerUps = []
+  if(boughtUps.exists()){
+    boughtUps.forEach(child=>{
+      powerUps.push({
+        upgradeName:child.key,
+        baseValue:child.child('baseValue').val(),
+        multiplier:child.child('multiplier').val(),
+        level:child.child('level').val()
+
+      })
+    })
+  }
+  return res.send({powerUps})
+})
+
 module.exports = (app) => app.use('/user', router)

@@ -843,6 +843,16 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9029395487096954924, guid: f1ee4dc8982692c2c9142e5306c2adf7,
+        type: 3}
+      propertyPath: shopCogText
+      value: 
+      objectReference: {fileID: 747448979}
+    - target: {fileID: 9029395487096954924, guid: f1ee4dc8982692c2c9142e5306c2adf7,
+        type: 3}
+      propertyPath: homeCogText
+      value: 
+      objectReference: {fileID: 747448978}
     - target: {fileID: 9029395487096954925, guid: f1ee4dc8982692c2c9142e5306c2adf7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2067,6 +2077,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &747448979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6238396188284300430, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+    type: 3}
+  m_PrefabInstance: {fileID: 747448975}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &863947493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2605,7 +2627,7 @@ PrefabInstance:
     - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
       propertyPath: UnlockedCollectables.Array.size
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
@@ -2630,6 +2652,24 @@ PrefabInstance:
       propertyPath: CoinPrefab
       value: 
       objectReference: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
+        type: 3}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: magnetPrefab
+      value: 
+      objectReference: {fileID: 2728227575352566936, guid: 0847b21badc907643bc8d412bd5ec396,
+        type: 3}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: shieldPrefab
+      value: 
+      objectReference: {fileID: 8267922849721307377, guid: 84058e04de5248648bad31a232a7d842,
+        type: 3}
+    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
+        type: 3}
+      propertyPath: starPrefab
+      value: 
+      objectReference: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
         type: 3}
     - target: {fileID: 7659378177619989777, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
