@@ -14,7 +14,6 @@ public class UserBackend : MonoBehaviour {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     public string userId;
-    public bool finishGetUpgrades = false;
     public struct Upgrade {
         public string upgradeName;
         public float baseValue;
@@ -52,7 +51,6 @@ public class UserBackend : MonoBehaviour {
     }
 
     public void GetBoughtUpgrades() {
-        finishGetUpgrades = false;
         boughtUpgrades = new Dictionary<string, Upgrade>();
         reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted) {
@@ -74,7 +72,6 @@ public class UserBackend : MonoBehaviour {
                     boughtUpgrades.Add(up.upgradeName, up);
                     RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
                 }
-                finishGetUpgrades = true;
             } else if (task.IsFaulted) {
                 Debug.Log(task.Exception);
             }

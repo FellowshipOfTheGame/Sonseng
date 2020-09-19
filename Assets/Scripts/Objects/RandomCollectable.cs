@@ -18,8 +18,6 @@ public class RandomCollectable : MonoBehaviour {
         _activeCollectable.transform.SetPositionAndRotation(transform.position, transform.rotation);
         _activeCollectable.SetActive(true);
         _activeCollectable.transform.SetParent(transform);
-        //Cleans up empty game objects
-        if(_activeCollectable.name == "empty") Destroy(_activeCollectable);
     }
 
     private void OnDisable() {

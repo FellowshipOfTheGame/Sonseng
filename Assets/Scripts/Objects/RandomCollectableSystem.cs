@@ -52,7 +52,7 @@ public class RandomCollectableSystem : MonoBehaviour {
             int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
             return Instantiate(UnlockedCollectables[index]);
         }
-        return Instantiate(new GameObject("empty"));
+        return GetCoin();
 
     }
 
