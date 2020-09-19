@@ -11,6 +11,8 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private string mainMenuSceneName = null;
     [SerializeField] private GameObject inGameUI = null;
     [SerializeField] private GameObject playerCamera = null;
+    [SerializeField] private GameObject tiraTampa = null;
+    [SerializeField] private GameObject simoes = null;
     [SerializeField] private Transform mainMenuCameraPosition = null;
     [SerializeField] float translationTime  =  0f;
     [SerializeField] float rotationTime  =  0f;
@@ -53,6 +55,8 @@ public class GameStarter : MonoBehaviour
     {
         // gameHasStarted = true;
         UserBackend.instance.UpdateUserReference();
+        tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
+        simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
@@ -61,6 +65,8 @@ public class GameStarter : MonoBehaviour
 
     public void StartRun()
     {
+        simoes.GetComponent<Animator>().SetTrigger("Fall");
+        tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
