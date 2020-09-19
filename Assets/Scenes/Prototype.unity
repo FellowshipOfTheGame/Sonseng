@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -128,16 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2994862563112414521, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038613655512183812, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352213, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -223,26 +213,6 @@ PrefabInstance:
       propertyPath: registerScore
       value: 
       objectReference: {fileID: 389059223}
-    - target: {fileID: 5773927840210352214, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840210352215, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840210352216, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840210352217, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: powerUpUI
@@ -250,34 +220,23 @@ PrefabInstance:
       objectReference: {fileID: 1033575986}
     - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
-      propertyPath: powerUpLogo
-      value: 
-      objectReference: {fileID: 1033575985}
-    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
       propertyPath: powerUpBar
       value: 
       objectReference: {fileID: 1033575984}
     - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
+      propertyPath: powerUpLogo
+      value: 
+      objectReference: {fileID: 1033575985}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
       propertyPath: ink
       value: 
       objectReference: {fileID: 863947494}
-    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: coinPrefab
-      value: 
-      objectReference: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
-        type: 3}
     - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_Name
       value: Tira-tampa
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
@@ -1143,30 +1102,6 @@ Transform:
   m_Father: {fileID: 1999621721}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &639322184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5773927838910251856, guid: f1672b6083801bc469cd67c02e37b6cf,
-    type: 3}
-  m_PrefabInstance: {fileID: 187144141}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &639322187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 639322184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1cd2db83c6b2fc18587674911dc6d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tTexture:
-  - {fileID: 2800000, guid: f53a927cf76524b7790f23e681697e41, type: 3}
-  - {fileID: 2800000, guid: 08cfe5e9a90b6c7fdb25b8e026254f62, type: 3}
-  - {fileID: 2800000, guid: 0c0172f4edb37ad8dac8fe9d032bc0d5, type: 3}
-  - {fileID: 2800000, guid: 1480ada2f0fb71e9486cc3b316e69930, type: 3}
-  changeInterval: 0.1
 --- !u!1001 &747448975
 PrefabInstance:
   m_ObjectHideFlags: 0

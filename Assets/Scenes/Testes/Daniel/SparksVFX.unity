@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -128,75 +128,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 571632873, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
-      propertyPath: CollisionModule.m_Bounce.scalar
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 571632873, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
-      propertyPath: CollisionModule.m_Dampen.scalar
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 571632873, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
-      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
-      value: 0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 571632873, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
-      propertyPath: CollisionModule.collisionMessages
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 571632873, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 571632873, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839282898704, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 64.124794
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839282898704, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 13.762909
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839282898704, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -55.991653
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839399236288, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 89.841736
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839399236288, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.4648293
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839399236288, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -179.53296
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839471488239, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 60.725666
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839471488239, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.1840693
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927839471488239, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 71.759415
-      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352213, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -306,21 +237,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tira-tampa
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840243825221, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 87.389244
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840243825221, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.92749
-      objectReference: {fileID: 0}
-    - target: {fileID: 5773927840243825221, guid: f1672b6083801bc469cd67c02e37b6cf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 179.92758
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
