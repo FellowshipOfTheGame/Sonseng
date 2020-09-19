@@ -58,7 +58,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b287b7c9c1fe944f8a07ebc492c890c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnlockedCollectables:
-  - {fileID: 2350643672384171081, guid: 1984b0c35d4ae444ebc609dd7d393522, type: 3}
-  - {fileID: 1473022796325506991, guid: 346a94354c25de8448671500717eb826, type: 3}
-  Pool: {fileID: 1752326878945927582}
+  UnlockedCollectables: []
+  CoinPrefab: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
+    type: 3}
+  magnetPrefab: {fileID: 2728227575352566936, guid: 0847b21badc907643bc8d412bd5ec396,
+    type: 3}
+  shieldPrefab: {fileID: 8267922849721307377, guid: 84058e04de5248648bad31a232a7d842,
+    type: 3}
+  starPrefab: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
+    type: 3}
