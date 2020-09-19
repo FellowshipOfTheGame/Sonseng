@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4d2f3e2102f394f86555a10bf4c64b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instance: {fileID: 0}
   scoreText: {fileID: 9029395488101611413}
+  cogText: {fileID: 5396474698506268958}
   speed: 1
   defaultBonusScore: 1000
   highestScore: 0
@@ -157,8 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5899f4dcdde285b0890e30c5c2be3b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreboard: {fileID: 9029395487096954924}
-  userId: 
+  debugMode: 0
 --- !u!1 &9029395487384736921
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +846,12 @@ PrefabInstance:
       propertyPath: m_firstOverflowCharacterIndex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7619486633456901342, guid: 2749028bf91e93a9d96923456e1f4a7f,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5023482531216370907, guid: 6ae7c09e455b750219bfb7d3abc1ffb7,
+        type: 2}
     - target: {fileID: 7851531749269902216, guid: 2749028bf91e93a9d96923456e1f4a7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -974,6 +979,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2749028bf91e93a9d96923456e1f4a7f, type: 3}
+--- !u!114 &5396474698506268958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4011293839724174416, guid: 2749028bf91e93a9d96923456e1f4a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9029395487175847246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &420234133655338771 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8690297930816721501, guid: 2749028bf91e93a9d96923456e1f4a7f,

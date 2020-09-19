@@ -16,8 +16,18 @@ module.exports = async (req, res, next) => {
       'Authorization: Bearer <Firebase ID Token>',
       'or by passing a "__session" cookie.'
     )
-    res.status(403).send({message:'Unauthorized'})
+    res.status(403).send({ message: 'Unauthorized' })
     return
+  }
+
+  if (!req.headers.version) {
+    console.log('Client does not have version header!')
+    return res.status(403).send({ message: 'Unauthorized' })
+  }
+  const version = req.headers.version
+  const latestVersion = await admin.database().ref('latestVersion').once('value')
+  if(Number.parseFloat(version) !== Number.parseFloat(latestVersion.val())){
+    return res.status(403).send({message:'Atualize seu jogo para continuar jogando!'})
   }
 
   let idToken
@@ -34,7 +44,7 @@ module.exports = async (req, res, next) => {
     idToken = req.cookies.__session
   } else {
     // No cookie
-    res.status(403).send({message:'Unauthorized'})
+    res.status(403).send({ message: 'Unauthorized' })
     return
   }
 
@@ -46,7 +56,7 @@ module.exports = async (req, res, next) => {
     return
   } catch (error) {
     console.error('Error while verifying Firebase ID token:', error)
-    res.status(403).send({message:'Unauthorized'})
+    res.status(403).send({ message: 'Unauthorized' })
     return
   }
 }

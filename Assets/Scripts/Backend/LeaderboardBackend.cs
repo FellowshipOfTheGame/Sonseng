@@ -8,6 +8,8 @@ public class LeaderboardBackend : MonoBehaviour {
     [SerializeField]
     private GameObject rankHolder, container;
 
+    [SerializeField] private ScrollRect scroll;
+
     [Serializable]
     public struct Leader {
         public string name;
@@ -22,6 +24,7 @@ public class LeaderboardBackend : MonoBehaviour {
     void Start() {
         LoadingCircle.instance.EnableOrDisable(true);
         StartCoroutine(RequestManager.GetRequest<LRoot>("/leaderboard/getLeaders", FinishGetLeaders, LoadError));
+        scroll = GetComponent<ScrollRect>();
     }
 
     public void LoadError(string message) {
@@ -42,6 +45,7 @@ public class LeaderboardBackend : MonoBehaviour {
             rank++;
         }
         rec.sizeDelta = new Vector2(0, lRec.Count * rankHolder.GetComponent<RectTransform>().rect.height);
+        scroll.normalizedPosition = Vector2.up;
         LoadingCircle.instance.EnableOrDisable(false);
         container.SetActive(true);
     }

@@ -44,6 +44,13 @@ public class PowerUps : MonoBehaviour {
     [Space(5)]
     [SerializeField] bool shield;
     [SerializeField] float shieldDuration;
+    [SerializeField] Sprite shieldLogo;
+
+    [Space(5)]
+    [SerializeField] bool doubleScore;
+    [SerializeField] float doubleScoreDuration;
+    [SerializeField] float doubleScoreMultiplier;
+    [SerializeField] Sprite doubleScoreLogo;
 
     [Space(5)]
     [SerializeField] Animator ink;
@@ -103,47 +110,61 @@ public class PowerUps : MonoBehaviour {
             // Removes collected coins from coin list
             case "Coin":
                 coins.Remove(other.transform);
-                //TODO Let the coin destroy itself and count points
                 Destroy(other.gameObject);
-                //Debug.Break();
+                Scoreboard.instance.AddCog();
                 break;
-
             // Power Ups
             case "Mirror":
                 MirrorActivate();
                 CancelInvoke(nameof(MirrorDeactivate));
                 Invoke(nameof(MirrorDeactivate), mirrorDuration);
+                Destroy(other.gameObject);
                 break;
 
             case "Magnet":
                 MagnetActivate();
                 CancelInvoke(nameof(MagnetDeactivate));
                 Invoke(nameof(MagnetDeactivate), magnetDuration);
+                Destroy(other.gameObject);
                 break;
 
             case "Star":
                 StarActivate();
                 CancelInvoke(nameof(StarDeactivate));
                 Invoke(nameof(StarDeactivate), starDuration);
+                Destroy(other.gameObject);
                 break;
 
             case "Shield":
                 ShieldActivate();
                 CancelInvoke(nameof(ShieldDeactivate));
                 Invoke(nameof(ShieldDeactivate), shieldDuration);
+                Destroy(other.gameObject);
                 break;
 
             case "P-Switch":
                 PSwitchActivate();
+                Destroy(other.gameObject);
                 break;
 
             case "Ink":
                 InkActivate();
                 CancelInvoke(nameof(InkDeactivate));
                 Invoke(nameof(InkDeactivate), inkDuration);
+                Destroy(other.gameObject);
                 break;
+
+            case "DoubleScore":
+                DoubleScoreActivate();
+                CancelInvoke(nameof(DoubleScoreDeactivate));
+                Invoke(nameof(DoubleScoreDeactivate), doubleScoreDuration);
+                Destroy(other.gameObject);
+                break;
+
         }
     }
+
+
 
 
     // Mirror
@@ -152,14 +173,13 @@ public class PowerUps : MonoBehaviour {
         timeRemaining = mirrorDuration;
         maxTimeRemaining = timeRemaining;
 
-        powerUpActive = mirror | magnet | star;
+        powerUpActive = true;
         powerUpLogo.sprite = mirrorLogo;
         powerUpUI.SetActive(true);
     }
 
     private void MirrorDeactivate() {
         mirror = false;
-        powerUpActive = mirror | magnet | star;
     }
 
     // Magnet
@@ -168,14 +188,13 @@ public class PowerUps : MonoBehaviour {
         timeRemaining = magnetDuration;
         maxTimeRemaining = timeRemaining;
 
-        powerUpActive = mirror | magnet | star;
+        powerUpActive = true;
         powerUpLogo.sprite = magnetLogo;
         powerUpUI.SetActive(true);
     }
 
     private void MagnetDeactivate() {
         magnet = false;
-        powerUpActive = mirror | magnet | star;
     }
 
     // Star
@@ -187,7 +206,7 @@ public class PowerUps : MonoBehaviour {
             timeRemaining = starDuration;
             maxTimeRemaining = timeRemaining;
 
-            powerUpActive = mirror | magnet | star;
+            powerUpActive = true;
             powerUpLogo.sprite = starLogo;
             powerUpUI.SetActive(true);
         }
@@ -195,9 +214,6 @@ public class PowerUps : MonoBehaviour {
 
     private void StarDeactivate() {
         star = false;
-        timeRemaining = starDuration;
-        maxTimeRemaining = timeRemaining;
-        powerUpActive = mirror | magnet | star;
     }
 
     /// <summary>
@@ -213,6 +229,11 @@ public class PowerUps : MonoBehaviour {
     // Shield
     private void ShieldActivate() {
         shield = true;
+        timeRemaining = shieldDuration;
+        maxTimeRemaining = timeRemaining;
+
+        powerUpActive = true;
+        powerUpLogo.sprite = shieldLogo;
     }
 
     public void ShieldDeactivate() {
@@ -224,6 +245,21 @@ public class PowerUps : MonoBehaviour {
         OnPSwtichActivated?.Invoke();
     }
 
+    // DoubleScore
+    private void DoubleScoreActivate() {
+        doubleScore = true;
+        timeRemaining = doubleScoreDuration;
+        maxTimeRemaining = timeRemaining;
+
+        powerUpActive = true;
+        powerUpLogo.sprite = doubleScoreLogo;
+        Scoreboard.instance.scoreMultiplier = doubleScoreMultiplier;
+    }
+
+    public void DoubleScoreDeactivate() {
+        doubleScore = false;
+        Scoreboard.instance.scoreMultiplier = 1f;
+    }
 
     // Ink
     private void InkActivate() {
