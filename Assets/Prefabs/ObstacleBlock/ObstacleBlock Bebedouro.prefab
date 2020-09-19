@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4661522539517422927}
-  - component: {fileID: 1143860286363834598}
   - component: {fileID: 1868054226265710744}
   m_Layer: 0
   m_Name: ObstacleBlock Bebedouro
@@ -40,19 +39,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1143860286363834598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4823207966831176932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155e044a97984824e9e20b886f6787e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeSpan: {fileID: 11400000, guid: 85599912c2a241442b6cde4ae9a77ef9, type: 2}
 --- !u!114 &1868054226265710744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,7 +60,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6930535544411577058}
-  m_Layer: 0
+  - component: {fileID: 5334234651073389016}
+  m_Layer: 14
   m_Name: EndPosition
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -95,6 +82,19 @@ Transform:
   m_Father: {fileID: 4661522539517422927}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5334234651073389016
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7152627146031886488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1407413845392707547
 PrefabInstance:
   m_ObjectHideFlags: 0

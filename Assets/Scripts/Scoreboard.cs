@@ -4,7 +4,6 @@ using UnityEngine;
 public class Scoreboard : MonoBehaviour {
     [HideInInspector] public static Scoreboard instance;
     [SerializeField] TextMeshProUGUI scoreText, cogText;
-    [SerializeField] float speed;
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
@@ -46,7 +45,7 @@ public class Scoreboard : MonoBehaviour {
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        if(isPlayerAlive) Score += speed * scoreMultiplier;
+        if(isPlayerAlive) Score += TimeToSpeedManager.instance.Speed * scoreMultiplier;
     }
 
     /// <summary>

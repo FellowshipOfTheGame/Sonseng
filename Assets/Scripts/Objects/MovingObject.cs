@@ -6,7 +6,7 @@ public class MovingObject : MonoBehaviour
 #if UNITY_EDITOR
     private void Awake()
     {
-        Assert.IsNotNull(GameManager.instance);
+        Assert.IsNotNull(TimeToSpeedManager.instance);
     }
 #endif
 
@@ -14,6 +14,6 @@ public class MovingObject : MonoBehaviour
     void FixedUpdate()
     {
       
-        transform.position += -transform.forward * (Time.deltaTime * GameManager.instance.Speed);
+        transform.position += -transform.forward * (Time.deltaTime * TimeToSpeedManager.instance.Speed);
     }
 }
