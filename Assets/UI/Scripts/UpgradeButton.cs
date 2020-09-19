@@ -58,18 +58,17 @@ public class UpgradeButton : MonoBehaviour {
     }
 
     void Update() {
-        if (!hasRead && backend.finishedGettingPrice && UserBackend.instance.finishGetUpgrades) {
-            if (UserBackend.instance.boughtUpgrades.ContainsKey(upgradeName)) {
-                if (backend.prices[upgradeName].max) {
-                    DisableButton();
-                } else {
-                    costTxt.text = backend.prices[upgradeName].price.ToString();
-                    if (backend.prices[upgradeName].level >= 0) {
-                        UpdateIcon();
-                    }
+        if (!hasRead && backend.finishedGettingPrice) {
+            if (backend.prices[upgradeName].max) {
+                DisableButton();
+            } else {
+                costTxt.text = backend.prices[upgradeName].price.ToString();
+                if (backend.prices[upgradeName].level >= 0) {
+                    UpdateIcon();
                 }
-                hasRead = true;
             }
+            hasRead = true;
+
         }
     }
 

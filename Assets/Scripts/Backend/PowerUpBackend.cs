@@ -113,7 +113,6 @@ public class PowerUpBackend : MonoBehaviour {
 
     public IEnumerator GetAllPrices() {
         LoadingCircle.instance.EnableOrDisable(true);
-        UserBackend.instance.UpdateUserReference();
         finishedGettingPrice = false;
         WWWForm form = new WWWForm();
         form.AddField("uid", UserBackend.instance.userId);
