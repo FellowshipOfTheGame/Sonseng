@@ -22,6 +22,6 @@ public class RankHolder : MonoBehaviour {
         }
         rankText.text = rank + "º";
         nameTxt.text = playerName;
-        scoreTxt.text = score + " metros";
+        scoreTxt.text = score + " pontos";
     }
 }
