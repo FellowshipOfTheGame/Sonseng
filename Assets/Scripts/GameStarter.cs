@@ -39,7 +39,7 @@ public class GameStarter : MonoBehaviour
 
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
-            
+            UserBackend.instance.UpdateUserReference();
             playerCamera.transform.position = mainMenuCameraPosition.position; 
             playerCamera.transform.rotation = mainMenuCameraPosition.rotation;
         }
@@ -52,6 +52,7 @@ public class GameStarter : MonoBehaviour
     public void StartRunFromMainMenu()
     {
         // gameHasStarted = true;
+        UserBackend.instance.UpdateUserReference();
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
@@ -65,6 +66,7 @@ public class GameStarter : MonoBehaviour
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
+        UserBackend.instance.UpdateUserReference();
         GameManager.instance.StartNewGame();
     }
     

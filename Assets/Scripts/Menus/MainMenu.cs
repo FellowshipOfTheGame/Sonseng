@@ -53,6 +53,7 @@ public class MainMenu : MonoBehaviour {
     public void ClosePanel() {
         panel.SetActive(false);
         logo.SetActive(true);
+        LoadingCircle.instance.EnableOrDisable(false);
         play.GetComponent<Button>().enabled = true;
 
     }

@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 require('./controller/leaderboardController')(app)
 require('./controller/powerUpController')(app)
+require('./controller/userController')(app)
 
 app.use(cors)
 app.use(cookieParser)

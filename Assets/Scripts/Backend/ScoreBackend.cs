@@ -13,6 +13,10 @@ public class ScoreBackend : MonoBehaviour {
     [SerializeField] bool debugMode;
     private FirebaseUser user;
 
+    public struct ScoreResponse{
+        public int cogs;
+        public float highestScore;
+    }
     void Start() {
 #if UNITY_EDITOR
         Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
@@ -21,22 +25,25 @@ public class ScoreBackend : MonoBehaviour {
         database = FirebaseDatabase.DefaultInstance;
         reference = database.RootReference;
         GetHighestScore();
-        StartCoroutine(SaveScore());
-    }
-
-    private IEnumerator SaveScore() {
-
-        reference.Child($"users/{user.UserId}/last-score").SetValueAsync(Scoreboard.instance.Score);
-        yield return new WaitForSeconds(10);
-        StartCoroutine(SaveScore());
     }
 
     public void SaveScoreOnDeath() {
-        StopAllCoroutines();
         Scoreboard.instance.StopScore();
-        reference.Child($"users/{user.UserId}/last-score").SetValueAsync(Scoreboard.instance.Score);
+        WWWForm form = new WWWForm();
+        form.AddField("uid", user.UserId);
+        form.AddField("score", (int) Scoreboard.instance.Score);
+        form.AddField("cogs", Scoreboard.instance.Cogs);
+        StartCoroutine(RequestManager.PostRequest<ScoreResponse>("user/saveStats", form, FinishSaveScore, LoadError));
     }
 
+    public void FinishSaveScore(ScoreResponse res){
+        Scoreboard.instance.highestScore = res.highestScore;
+        Scoreboard.instance.Cogs = res.cogs;
+    }
+
+    public void LoadError(string errorMessage){
+        Debug.Log(errorMessage);
+    }
     public void GetHighestScore() {
         reference.Child($"/users/{user.UserId}/")
             .GetValueAsync().ContinueWith(task => {
