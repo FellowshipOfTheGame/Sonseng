@@ -59,7 +59,7 @@ public class ScenarySpawner : MonoBehaviour
     protected virtual bool CheckSpawnCondition()
     {
         // Don't spawn if game is paused
-        if (GameManager.instance.IsGamePaused) return false;
+        if (TimeToSpeedManager.instance.IsGamePaused) return false;
 
         if (SpawnCondition.Equals(SpawnConditionType.CharacterDistance))
         {

@@ -6,12 +6,12 @@ public class PlayerSoundEffects : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSFX;
     [SerializeField] AudioSource _audioLoops;
-
     [SerializeField] AudioClip[] changeLaneStart, changeLaneEnd;
     [SerializeField] AudioClip jumpStart, wheelSpinLoop, jumpEnd;
     [SerializeField] AudioClip duck;
     [SerializeField] AudioClip runLoop;
     [SerializeField] AudioClip crash, lidOpen, electricalFailure, fireLoop;
+    
 
     private bool isDead;
 

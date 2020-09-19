@@ -84,6 +84,7 @@ public class UserBackend : MonoBehaviour {
                 DataSnapshot data = task.Result;
                 var upgrades = data.Value as Dictionary<string, object>;
                 foreach (var upgrade in upgrades) {
+                    // print("Grande: "+upgrade.Key);
                     Upgrade up = new Upgrade();
                     up.upgradeName = upgrade.Key;
                     var infos = upgrade.Value as Dictionary<string, object>;
@@ -96,7 +97,9 @@ public class UserBackend : MonoBehaviour {
                             up.baseValue = float.Parse(info.Value.ToString());
                         }
                     }
+                    // print("UP: " + up.upgradeName);
                     boughtUpgrades.Add(up.upgradeName, up);
+                    PowerUps.instance.SetPowerUpValue(up);
                     RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
                 }
             } else if (task.IsFaulted) {

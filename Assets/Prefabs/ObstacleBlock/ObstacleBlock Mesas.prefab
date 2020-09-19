@@ -9,7 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764687813393424912}
-  m_Layer: 0
+  - component: {fileID: 7519076453163878267}
+  m_Layer: 14
   m_Name: EndPosition
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -30,6 +31,19 @@ Transform:
   m_Father: {fileID: 3027418221697684925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7519076453163878267
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716563437390891114}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2908754502401266710
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,7 +53,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3027418221697684925}
-  - component: {fileID: 7308581362634121236}
   - component: {fileID: 8313130012169492586}
   m_Layer: 0
   m_Name: ObstacleBlock Mesas
@@ -72,19 +85,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7308581362634121236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2908754502401266710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155e044a97984824e9e20b886f6787e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LifeSpan: {fileID: 11400000, guid: 85599912c2a241442b6cde4ae9a77ef9, type: 2}
 --- !u!114 &8313130012169492586
 MonoBehaviour:
   m_ObjectHideFlags: 0

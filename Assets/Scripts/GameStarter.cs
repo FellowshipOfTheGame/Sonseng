@@ -11,6 +11,8 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private string mainMenuSceneName = null;
     [SerializeField] private GameObject inGameUI = null;
     [SerializeField] private GameObject playerCamera = null;
+    [SerializeField] private GameObject tiraTampa = null;
+    [SerializeField] private GameObject simoes = null;
     [SerializeField] private Transform mainMenuCameraPosition = null;
     [SerializeField] float translationTime  =  0f;
     [SerializeField] float rotationTime  =  0f;
@@ -35,13 +37,13 @@ public class GameStarter : MonoBehaviour
 
     private void Start() {
         if(SceneUtility.IsSceneLoaded(mainMenuSceneName)){
-            GameManager.instance.StopGame();
+            TimeToSpeedManager.instance.StopGame();
 
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
-            UserBackend.instance.UpdateUserReference();
             playerCamera.transform.position = mainMenuCameraPosition.position; 
             playerCamera.transform.rotation = mainMenuCameraPosition.rotation;
+            UserBackend.instance.UpdateUserReference();
         }
         else
         {
@@ -53,21 +55,23 @@ public class GameStarter : MonoBehaviour
     {
         // gameHasStarted = true;
         UserBackend.instance.UpdateUserReference();
+        tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
+        simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         playerCamera.transform.DOMove(bufferPosition, translationTime);
         playerCamera.transform.DORotate(bufferRotation, rotationTime);
-        GameManager.instance.StartNewGame();
-        playerMovement.isInMainMenu = false;
-        inGameUI.SetActive(true);
+        StartRun();
     }
 
     public void StartRun()
     {
+        simoes.GetComponent<Animator>().SetTrigger("Fall");
+        tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
         UserBackend.instance.UpdateUserReference();
-        GameManager.instance.StartNewGame();
+        TimeToSpeedManager.instance.StartNewGame();
     }
     
     public void InitializeSpawners()

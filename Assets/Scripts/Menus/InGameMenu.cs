@@ -48,11 +48,11 @@ public class InGameMenu : MonoBehaviour {
         if (!endGameMenu.activeInHierarchy) {
             // If not paused, pause. Else, resume
             if (!pauseMenu.activeInHierarchy) {
-                GameManager.instance.StopGame();
+                TimeToSpeedManager.instance.StopGame();
                 pauseMenu.SetActive(true);
                 header.SetActive(false);
             } else {
-                GameManager.instance.ResumeGame();
+                TimeToSpeedManager.instance.ResumeGame();
                 pauseMenu.SetActive(false);
                 header.SetActive(true);
             }
@@ -64,7 +64,7 @@ public class InGameMenu : MonoBehaviour {
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
         _audioIntro.Play();
-        GameManager.instance.StopGame();
+        TimeToSpeedManager.instance.StopGame();
         StartCoroutine(WaitForJingleToEnd(3.3f));
         collisionDetector.OnDeath -= ShowEndGameMenu;
     }
@@ -79,7 +79,7 @@ public class InGameMenu : MonoBehaviour {
     }
     public void Restart() {
         Time.timeScale = 1f;
-        GameManager.instance.StartNewGame();
+        TimeToSpeedManager.instance.StartNewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
