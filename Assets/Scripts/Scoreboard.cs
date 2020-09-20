@@ -47,7 +47,7 @@ public class Scoreboard : MonoBehaviour {
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        if(isPlayerAlive) Score += TimeToSpeedManager.instance.Speed * scoreMultiplier;
+        if(isPlayerAlive) Score += TimeToSpeedManager.instance.EvaluatedSpeed * scoreMultiplier;
     }
 
     /// <summary>
