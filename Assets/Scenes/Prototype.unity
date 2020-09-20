@@ -233,11 +233,26 @@ PrefabInstance:
       propertyPath: ink
       value: 
       objectReference: {fileID: 863947494}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: sfxPlayer
+      value: 
+      objectReference: {fileID: 1616730123}
     - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_Name
       value: Tira-tampa
       objectReference: {fileID: 0}
+    - target: {fileID: 9196586804100062488, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: coin
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b554a228b57b94428b4c9ec181bab65, type: 3}
+    - target: {fileID: 9196586804100062488, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: powerUp
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b554a228b57b94428b4c9ec181bab65, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
 --- !u!1 &187144142 stripped
@@ -3427,6 +3442,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1616730123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9196586804100062488, guid: f1672b6083801bc469cd67c02e37b6cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 187144141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8970902dcc4ab446b3cffd159761585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1742641286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5773927840210352210, guid: f1672b6083801bc469cd67c02e37b6cf,
