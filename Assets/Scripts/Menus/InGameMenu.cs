@@ -48,6 +48,7 @@ public class InGameMenu : MonoBehaviour {
         if (!endGameMenu.activeInHierarchy) {
             // If not paused, pause. Else, resume
             if (!pauseMenu.activeInHierarchy) {
+                Time.timeScale = 0f;
                 TimeToSpeedManager.instance.StopGame();
                 pauseMenu.SetActive(true);
                 header.SetActive(false);
