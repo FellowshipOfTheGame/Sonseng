@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class Scoreboard : MonoBehaviour {
     [HideInInspector] public static Scoreboard instance;
-    [SerializeField] TextMeshProUGUI scoreText, cogText;
+    [SerializeField] TextMeshProUGUI scoreText, cogText, shopCogText, homeCogText;
     [SerializeField] float speed;
+
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
@@ -46,7 +47,7 @@ public class Scoreboard : MonoBehaviour {
     /// Adds score proportionally to speed
     /// </summary>
     private void FixedUpdate() {
-        if(isPlayerAlive) Score += speed * scoreMultiplier;
+        if(isPlayerAlive) Score += TimeToSpeedManager.instance.Speed * scoreMultiplier;
     }
 
     /// <summary>
@@ -66,5 +67,10 @@ public class Scoreboard : MonoBehaviour {
 
     public void ResetScore() {
         Score = 0;
+    }
+
+    public void UpdateCogsText(int cogsRecv){
+        homeCogText.text = cogsRecv.ToString();
+        shopCogText.text = cogsRecv.ToString();
     }
 }

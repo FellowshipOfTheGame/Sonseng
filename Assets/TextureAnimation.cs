@@ -7,6 +7,7 @@ public class TextureAnimation : MonoBehaviour
     public Texture[] tTexture;
     SkinnedMeshRenderer t_Renderer;
     public float changeInterval = 0.33F;
+    public bool animate = false;
     int index = 0;
 
     // Start is called before the first frame update
@@ -20,9 +21,15 @@ public class TextureAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        index++; //Mathf.FloorToInt(Time.time / changeInterval);
-        //Debug.Log(t_Renderer.material);
-        index = index % tTexture.Length;
-        t_Renderer.material.SetTexture("Texture2D_A9881C30", tTexture[index]);
+        if(animate) {
+            index++; //Mathf.FloorToInt(Time.time / changeInterval);
+            //Debug.Log(t_Renderer.material);
+            index = index % tTexture.Length;
+            t_Renderer.material.SetTexture("Texture2D_A9881C30", tTexture[index]);
+        }
+    }
+
+    public void StartAnimation(){
+        animate = true;
     }
 }

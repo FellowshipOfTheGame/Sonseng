@@ -40,7 +40,12 @@ public class PowerUpBackend : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI cogsText;
 
     void Start() {
-        cogsText.text = UserBackend.instance.cogs.ToString();
+        if (Scoreboard.instance != null) {
+
+            Scoreboard.instance.UpdateCogsText(Scoreboard.instance.Cogs);
+        } else {
+            cogsText.text = UserBackend.instance.cogs.ToString();
+        }
     }
 
     void OnEnable() {
@@ -59,7 +64,6 @@ public class PowerUpBackend : MonoBehaviour {
         form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
-        Debug.Log("New Level: " + powerUp + " " + prices[powerUp].level);
         if (prices[powerUp].level == -1) {
             yield return StartCoroutine(RequestManager.PostRequest<PurchaseResponse>("powerup/purchasePowerUp", form, FinishPurchasePowerUp, LoadErrorPurchase));
             beingClicked = false;
@@ -85,7 +89,10 @@ public class PowerUpBackend : MonoBehaviour {
         UserBackend.instance.GetBoughtUpgrades();
         currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
-        cogsText.text = res.cogs.ToString();
+        if (Scoreboard.instance != null)
+            Scoreboard.instance.UpdateCogsText(res.cogs);
+        else
+            cogsText.text = res.cogs.ToString();
         PriceResponse temp = prices[res.powerUp];
         temp.price = res.nextPrice;
         temp.level++;
@@ -99,6 +106,10 @@ public class PowerUpBackend : MonoBehaviour {
         UserBackend.instance.GetBoughtUpgrades();
         currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
+        if (Scoreboard.instance != null)
+            Scoreboard.instance.UpdateCogsText(res.cogs);
+        else
+            cogsText.text = res.cogs.ToString();
         PriceResponse temp = prices[res.powerUp];
         if (res.nextPrice == -1) {
             currentButton.DisableButton();

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class TimeToSpeedManager : MonoBehaviour
 {
-    [HideInInspector] public static GameManager instance = null;
+    [HideInInspector] public static TimeToSpeedManager instance = null;
 
     [SerializeField] protected AnimationCurve TimeToSpeedCurve = null;
 
     /// <summary>
     /// Use StopGame() to pause the objects spawn and IsGamePaused to check game pause condition. 
     /// </summary>
-    [SerializeField] public bool IsGamePaused { get; private set; }
+    [SerializeField] public bool IsGamePaused { get => _gamePaused; }
 
     private bool _gamePaused = false;
 
@@ -24,11 +24,11 @@ public class GameManager : MonoBehaviour
     [Tooltip("Time, in seconds, taken to reach Max Speed since start of the run/game")]
     [SerializeField] protected float TimeForMaxSpeed = 1f;
 
-    protected float _timeThatGameStarted = 0f;
+    protected float _currentTime = 0f;
     /// <summary>
     /// Get Time since game started in seconds
     /// </summary>
-    public float TimeSinceGameStarted => Time.timeSinceLevelLoad - _timeThatGameStarted;
+    public float TimeSinceGameStarted => _currentTime;
 
     /// <summary>
     /// Get Game Speed in interval [0,1]
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartNewGame()
     {
-        _timeThatGameStarted = Time.timeSinceLevelLoad;
+        _currentTime = 0f;
         ResumeGame();
     }
 
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StopGame()
     {
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         _gamePaused = true;
     }
 
@@ -75,7 +75,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ResumeGame()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         _gamePaused = false;
+    }
+
+    private void Update()
+    {
+        if (_gamePaused)
+            return;
+
+        _currentTime += Time.deltaTime;
     }
 }
