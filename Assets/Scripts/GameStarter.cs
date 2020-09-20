@@ -40,7 +40,6 @@ public class GameStarter : MonoBehaviour
         if(SceneUtility.IsSceneLoaded(mainMenuSceneName)){
             
             TimeToSpeedManager.instance.StopGame();
-            InitializeSpawners();
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
             playerCamera.transform.position = mainMenuCameraPosition.position; 
