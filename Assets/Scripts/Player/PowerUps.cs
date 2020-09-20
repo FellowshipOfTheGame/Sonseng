@@ -12,6 +12,9 @@ public class PowerUps : MonoBehaviour {
     [Tooltip("Coin prefab in which obstacles will be transformed when p-switch is activated")]
     public GameObject coinPrefab;
 
+    [Tooltip("PlayerSoundEffects to play the pick up coin and powerup sounds")]
+    [SerializeField] PlayerSoundEffects sfxPlayer;
+
     [Space(5)]
     [SerializeField] GameObject powerUpUI;
     [SerializeField] Image powerUpLogo;
@@ -145,6 +148,7 @@ public class PowerUps : MonoBehaviour {
                 coins.Remove(other.transform);
                 Destroy(other.gameObject);
                 Scoreboard.instance.AddCog();
+                sfxPlayer.PickUpCoin();
                 break;
             // Power Ups
             case "Mirror":
@@ -153,6 +157,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(MirrorDeactivate), mirrorDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
             case "Magnet":
@@ -161,6 +166,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(MagnetDeactivate), magnetDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
             case "Star":
@@ -169,6 +175,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(StarDeactivate), starDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
             case "Shield":
@@ -177,12 +184,14 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(ShieldDeactivate), shieldDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
             case "P-Switch":
                 PSwitchActivate();
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
             case "Ink":
@@ -191,6 +200,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(InkDeactivate), inkDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
             case "DoubleScore":
@@ -199,6 +209,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(DoubleScoreDeactivate), doubleScoreDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
+                sfxPlayer.PickUpPowerUp();
                 break;
 
         }
