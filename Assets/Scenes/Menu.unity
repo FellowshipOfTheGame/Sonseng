@@ -388,7 +388,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 127534482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2392ec71d030f9d03830f1558d47644f, type: 3}
+  m_Script: {fileID: 11500000, guid: c2601d8914803c34faaba3a04d57af7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   webClientId: 321646647310-693rmelrk5re3cm29f2jc969n6t2mnpd.apps.googleusercontent.com
@@ -428,6 +428,16 @@ PrefabInstance:
         type: 3}
       propertyPath: debug
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320786193751018185, guid: d6b67fbbd851ce44184a0516bc801e32,
+        type: 3}
+      propertyPath: timeout
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320786193751018198, guid: d6b67fbbd851ce44184a0516bc801e32,
+        type: 3}
+      propertyPath: timeout
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7320786193751018199, guid: d6b67fbbd851ce44184a0516bc801e32,
         type: 3}

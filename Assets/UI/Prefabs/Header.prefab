@@ -142,8 +142,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 9029395488101611413}
   cogText: {fileID: 5396474698506268958}
+  shopCogText: {fileID: 0}
+  homeCogText: {fileID: 0}
   speed: 1
   defaultBonusScore: 1000
+  scoreMultiplier: 1
   highestScore: 0
 --- !u!114 &9029395487096954923
 MonoBehaviour:
@@ -154,7 +157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9029395487096954926}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5899f4dcdde285b0890e30c5c2be3b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 07e6933df2aacc8419c505fe3261dfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debugMode: 0
@@ -979,6 +982,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2749028bf91e93a9d96923456e1f4a7f, type: 3}
+--- !u!224 &420234133655338771 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8690297930816721501, guid: 2749028bf91e93a9d96923456e1f4a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9029395487175847246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5396474698506268958 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4011293839724174416, guid: 2749028bf91e93a9d96923456e1f4a7f,
@@ -991,9 +1000,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &420234133655338771 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8690297930816721501, guid: 2749028bf91e93a9d96923456e1f4a7f,
-    type: 3}
-  m_PrefabInstance: {fileID: 9029395487175847246}
-  m_PrefabAsset: {fileID: 0}

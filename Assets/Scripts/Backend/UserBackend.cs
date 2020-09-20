@@ -39,8 +39,8 @@ public class UserBackend : MonoBehaviour {
 #endif
         database = FirebaseDatabase.DefaultInstance;
         reference = database.RootReference;
-    }
-
+    } 
+ 
     public void UpdateUserReference() {
         userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         GetCogs();
