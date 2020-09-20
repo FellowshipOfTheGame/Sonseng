@@ -14,6 +14,7 @@ public class GameStarter : MonoBehaviour
     [SerializeField] private GameObject tiraTampa = null;
     [SerializeField] private GameObject simoes = null;
     [SerializeField] private Transform mainMenuCameraPosition = null;
+    [SerializeField] private float waitToMoveTime = 0f;
     [SerializeField] float translationTime  =  0f;
     [SerializeField] float rotationTime  =  0f;
     [SerializeField] PlayerMovement playerMovement;
@@ -37,8 +38,9 @@ public class GameStarter : MonoBehaviour
 
     private void Start() {
         if(SceneUtility.IsSceneLoaded(mainMenuSceneName)){
+            
             TimeToSpeedManager.instance.StopGame();
-
+            InitializeSpawners();
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
             playerCamera.transform.position = mainMenuCameraPosition.position; 
@@ -58,9 +60,11 @@ public class GameStarter : MonoBehaviour
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
-        playerCamera.transform.DOMove(bufferPosition, translationTime);
-        playerCamera.transform.DORotate(bufferRotation, rotationTime);
-        StartRun();
+        playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime).OnComplete(()=>{
+            playerCamera.transform.DOMove(bufferPosition, translationTime);
+            playerCamera.transform.DORotate(bufferRotation, rotationTime);
+            StartRun();
+        });
     }
 
     public void StartRun()
@@ -80,5 +84,8 @@ public class GameStarter : MonoBehaviour
         foreach (var s in spawners)
             s.Initialize();
     }
+
+
+
   
 }

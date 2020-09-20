@@ -14,11 +14,17 @@ public class UserBackend : MonoBehaviour {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     public string userId;
+    [Serializable]
     public struct Upgrade {
         public string upgradeName;
         public float baseValue;
         public int level;
         public float multiplier;
+    }
+
+    [Serializable]
+    public struct UpgradeRoot {
+        public Upgrade[] powerUps;
     }
     public Dictionary<string, Upgrade> boughtUpgrades = new Dictionary<string, Upgrade>();
 
@@ -33,8 +39,8 @@ public class UserBackend : MonoBehaviour {
 #endif
         database = FirebaseDatabase.DefaultInstance;
         reference = database.RootReference;
-    }
-
+    } 
+ 
     public void UpdateUserReference() {
         userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
         GetCogs();
@@ -51,6 +57,29 @@ public class UserBackend : MonoBehaviour {
     }
 
     public void GetBoughtUpgrades() {
+        StartCoroutine(GetBoughtUpgradesCourotine());
+    }
+
+    private IEnumerator GetBoughtUpgradesCourotine() {
+        WWWForm form = new WWWForm();
+        form.AddField("uid", userId);
+        yield return StartCoroutine(RequestManager.PostRequest<UpgradeRoot>("user/getBoughtUpgrades", form, FinishGetBoughtUpgrades, LoadError));
+    }
+
+    public void FinishGetBoughtUpgrades(UpgradeRoot root) {
+        boughtUpgrades = new Dictionary<string, Upgrade>();
+        foreach (Upgrade up in root.powerUps) {
+            boughtUpgrades.Add(up.upgradeName, up);
+            PowerUps.instance.SetPowerUpValue(up);
+            RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
+        }
+    }
+
+    public void LoadError(string errorMessage) {
+        Debug.LogError(errorMessage);
+    }
+
+    /*public void GetBoughtUpgrades() {
         boughtUpgrades = new Dictionary<string, Upgrade>();
         reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
             if (task.IsCompleted) {
@@ -72,7 +101,6 @@ public class UserBackend : MonoBehaviour {
                     }
                     // print("UP: " + up.upgradeName);
                     boughtUpgrades.Add(up.upgradeName, up);
-                    PowerUps.instance.SetPowerUpValue(up);
                     RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
                 }
             } else if (task.IsFaulted) {
@@ -80,5 +108,5 @@ public class UserBackend : MonoBehaviour {
             }
         });
     }
-
+    */
 }
