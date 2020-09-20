@@ -75,7 +75,7 @@ public class TimeToSpeedManager : MonoBehaviour
     /// </summary>
     public void ResumeGame()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         _gamePaused = false;
     }
 

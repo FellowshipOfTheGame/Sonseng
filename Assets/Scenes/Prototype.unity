@@ -1063,6 +1063,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07e6933df2aacc8419c505fe3261dfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &389059224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9029395487942511990, guid: f1ee4dc8982692c2c9142e5306c2adf7,
+    type: 3}
+  m_PrefabInstance: {fileID: 389059221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &499200415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,6 +1650,11 @@ PrefabInstance:
       propertyPath: collisionDetector
       value: 
       objectReference: {fileID: 1742641286}
+    - target: {fileID: 3141347567896128514, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: pauseButton
+      value: 
+      objectReference: {fileID: 389059224}
     - target: {fileID: 3141347567908684386, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: m_AnchorMin.y
