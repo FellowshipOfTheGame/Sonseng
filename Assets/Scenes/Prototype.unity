@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2983,6 +2983,7 @@ MonoBehaviour:
   tiraTampa: {fileID: 187144142}
   simoes: {fileID: 8296172667632905672}
   mainMenuCameraPosition: {fileID: 1319477718}
+  waitToMoveTime: 1
   translationTime: 4
   rotationTime: 2
   playerMovement: {fileID: 187144143}
