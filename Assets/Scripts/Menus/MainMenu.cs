@@ -63,6 +63,11 @@ public class MainMenu : MonoBehaviour {
         play.SetActive(false);
         options.SetActive(true);
     }
+
+    public void CloseOptions(){
+        play.SetActive(true);
+        options.SetActive(false);
+    }
     public void CloseErrorPanel(){
         errorPanel.SetActive(false);
     }
