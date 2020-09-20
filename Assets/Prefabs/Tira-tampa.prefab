@@ -29737,6 +29737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
     type: 3}
+  sfxPlayer: {fileID: 9196586804100062488}
   powerUpUI: {fileID: 0}
   powerUpLogo: {fileID: 0}
   powerUpBar: {fileID: 0}
@@ -29807,6 +29808,8 @@ MonoBehaviour:
   lidOpen: {fileID: 8300000, guid: 61680f237bf6654429b333bbd0409a93, type: 3}
   electricalFailure: {fileID: 8300000, guid: 56c1294888fbf9a458211bde666c52ed, type: 3}
   fireLoop: {fileID: 8300000, guid: b0d453e66e9a33147aa24ee3ca2a81f0, type: 3}
+  coin: {fileID: 8300000, guid: 3b554a228b57b94428b4c9ec181bab65, type: 3}
+  powerUp: {fileID: 8300000, guid: 3b554a228b57b94428b4c9ec181bab65, type: 3}
 --- !u!114 &1300162495
 MonoBehaviour:
   m_ObjectHideFlags: 0
