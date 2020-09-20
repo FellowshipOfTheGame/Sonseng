@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class InGameMenu : MonoBehaviour {
     [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
-    [SerializeField] GameObject pauseMenu, header;
+    [SerializeField] GameObject pauseMenu, header, pauseButton;
     [SerializeField] AudioClip songIntro, songLoop;
     [SerializeField] AudioClip deathJingle;
 
@@ -65,6 +65,7 @@ public class InGameMenu : MonoBehaviour {
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
         _audioIntro.Play();
+        pauseButton.SetActive(false);
         TimeToSpeedManager.instance.StopGame();
         StartCoroutine(WaitForJingleToEnd(3.3f));
         collisionDetector.OnDeath -= ShowEndGameMenu;
