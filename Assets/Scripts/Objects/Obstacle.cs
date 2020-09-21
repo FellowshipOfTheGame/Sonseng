@@ -21,7 +21,7 @@ public class Obstacle : DestructableObject {
         Destroy();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         PowerUps.instance.OnPSwtichActivated -= TransformIntoCoin;
     }
