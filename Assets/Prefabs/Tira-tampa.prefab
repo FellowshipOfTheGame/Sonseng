@@ -19437,7 +19437,7 @@ Transform:
   - {fileID: 5169965785663541873}
   - {fileID: 5007739001474749946}
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -83.263, y: 0, z: 0}
 --- !u!198 &1821194545
 ParticleSystem:
@@ -24258,7 +24258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &7965619477800520678
 AudioSource:
@@ -24482,7 +24482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -83.263, y: 0, z: 0}
 --- !u!198 &187144144
 ParticleSystem:
@@ -29468,7 +29468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5773927839596921564}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.84, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5773927840210352213}
@@ -29559,6 +29559,7 @@ Transform:
   - {fileID: 5773927840375842091}
   - {fileID: 5773927840091816567}
   - {fileID: 5773927839596921565}
+  - {fileID: 95794493242368856}
   - {fileID: 2195218721738773171}
   - {fileID: 3489618148467202769}
   - {fileID: 2445022684033237996}
@@ -29616,7 +29617,9 @@ MonoBehaviour:
   jumpForce: 2750
   fallFastSpeed: 30
   gravityModifier: 10
-  groundCheck: {fileID: 5773927839596921565}
+  groundChecks:
+  - {fileID: 5773927839596921565}
+  - {fileID: 95794493242368856}
   groundCheckRadius: 0.7
   normalCollider: {fileID: 5773927840375842090}
   smallCollider: {fileID: 5773927840091816566}
@@ -29646,7 +29649,7 @@ MonoBehaviour:
   OnSwipe:
     m_PersistentCalls:
       m_Calls: []
-  _sensetivity: 10
+  _sensetivity: 25
   _continuousDetection: 0
   _swipeDetectionMode: 2
 --- !u!114 &5773927840210352216
@@ -29758,8 +29761,8 @@ MonoBehaviour:
   shieldDuration: 5
   shieldLogo: {fileID: 0}
   doubleScore: 0
-  doubleScoreDuration: 0
-  doubleScoreMultiplier: 0
+  doubleScoreDuration: 5
+  doubleScoreMultiplier: 2
   doubleScoreLogo: {fileID: 0}
   ink: {fileID: 0}
   inkDuration: 5
@@ -29897,3 +29900,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6908951569338411497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 95794493242368856}
+  m_Layer: 0
+  m_Name: Ground Check (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &95794493242368856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6908951569338411497}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.86, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5773927840210352213}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
