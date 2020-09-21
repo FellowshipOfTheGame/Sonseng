@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3740,6 +3740,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 795818054}
     m_Modifications:
+    - target: {fileID: 3319278508385658309, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319278508385658309, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319278508385658309, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3319278508385658309, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4309238615612319218, guid: 314acc77e2884488bbcbd37c8b00c7ca,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3760,6 +3780,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
       objectReference: {fileID: 1905998377}
+    - target: {fileID: 4309238615662669494, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309238615662669494, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309238615662669494, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4309238616662898453, guid: 314acc77e2884488bbcbd37c8b00c7ca,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3869,6 +3904,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Settings Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309238616662898454, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309238617112338963, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 127534486}
+    - target: {fileID: 4309238617112338963, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseOptions
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309238617112338963, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309238617128141572, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215924325268441696, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481469941377488234, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481469941377488234, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481469941377488234, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481469941377488234, guid: 314acc77e2884488bbcbd37c8b00c7ca,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 314acc77e2884488bbcbd37c8b00c7ca, type: 3}

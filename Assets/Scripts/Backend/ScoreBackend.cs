@@ -31,7 +31,7 @@ public class ScoreBackend : MonoBehaviour {
         Scoreboard.instance.StopScore();
         WWWForm form = new WWWForm();
         form.AddField("uid", user.UserId);
-        form.AddField("score", (int) Scoreboard.instance.Score);
+        form.AddField("score", Scoreboard.instance.ScoreRounded);
         form.AddField("cogs", Scoreboard.instance.Cogs);
         StartCoroutine(RequestManager.PostRequest<ScoreResponse>("user/saveStats", form, FinishSaveScore, LoadError));
     }

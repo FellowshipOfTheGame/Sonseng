@@ -11,6 +11,7 @@ public class PlayerSoundEffects : MonoBehaviour
     [SerializeField] AudioClip duck;
     [SerializeField] AudioClip runLoop;
     [SerializeField] AudioClip crash, lidOpen, electricalFailure, fireLoop;
+    [SerializeField] AudioClip coin, powerUp;
     
 
     private bool isDead;
@@ -70,5 +71,15 @@ public class PlayerSoundEffects : MonoBehaviour
     public void Duck()
     {
         _audioSFX.PlayOneShot(duck);
+    }
+
+    public void PickUpCoin()
+    {
+        _audioSFX.PlayOneShot(coin);
+    }
+
+    public void PickUpPowerUp()
+    {
+        _audioSFX.PlayOneShot(powerUp);
     }
 }

@@ -141,8 +141,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // If is falling, checks if it is reaching ground
-        if (rBody.velocity.y <= 0f) {
-            Debug.Log("Checking ground");
+        if (!isJumping && rBody.velocity.y <= 0f) {
             IsGrounded = CheckGround();
         }
         

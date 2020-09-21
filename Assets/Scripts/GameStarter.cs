@@ -40,7 +40,6 @@ public class GameStarter : MonoBehaviour
         if(SceneUtility.IsSceneLoaded(mainMenuSceneName)){
             
             TimeToSpeedManager.instance.StopGame();
-            InitializeSpawners();
             bufferPosition = playerCamera.transform.position;
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
             playerCamera.transform.position = mainMenuCameraPosition.position; 
@@ -60,6 +59,7 @@ public class GameStarter : MonoBehaviour
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
+        InitializeSpawners();
         playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime).OnComplete(()=>{
             playerCamera.transform.DOMove(bufferPosition, translationTime);
             playerCamera.transform.DORotate(bufferRotation, rotationTime);
