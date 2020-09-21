@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionContainer: {fileID: 6626666062982363750}
+  explosionContainer: {fileID: 1412083868933076526}
 --- !u!1 &6009856732924268847
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,15 +223,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc1dcf3295466264a8c3f549bbe778a4, type: 3}
---- !u!1 &6626666062982363750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3190609561253755076, guid: cc1dcf3295466264a8c3f549bbe778a4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8624947240329118370}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4761671744391581070 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3865545231977156396, guid: cc1dcf3295466264a8c3f549bbe778a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 8624947240329118370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1412083868933076526 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7217384666576008332, guid: cc1dcf3295466264a8c3f549bbe778a4,
     type: 3}
   m_PrefabInstance: {fileID: 8624947240329118370}
   m_PrefabAsset: {fileID: 0}
