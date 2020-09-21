@@ -8,7 +8,6 @@ public class PlayerVFX : MonoBehaviour
     public ParticleSystem smokeContainer;
     public void PlayExplosion()
     {
-      
         explosionContainer.Play(true);
     }
 
