@@ -59,6 +59,7 @@ public class GameStarter : MonoBehaviour
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
+        InitializeSpawners();
         playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime).OnComplete(()=>{
             playerCamera.transform.DOMove(bufferPosition, translationTime);
             playerCamera.transform.DORotate(bufferRotation, rotationTime);

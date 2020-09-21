@@ -18,6 +18,8 @@ public class Scoreboard : MonoBehaviour {
     }
     public float highestScore;
 
+    public int highestScoreRounded => (int) Mathf.Round(highestScore); 
+
     public void StopScore() {
         isPlayerAlive = false;
     }
@@ -26,9 +28,11 @@ public class Scoreboard : MonoBehaviour {
         get { return score; }
         private set {
             score = value;
-            scoreText.text = Mathf.Round(score).ToString() + " pontos";
+            scoreText.text = ScoreRounded.ToString() + " pontos";
         }
     }
+
+    public int ScoreRounded => (int) Mathf.Round(score);
 
     private void Awake() {
         if (instance == null)

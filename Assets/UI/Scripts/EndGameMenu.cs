@@ -10,8 +10,8 @@ public class EndGameMenu : MonoBehaviour {
         if(Scoreboard.instance.Score > Scoreboard.instance.highestScore){
             Scoreboard.instance.highestScore = Scoreboard.instance.Score;
         }
-        scoreText.text = Scoreboard.instance.Score + " Pontos";
-        recordText.text = Scoreboard.instance.highestScore.ToString();
+        scoreText.text = Scoreboard.instance.ScoreRounded + " Pontos";
+        recordText.text = Scoreboard.instance.highestScoreRounded.ToString();
         cogsText.text = Scoreboard.instance.Cogs.ToString().PadLeft(3 , '0');
      }
 }
