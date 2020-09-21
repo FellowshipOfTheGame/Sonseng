@@ -19437,7 +19437,7 @@ Transform:
   - {fileID: 5000120203366971118}
   - {fileID: 5007739001474749946}
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -83.263, y: 0, z: 0}
 --- !u!198 &1821194545
 ParticleSystem:
@@ -24258,7 +24258,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &7965619477800520678
 AudioSource:
@@ -24483,7 +24483,7 @@ Transform:
   m_Children:
   - {fileID: 1116338665239244641}
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -83.263, y: 0, z: 0}
 --- !u!198 &187144144
 ParticleSystem:
@@ -34414,7 +34414,7 @@ MonoBehaviour:
   OnSwipe:
     m_PersistentCalls:
       m_Calls: []
-  _sensetivity: 25
+  _sensetivity: 100
   _continuousDetection: 0
   _swipeDetectionMode: 2
 --- !u!114 &5773927840210352216
@@ -34696,5 +34696,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5773927840210352213}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

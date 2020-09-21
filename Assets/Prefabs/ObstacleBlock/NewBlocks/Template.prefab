@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5488960654665709447}
   - component: {fileID: 1545037882360887888}
+  - component: {fileID: 1322578338482456160}
   m_Layer: 0
   m_Name: Template
   m_TagString: Untagged
@@ -45,6 +46,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b717a80667a6743ba66fa1b55137f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1322578338482456160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652792379276932652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f9fefa8b7f0d14db9146cdb723e97d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7761390818182983537
 GameObject:
   m_ObjectHideFlags: 0
