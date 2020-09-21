@@ -1,28 +1,30 @@
 using UnityEngine;
 
-public class Obstacle : DestructableObject {
-
+public class Obstacle : DestructableObject
+{
+    // TODO: Play Particles and remove loop
     [SerializeField] private GameObject explosionContainer;
-    private void Start() {
-        if(PowerUps.instance)
-            PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
+    private void OnEnable()
+    {    
+        PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
     }
 
-    public override void Destroy() {
-        // TODO add any effects here
-        explosionContainer.gameObject.SetActive(true);
-        this.transform.parent.gameObject.SetActive(false);
+    public override void Destroy()
+    {
+        // TODO: Play Particles not in loop
+        //explosionContainer.Play();
+        gameObject.SetActive(false);
     }
 
-    public override void TransformIntoCoin() {
-        // TODO add any effects here
-        // TODO use object pooling
-        explosionContainer.gameObject.SetActive(true);
+    public override void TransformIntoCoin()
+    {
+        // TODO: Play Particles not in loop
+        //explosionContainer.Play();
         Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
-        this.transform.parent.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         PowerUps.instance.OnPSwtichActivated -= TransformIntoCoin;
     }
