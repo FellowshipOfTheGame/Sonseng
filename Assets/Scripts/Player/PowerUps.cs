@@ -122,6 +122,7 @@ public class PowerUps : MonoBehaviour {
 
             if (timeRemaining <= 0f) {
                 powerUpUI.SetActive(false);
+                sfxPlayer.PowerUpEnd();
                 powerUpActive = false;
             }
         }

@@ -9773,6 +9773,7 @@ GameObject:
   - component: {fileID: 3553371938034456166}
   - component: {fileID: 5396864734321985160}
   - component: {fileID: 9195906496542671887}
+  - component: {fileID: 1048926749667428375}
   m_Layer: 0
   m_Name: _audioCoinsAndPowerUps
   m_TagString: Untagged
@@ -9807,13 +9808,13 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 71
+  Priority: 54
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 40
@@ -9916,6 +9917,103 @@ AudioSource:
   MaxDistance: 40
   Pan2D: 0
   rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1048926749667428375
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694626716532979072}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5599367003894143066, guid: da49e8722677212409e08c0cb18b4e47,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 51068eeca015f6c478e9c308cbb317ba, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 225
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 40
+  Pan2D: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -34806,10 +34904,12 @@ MonoBehaviour:
   electricalFailure: {fileID: 8300000, guid: 56c1294888fbf9a458211bde666c52ed, type: 3}
   fireLoop: {fileID: 8300000, guid: b0d453e66e9a33147aa24ee3ca2a81f0, type: 3}
   _audioCoins: {fileID: 5396864734321985160}
-  _audioPowerUps: {fileID: 9195906496542671887}
+  _audioPowerUpSFX: {fileID: 9195906496542671887}
+  _audioPowerUpLoop: {fileID: 1048926749667428375}
   coin: {fileID: 8300000, guid: 3b554a228b57b94428b4c9ec181bab65, type: 3}
-  powerUp: {fileID: 8300000, guid: 3b554a228b57b94428b4c9ec181bab65, type: 3}
-  pitchAddedPerCoinChain: 1
+  powerUp: {fileID: 8300000, guid: da6b98b50fd4a0a4c9375ed6543c1e3c, type: 3}
+  powerUpEnd: {fileID: 8300000, guid: ce4e2570655bcce4ba4c0e39d6bf24c6, type: 3}
+  pitchAddedPerCoinChain: 2
   timeToResetCoinChain: 1
 --- !u!114 &1300162495
 MonoBehaviour:

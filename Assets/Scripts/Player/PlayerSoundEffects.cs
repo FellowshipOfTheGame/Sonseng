@@ -15,13 +15,19 @@ public class PlayerSoundEffects : MonoBehaviour
 
     [Header("Coins and PowerUps")]
     [SerializeField] AudioSource _audioCoins;
-    [SerializeField] AudioSource _audioPowerUps;
-    [SerializeField] AudioClip coin, powerUp;
+    [SerializeField] AudioSource _audioPowerUpSFX;
+    [SerializeField] AudioSource _audioPowerUpLoop;
+    [SerializeField] AudioClip coin, powerUp, powerUpEnd;
     [SerializeField] float pitchAddedPerCoinChain;
     [SerializeField] float timeToResetCoinChain;
     
 
     private bool isDead;
+
+    private void OnEnable()
+    {
+        PowerUps.instance.OnPowerPicked += PickUpPowerUp;
+    }
 
     public void StartRunning()
     {
@@ -96,6 +102,19 @@ public class PlayerSoundEffects : MonoBehaviour
 
     public void PickUpPowerUp()
     {
-        _audioPowerUps.PlayOneShot(powerUp);
+        _audioPowerUpSFX.PlayOneShot(powerUp);
+        if(!_audioPowerUpLoop.isPlaying)
+            _audioPowerUpLoop.Play();
+    }
+
+    public void PowerUpEnd()
+    {
+        _audioPowerUpSFX.PlayOneShot(powerUpEnd);
+        _audioPowerUpLoop.Stop();
+    }
+
+    private void OnDisable()
+    {
+        PowerUps.instance.OnPowerPicked -= PickUpPowerUp;
     }
 }
