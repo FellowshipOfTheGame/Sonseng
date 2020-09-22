@@ -3,18 +3,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
+public class LGO
+{
+    public GameObject[] Array = new GameObject[0];
+    public int Length => Array.Length;
+
+    public GameObject this[int i]
+    {
+        get { return Array[i]; }
+        set { Array[i] = value; }
+    }
+
+    public LGO()
+    {
+        Array = new GameObject[0];
+    }
+
+    public LGO(int size)
+    {
+        Array = new GameObject[size];
+    }
+}
+
 [RequireComponent(typeof(SimpleObjectPooler))]
 public class ScenarySpawner : MonoBehaviour
 {
     public static ScenarySpawner Instance = null;   
 
     [Header("Obstacle Blocks Prefabs for each Speed Stage")]
-    public GameObject[][] StagePrefabsArray = { new GameObject[0] };
+    public LGO[] StagePrefabsArray = { };
 
     [Header("Speed Stages %")]
     [Tooltip("Porcentagem da velocidade maxima na qual muda para o proximo estagio de blocos a serem spawnados.")]
-    public float[] StageChangePercentages = { 0.33f, 0.66f };
-    public int CurrentStage = 0;
+    public float[] StageChangePercentages = { };
+    protected int CurrentStage = 0;
 
     [Header("Initial Spawn Configurations")]
     [SerializeField] protected GameObject InitialPrefab = null;
@@ -41,7 +64,7 @@ public class ScenarySpawner : MonoBehaviour
     {
         List<GameObject> Prefabs = new List<GameObject>();
         foreach (var l in StagePrefabsArray)
-            Prefabs.AddRange(l);
+            Prefabs.AddRange(l.Array);
 
         _pooler.Initialization(Prefabs.ToArray());
 
@@ -111,14 +134,21 @@ public class ScenarySpawner : MonoBehaviour
     protected virtual int CheckCurrentStage()
     {
         int stage = 0;
+        float evaluatedSpeed = TimeToSpeedManager.instance.EvaluatedSpeed;
 
         foreach (var p in StageChangePercentages)
         {
             //0.3 , 0.7
-            if (TimeToSpeedManager.instance.EvaluatedSpeed > p)
+            Debug.Log(p);
+            if (evaluatedSpeed > p)
+            {
                 stage++;
+                Debug.Log($"Stage Up {stage} for {evaluatedSpeed}");
+            }
             else
+            {
                 return stage;
+            }
         }
         return stage;
     }

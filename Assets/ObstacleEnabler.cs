@@ -16,5 +16,6 @@ public class ObstacleEnabler : MonoBehaviour
     public void GetObstacleCompInChildren()
     {
         obstacles = GetComponentsInChildren<Obstacle>();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameObject.scene);
     }
 }
