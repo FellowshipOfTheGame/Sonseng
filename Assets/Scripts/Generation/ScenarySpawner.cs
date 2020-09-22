@@ -30,11 +30,11 @@ public class LGO
 public class ScenarySpawner : MonoBehaviour
 {
     public static ScenarySpawner Instance = null;   
-
-    [Header("Obstacle Blocks Prefabs for each Speed Stage")]
+    
+    //[HideInInspector]
+    [Tooltip("Ignora esse a menos que queira mudar o numero de estagios")]
     public LGO[] StagePrefabsArray = { };
 
-    [Header("Speed Stages %")]
     [Tooltip("Porcentagem da velocidade maxima na qual muda para o proximo estagio de blocos a serem spawnados.")]
     [HideInInspector] public float[] StageChangePercentages = { };
     [HideInInspector] public int CurrentStage = 0;
