@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerSoundEffects : MonoBehaviour
 {
+    [Header("Tira a Tampa")]
     [SerializeField] AudioSource _audioSFX;
     [SerializeField] AudioSource _audioLoops;
     [SerializeField] AudioClip[] changeLaneStart, changeLaneEnd;
@@ -11,12 +12,18 @@ public class PlayerSoundEffects : MonoBehaviour
     [SerializeField] AudioClip duck;
     [SerializeField] AudioClip runLoop;
     [SerializeField] AudioClip crash, lidOpen, electricalFailure, fireLoop;
+
+    [Header("Coins and PowerUps")]
+    [SerializeField] AudioSource _audioCoins;
+    [SerializeField] AudioSource _audioPowerUps;
     [SerializeField] AudioClip coin, powerUp;
+    [SerializeField] float pitchAddedPerCoinChain;
+    [SerializeField] float timeToResetCoinChain;
     
 
     private bool isDead;
 
-    private void Start()
+    public void StartRunning()
     {
         _audioLoops.clip = runLoop;
         _audioLoops.Play();
@@ -75,11 +82,20 @@ public class PlayerSoundEffects : MonoBehaviour
 
     public void PickUpCoin()
     {
-        _audioSFX.PlayOneShot(coin);
+        CancelInvoke(nameof(ResetPitch));
+        _audioCoins.clip = coin;
+        _audioCoins.Play();
+        _audioCoins.pitch += pitchAddedPerCoinChain/100;
+        Invoke(nameof(ResetPitch), timeToResetCoinChain);
+    }
+
+    private void ResetPitch()
+    {
+        _audioCoins.pitch = 1f;
     }
 
     public void PickUpPowerUp()
     {
-        _audioSFX.PlayOneShot(powerUp);
+        _audioPowerUps.PlayOneShot(powerUp);
     }
 }
