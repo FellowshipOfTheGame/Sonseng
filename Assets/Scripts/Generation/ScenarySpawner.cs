@@ -36,9 +36,10 @@ public class ScenarySpawner : MonoBehaviour
 
     [Header("Speed Stages %")]
     [Tooltip("Porcentagem da velocidade maxima na qual muda para o proximo estagio de blocos a serem spawnados.")]
-    public float[] StageChangePercentages = { };
-    protected int CurrentStage = 0;
-
+    [HideInInspector] public float[] StageChangePercentages = { };
+    [HideInInspector] public int CurrentStage = 0;
+    [HideInInspector] public int StageNumber = 1;
+    
     [Header("Initial Spawn Configurations")]
     [SerializeField] protected GameObject InitialPrefab = null;
     [SerializeField] protected int InitialPrefabNumber = 1;
