@@ -7,7 +7,7 @@ public class RandomCollectableSystem : MonoBehaviour
     public static RandomCollectableSystem Instance = null;
 
     [SerializeField] private List<GameObject> UnlockedCollectables = new List<GameObject>();
-    [SerializeField] private GameObject CoinPrefab = null, magnetPrefab, shieldPrefab, starPrefab;
+    [SerializeField] private GameObject CoinPrefab, magnetPrefab, shieldPrefab, starPrefab, coffeePrefab, mirrorPrefab, pbuttonPrefab, doublePrefab;
 
     // Start is called before the first frame update
     private void Awake()
@@ -30,17 +30,33 @@ public class RandomCollectableSystem : MonoBehaviour
     {
         switch (powerUp)
         {
-            case "magnet":
-                if (!UnlockedCollectables.Contains(magnetPrefab))
-                    UnlockedCollectables.Add(magnetPrefab);
+            case "double":
+                if (!UnlockedCollectables.Contains(doublePrefab))
+                    UnlockedCollectables.Add(doublePrefab);
                 break;
             case "invincibility":
-                if (!UnlockedCollectables.Contains(starPrefab))
+                if(!UnlockedCollectables.Contains(starPrefab))
                     UnlockedCollectables.Add(starPrefab);
                 break;
             case "shield":
                 if (!UnlockedCollectables.Contains(shieldPrefab))
                     UnlockedCollectables.Add(shieldPrefab);
+                break;
+            case "magnet":
+                if (!UnlockedCollectables.Contains(magnetPrefab))
+                    UnlockedCollectables.Add(magnetPrefab);
+                break;
+            case "coffee":
+                if (!UnlockedCollectables.Contains(coffeePrefab))
+                    UnlockedCollectables.Add(coffeePrefab);
+                break;
+            case "mirror":
+                if (!UnlockedCollectables.Contains(mirrorPrefab))
+                    UnlockedCollectables.Add(mirrorPrefab);
+                break;
+            case "p-button":
+                if (!UnlockedCollectables.Contains(pbuttonPrefab))
+                    UnlockedCollectables.Add(pbuttonPrefab);
                 break;
         }
     }
