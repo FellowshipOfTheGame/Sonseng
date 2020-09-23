@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 public class GameStarter : MonoBehaviour
 {
 
@@ -71,6 +73,7 @@ public class GameStarter : MonoBehaviour
     {
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
+        tiraTampa.GetComponentInParent<PlayerSoundEffects>().StartRunning();
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
