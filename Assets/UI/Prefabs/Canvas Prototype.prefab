@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5855379053209937357}
   - component: {fileID: 5855379053209937356}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas Prototype
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -957,6 +957,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -26.965
+      objectReference: {fileID: 0}
+    - target: {fileID: 758681588830751346, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7004030188242846782}
+    - target: {fileID: 758681588830751346, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyPowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 763389089270212570, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
@@ -3085,6 +3095,16 @@ PrefabInstance:
       propertyPath: m_padding
       value: 1.25
       objectReference: {fileID: 0}
+    - target: {fileID: 5330256998264033920, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7004030188242846782}
+    - target: {fileID: 5330256998264033920, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyPowerUp
+      objectReference: {fileID: 0}
     - target: {fileID: 5333343911138643091, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}
       propertyPath: m_Enabled
@@ -3269,6 +3289,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044320253233826601, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7004030188242846782}
+    - target: {fileID: 6044320253233826601, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyPowerUp
       objectReference: {fileID: 0}
     - target: {fileID: 6052494338947901057, guid: 6b1d9b4ab208cd9daab3ffff34f76464,
         type: 3}

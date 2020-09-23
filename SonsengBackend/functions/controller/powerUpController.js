@@ -92,7 +92,7 @@ router.post('/purchaseUpgrade', async (req, res) => {
         cogs: coins.val() - upgrade.child('price').val(),
         nextPrice: nextUpgrade.child('price').val(),
         nextMult: nextUpgrade.child('multiplier').val(),
-        prevMult: currentUpgrade.child('multiplier').val(),
+        prevMult: upgrade.child('multiplier').val(),
       })
     } else {
       return res.send({
