@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class InGameMenu : MonoBehaviour {
     [SerializeField] CollisionDetector collisionDetector;
@@ -10,10 +11,17 @@ public class InGameMenu : MonoBehaviour {
     [SerializeField] AudioClip deathJingle;
 
     [SerializeField] AudioSource _audioIntro, _audioLoop;
+    [SerializeField] AudioMixer mixer;
+    [SerializeField] float pauseVolumeReduction;
 
     [SerializeField] TMPro.TextMeshProUGUI pauseScoreText;
 
     [SerializeField] Scoreboard scoreboard;
+    
+    private void Awake()
+    {
+        mixer.SetFloat("masterVolume", 0f);
+    }
 
     private void Start() {
         endGameMenu.SetActive(false);
@@ -52,15 +60,18 @@ public class InGameMenu : MonoBehaviour {
                 TimeToSpeedManager.instance.StopGame();
                 pauseMenu.SetActive(true);
                 header.SetActive(false);
+                mixer.SetFloat("masterVolume", -pauseVolumeReduction);
             } else {
                 TimeToSpeedManager.instance.ResumeGame();
                 pauseMenu.SetActive(false);
                 header.SetActive(true);
+                mixer.SetFloat("masterVolume", 0f);
             }
         }
     }
 
     private void ShowEndGameMenu() {
+        mixer.SetFloat("masterVolume", 0f);
         _audioLoop.Stop();
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
@@ -81,12 +92,14 @@ public class InGameMenu : MonoBehaviour {
     }
     public void Restart() {
         Time.timeScale = 1f;
+        mixer.SetFloat("masterVolume", 0f);
         TimeToSpeedManager.instance.StartNewGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GoBackToMenu() {
         Time.timeScale = 1f;
+        mixer.SetFloat("masterVolume", 0f);
         SceneManager.LoadScene("Menu");
     }
 
