@@ -12,7 +12,7 @@ public class UpgradeButton : MonoBehaviour {
     private const string pButton = "\uf552";
     public Color disabled;
 
-    public TextMeshProUGUI iconTxt, costTxt, buttonText;
+    public TextMeshProUGUI iconTxt, buttonText, costText;
     [SerializeField]
     private string upgradeName;
     [SerializeField]
@@ -30,12 +30,12 @@ public class UpgradeButton : MonoBehaviour {
     }
     public void UpdateInfos() {
         PowerUpBackend.PriceResponse infos = backend.prices[upgradeName];
-        costTxt.text = backend.prices[upgradeName].price.ToString() + " \uf013";
         buttonText.text = "MELHORAR\n" + string.Format("{0:0.00}", infos.baseValue * infos.prevMult) + unidade + " " + "\uf061" + string.Format("{0:0.00}", infos.baseValue * infos.nextMult) + unidade;
+        costText.text = infos.price.ToString() + " \uf013";
     }
 
     public void DisableButton() {
-        costTxt.text = "MAX";
+        costText.text = "MAX";
         buttonText.text = "NÍVEL MÁXIMO!";
         GetComponent<Image>().color = disabled;
         GetComponent<Button>().enabled = false;
@@ -51,9 +51,10 @@ public class UpgradeButton : MonoBehaviour {
             if (backend.prices[upgradeName].max) {
                 DisableButton();
             } else {
-                costTxt.text = backend.prices[upgradeName].price.ToString();
                 if (backend.prices[upgradeName].level >= 0) {
                     UpdateInfos();
+                } else {
+                    costText.text = backend.prices[upgradeName].price.ToString() + " \uf013";
                 }
             }
             hasRead = true;

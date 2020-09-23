@@ -106,7 +106,7 @@ public class PowerUpBackend : MonoBehaviour {
         temp.nextMult = res.nextMult;
         prices[res.powerUp] = temp;
         currentButton.UpdateInfos();
-        currentButton.costTxt.text = res.nextPrice.ToString();
+        //currentButton.costTxt.text = res.nextPrice.ToString();
         RandomCollectableSystem.Instance.AddCollectable(res.powerUp);
     }
 
@@ -129,7 +129,7 @@ public class PowerUpBackend : MonoBehaviour {
             prices[res.powerUp] = temp;
             currentButton.UpdateInfos();
             cogsText.text = res.cogs.ToString();
-            buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
+            //buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
         }
     }
 
