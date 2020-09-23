@@ -31,15 +31,19 @@ router.post('/purchasePowerUp', async (req, res) => {
         baseValue: baseValue.val(),
       },
     })
-    const nextPrice = await admin
+    const nextUpgrade = await admin
       .database()
-      .ref(`/power-ups/${powerUp}/upgrades/1/price`)
+      .ref(`/power-ups/${powerUp}/upgrades/1`)
       .once('value')
 
     return res.send({
       powerUp,
       cogs: coins.val() - price.val(),
-      nextPrice: nextPrice.exists() ? nextPrice.val() : 0,
+      nextPrice: nextUpgrade.exists() ? nextUpgrade.child('price').val() : 0,
+      prevMult: 1,
+      nextMult: nextUpgrade.exists()
+        ? nextUpgrade.child('multiplier').val()
+        : 0,
     })
   } else {
     return res
@@ -51,49 +55,52 @@ router.post('/purchasePowerUp', async (req, res) => {
 router.post('/purchaseUpgrade', async (req, res) => {
   const { uid, powerUp } = req.body
   const coins = await admin.database().ref(`/users/${uid}/coins`).once('value')
-  const powerUpLevel = await admin
+  const currentUpgrade = await admin
     .database()
-    .ref(`/users/${uid}/bought-powerUps/${powerUp}/level`)
+    .ref(`/users/${uid}/bought-powerUps/${powerUp}`)
     .once('value')
-  const nextLevel = powerUpLevel.val() + 1
+  const nextLevel = currentUpgrade.child('level').val() + 1
 
-  const price = await admin
+  const upgrade = await admin
     .database()
-    .ref(`power-ups/${powerUp}/upgrades/${nextLevel}/price`)
+    .ref(`power-ups/${powerUp}/upgrades/${nextLevel}`)
     .once('value')
 
-  if (!price.exists()) {
+  if (!upgrade.exists()) {
     return res
       .status(401)
       .send({ message: `!${powerUp}! Upgrade nível máximo` })
   }
-  if (coins.val() > price.val()) {
-    await coins.ref.parent.update({ coins: coins.val() - price.val() })
-
-    const newMultiplier = await price.ref.parent
-      .child('multiplier')
-      .once('value')
-
-    await powerUpLevel.ref.parent.update({
-      level: nextLevel,
-      multiplier: newMultiplier.val(),
+  if (coins.val() > upgrade.child('price').val()) {
+    await coins.ref.parent.update({
+      coins: coins.val() - upgrade.child('price').val(),
     })
 
-    const nextPrice = await admin
+    await currentUpgrade.ref.update({
+      level: nextLevel,
+      multiplier: upgrade.child('multiplier').val(),
+    })
+
+    const nextUpgrade = await admin
       .database()
-      .ref(`/power-ups/${powerUp}/upgrades/${nextLevel + 1}/price`)
+      .ref(`/power-ups/${powerUp}/upgrades/${nextLevel + 1}`)
       .once('value')
-    if (nextPrice.exists()) {
+
+    if (nextUpgrade.exists()) {
       return res.send({
         powerUp,
-        cogs: coins.val() - price.val(),
-        nextPrice: nextPrice.val(),
+        cogs: coins.val() - upgrade.child('price').val(),
+        nextPrice: nextUpgrade.child('price').val(),
+        nextMult: nextUpgrade.child('multiplier').val(),
+        prevMult: currentUpgrade.child('multiplier').val(),
       })
     } else {
       return res.send({
         powerUp,
         cogs: coins.val(),
         nextPrice: -1,
+        prevMult: -1,
+        nextMult: -1,
       })
     }
   } else {
@@ -114,32 +121,51 @@ router.post('/getAllPrices', async (req, res) => {
 
   const childPromises = children.map(async (child) => {
     const name = child.key
-    const powerUpLevel = await admin
+    const powerUp = await admin
       .database()
-      .ref(`/users/${uid}/bought-powerUps/${name}/level`)
+      .ref(`/users/${uid}/bought-powerUps/${name}`)
       .once('value')
-    if (powerUpLevel.exists()) {
-      const price = await admin
+    if (powerUp.exists()) {
+      const next = await admin
         .database()
-        .ref(`/power-ups/${name}/upgrades/${powerUpLevel.val() + 1}/price`)
+        .ref(`/power-ups/${name}/upgrades/${powerUp.child('level').val() + 1}`)
         .once('value')
 
-      if (price.exists()) {
+      if (next.exists()) {
         prices.push({
           name,
-          price: price.val(),
+          price: next.child('price').val(),
           max: false,
-          level: powerUpLevel.val(),
+          level: powerUp.child('level').val(),
+          nextMult: next.child('multiplier').val(),
+          baseValue: powerUp.child('baseValue').val(),
+          prevMult: powerUp.child('multiplier').val(),
         })
       } else {
-        prices.push({ name, price: -1, max: true, level: powerUpLevel.val() })
+        prices.push({
+          name,
+          price: -1,
+          max: true,
+          level: powerUp.child('level').val(),
+          baseValue: -1,
+          prevMult: -1,
+          nextMult: -1,
+        })
       }
     } else {
-      const price = await admin
+      const infos = await admin
         .database()
-        .ref(`/power-ups/${name}/price`)
+        .ref(`/power-ups/${name}`)
         .once('value')
-      prices.push({ name, price: price.val(), max: false, level: -1 })
+      prices.push({
+        name,
+        price: infos.child('price').val(),
+        max: false,
+        level: -1,
+        baseValue: infos.child('base-value').val(),
+        prevMult: -1,
+        nextMult: 1,
+      })
     }
   })
   Promise.all(childPromises)
@@ -149,7 +175,6 @@ router.post('/getAllPrices', async (req, res) => {
     .catch((err) => {
       return res.status(500).send({ message: err })
     })
-    
 })
 
 module.exports = (app) => app.use('/powerup', router)

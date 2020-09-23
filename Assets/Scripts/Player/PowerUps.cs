@@ -98,6 +98,8 @@ public class PowerUps : MonoBehaviour {
             case "mirror":
                 mirrorDuration = upgrade.baseValue * upgrade.multiplier;
                 break;
+            case "p-button":
+                break;
             default:
                 Debug.LogError("Unknown power up: " + upgrade.upgradeName);
                 break;
