@@ -46,10 +46,7 @@ public class UserBackend : MonoBehaviour {
         GetBoughtUpgrades();
     }
     public void GetCogs() {
-
-        WWWForm form = new WWWForm();
-        form.AddField("uid", userId);
-        StartCoroutine(RequestManager.PostRequest<Cogs>("user/cogs", form, FinishGetCogs, LoadError));
+        StartCoroutine(RequestManager.GetRequest<Cogs>("user/cogs", FinishGetCogs, LoadError));
     }
 
     private void FinishGetCogs(Cogs cogs) {
@@ -61,9 +58,7 @@ public class UserBackend : MonoBehaviour {
     }
 
     private IEnumerator GetBoughtUpgradesCourotine() {
-        WWWForm form = new WWWForm();
-        form.AddField("uid", userId);
-        yield return StartCoroutine(RequestManager.PostRequest<UpgradeRoot>("user/getBoughtUpgrades", form, FinishGetBoughtUpgrades, LoadError));
+        yield return StartCoroutine(RequestManager.GetRequest<UpgradeRoot>("user/getBoughtUpgrades", FinishGetBoughtUpgrades, LoadError));
     }
 
     public void FinishGetBoughtUpgrades(UpgradeRoot root) {

@@ -34,11 +34,6 @@ public class RequestManager : MonoBehaviour {
         UnityWebRequest uwr = UnityWebRequest.Get(instance.debug ? debugUrl + uri : baseUrl + uri);
         uwr.timeout = RequestManager.instance.timeout;
 
-        /*
-        if (token != null)
-            uwr.SetRequestHeader("authorization", token);
-
-        uwr.SetRequestHeader("unity_token", unity_token);*/
         uwr.SetRequestHeader("version", version);
 
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
@@ -66,19 +61,13 @@ public class RequestManager : MonoBehaviour {
         UnityWebRequest uwr = UnityWebRequest.Post(instance.debug ? debugUrl + url : baseUrl + url, form);
         uwr.timeout = RequestManager.instance.timeout;
 
-        /*
-        if (token != null)
-            uwr.SetRequestHeader("authorization", token);
-
-        uwr.SetRequestHeader("unity_token", unity_token);*/
         uwr.SetRequestHeader("version", version);
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
-
 #if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
         uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
 #endif
 #if UNITY_WEBGL
-        uwr.SetRequestHeader("provider", "EMAIL_PASSWORD_SIGN_IN_METHOD");
+        uwr.SetRequestHeader("provider", "GOOGLE_SIGN_IN_METHOD");
 #endif
         yield return uwr.SendWebRequest();
 

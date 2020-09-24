@@ -63,7 +63,6 @@ public class PowerUpBackend : MonoBehaviour {
         LoadingCircle.instance.EnableOrDisable(true);
         beingClicked = true;
         WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
         if (prices[powerUp].level == -1) {
@@ -131,9 +130,7 @@ public class PowerUpBackend : MonoBehaviour {
     public IEnumerator GetAllPrices() {
         LoadingCircle.instance.EnableOrDisable(true);
         finishedGettingPrice = false;
-        WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
-        yield return StartCoroutine(RequestManager.PostRequest<PricesRoot>("powerup/getAllPrices", form, FinishGetAllPrices, LoadErrorPrice));
+        yield return StartCoroutine(RequestManager.GetRequest<PricesRoot>("powerup/getAllPrices", FinishGetAllPrices, LoadErrorPrice));
         LoadingCircle.instance.EnableOrDisable(false);
     }
 

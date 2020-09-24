@@ -21,7 +21,6 @@ public class ScoreBackend : MonoBehaviour {
     public void SaveScoreOnDeath() {
         Scoreboard.instance.StopScore();
         WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
         form.AddField("score", Scoreboard.instance.ScoreRounded);
         form.AddField("cogs", Scoreboard.instance.Cogs);
         StartCoroutine(RequestManager.PostRequest<ScoreResponse>("user/saveStats", form, FinishSaveScore, LoadError));
@@ -36,9 +35,7 @@ public class ScoreBackend : MonoBehaviour {
         Debug.Log(errorMessage);
     }
     public void GetHighestScore() {
-        WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
-        StartCoroutine(RequestManager.PostRequest<HighestScore>("user/cogs", form, FinishGetHighScore, LoadError));
+        StartCoroutine(RequestManager.GetRequest<HighestScore>("user/cogs", FinishGetHighScore, LoadError));
     }
 
     public void FinishGetHighScore(HighestScore highestScore) {

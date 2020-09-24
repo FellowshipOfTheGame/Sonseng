@@ -6,7 +6,8 @@ const verifyMiddleWare = require('../middleware/verifyFirebaseToken')
 router.use(verifyMiddleWare)
 
 router.post('/saveStats', async (req, res) => {
-  const { uid, score, cogs } = req.body
+  const { score, cogs } = req.body
+  const { uid } = req.user
   const user = await admin.database().ref(`/users/${uid}`).once('value')
   const scoreNumber = Number.parseInt(score)
   let highestScore = user.child('highest-score')
@@ -40,8 +41,8 @@ router.post('/saveStats', async (req, res) => {
   }
 })
 
-router.post('/getBoughtUpgrades', async (req, res) => {
-  const { uid } = req.body
+router.get('/getBoughtUpgrades', async (req, res) => {
+  const { uid } = req.user
   const boughtUps = await admin
     .database()
     .ref(`/users/${uid}/bought-powerUps`)
@@ -60,8 +61,8 @@ router.post('/getBoughtUpgrades', async (req, res) => {
   return res.send({ powerUps })
 })
 
-router.post('/highestScore', async (req, res) => {
-  const { uid } = req.body
+router.get('/highestScore', async (req, res) => {
+  const { uid } = req.user
   const highestScore = await admin
     .database()
     .ref(`/users/${uid}/highest-score`)
@@ -73,15 +74,12 @@ router.post('/highestScore', async (req, res) => {
   return res.send({ highestScore: 0 })
 })
 
-router.post('/cogs', async (req, res) => {
-  const { uid } = req.body
-  const coins = await admin
-    .database()
-    .ref(`/users/${uid}/coins`)
-    .once('value')
+router.get('/cogs', async (req, res) => {
+  const { uid } = req.user
+  const coins = await admin.database().ref(`/users/${uid}/coins`).once('value')
 
   if (coins.exists()) {
-    return res.send({ cogs:coins })
+    return res.send({ cogs: coins })
   }
   return res.send({ cogs: 0 })
 })

@@ -6,7 +6,8 @@ const verifyMiddleWare = require('../middleware/verifyFirebaseToken')
 router.use(verifyMiddleWare)
 
 router.post('/purchasePowerUp', async (req, res) => {
-  const { uid, powerUp } = req.body
+  const { powerUp } = req.body
+  const { uid } = req.user
   const bought = await admin
     .database()
     .ref(`/users/${uid}/bought-powerUps/${powerUp}`)
@@ -53,7 +54,8 @@ router.post('/purchasePowerUp', async (req, res) => {
 })
 
 router.post('/purchaseUpgrade', async (req, res) => {
-  const { uid, powerUp } = req.body
+  const { powerUp } = req.body
+  const { uid } = req.user
   const coins = await admin.database().ref(`/users/${uid}/coins`).once('value')
   const currentUpgrade = await admin
     .database()
@@ -110,8 +112,8 @@ router.post('/purchaseUpgrade', async (req, res) => {
   }
 })
 
-router.post('/getAllPrices', async (req, res) => {
-  const { uid } = req.body
+router.get('/getAllPrices', async (req, res) => {
+  const { uid } = req.user
   const powerUps = await admin.database().ref(`/power-ups/`).once('value')
   let prices = []
   let children = []
@@ -119,13 +121,17 @@ router.post('/getAllPrices', async (req, res) => {
     children.push(child)
   })
   let coins = 0
-  admin.database().ref(`/users/${uid}/coins`).once("value").then(snap=>{
-    if(snap.exists())
-      coins = snap.val()
-    return
-  }).catch(err=>{
-    return res.status(400).send({message:err})
-  })
+  admin
+    .database()
+    .ref(`/users/${uid}/coins`)
+    .once('value')
+    .then((snap) => {
+      if (snap.exists()) coins = snap.val()
+      return
+    })
+    .catch((err) => {
+      return res.status(400).send({ message: err })
+    })
   const childPromises = children.map(async (child) => {
     const name = child.key
     const powerUp = await admin
@@ -177,7 +183,7 @@ router.post('/getAllPrices', async (req, res) => {
   })
   Promise.all(childPromises)
     .then(() => {
-      return res.send({ cogs:coins, prices })
+      return res.send({ cogs: coins, prices })
     })
     .catch((err) => {
       return res.status(500).send({ message: err })
