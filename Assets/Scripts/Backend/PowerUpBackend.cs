@@ -21,6 +21,10 @@ public class PowerUpBackend : MonoBehaviour {
         public int cogs;
         public int nextPrice;
         public string powerUp;
+
+        public float prevMult;
+        public float nextMult;
+
     }
 
     [Serializable]
@@ -29,6 +33,9 @@ public class PowerUpBackend : MonoBehaviour {
         public int price;
         public bool max;
         public int level;
+        public float baseValue;
+        public float prevMult;
+        public float nextMult;
 
     }
 
@@ -87,7 +94,6 @@ public class PowerUpBackend : MonoBehaviour {
     public void FinishPurchasePowerUp(PurchaseResponse res) {
         UpgradeButton currentButton = buttonClicked.GetComponent<UpgradeButton>();
         UserBackend.instance.GetBoughtUpgrades();
-        currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
         if (Scoreboard.instance != null)
             Scoreboard.instance.UpdateCogsText(res.cogs);
@@ -96,15 +102,17 @@ public class PowerUpBackend : MonoBehaviour {
         PriceResponse temp = prices[res.powerUp];
         temp.price = res.nextPrice;
         temp.level++;
+        temp.prevMult = res.prevMult;
+        temp.nextMult = res.nextMult;
         prices[res.powerUp] = temp;
-        currentButton.costTxt.text = res.nextPrice.ToString();
+        currentButton.UpdateInfos();
+        //currentButton.costTxt.text = res.nextPrice.ToString();
         RandomCollectableSystem.Instance.AddCollectable(res.powerUp);
     }
 
     public void FinishPurchaseUpgrade(PurchaseResponse res) {
         UpgradeButton currentButton = buttonClicked.GetComponent<UpgradeButton>();
         UserBackend.instance.GetBoughtUpgrades();
-        currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
         if (Scoreboard.instance != null)
             Scoreboard.instance.UpdateCogsText(res.cogs);
@@ -116,9 +124,12 @@ public class PowerUpBackend : MonoBehaviour {
         } else {
             temp.price = res.nextPrice;
             temp.level++;
+            temp.prevMult = res.prevMult;
+            temp.nextMult = res.nextMult;
             prices[res.powerUp] = temp;
+            currentButton.UpdateInfos();
             cogsText.text = res.cogs.ToString();
-            buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
+            //buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
         }
     }
 

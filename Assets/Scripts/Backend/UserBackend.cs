@@ -79,34 +79,4 @@ public class UserBackend : MonoBehaviour {
         Debug.LogError(errorMessage);
     }
 
-    /*public void GetBoughtUpgrades() {
-        boughtUpgrades = new Dictionary<string, Upgrade>();
-        reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
-            if (task.IsCompleted) {
-                DataSnapshot data = task.Result;
-                var upgrades = data.Value as Dictionary<string, object>;
-                foreach (var upgrade in upgrades) {
-                    // print("Grande: "+upgrade.Key);
-                    Upgrade up = new Upgrade();
-                    up.upgradeName = upgrade.Key;
-                    var infos = upgrade.Value as Dictionary<string, object>;
-                    foreach (var info in infos) {
-                        if (info.Key == "level") {
-                            up.level = int.Parse(info.Value.ToString());
-                        } else if (info.Key == "multiplier") {
-                            up.multiplier = float.Parse(info.Value.ToString());
-                        } else {
-                            up.baseValue = float.Parse(info.Value.ToString());
-                        }
-                    }
-                    // print("UP: " + up.upgradeName);
-                    boughtUpgrades.Add(up.upgradeName, up);
-                    RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
-                }
-            } else if (task.IsFaulted) {
-                Debug.Log(task.Exception);
-            }
-        });
-    }
-    */
 }
