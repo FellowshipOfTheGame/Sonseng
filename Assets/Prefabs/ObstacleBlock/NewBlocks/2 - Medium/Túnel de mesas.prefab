@@ -1987,6 +1987,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
+      propertyPath: obstacles.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
+        type: 3}
       propertyPath: obstacles.Array.data[0]
       value: 
       objectReference: {fileID: 2687410397396748236}
@@ -2079,7 +2084,7 @@ PrefabInstance:
         type: 3}
       propertyPath: obstacles.Array.data[18]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2888092011832881654}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[19]

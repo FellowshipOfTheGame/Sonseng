@@ -575,6 +575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeToSpeedManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8522019121615264804, guid: a27cff37badf8344ea355af4e7263944,
+        type: 3}
+      propertyPath: TimeForMaxSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8522019121615264805, guid: a27cff37badf8344ea355af4e7263944,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -959,51 +964,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomCollectableSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.data[2]
-      value: 
-      objectReference: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: CoinPrefab
-      value: 
-      objectReference: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: magnetPrefab
-      value: 
-      objectReference: {fileID: 2728227575352566936, guid: 0847b21badc907643bc8d412bd5ec396,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: starPrefab
-      value: 
-      objectReference: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: shieldPrefab
-      value: 
-      objectReference: {fileID: 8267922849721307377, guid: 84058e04de5248648bad31a232a7d842,
-        type: 3}
     - target: {fileID: 7659378177619989777, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
       propertyPath: m_LocalPosition.x
