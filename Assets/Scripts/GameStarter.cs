@@ -46,7 +46,6 @@ public class GameStarter : MonoBehaviour
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
             playerCamera.transform.position = mainMenuCameraPosition.position; 
             playerCamera.transform.rotation = mainMenuCameraPosition.rotation;
-            UserBackend.instance.UpdateUserReference();
         }
         else
         {
@@ -57,7 +56,6 @@ public class GameStarter : MonoBehaviour
     public void StartRunFromMainMenu()
     {
         // gameHasStarted = true;
-        UserBackend.instance.UpdateUserReference();
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
@@ -77,7 +75,7 @@ public class GameStarter : MonoBehaviour
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
-        UserBackend.instance.UpdateUserReference();
+        UserBackend.instance.GetBoughtUpgrades();
         TimeToSpeedManager.instance.StartNewGame();
     }
     

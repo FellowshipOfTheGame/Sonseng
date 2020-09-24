@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -147,6 +147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timeout
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320786193751018198, guid: d6b67fbbd851ce44184a0516bc801e32,
+        type: 3}
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7320786193751018199, guid: d6b67fbbd851ce44184a0516bc801e32,
         type: 3}
@@ -308,6 +313,36 @@ PrefabInstance:
       propertyPath: m_textInfo.materialCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 888371430}
+    - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnSignInWeb
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -337,6 +372,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.materialCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967012312607008, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967012312607008, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967012607680180, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967012607680180, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 336967012822374322, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
@@ -450,3 +505,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae276ac5446a57736820d1161cd4a9dd, type: 3}
+--- !u!114 &888371430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 336967011569090700, guid: ae276ac5446a57736820d1161cd4a9dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 815984146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2601d8914803c34faaba3a04d57af7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

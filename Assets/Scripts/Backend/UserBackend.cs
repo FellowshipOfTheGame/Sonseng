@@ -1,18 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Firebase.Auth;
-using Firebase.Database;
-using Firebase.Unity.Editor;
-using TMPro;
 using UnityEngine;
-
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
+using Firebase.Auth;
+#endif
 public class UserBackend : MonoBehaviour {
     [HideInInspector] public static UserBackend instance;
     public int cogs;
-    private FirebaseDatabase database;
-    private DatabaseReference reference;
     public string userId;
     [Serializable]
     public struct Upgrade {
@@ -20,6 +15,11 @@ public class UserBackend : MonoBehaviour {
         public float baseValue;
         public int level;
         public float multiplier;
+    }
+
+    [Serializable]
+    public struct Cogs{
+        public int cogs;
     }
 
     [Serializable]
@@ -34,26 +34,26 @@ public class UserBackend : MonoBehaviour {
             DontDestroyOnLoad(instance);
         } else if (instance != this)
             Destroy(this.gameObject);
-#if UNITY_EDITOR
-        Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
-#endif
-        database = FirebaseDatabase.DefaultInstance;
-        reference = database.RootReference;
-    } 
- 
+
+    }
+
     public void UpdateUserReference() {
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
         userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+#endif
+
         GetCogs();
         GetBoughtUpgrades();
     }
     public void GetCogs() {
-        reference.Child($"/users/{userId}/coins").GetValueAsync().ContinueWith(task => {
-            if (task.IsCompleted) {
-                DataSnapshot data = task.Result;
-                cogs = int.Parse(data.GetRawJsonValue());
-            }
-        });
 
+        WWWForm form = new WWWForm();
+        form.AddField("uid", userId);
+        StartCoroutine(RequestManager.PostRequest<Cogs>("user/cogs", form, FinishGetCogs, LoadError));
+    }
+
+    private void FinishGetCogs(Cogs cogs) {
+        instance.cogs = cogs.cogs;
     }
 
     public void GetBoughtUpgrades() {
