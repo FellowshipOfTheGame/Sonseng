@@ -575,6 +575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimeToSpeedManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8522019121615264804, guid: a27cff37badf8344ea355af4e7263944,
+        type: 3}
+      propertyPath: TimeForMaxSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8522019121615264805, guid: a27cff37badf8344ea355af4e7263944,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -959,51 +964,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RandomCollectableSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: UnlockedCollectables.Array.data[2]
-      value: 
-      objectReference: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: CoinPrefab
-      value: 
-      objectReference: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: magnetPrefab
-      value: 
-      objectReference: {fileID: 2728227575352566936, guid: 0847b21badc907643bc8d412bd5ec396,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: starPrefab
-      value: 
-      objectReference: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
-        type: 3}
-    - target: {fileID: 3103926360634886010, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
-        type: 3}
-      propertyPath: shieldPrefab
-      value: 
-      objectReference: {fileID: 8267922849721307377, guid: 84058e04de5248648bad31a232a7d842,
-        type: 3}
     - target: {fileID: 7659378177619989777, guid: ac2a7b7ef0ad4d34b96352c54b8edfb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1988,6 +1948,154 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[1].Array.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[4]
+      value: 
+      objectReference: {fileID: 3659977120637384515, guid: 4b36dbab75fe7f7498c4b08f0efa0f4c,
+        type: 3}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[5]
+      value: 
+      objectReference: {fileID: 3298446030775866278, guid: 259fec1e4def7fb40918d1f72bb747cb,
+        type: 3}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[1].Array.Array.data[2]
+      value: 
+      objectReference: {fileID: 3298446030775866278, guid: 259fec1e4def7fb40918d1f72bb747cb,
+        type: 3}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[0]
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[1]
+      value: 0.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[2]
+      value: 0.7826087
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[3]
+      value: 0.7826087
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[4]
+      value: 0.6086956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[5]
+      value: 0.7826087
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[6]
+      value: 0.95652175
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[7]
+      value: 0.6086956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[8]
+      value: 0.6956522
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[9]
+      value: 0.7826087
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[10]
+      value: 0.8695652
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[11]
+      value: 0.95652175
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[12]
+      value: 0.5652174
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[13]
+      value: 0.6086956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[14]
+      value: 0.65217394
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[15]
+      value: 0.6956522
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[16]
+      value: 0.73913044
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[17]
+      value: 0.7826087
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[18]
+      value: 0.82608694
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[19]
+      value: 0.8695652
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[20]
+      value: 0.9130435
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StageChangePercentages.Array.data[21]
+      value: 0.95652175
       objectReference: {fileID: 0}
     - target: {fileID: 3293357986557787963, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}

@@ -58,8 +58,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b287b7c9c1fe944f8a07ebc492c890c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnlockedCollectables: []
-  CoinPrefab: {fileID: 0}
-  magnetPrefab: {fileID: 0}
-  shieldPrefab: {fileID: 0}
-  starPrefab: {fileID: 0}
+  UnlockedCollectables:
+  - {fileID: 3503235576529603132, guid: e1d0881eac3fee346ab83520b166ea93, type: 3}
+  - {fileID: 3816888271694378571, guid: f69de0ba07c834b42836c71bce9eebb2, type: 3}
+  CoinPrefab: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
+    type: 3}
+  magnetPrefab: {fileID: 2728227575352566936, guid: 0847b21badc907643bc8d412bd5ec396,
+    type: 3}
+  shieldPrefab: {fileID: 8267922849721307377, guid: 84058e04de5248648bad31a232a7d842,
+    type: 3}
+  starPrefab: {fileID: 2999540044356566965, guid: ede3bebe339be0545a51bac26b6d666d,
+    type: 3}
+  coffeePrefab: {fileID: 3816888271694378571, guid: f69de0ba07c834b42836c71bce9eebb2,
+    type: 3}
+  mirrorPrefab: {fileID: 3503235576529603132, guid: e1d0881eac3fee346ab83520b166ea93,
+    type: 3}
+  pbuttonPrefab: {fileID: 1452527858152087170, guid: 8296c1d5187fa324c89d18149941026c,
+    type: 3}
+  doublePrefab: {fileID: 5157600455789986290, guid: 52a4bf8ade9ce024e8674397e4e08b88,
+    type: 3}
