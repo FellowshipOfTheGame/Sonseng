@@ -79,35 +79,31 @@ public class PowerUps : MonoBehaviour {
     }
 
     public void SetPowerUpValue(UserBackend.Upgrade upgrade) {
-        print("Upgrade " + upgrade.upgradeName + "\nBase: " + upgrade.baseValue + "\nMultiplier: " + upgrade.multiplier);
-        // foreach (var upgrade in upgrades) {
-            switch (upgrade.upgradeName) {
-                case "double":
-                    doubleScoreMultiplier = upgrade.baseValue * upgrade.multiplier;
-                    break;
-                case "invincibility":
-                    starDuration = upgrade.baseValue * upgrade.multiplier;
-                    break;
-                case "shield":
-                    shieldDuration = upgrade.baseValue * upgrade.multiplier;
-                    print("Shield duration: " + shieldDuration + " AAAAAAAAAAAAAAAA");
-                    break;
-                case "magnet":
-                    print(magnetDuration + "antes");
-                    magnetDuration = upgrade.baseValue * upgrade.multiplier;
-                    print(magnetDuration + "depois");
-                    break;
-                case "coffee":
-                    inkDuration = upgrade.baseValue * upgrade.multiplier;
-                    break;
-                case "mirror":
-                    mirrorDuration = upgrade.baseValue * upgrade.multiplier;
-                    break;
-                default:
-                    Debug.LogError("Unknown power up: " + upgrade.upgradeName);
-                    break;
-            }
-        // }
+        switch (upgrade.upgradeName) {
+            case "double":
+                doubleScoreMultiplier = upgrade.baseValue * upgrade.multiplier;
+                break;
+            case "invincibility":
+                starDuration = upgrade.baseValue * upgrade.multiplier;
+                break;
+            case "shield":
+                shieldDuration = upgrade.baseValue * upgrade.multiplier;
+                break;
+            case "magnet":
+                magnetDuration = upgrade.baseValue * upgrade.multiplier;
+                break;
+            case "coffee":
+                inkDuration = upgrade.baseValue * upgrade.multiplier;
+                break;
+            case "mirror":
+                mirrorDuration = upgrade.baseValue * upgrade.multiplier;
+                break;
+            case "p-button":
+                break;
+            default:
+                Debug.LogError("Unknown power up: " + upgrade.upgradeName);
+                break;
+        }
     }
 
     private void Update() {
@@ -128,6 +124,7 @@ public class PowerUps : MonoBehaviour {
 
             if (timeRemaining <= 0f) {
                 powerUpUI.SetActive(false);
+                sfxPlayer.PowerUpEnd();
                 powerUpActive = false;
             }
         }

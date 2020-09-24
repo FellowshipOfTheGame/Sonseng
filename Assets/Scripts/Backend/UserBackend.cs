@@ -1,18 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Firebase.Auth;
-using Firebase.Database;
-using Firebase.Unity.Editor;
-using TMPro;
 using UnityEngine;
-
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
+using Firebase.Auth;
+#endif
 public class UserBackend : MonoBehaviour {
     [HideInInspector] public static UserBackend instance;
     public int cogs;
-    private FirebaseDatabase database;
-    private DatabaseReference reference;
     public string userId;
     [Serializable]
     public struct Upgrade {
@@ -20,6 +15,11 @@ public class UserBackend : MonoBehaviour {
         public float baseValue;
         public int level;
         public float multiplier;
+    }
+
+    [Serializable]
+    public struct Cogs{
+        public int cogs;
     }
 
     [Serializable]
@@ -34,26 +34,23 @@ public class UserBackend : MonoBehaviour {
             DontDestroyOnLoad(instance);
         } else if (instance != this)
             Destroy(this.gameObject);
-#if UNITY_EDITOR
-        Firebase.FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://sonseng2020-1586957105557.firebaseio.com/");
-#endif
-        database = FirebaseDatabase.DefaultInstance;
-        reference = database.RootReference;
-    } 
- 
+
+    }
+
     public void UpdateUserReference() {
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
         userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
+#endif
+
         GetCogs();
         GetBoughtUpgrades();
     }
     public void GetCogs() {
-        reference.Child($"/users/{userId}/coins").GetValueAsync().ContinueWith(task => {
-            if (task.IsCompleted) {
-                DataSnapshot data = task.Result;
-                cogs = int.Parse(data.GetRawJsonValue());
-            }
-        });
+        StartCoroutine(RequestManager.GetRequest<Cogs>("user/cogs", FinishGetCogs, LoadError));
+    }
 
+    private void FinishGetCogs(Cogs cogs) {
+        instance.cogs = cogs.cogs;
     }
 
     public void GetBoughtUpgrades() {
@@ -61,9 +58,7 @@ public class UserBackend : MonoBehaviour {
     }
 
     private IEnumerator GetBoughtUpgradesCourotine() {
-        WWWForm form = new WWWForm();
-        form.AddField("uid", userId);
-        yield return StartCoroutine(RequestManager.PostRequest<UpgradeRoot>("user/getBoughtUpgrades", form, FinishGetBoughtUpgrades, LoadError));
+        yield return StartCoroutine(RequestManager.GetRequest<UpgradeRoot>("user/getBoughtUpgrades", FinishGetBoughtUpgrades, LoadError));
     }
 
     public void FinishGetBoughtUpgrades(UpgradeRoot root) {
@@ -79,34 +74,4 @@ public class UserBackend : MonoBehaviour {
         Debug.LogError(errorMessage);
     }
 
-    /*public void GetBoughtUpgrades() {
-        boughtUpgrades = new Dictionary<string, Upgrade>();
-        reference.Child($"/users/{userId}/bought-powerUps/").GetValueAsync().ContinueWith(task => {
-            if (task.IsCompleted) {
-                DataSnapshot data = task.Result;
-                var upgrades = data.Value as Dictionary<string, object>;
-                foreach (var upgrade in upgrades) {
-                    // print("Grande: "+upgrade.Key);
-                    Upgrade up = new Upgrade();
-                    up.upgradeName = upgrade.Key;
-                    var infos = upgrade.Value as Dictionary<string, object>;
-                    foreach (var info in infos) {
-                        if (info.Key == "level") {
-                            up.level = int.Parse(info.Value.ToString());
-                        } else if (info.Key == "multiplier") {
-                            up.multiplier = float.Parse(info.Value.ToString());
-                        } else {
-                            up.baseValue = float.Parse(info.Value.ToString());
-                        }
-                    }
-                    // print("UP: " + up.upgradeName);
-                    boughtUpgrades.Add(up.upgradeName, up);
-                    RandomCollectableSystem.Instance.AddCollectable(up.upgradeName);
-                }
-            } else if (task.IsFaulted) {
-                Debug.Log(task.Exception);
-            }
-        });
-    }
-    */
 }

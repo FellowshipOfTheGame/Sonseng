@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 public class GameStarter : MonoBehaviour
 {
 
@@ -44,7 +46,6 @@ public class GameStarter : MonoBehaviour
             bufferRotation = playerCamera.transform.rotation.eulerAngles;
             playerCamera.transform.position = mainMenuCameraPosition.position; 
             playerCamera.transform.rotation = mainMenuCameraPosition.rotation;
-            UserBackend.instance.UpdateUserReference();
         }
         else
         {
@@ -55,10 +56,10 @@ public class GameStarter : MonoBehaviour
     public void StartRunFromMainMenu()
     {
         // gameHasStarted = true;
-        UserBackend.instance.UpdateUserReference();
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
+        InitializeSpawners();
         playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime).OnComplete(()=>{
             playerCamera.transform.DOMove(bufferPosition, translationTime);
             playerCamera.transform.DORotate(bufferRotation, rotationTime);
@@ -70,10 +71,11 @@ public class GameStarter : MonoBehaviour
     {
         simoes.GetComponent<Animator>().SetTrigger("Fall");
         tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
+        tiraTampa.GetComponentInParent<PlayerSoundEffects>().StartRunning();
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
-        UserBackend.instance.UpdateUserReference();
+        UserBackend.instance.GetBoughtUpgrades();
         TimeToSpeedManager.instance.StartNewGame();
     }
     

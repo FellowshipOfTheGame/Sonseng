@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float gravityModifier;
 
     [Space(5)]
-    [SerializeField] Transform groundCheck;
+    [SerializeField] Transform[] groundChecks;
     [SerializeField] float groundCheckRadius;
     private Collider[] groundCheckResults = new Collider[1];
 
@@ -141,7 +141,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         // If is falling, checks if it is reaching ground
-        if (!IsGrounded && !IsJumping && rBody.velocity.y <= 0f) {
+        if (!isJumping && rBody.velocity.y <= 0f) {
             IsGrounded = CheckGround();
         }
         
@@ -208,7 +208,9 @@ public class PlayerMovement : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     private bool CheckGround() {
-        return Physics.OverlapSphereNonAlloc(groundCheck.position, groundCheckRadius, groundCheckResults, LayerMask.GetMask("Ground")) > 0;
+        return
+            Physics.OverlapSphereNonAlloc(groundChecks[0].position, groundCheckRadius, groundCheckResults, LayerMask.GetMask("Ground")) > 0 ||
+            Physics.OverlapSphereNonAlloc(groundChecks[1].position, groundCheckRadius, groundCheckResults, LayerMask.GetMask("Ground")) > 0;
     }
 
 
@@ -340,8 +342,9 @@ public class PlayerMovement : MonoBehaviour {
         registerScore.SaveScoreOnDeath();
     }
 
-    // private void OnDrawGizmos() {
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
-    // }
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        foreach (var groundCheck in groundChecks)
+           Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+    }
 }

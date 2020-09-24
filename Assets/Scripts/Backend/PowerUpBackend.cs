@@ -1,14 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Firebase.Auth;
-using Firebase.Database;
-using Firebase.Unity.Editor;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PowerUpBackend : MonoBehaviour {
 
@@ -21,6 +15,10 @@ public class PowerUpBackend : MonoBehaviour {
         public int cogs;
         public int nextPrice;
         public string powerUp;
+
+        public float prevMult;
+        public float nextMult;
+
     }
 
     [Serializable]
@@ -29,12 +27,16 @@ public class PowerUpBackend : MonoBehaviour {
         public int price;
         public bool max;
         public int level;
+        public float baseValue;
+        public float prevMult;
+        public float nextMult;
 
     }
 
     [Serializable]
     public struct PricesRoot {
         public PriceResponse[] prices;
+        public int cogs;
     }
 
     [SerializeField] private TextMeshProUGUI cogsText;
@@ -61,7 +63,6 @@ public class PowerUpBackend : MonoBehaviour {
         LoadingCircle.instance.EnableOrDisable(true);
         beingClicked = true;
         WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
         form.AddField("powerUp", powerUp);
         buttonClicked = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
         if (prices[powerUp].level == -1) {
@@ -87,7 +88,6 @@ public class PowerUpBackend : MonoBehaviour {
     public void FinishPurchasePowerUp(PurchaseResponse res) {
         UpgradeButton currentButton = buttonClicked.GetComponent<UpgradeButton>();
         UserBackend.instance.GetBoughtUpgrades();
-        currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
         if (Scoreboard.instance != null)
             Scoreboard.instance.UpdateCogsText(res.cogs);
@@ -96,15 +96,17 @@ public class PowerUpBackend : MonoBehaviour {
         PriceResponse temp = prices[res.powerUp];
         temp.price = res.nextPrice;
         temp.level++;
+        temp.prevMult = res.prevMult;
+        temp.nextMult = res.nextMult;
         prices[res.powerUp] = temp;
-        currentButton.costTxt.text = res.nextPrice.ToString();
+        currentButton.UpdateInfos();
+        //currentButton.costTxt.text = res.nextPrice.ToString();
         RandomCollectableSystem.Instance.AddCollectable(res.powerUp);
     }
 
     public void FinishPurchaseUpgrade(PurchaseResponse res) {
         UpgradeButton currentButton = buttonClicked.GetComponent<UpgradeButton>();
         UserBackend.instance.GetBoughtUpgrades();
-        currentButton.UpdateIcon();
         UserBackend.instance.cogs = res.cogs;
         if (Scoreboard.instance != null)
             Scoreboard.instance.UpdateCogsText(res.cogs);
@@ -116,18 +118,19 @@ public class PowerUpBackend : MonoBehaviour {
         } else {
             temp.price = res.nextPrice;
             temp.level++;
+            temp.prevMult = res.prevMult;
+            temp.nextMult = res.nextMult;
             prices[res.powerUp] = temp;
+            currentButton.UpdateInfos();
             cogsText.text = res.cogs.ToString();
-            buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
+            //buttonClicked.GetComponent<UpgradeButton>().costTxt.text = res.nextPrice.ToString();
         }
     }
 
     public IEnumerator GetAllPrices() {
         LoadingCircle.instance.EnableOrDisable(true);
         finishedGettingPrice = false;
-        WWWForm form = new WWWForm();
-        form.AddField("uid", UserBackend.instance.userId);
-        yield return StartCoroutine(RequestManager.PostRequest<PricesRoot>("powerup/getAllPrices", form, FinishGetAllPrices, LoadErrorPrice));
+        yield return StartCoroutine(RequestManager.GetRequest<PricesRoot>("powerup/getAllPrices", FinishGetAllPrices, LoadErrorPrice));
         LoadingCircle.instance.EnableOrDisable(false);
     }
 
@@ -137,6 +140,8 @@ public class PowerUpBackend : MonoBehaviour {
                 prices.Add(price.name, price);
             }
         }
+        cogsText.text = root.cogs.ToString();
+        UserBackend.instance.cogs = root.cogs;
         finishedGettingPrice = true;
     }
 

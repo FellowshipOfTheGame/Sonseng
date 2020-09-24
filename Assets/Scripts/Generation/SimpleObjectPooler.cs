@@ -13,6 +13,8 @@ public class SimpleObjectPooler : MonoBehaviour
 
     public void Initialization(GameObject[] poolables)
     {
+        if (_pool != null)
+            return;
         _pool = new GameObject($"[{name}] ObjectPool");
         //_pool.transform.SetParent(transform);
         _pool.transform.position = transform.position;

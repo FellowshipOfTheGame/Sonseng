@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(SimpleObjectPooler))]
@@ -20,30 +22,8 @@ public class ObstacleSpawner : ScenarySpawner
     # endif
     }
 
-    protected override void InstantiateScenary()
+    protected override void PositionObject(GameObject scenary)
     {
-        // Don't do nothing if game is paused
-        if (TimeToSpeedManager.instance.IsGamePaused) return;
-
-        // Get random scenary from pool
-        GameObject scenary = null;
-        int tries = 0;
-        while (scenary == null)
-        {
-            if (tries >= Prefabs.Length)
-            {
-                Debug.Log($"No available object in pool of {gameObject.name}");
-                return;
-            }
-            int random_index = UnityEngine.Random.Range((int)0, (int)Prefabs.Length);
-            scenary = _pooler.GetObject(Prefabs[random_index]);
-            if (scenary == null)
-            {
-                Debug.Log($"Couldnt find object {Prefabs[random_index].name} of index {random_index} from {gameObject.name}");
-            }
-            tries++;
-        }
-
         // Update Last transform
         float distance = MinDistance + SpeedToDistanceCurve.Evaluate(TimeToSpeedManager.instance.EvaluatedSpeed) * (MaxDistance - MinDistance);
         Vector3 offset = Vector3.forward * distance;

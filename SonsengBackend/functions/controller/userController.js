@@ -6,13 +6,14 @@ const verifyMiddleWare = require('../middleware/verifyFirebaseToken')
 router.use(verifyMiddleWare)
 
 router.post('/saveStats', async (req, res) => {
-  const { uid, score, cogs } = req.body
+  const { score, cogs } = req.body
+  const { uid } = req.user
   const user = await admin.database().ref(`/users/${uid}`).once('value')
   const scoreNumber = Number.parseInt(score)
   let highestScore = user.child('highest-score')
-  if(highestScore.exists()){
+  if (highestScore.exists()) {
     highestScore = Number.parseInt(highestScore.val())
-  }else{
+  } else {
     highestScore = 0
   }
   try {
@@ -40,25 +41,46 @@ router.post('/saveStats', async (req, res) => {
   }
 })
 
-router.post('/getBoughtUpgrades', async (req, res)=>{
-  const {uid} = req.body
+router.get('/getBoughtUpgrades', async (req, res) => {
+  const { uid } = req.user
   const boughtUps = await admin
     .database()
     .ref(`/users/${uid}/bought-powerUps`)
     .once('value')
   let powerUps = []
-  if(boughtUps.exists()){
-    boughtUps.forEach(child=>{
+  if (boughtUps.exists()) {
+    boughtUps.forEach((child) => {
       powerUps.push({
-        upgradeName:child.key,
-        baseValue:child.child('baseValue').val(),
-        multiplier:child.child('multiplier').val(),
-        level:child.child('level').val()
-
+        upgradeName: child.key,
+        baseValue: child.child('baseValue').val(),
+        multiplier: child.child('multiplier').val(),
+        level: child.child('level').val(),
       })
     })
   }
-  return res.send({powerUps})
+  return res.send({ powerUps })
 })
 
+router.get('/highestScore', async (req, res) => {
+  const { uid } = req.user
+  const highestScore = await admin
+    .database()
+    .ref(`/users/${uid}/highest-score`)
+    .once('value')
+
+  if (highestScore.exists()) {
+    return res.send({ highestScore })
+  }
+  return res.send({ highestScore: 0 })
+})
+
+router.get('/cogs', async (req, res) => {
+  const { uid } = req.user
+  const coins = await admin.database().ref(`/users/${uid}/coins`).once('value')
+
+  if (coins.exists()) {
+    return res.send({ cogs: coins })
+  }
+  return res.send({ cogs: 0 })
+})
 module.exports = (app) => app.use('/user', router)

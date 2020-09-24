@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04379782, y: 0.04208436, z: 0.06921025}
-  m_Center: {x: 0.0047135684, y: 0.0071970844, z: -0.026948266}
+  m_Size: {x: 0.03575666, y: 0.037543003, z: 0.061940994}
+  m_Center: {x: 0.0052871616, y: 0.0049264105, z: -0.0305829}
 --- !u!114 &1930519904422626050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionContainer: {fileID: 1274416841416675075}
+  explosionContainer: {fileID: 6467657513709405003}
 --- !u!1001 &352713721438252511
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238,15 +238,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc1dcf3295466264a8c3f549bbe778a4, type: 3}
---- !u!1 &1274416841416675075 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3190609561253755076, guid: cc1dcf3295466264a8c3f549bbe778a4,
-    type: 3}
-  m_PrefabInstance: {fileID: 4461080553656170439}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &598378180266440939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3865545231977156396, guid: cc1dcf3295466264a8c3f549bbe778a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 4461080553656170439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6467657513709405003 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7217384666576008332, guid: cc1dcf3295466264a8c3f549bbe778a4,
     type: 3}
   m_PrefabInstance: {fileID: 4461080553656170439}
   m_PrefabAsset: {fileID: 0}

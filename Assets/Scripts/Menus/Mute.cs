@@ -1,21 +1,29 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class Mute : MonoBehaviour {
-    private bool muted = false;
-    [SerializeField] Toggle muteUI;
-    [SerializeField] TextMeshProUGUI icon;
-    private const string unMute = "\uf028";
-    private const string mute = "\uf6a9";
+using TMPro;
 
-    private void OnEnable() {
-        if (AudioListener.volume == 0f)
-            muteUI.isOn = false;
+public class Mute : MonoBehaviour {
+    [SerializeField] TextMeshProUGUI text;
+    private bool muted;
+    private bool Muted {
+        get => muted;
+        set {
+            muted = value;
+            if (muted)
+                text.text = "\uf6a9";
+            else
+                text.text = "\uf028";
+        }
     }
 
-    public void MuteGame() {
-        muted = !muted;
-        icon.text = muted ? mute : unMute;
-        AudioListener.volume = muted ? 0f : 1f;
+    private void OnEnable()
+    {
+        Muted = AudioListener.volume == 0f;
+    }
+
+    public void MuteGame()
+    {
+        Muted = !Muted;
+        AudioListener.volume = Muted ? 0f : 1f;
     }
 }
