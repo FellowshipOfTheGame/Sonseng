@@ -65,19 +65,6 @@ public class Login : MonoBehaviour {
             }
         });
     }
-    void Update() {
-        if (isLogged && !hasLogged) {
-            playButton.SetActive(true);
-            bottomButtons.SetActive(true);
-            loginButton.SetActive(false);
-            hasLogged = true;
-        } else if (!isLogged && hasLogged) {
-            playButton.SetActive(false);
-            bottomButtons.SetActive(false);
-            loginButton.SetActive(true);
-            hasLogged = false;
-        }
-    }
 
     public void OnGuestSignIn() {
         auth.SignInAnonymouslyAsync().ContinueWith(task => {
@@ -151,6 +138,20 @@ public class Login : MonoBehaviour {
     }
 #endif
 
+    void Update() {
+        if (isLogged && !hasLogged) {
+            playButton.SetActive(true);
+            bottomButtons.SetActive(true);
+            loginButton.SetActive(false);
+            hasLogged = true;
+        } else if (!isLogged && hasLogged) {
+            playButton.SetActive(false);
+            bottomButtons.SetActive(false);
+            loginButton.SetActive(true);
+            hasLogged = false;
+        }
+    }
+
     public void OnSignInWeb() {
 #if UNITY_WEBGL
         SignInWithGoogle(gameObject.name, "GoogleSignInCallback", "GoogleSignInFallback");
@@ -163,7 +164,7 @@ public class Login : MonoBehaviour {
     public static extern void SignInWithGoogle(string objectName, string callback, string fallback);
 
     [Serializable]
-    public struct Result{
+    public struct Result {
         public string uid;
         public string token;
     }
@@ -172,8 +173,6 @@ public class Login : MonoBehaviour {
         RequestManager.token = res.token;
         UserBackend.instance.userId = res.uid;
         UserBackend.instance.UpdateUserReference();
-        loginButton.SetActive(false);
-        playButton.SetActive(true);
         isLogged = true;
     }
     void GoogleSignInFallback(string output) {
