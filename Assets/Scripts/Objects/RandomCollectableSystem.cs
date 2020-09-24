@@ -2,16 +2,14 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class RandomCollectableSystem : MonoBehaviour
-{
+public class RandomCollectableSystem : MonoBehaviour {
     public static RandomCollectableSystem Instance = null;
 
     [SerializeField] private List<GameObject> UnlockedCollectables = new List<GameObject>();
-    [SerializeField] private GameObject CoinPrefab = null, magnetPrefab, shieldPrefab, starPrefab;
+    [SerializeField] private GameObject CoinPrefab = null, magnetPrefab, shieldPrefab, starPrefab, pSwitchPrefab;
 
     // Start is called before the first frame update
-    private void Awake()
-    {
+    private void Awake() {
 #if UNITY_EDITOR
         Assert.IsNotNull(TimeToSpeedManager.instance, $"GameManager instance is null for {name}");
 #endif
@@ -26,10 +24,8 @@ public class RandomCollectableSystem : MonoBehaviour
     /// Adds new collectable to the unlocked collectables list.
     /// </summary>
     /// <param name="prefab"></param>
-    public void AddCollectable(string powerUp)
-    {
-        switch (powerUp)
-        {
+    public void AddCollectable(string powerUp) {
+        switch (powerUp) {
             case "magnet":
                 if (!UnlockedCollectables.Contains(magnetPrefab))
                     UnlockedCollectables.Add(magnetPrefab);
@@ -42,6 +38,10 @@ public class RandomCollectableSystem : MonoBehaviour
                 if (!UnlockedCollectables.Contains(shieldPrefab))
                     UnlockedCollectables.Add(shieldPrefab);
                 break;
+            case "p-button":
+                if (!UnlockedCollectables.Contains(pSwitchPrefab))
+                    UnlockedCollectables.Add(pSwitchPrefab);
+                break;
         }
     }
 
@@ -49,11 +49,9 @@ public class RandomCollectableSystem : MonoBehaviour
     /// Returns a random collectable prefab clone from the unlocked collectables.
     /// </summary>
     /// <returns></returns>
-    public GameObject GetRandomCollectable()
-    {
+    public GameObject GetRandomCollectable() {
         // Get random index
-        if (UnlockedCollectables.Count > 0 && !PowerUps.instance.PowerUpActive)
-        {
+        if (UnlockedCollectables.Count > 0 && !PowerUps.instance.PowerUpActive) {
 
             int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
             return Instantiate(UnlockedCollectables[index]);
@@ -65,13 +63,11 @@ public class RandomCollectableSystem : MonoBehaviour
     /// Returns a coin prefab clone.
     /// </summary>
     /// <returns></returns>
-    public GameObject GetCoin()
-    {
+    public GameObject GetCoin() {
         return Instantiate(CoinPrefab, Vector3.up * 32, Quaternion.identity); // Spawn at high altitude to not get on Magnet Detection Area on Instantiation
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         if (Instance == this)
             Instance = null;
     }

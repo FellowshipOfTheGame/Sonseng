@@ -2,26 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
 using Firebase;
 using Firebase.Auth;
 using Google;
+#endif
+#if UNITY_WEBGL
+using System.Runtime.InteropServices;
+#endif
 using UnityEngine;
 public class Login : MonoBehaviour {
 
     [SerializeField]
     private string webClientId;
 
-    private GoogleSignInConfiguration configuration;
-    private FirebaseAuth auth;
-    private FirebaseApp app;
-
     public GameObject playButton, loginButton, bottomButtons;
     // public TMPro.TextMeshProUGUI title;
 
     private bool isLogged, hasLogged;
 
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
     // Defer the configuration creation until Awake so the web Client ID
     // Can be set via the property inspector in the Editor.
+    private GoogleSignInConfiguration configuration;
+    private Firebase.Auth.FirebaseAuth auth;
+    private FirebaseApp app;
     void Start() {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             var dependencyStatus = task.Result;
@@ -34,7 +39,6 @@ public class Login : MonoBehaviour {
                 if (auth.CurrentUser != null) {
                     SetToken();
                     isLogged = true;
-                    
                 }
             } else {
                 UnityEngine.Debug.LogError(System.String.Format(
@@ -52,11 +56,12 @@ public class Login : MonoBehaviour {
 
     }
 
-    private void SetToken(){
-        auth.CurrentUser.TokenAsync(true).ContinueWith(task=>{
-            if(task.IsCompleted){
+    private void SetToken() {
+        auth.CurrentUser.TokenAsync(false).ContinueWith(task => {
+            if (task.IsCompleted) {
                 string token = task.Result;
                 RequestManager.token = token;
+                UserBackend.instance.UpdateUserReference();
             }
         });
     }
@@ -79,7 +84,7 @@ public class Login : MonoBehaviour {
             if (task.IsCompleted) {
                 isLogged = true;
                 SetToken();
-                
+
             } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
                 return;
@@ -133,7 +138,7 @@ public class Login : MonoBehaviour {
             if (task.IsCompleted) {
                 isLogged = true;
                 SetToken();
-                
+
             } else if (task.IsCanceled) {
                 Debug.LogError("Firebase Task canceled");
                 return;
@@ -144,5 +149,36 @@ public class Login : MonoBehaviour {
         });
 
     }
+#endif
+
+    public void OnSignInWeb() {
+#if UNITY_WEBGL
+        SignInWithGoogle(gameObject.name, "GoogleSignInCallback", "GoogleSignInFallback");
+#endif
+    }
+
+#if UNITY_WEBGL
+
+    [DllImport("__Internal")]
+    public static extern void SignInWithGoogle(string objectName, string callback, string fallback);
+
+    [Serializable]
+    public struct Result{
+        public string uid;
+        public string token;
+    }
+    void GoogleSignInCallback(string output) {
+        Result res = JsonUtility.FromJson<Result>(output);
+        RequestManager.token = res.token;
+        UserBackend.instance.userId = res.uid;
+        UserBackend.instance.UpdateUserReference();
+        loginButton.SetActive(false);
+        playButton.SetActive(true);
+        isLogged = true;
+    }
+    void GoogleSignInFallback(string output) {
+        Debug.Log(output);
+    }
+#endif
 
 }
