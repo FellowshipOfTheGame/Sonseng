@@ -118,7 +118,14 @@ router.post('/getAllPrices', async (req, res) => {
   powerUps.forEach((child) => {
     children.push(child)
   })
-
+  let coins = 0
+  admin.database().ref(`/users/${uid}/coins`).once("value").then(snap=>{
+    if(snap.exists())
+      coins = snap.val()
+    return
+  }).catch(err=>{
+    return res.status(400).send({message:err})
+  })
   const childPromises = children.map(async (child) => {
     const name = child.key
     const powerUp = await admin
@@ -170,7 +177,7 @@ router.post('/getAllPrices', async (req, res) => {
   })
   Promise.all(childPromises)
     .then(() => {
-      return res.send({ prices })
+      return res.send({ cogs:coins, prices })
     })
     .catch((err) => {
       return res.status(500).send({ message: err })

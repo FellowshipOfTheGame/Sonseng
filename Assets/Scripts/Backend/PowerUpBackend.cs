@@ -1,14 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Firebase.Auth;
-using Firebase.Database;
-using Firebase.Unity.Editor;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PowerUpBackend : MonoBehaviour {
 
@@ -42,6 +36,7 @@ public class PowerUpBackend : MonoBehaviour {
     [Serializable]
     public struct PricesRoot {
         public PriceResponse[] prices;
+        public int cogs;
     }
 
     [SerializeField] private TextMeshProUGUI cogsText;
@@ -148,6 +143,8 @@ public class PowerUpBackend : MonoBehaviour {
                 prices.Add(price.name, price);
             }
         }
+        cogsText.text = root.cogs.ToString();
+        UserBackend.instance.cogs = root.cogs;
         finishedGettingPrice = true;
     }
 

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
 using Firebase.Auth;
+#endif
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -40,7 +42,12 @@ public class RequestManager : MonoBehaviour {
         uwr.SetRequestHeader("version", version);
 
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
         uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
+#endif
+#if UNITY_WEBGL
+        uwr.SetRequestHeader("provider", "GOOGLE_SIGN_IN_METHOD");
+#endif
         yield return uwr.SendWebRequest();
 
         if (uwr.isNetworkError) {
@@ -65,9 +72,14 @@ public class RequestManager : MonoBehaviour {
 
         uwr.SetRequestHeader("unity_token", unity_token);*/
         uwr.SetRequestHeader("version", version);
-
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
+
+#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
         uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);
+#endif
+#if UNITY_WEBGL
+        uwr.SetRequestHeader("provider", "EMAIL_PASSWORD_SIGN_IN_METHOD");
+#endif
         yield return uwr.SendWebRequest();
 
         if (uwr.isNetworkError) {
