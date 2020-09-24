@@ -41,9 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8340562576675832219}
-  - component: {fileID: 3421318689232728482}
   - component: {fileID: 1441005563128636771}
-  - component: {fileID: 314311741860847948}
   - component: {fileID: 5850470897029042064}
   m_Layer: 8
   m_Name: oldComputerFixed
@@ -67,19 +65,6 @@ Transform:
   m_Father: {fileID: 8381937009624127450}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180.13998, z: 0}
---- !u!114 &3421318689232728482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5036423657006101384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionContainer: {fileID: 0}
 --- !u!65 &1441005563128636771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -93,19 +78,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.189312, y: 2.8339715, z: 2.4322743}
   m_Center: {x: -1.073762, y: -3.1650798, z: 1.4652227e-10}
---- !u!114 &314311741860847948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5036423657006101384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionContainer: {fileID: 5872531286317781004}
 --- !u!114 &5850470897029042064
 MonoBehaviour:
   m_ObjectHideFlags: 0
