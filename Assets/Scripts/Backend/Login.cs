@@ -57,7 +57,7 @@ public class Login : MonoBehaviour {
     }
 
     private void SetToken() {
-        auth.CurrentUser.TokenAsync(false).ContinueWith(task => {
+        auth.CurrentUser.TokenAsync(true).ContinueWith(task => {
             if (task.IsCompleted) {
                 string token = task.Result;
                 RequestManager.token = token;
@@ -158,26 +158,20 @@ public class Login : MonoBehaviour {
 #endif
     }
 
-#if UNITY_WEBGL
 
+#if UNITY_WEBGL
     [DllImport("__Internal")]
     public static extern void SignInWithGoogle(string objectName, string callback, string fallback);
+#endif
 
-    [Serializable]
-    public struct Result {
-        public string uid;
-        public string token;
-    }
-    void GoogleSignInCallback(string output) {
-        Result res = JsonUtility.FromJson<Result>(output);
-        RequestManager.token = res.token;
-        UserBackend.instance.userId = res.uid;
+    
+    void GoogleSignInCallback(string token) {
+        RequestManager.token = token;
         UserBackend.instance.UpdateUserReference();
         isLogged = true;
     }
     void GoogleSignInFallback(string output) {
         Debug.Log(output);
     }
-#endif
 
 }

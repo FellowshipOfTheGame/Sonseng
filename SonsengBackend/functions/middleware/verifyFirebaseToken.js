@@ -5,7 +5,6 @@ const admin = require('../controller/fb')
 // `Authorization: Bearer <Firebase ID Token>`.
 // when decoded successfully, the ID Token content will be added as `req.user`.
 module.exports = async (req, res, next) => {
-  console.log(req.headers)
   if (
     (!req.headers.authorization ||
       !req.headers.authorization.startsWith('Bearer ')) &&
@@ -26,9 +25,14 @@ module.exports = async (req, res, next) => {
     return res.status(403).send({ message: 'Unauthorized' })
   }
   const version = req.headers.version
-  const latestVersion = await admin.database().ref('latestVersion').once('value')
-  if(Number.parseFloat(version) !== Number.parseFloat(latestVersion.val())){
-    return res.status(403).send({message:'Atualize seu jogo para continuar jogando!'})
+  const latestVersion = await admin
+    .database()
+    .ref('latestVersion')
+    .once('value')
+  if (Number.parseFloat(version) !== Number.parseFloat(latestVersion.val())) {
+    return res
+      .status(403)
+      .send({ message: 'Atualize seu jogo para continuar jogando!' })
   }
 
   let idToken

@@ -33,9 +33,7 @@ public class RequestManager : MonoBehaviour {
     public static IEnumerator GetRequest<T>(string uri, OnObjectReturn<T> callback, OnError errorCallback) {
         UnityWebRequest uwr = UnityWebRequest.Get(instance.debug ? debugUrl + uri : baseUrl + uri);
         uwr.timeout = RequestManager.instance.timeout;
-
         uwr.SetRequestHeader("version", version);
-
         uwr.SetRequestHeader("Authorization", "Bearer " + token);
 #if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
         uwr.SetRequestHeader("provider", FirebaseAuth.DefaultInstance.CurrentUser.ProviderId);

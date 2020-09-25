@@ -8,7 +8,6 @@ using Firebase.Auth;
 public class UserBackend : MonoBehaviour {
     [HideInInspector] public static UserBackend instance;
     public int cogs;
-    public string userId;
     [Serializable]
     public struct Upgrade {
         public string upgradeName;
@@ -38,10 +37,6 @@ public class UserBackend : MonoBehaviour {
     }
 
     public void UpdateUserReference() {
-#if UNITY_ANDROID || UNITY_IOS || UNITY_EDITOR
-        userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-#endif
-
         GetCogs();
         GetBoughtUpgrades();
     }
