@@ -17,6 +17,7 @@ public class InGameMenu : MonoBehaviour {
     [SerializeField] TMPro.TextMeshProUGUI pauseScoreText;
 
     [SerializeField] Scoreboard scoreboard;
+    [SerializeField] GameObject translucid;
     
     private void Awake()
     {
@@ -61,7 +62,9 @@ public class InGameMenu : MonoBehaviour {
                 pauseMenu.SetActive(true);
                 header.SetActive(false);
                 mixer.SetFloat("masterVolume", -pauseVolumeReduction);
+                translucid.SetActive(true);
             } else {
+                translucid.SetActive(false);
                 TimeToSpeedManager.instance.ResumeGame();
                 pauseMenu.SetActive(false);
                 header.SetActive(true);

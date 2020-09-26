@@ -370,12 +370,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5850857664857317751}
   - {fileID: 8407474513704911772}
   - {fileID: 1888083941287810121}
   - {fileID: 4851801263098369298}
   - {fileID: 6737311151565116755}
   - {fileID: 11979281982197216}
+  - {fileID: 5850857664857317751}
   - {fileID: 2437313538933107886}
   m_Father: {fileID: 975316191707222794}
   m_RootOrder: 0
@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -1168,7 +1168,7 @@ PrefabInstance:
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -2204,12 +2204,27 @@ PrefabInstance:
     - target: {fileID: 4080676904847707155, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_text
-      value: CHIP
+      value: PORTA NOT
       objectReference: {fileID: 0}
     - target: {fileID: 4080676904847707155, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 4
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080676904847707155, guid: 2c7ffb390848cd230851c740756f9024,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080676904847707155, guid: 2c7ffb390848cd230851c740756f9024,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4080676904847707155, guid: 2c7ffb390848cd230851c740756f9024,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28.55
       objectReference: {fileID: 0}
     - target: {fileID: 4348172925726613162, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -2871,7 +2886,7 @@ PrefabInstance:
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -3584,7 +3599,7 @@ PrefabInstance:
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -4171,6 +4186,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7ffb390848cd230851c740756f9024, type: 3}
+--- !u!224 &5850857664857317751 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
+    type: 3}
+  m_PrefabInstance: {fileID: 6154464326481662591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9052053409226164191 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2951641369175315872, guid: 2c7ffb390848cd230851c740756f9024,
@@ -4183,12 +4204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5850857664857317751 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
-    type: 3}
-  m_PrefabInstance: {fileID: 6154464326481662591}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6423501366183913051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4234,7 +4249,7 @@ PrefabInstance:
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -4319,7 +4334,7 @@ PrefabInstance:
     - target: {fileID: 1010094860791136267, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: description
-      value: TRANSFORMA TODOS OS OBSTACULOS EM ENGRENAGENS
+      value: "DESTR\xD3I TODOS OBST\xC1CULOS COM CHANCE DE TRANSFORM\xC1-LOS EM ENGRENAGENS"
       objectReference: {fileID: 0}
     - target: {fileID: 1010094860791136267, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -4962,7 +4977,7 @@ PrefabInstance:
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}

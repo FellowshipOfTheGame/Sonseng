@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8705406964094423752}
   - component: {fileID: 8705406964094423755}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: VFX-PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4768,7 +4768,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5c666159380a4e74dbc9d3882847aafc, type: 2}
-  - {fileID: 2100000, guid: 5c666159380a4e74dbc9d3882847aafc, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
