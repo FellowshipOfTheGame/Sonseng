@@ -13,15 +13,13 @@ public class Obstacle : DestructableObject {
     }
     
     public override void Destroy() {
-        // TODO add any effects here
         explosionContainer.Play(true);
         this.transform.gameObject.SetActive(false);
     }
 
-    public override void TransformIntoCoin() {
-        // TODO add any effects here
-        // TODO use object pooling
-        Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
+    public override void TransformIntoCoin(float probability) {
+        if (Random.Range(0f, 1f) <= probability) 
+            Instantiate(PowerUps.instance.coinPrefab, this.transform.position, Quaternion.identity);
         Destroy();
     }
 

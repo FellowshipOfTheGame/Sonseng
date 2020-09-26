@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class PowerUps : MonoBehaviour {
     public static PowerUps instance;
-    public event Action OnPSwtichActivated;
+    public delegate void PSwitchEventHandler(float probability);
+    public event PSwitchEventHandler OnPSwtichActivated;
     public event Action OnPowerPicked;
 
     [Tooltip("Coin prefab in which obstacles will be transformed when p-switch is activated")]
@@ -63,6 +64,9 @@ public class PowerUps : MonoBehaviour {
     [SerializeField] Animator ink;
     [SerializeField] float inkDuration;
 
+    [Space(5)]
+    [SerializeField] float probabilityOfTranformingIntoCoin;
+
     public bool PowerUpActive => powerUpActive;
     public bool Mirror => mirror;
     public bool Magnet => magnet;
@@ -102,6 +106,7 @@ public class PowerUps : MonoBehaviour {
                 mirrorDuration = upgrade.baseValue * upgrade.multiplier;
                 break;
             case "p-button":
+                probabilityOfTranformingIntoCoin = upgrade.baseValue * upgrade.multiplier;
                 break;
             default:
                 Debug.LogError("Unknown power up: " + upgrade.upgradeName);
@@ -308,7 +313,7 @@ public class PowerUps : MonoBehaviour {
 
     // P-Switch
     private void PSwitchActivate() {
-        OnPSwtichActivated?.Invoke();
+        OnPSwtichActivated?.Invoke(probabilityOfTranformingIntoCoin);
     }
 
     // DoubleScore
