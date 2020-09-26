@@ -11,7 +11,8 @@ public class PlayerSoundEffects : MonoBehaviour
     [SerializeField] AudioClip jumpStart, wheelSpinLoop, jumpEnd;
     [SerializeField] AudioClip duck;
     [SerializeField] AudioClip runLoop;
-    [SerializeField] AudioClip crash, lidOpen, electricalFailure, fireLoop;
+    [SerializeField] AudioClip crash, lidOpen, electricalFailure, electricalPop, fireLoop;
+    [SerializeField] float startElectricalFailureVolumeScale = 0.5f;
 
     [Header("Coins and PowerUps")]
     [SerializeField] AudioSource _audioCoins;
@@ -33,6 +34,7 @@ public class PlayerSoundEffects : MonoBehaviour
     {
         _audioLoops.clip = runLoop;
         _audioLoops.Play();
+        ElectricalFailure();
     }
 
     public void ChangeLaneStart()
@@ -60,6 +62,9 @@ public class PlayerSoundEffects : MonoBehaviour
         _audioLoops.Stop();
         _audioSFX.PlayOneShot(crash);
         _audioSFX.PlayOneShot(lidOpen);
+        _audioSFX.PlayOneShot(electricalFailure);
+        _audioLoops.clip = fireLoop;
+        _audioLoops.Play();
     }
 
     public void JumpStart()
@@ -116,5 +121,11 @@ public class PlayerSoundEffects : MonoBehaviour
     private void OnDisable()
     {
         PowerUps.instance.OnPowerPicked -= PickUpPowerUp;
+    }
+
+    public void ElectricalFailure()
+    {
+        _audioSFX.PlayOneShot(electricalFailure, startElectricalFailureVolumeScale);
+        _audioSFX.PlayOneShot(electricalPop, startElectricalFailureVolumeScale);
     }
 }

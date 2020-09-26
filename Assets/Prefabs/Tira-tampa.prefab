@@ -34860,6 +34860,7 @@ MonoBehaviour:
   doubleScoreLogo: {fileID: 21300000, guid: e98420d2c25912d1bb7318c8e3c078a2, type: 3}
   ink: {fileID: 0}
   inkDuration: 5
+  probabilityOfTranformingIntoCoin: 0
 --- !u!114 &5773927840210352210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34903,7 +34904,9 @@ MonoBehaviour:
   crash: {fileID: 8300000, guid: c698c4dfbfe09594d9fe3c19aa907b98, type: 3}
   lidOpen: {fileID: 8300000, guid: 61680f237bf6654429b333bbd0409a93, type: 3}
   electricalFailure: {fileID: 8300000, guid: 56c1294888fbf9a458211bde666c52ed, type: 3}
+  electricalPop: {fileID: 8300000, guid: 280c92d828b4eec459cf6f151e31e3f9, type: 3}
   fireLoop: {fileID: 8300000, guid: b0d453e66e9a33147aa24ee3ca2a81f0, type: 3}
+  startElectricalFailureVolumeScale: 0.1
   _audioCoins: {fileID: 5396864734321985160}
   _audioPowerUpSFX: {fileID: 9195906496542671887}
   _audioPowerUpLoop: {fileID: 1048926749667428375}
