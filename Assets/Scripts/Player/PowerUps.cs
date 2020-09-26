@@ -303,6 +303,7 @@ public class PowerUps : MonoBehaviour {
 
     public void ShieldDeactivate() {
         shield = false;
+        powerUpUI.SetActive(false);
     }
 
     // P-Switch
