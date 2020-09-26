@@ -49,7 +49,8 @@ public class GameStarter : MonoBehaviour
         }
         else
         {
-           StartRun();
+            TriggerInitialEffects();
+            StartRun();
         }
     }
 
@@ -59,19 +60,22 @@ public class GameStarter : MonoBehaviour
         
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         InitializeSpawners();
-        playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime).OnComplete(()=>{
-            playerCamera.transform.DOMove(bufferPosition, translationTime);
-            playerCamera.transform.DORotate(bufferRotation, rotationTime);
-            StartRun();
+        playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime/2).OnComplete(()=>{
+            TriggerInitialEffects();
+            playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime/2).OnComplete(()=>{
+                playerCamera.transform.DOMove(bufferPosition, translationTime).OnComplete(()=>{
+                    tiraTampa.GetComponent<PlayerMovement>().enabled = true;
+                });
+                playerCamera.transform.DORotate(bufferRotation, rotationTime);
+                StartRun();
+            });
         });
+        
     }
 
     public void StartRun()
     {
-        tiraTampa.GetComponent<PlayerVFX>().PlayExplosion();
-        simoes.GetComponent<Animator>().SetTrigger("Fall");
-        tiraTampa.GetComponentInChildren<TextureAnimation>().StartAnimation();
-        tiraTampa.GetComponent<PlayerSoundEffects>().StartRunning();
+        tiraTampa.GetComponent<PlayerMovement>().enabled = true;
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
@@ -79,6 +83,14 @@ public class GameStarter : MonoBehaviour
         TimeToSpeedManager.instance.StartNewGame();
     }
     
+
+    public void TriggerInitialEffects()
+    {
+        tiraTampa.GetComponent<PlayerVFX>().PlayExplosion();
+        simoes.GetComponent<Animator>().SetTrigger("Fall");
+        tiraTampa.GetComponentInChildren<TextureAnimation>().StartAnimation();
+        tiraTampa.GetComponent<PlayerSoundEffects>().StartRunning();
+    }
     public void InitializeSpawners()
     {
         var spawners = FindObjectsOfType<ScenarySpawner>();
