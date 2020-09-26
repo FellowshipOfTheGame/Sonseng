@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 1990aed802b817bab89a7378ba387979, type: 2}
-  m_Color: {r: 0.023529412, g: 0.38039216, b: 0.40392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -160,8 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   disabled: {r: 0.23529412, g: 0.24313726, b: 0.24705882, a: 1}
   iconTxt: {fileID: 7477243572968236223}
-  costTxt: {fileID: 0}
   buttonText: {fileID: 0}
+  costText: {fileID: 0}
   upgradeName: 
   unidade: 
   backend: {fileID: 0}
