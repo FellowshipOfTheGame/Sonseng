@@ -11,28 +11,25 @@ public class PlayerSoundEffects : MonoBehaviour
     [SerializeField] AudioClip jumpStart, wheelSpinLoop, jumpEnd;
     [SerializeField] AudioClip duck;
     [SerializeField] AudioClip runLoop;
-    [SerializeField] AudioClip crash, lidOpen, electricalFailure, fireLoop;
+    [SerializeField] AudioClip crash, lidOpen, electricalFailure, electricalPop, fireLoop;
+    [SerializeField] float startElectricalFailureVolumeScale = 0.5f;
 
     [Header("Coins and PowerUps")]
     [SerializeField] AudioSource _audioCoins;
     [SerializeField] AudioSource _audioPowerUpSFX;
     [SerializeField] AudioSource _audioPowerUpLoop;
-    [SerializeField] AudioClip coin, powerUp, powerUpEnd;
+    [SerializeField] AudioClip coin, powerUp, debuff, powerUpEnd;
     [SerializeField] float pitchAddedPerCoinChain;
     [SerializeField] float timeToResetCoinChain;
     
 
     private bool isDead;
 
-    private void OnEnable()
-    {
-        PowerUps.instance.OnPowerPicked += PickUpPowerUp;
-    }
-
     public void StartRunning()
     {
         _audioLoops.clip = runLoop;
         _audioLoops.Play();
+        ElectricalFailure();
     }
 
     public void ChangeLaneStart()
@@ -60,6 +57,9 @@ public class PlayerSoundEffects : MonoBehaviour
         _audioLoops.Stop();
         _audioSFX.PlayOneShot(crash);
         _audioSFX.PlayOneShot(lidOpen);
+        _audioSFX.PlayOneShot(electricalFailure);
+        _audioLoops.clip = fireLoop;
+        _audioLoops.Play();
     }
 
     public void JumpStart()
@@ -100,10 +100,15 @@ public class PlayerSoundEffects : MonoBehaviour
         _audioCoins.pitch = 1f;
     }
 
-    public void PickUpPowerUp()
+    public void PickUpPowerUp(bool hasDuration = true, bool isDebuff = false)
     {
-        _audioPowerUpSFX.PlayOneShot(powerUp);
-        if(!_audioPowerUpLoop.isPlaying)
+        if(!isDebuff)
+            _audioPowerUpSFX.PlayOneShot(powerUp);
+        else
+            _audioPowerUpSFX.PlayOneShot(debuff);
+
+
+        if(!_audioPowerUpLoop.isPlaying && hasDuration)
             _audioPowerUpLoop.Play();
     }
 
@@ -113,8 +118,9 @@ public class PlayerSoundEffects : MonoBehaviour
         _audioPowerUpLoop.Stop();
     }
 
-    private void OnDisable()
+    public void ElectricalFailure()
     {
-        PowerUps.instance.OnPowerPicked -= PickUpPowerUp;
+        _audioSFX.PlayOneShot(electricalFailure, startElectricalFailureVolumeScale);
+        _audioSFX.PlayOneShot(electricalPop, startElectricalFailureVolumeScale);
     }
 }

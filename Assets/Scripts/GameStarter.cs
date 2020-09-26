@@ -51,6 +51,7 @@ public class GameStarter : MonoBehaviour
         {
             TriggerInitialEffects();
             StartRun();
+            tiraTampa.GetComponent<PlayerMovement>().enabled = true;
         }
     }
 
@@ -75,7 +76,6 @@ public class GameStarter : MonoBehaviour
 
     public void StartRun()
     {
-        tiraTampa.GetComponent<PlayerMovement>().enabled = true;
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
@@ -97,8 +97,4 @@ public class GameStarter : MonoBehaviour
         foreach (var s in spawners)
             s.Initialize();
     }
-
-
-
-  
 }
