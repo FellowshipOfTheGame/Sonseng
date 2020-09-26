@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class TabGroup : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class TabGroup : MonoBehaviour {
 
     public List<GameObject> objectsToSwap;
     public TabButton selectedTab;
+
+    public UnityEvent OnTabSelectedAction;
 
     public void Subscribe(TabButton button) {
         if (tabButtons == null) {
@@ -29,6 +32,7 @@ public class TabGroup : MonoBehaviour {
     }
 
     public void OnTabSelected(TabButton button) {
+        OnTabSelectedAction.Invoke();
         selectedTab = button;
         ResetTabs();
         button.background.color = tabActive;
