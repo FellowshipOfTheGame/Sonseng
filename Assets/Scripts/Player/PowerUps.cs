@@ -162,7 +162,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(MirrorDeactivate), mirrorDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
-                sfxPlayer.PickUpPowerUp();
+                sfxPlayer.PickUpPowerUp(isDebuff: true);
                 break;
 
             case "Magnet":
@@ -196,7 +196,7 @@ public class PowerUps : MonoBehaviour {
                 PSwitchActivate();
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
-                sfxPlayer.PickUpPowerUp();
+                sfxPlayer.PickUpPowerUp(false);
                 break;
 
             case "Ink":
@@ -205,7 +205,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(InkDeactivate), inkDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
-                sfxPlayer.PickUpPowerUp();
+                sfxPlayer.PickUpPowerUp(false, true);
                 break;
 
             case "DoubleScore":

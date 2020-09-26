@@ -18,17 +18,12 @@ public class PlayerSoundEffects : MonoBehaviour
     [SerializeField] AudioSource _audioCoins;
     [SerializeField] AudioSource _audioPowerUpSFX;
     [SerializeField] AudioSource _audioPowerUpLoop;
-    [SerializeField] AudioClip coin, powerUp, powerUpEnd;
+    [SerializeField] AudioClip coin, powerUp, debuff, powerUpEnd;
     [SerializeField] float pitchAddedPerCoinChain;
     [SerializeField] float timeToResetCoinChain;
     
 
     private bool isDead;
-
-    private void OnEnable()
-    {
-        PowerUps.instance.OnPowerPicked += PickUpPowerUp;
-    }
 
     public void StartRunning()
     {
@@ -105,10 +100,15 @@ public class PlayerSoundEffects : MonoBehaviour
         _audioCoins.pitch = 1f;
     }
 
-    public void PickUpPowerUp()
+    public void PickUpPowerUp(bool hasDuration = true, bool isDebuff = false)
     {
-        _audioPowerUpSFX.PlayOneShot(powerUp);
-        if(!_audioPowerUpLoop.isPlaying)
+        if(!isDebuff)
+            _audioPowerUpSFX.PlayOneShot(powerUp);
+        else
+            _audioPowerUpSFX.PlayOneShot(debuff);
+
+
+        if(!_audioPowerUpLoop.isPlaying && hasDuration)
             _audioPowerUpLoop.Play();
     }
 
@@ -116,11 +116,6 @@ public class PlayerSoundEffects : MonoBehaviour
     {
         _audioPowerUpSFX.PlayOneShot(powerUpEnd);
         _audioPowerUpLoop.Stop();
-    }
-
-    private void OnDisable()
-    {
-        PowerUps.instance.OnPowerPicked -= PickUpPowerUp;
     }
 
     public void ElectricalFailure()
