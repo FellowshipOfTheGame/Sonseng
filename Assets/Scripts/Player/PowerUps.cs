@@ -298,6 +298,7 @@ public class PowerUps : MonoBehaviour {
 
         powerUpActive = true;
         powerUpLogo.sprite = shieldLogo;
+        powerUpUI.SetActive(true);
     }
 
     public void ShieldDeactivate() {
@@ -317,6 +318,7 @@ public class PowerUps : MonoBehaviour {
 
         powerUpActive = true;
         powerUpLogo.sprite = doubleScoreLogo;
+        powerUpUI.SetActive(true);
         Scoreboard.instance.scoreMultiplier = doubleScoreMultiplier;
     }
 
