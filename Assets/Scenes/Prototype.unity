@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -814,6 +814,11 @@ PrefabInstance:
       propertyPath: registerScore
       value: 
       objectReference: {fileID: 57129264}
+    - target: {fileID: 5773927840210352214, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: powerUpUI
@@ -848,7 +853,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 187144141}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1867040047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 436fe29b6b243d744aac0161d80f8c33, type: 3}
   m_Name: 
@@ -1640,13 +1645,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319477717}
-  m_LocalRotation: {x: 0.11572106, y: 0.88782823, z: -0.16826986, w: 0.41237715}
-  m_LocalPosition: {x: -4.94, y: 6.19, z: 3.03}
+  m_LocalRotation: {x: 0.10404814, y: 0.9137404, z: -0.1757274, w: 0.3512441}
+  m_LocalPosition: {x: -4.94, y: 6.34, z: 3.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 905796746}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 23.218, y: 131.028, z: 4.162}
+  m_LocalEulerAnglesHint: {x: 23.218, y: 138.802, z: 4.162}
 --- !u!114 &1319477719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2504,6 +2509,125 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.size
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[7]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: 08d805dd0ab86443380b5faa7f9eeb4e,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[8]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: 23e1e6b837da64a8d93c846eeaa24539,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[9]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: 95fb3f8f7bb4d4de187498e5bb924d44,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[10]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: 2cb5181db1308982a9d5641777767877,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[11]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: 552c0f4b4f7bb1e7797c3db44d650eec,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[12]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: a590fe6fbfe41250a816087573b5f813,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[13]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[14]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[15]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[16]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[17]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[18]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[19]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[6]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f77a65d5a7b138a07a44610ce1884d16,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[20]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[21]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[22]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[23]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
+    - target: {fileID: 4727961447674882073, guid: e943b375834a89c4fb1a11781663e3e0,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[24]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: f26cbadc6992e9746a011a3f558bf94a,
+        type: 3}
     - target: {fileID: 4727961447674882079, guid: e943b375834a89c4fb1a11781663e3e0,
         type: 3}
       propertyPath: m_Name

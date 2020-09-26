@@ -1009,6 +1009,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0aad0d0f07918ecfac279487330ef88, type: 3}
+--- !u!114 &8217478017358584956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6605710581027682316, guid: e0aad0d0f07918ecfac279487330ef88,
+    type: 3}
+  m_PrefabInstance: {fileID: 3001203237954839664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3739178499653155730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1702,7 +1714,7 @@ PrefabInstance:
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.size
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
@@ -1748,7 +1760,7 @@ PrefabInstance:
         type: 3}
       propertyPath: obstacles.Array.data[8]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8367108319121617808}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[9]
@@ -1758,47 +1770,47 @@ PrefabInstance:
         type: 3}
       propertyPath: obstacles.Array.data[10]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4840454355937021036}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[11]
       value: 
-      objectReference: {fileID: 8367108319121617808}
+      objectReference: {fileID: 5044323593344022386}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[12]
       value: 
-      objectReference: {fileID: 4840454355937021036}
+      objectReference: {fileID: 1265256575845266236}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[13]
       value: 
-      objectReference: {fileID: 5044323593344022386}
+      objectReference: {fileID: 28632380087351309}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[14]
       value: 
-      objectReference: {fileID: 1265256575845266236}
+      objectReference: {fileID: 3104361603700040776}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[15]
       value: 
-      objectReference: {fileID: 28632380087351309}
+      objectReference: {fileID: 4716805115802581851}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[16]
       value: 
-      objectReference: {fileID: 3104361603700040776}
+      objectReference: {fileID: 2949310201653494362}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[17]
       value: 
-      objectReference: {fileID: 4716805115802581851}
+      objectReference: {fileID: 4744009095940668042}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[18]
       value: 
-      objectReference: {fileID: 2949310201653494362}
+      objectReference: {fileID: 8217478017358584956}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.data[19]
