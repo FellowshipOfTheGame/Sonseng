@@ -56,8 +56,7 @@ public class GameStarter : MonoBehaviour
     public void StartRunFromMainMenu()
     {
         // gameHasStarted = true;
-        tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
-        simoes.GetComponent<Animator>().SetTrigger("Fall");
+        
         SceneManager.UnloadSceneAsync(mainMenuSceneName);
         InitializeSpawners();
         playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime).OnComplete(()=>{
@@ -69,9 +68,10 @@ public class GameStarter : MonoBehaviour
 
     public void StartRun()
     {
+        tiraTampa.GetComponent<PlayerVFX>().PlayExplosion();
         simoes.GetComponent<Animator>().SetTrigger("Fall");
-        tiraTampa.GetComponent<TextureAnimation>().StartAnimation();
-        tiraTampa.GetComponentInParent<PlayerSoundEffects>().StartRunning();
+        tiraTampa.GetComponentInChildren<TextureAnimation>().StartAnimation();
+        tiraTampa.GetComponent<PlayerSoundEffects>().StartRunning();
         InitializeSpawners();
         inGameUI.SetActive(true);
         playerMovement.isInMainMenu = false;
