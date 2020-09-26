@@ -848,6 +848,11 @@ PrefabInstance:
       propertyPath: TimeForMaxSpeed
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 8522019121615264804, guid: a27cff37badf8344ea355af4e7263944,
+        type: 3}
+      propertyPath: MinSpeed
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 8522019121615264805, guid: a27cff37badf8344ea355af4e7263944,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2226,7 +2231,7 @@ PrefabInstance:
     - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: StagePrefabsArray.Array.data[0].Array.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
@@ -2248,7 +2253,7 @@ PrefabInstance:
         type: 3}
       propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[5]
       value: 
-      objectReference: {fileID: 7442190600340642195, guid: 3692c79e95388f34db8e58dc5a85320d,
+      objectReference: {fileID: 5652792379276932652, guid: 4e13df22689794df6b84d8049b383b86,
         type: 3}
     - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
