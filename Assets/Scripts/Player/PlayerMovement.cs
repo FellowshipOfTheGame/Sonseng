@@ -157,6 +157,8 @@ public class PlayerMovement : MonoBehaviour {
             rBody.velocity = new Vector3(0f, rBody.velocity.y, rBody.velocity.z);
             currentLane = NextLane;
         }
+
+        rBody.velocity = new Vector3(MoveDirection * speed, rBody.velocity.y, rBody.velocity.z);
     }
 
     /// <summary>

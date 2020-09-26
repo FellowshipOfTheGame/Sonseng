@@ -3,11 +3,15 @@ using UnityEngine;
 public class Obstacle : DestructableObject {
 
     [SerializeField] private ParticleSystem explosionContainer;
-    private void Start() {
+    private void OnEnable() {
         if(PowerUps.instance)
             PowerUps.instance.OnPSwtichActivated += TransformIntoCoin;
     }
 
+    private void OnDisable() {
+        PowerUps.instance.OnPSwtichActivated -= TransformIntoCoin;
+    }
+    
     public override void Destroy() {
         // TODO add any effects here
         explosionContainer.Play(true);
@@ -21,8 +25,4 @@ public class Obstacle : DestructableObject {
         Destroy();
     }
 
-    private void OnDisable()
-    {
-        PowerUps.instance.OnPSwtichActivated -= TransformIntoCoin;
-    }
 }

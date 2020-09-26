@@ -11,6 +11,9 @@ public class Scoreboard : MonoBehaviour {
     private float score;
     public float scoreMultiplier = 1f;
 
+    [SerializeField] Transform feedbackPos;
+    [SerializeField] GameObject bonusPointFeedback;
+
     private int cogs = 0;
     public int Cogs {
         get{ return cogs; }
@@ -66,7 +69,10 @@ public class Scoreboard : MonoBehaviour {
     /// </summary>
     /// <param name="bonusScore">Value of the bonus that will be added to score</param>
     public void AddBonus(float bonusScore) {
+        bonusScore = Mathf.Round(bonusScore);
         Score += bonusScore;
+        var feedback = Instantiate(bonusPointFeedback, feedbackPos.position, Quaternion.identity, feedbackPos);
+        feedback.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "+" + bonusScore.ToString();
     }
 
     public void ResetScore() {

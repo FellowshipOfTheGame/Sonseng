@@ -41,7 +41,10 @@ public class PowerUps : MonoBehaviour {
     [SerializeField] bool star;
     [SerializeField] float starDuration;
     [SerializeField] float starBaseBonus;
-    [SerializeField] float starBonusMultiplier;
+    [SerializeField] float starBonusAddition;
+    [SerializeField] float starBonusCooldown;
+    [SerializeField] float starBonusCap;
+    private bool canAddStarBonus = true;
     [SerializeField] Sprite starLogo;
     private float starCurrentBonus;
 
@@ -269,10 +272,23 @@ public class PowerUps : MonoBehaviour {
     /// After each block, the bonus earned gets bigger
     /// </summary>
     public void AddStarBonus() {
+        Debug.Log(canAddStarBonus);
+        if (!canAddStarBonus)
+            return;
+
+        canAddStarBonus = false;
+        Invoke(nameof(ResetStarBonus), starBonusCooldown);
+
         Scoreboard.instance.AddBonus(starCurrentBonus);
         Debug.Log("Object destroyed: " + starCurrentBonus);
-        starCurrentBonus *= starBonusMultiplier;
+        starCurrentBonus = Mathf.Clamp(starCurrentBonus + starBonusAddition, starBaseBonus, starBonusCap);
     }
+
+    private void ResetStarBonus()
+    {
+        canAddStarBonus = true;
+    }
+
 
     // Shield
     private void ShieldActivate() {
