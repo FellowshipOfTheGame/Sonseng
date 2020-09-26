@@ -427,6 +427,12 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 336967012312607008, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d083006fda85d4c5f877dce87118704f,
+        type: 2}
     - target: {fileID: 336967012312607010, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_Name
@@ -443,6 +449,12 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 336967012607680180, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ae7c09e455b750219bfb7d3abc1ffb7,
+        type: 2}
     - target: {fileID: 336967012607680182, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_Name
@@ -558,6 +570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838643812564114226, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_text
+      value: PORTA NOT
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae276ac5446a57736820d1161cd4a9dd, type: 3}
