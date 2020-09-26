@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2097,6 +2097,12 @@ PrefabInstance:
       propertyPath: StageChangePercentages.Array.data[21]
       value: 0.95652175
       objectReference: {fileID: 0}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[0].Array.Array.data[0]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: d5d8b4a57e16814f0a6f755c779f56d8,
+        type: 3}
     - target: {fileID: 3293357986557787963, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: m_Name
