@@ -541,19 +541,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1672b6083801bc469cd67c02e37b6cf, type: 3}
---- !u!1 &187144142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5773927838910251856, guid: f1672b6083801bc469cd67c02e37b6cf,
-    type: 3}
-  m_PrefabInstance: {fileID: 187144141}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &187144143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5773927840210352214, guid: f1672b6083801bc469cd67c02e37b6cf,
     type: 3}
   m_PrefabInstance: {fileID: 187144141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1867040047}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 436fe29b6b243d744aac0161d80f8c33, type: 3}
@@ -565,7 +559,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 187144141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1867040047}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2b0a9927b0e73469c0ec2a7d80cad1, type: 3}
@@ -1239,7 +1233,7 @@ MonoBehaviour:
   mainMenuSceneName: Menu
   inGameUI: {fileID: 57129269}
   playerCamera: {fileID: 1222497093}
-  tiraTampa: {fileID: 187144142}
+  tiraTampa: {fileID: 1867040047}
   simoes: {fileID: 8296172667632905672}
   mainMenuCameraPosition: {fileID: 1319477718}
   waitToMoveTime: 1
@@ -1489,6 +1483,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1867040047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 187144141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1978967564
 GameObject:
   m_ObjectHideFlags: 0
