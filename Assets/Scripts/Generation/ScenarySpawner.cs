@@ -140,7 +140,6 @@ public class ScenarySpawner : MonoBehaviour
         foreach (var p in StageChangePercentages)
         {
             //0.3 , 0.7
-            Debug.Log(p);
             if (evaluatedSpeed > p)
             {
                 stage++;
