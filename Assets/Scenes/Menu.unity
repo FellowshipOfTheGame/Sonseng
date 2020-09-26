@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -286,32 +286,54 @@ PrefabInstance:
     - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.materialCount
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb39ebd72f5d854690cba0b2ab5ba26,
+        type: 2}
+    - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3996987438090809731, guid: 0eb39ebd72f5d854690cba0b2ab5ba26,
+        type: 2}
+    - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 57.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967010770995027, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
@@ -346,32 +368,54 @@ PrefabInstance:
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.materialCount
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 0eb39ebd72f5d854690cba0b2ab5ba26,
+        type: 2}
+    - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -3996987438090809731, guid: 0eb39ebd72f5d854690cba0b2ab5ba26,
+        type: 2}
+    - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 46.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 336967012312607008, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
@@ -383,6 +427,12 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 336967012312607010, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_Name
+      value: TMP SubMeshUI [Montserrat-MediumItalic Atlas Material + Font Awesome
+        5 Free-Solid-900 SDF Atlas]
+      objectReference: {fileID: 0}
     - target: {fileID: 336967012607680180, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_Material
@@ -392,6 +442,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967012607680182, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_Name
+      value: TMP SubMeshUI [Montserrat-MediumItalic Atlas Material + Font Awesome
+        5 Brands-Regular-400 SDF Atlas]
       objectReference: {fileID: 0}
     - target: {fileID: 336967012822374322, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}

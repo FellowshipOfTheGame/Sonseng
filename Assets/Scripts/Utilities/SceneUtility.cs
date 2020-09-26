@@ -16,7 +16,6 @@ public class SceneUtility : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log(sceneName + " não está carregado");
         return false;
     }
 
