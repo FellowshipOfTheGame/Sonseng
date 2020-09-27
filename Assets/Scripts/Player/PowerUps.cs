@@ -190,8 +190,8 @@ public class PowerUps : MonoBehaviour {
 
             case "Shield":
                 ShieldActivate();
-                CancelInvoke(nameof(ShieldDeactivate));
-                Invoke(nameof(ShieldDeactivate), shieldDuration);
+                CancelInvoke(nameof(ShieldDeactivate2));
+                Invoke(nameof(ShieldDeactivate2), shieldDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
                 sfxPlayer.PickUpPowerUp();
@@ -311,6 +311,10 @@ public class PowerUps : MonoBehaviour {
         powerUpActive = true;
         powerUpLogo.sprite = shieldLogo;
         powerUpUI.SetActive(true);
+    }
+
+    public void ShieldDeactivate2() {
+        ShieldDeactivate(false);
     }
 
     public void ShieldDeactivate(bool hit = false) {
