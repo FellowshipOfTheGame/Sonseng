@@ -15,6 +15,7 @@ public class PowerUps : MonoBehaviour {
 
     [Tooltip("PlayerSoundEffects to play the pick up coin and powerup sounds")]
     [SerializeField] PlayerSoundEffects sfxPlayer;
+    [SerializeField] PlayerVFX vfxPlayer;
 
     [Space(5)]
     [SerializeField] GameObject powerUpUI;
@@ -181,6 +182,7 @@ public class PowerUps : MonoBehaviour {
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
                 sfxPlayer.PickUpPowerUp();
+                
                 break;
 
             case "Shield":
@@ -256,6 +258,7 @@ public class PowerUps : MonoBehaviour {
     // Star
     private void StarActivate() {
         if (!star) {
+            vfxPlayer.PlayBattery(true);
             starCurrentBonus = starBaseBonus;
             star = true;
 
@@ -269,6 +272,7 @@ public class PowerUps : MonoBehaviour {
     }
 
     private void StarDeactivate() {
+        vfxPlayer.PlayBattery(false);
         star = false;
     }
 
