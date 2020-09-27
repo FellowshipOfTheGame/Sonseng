@@ -314,7 +314,7 @@ public class PowerUps : MonoBehaviour {
     }
 
     public void ShieldDeactivate(bool hit = false) {
-        if (shieldInvulnerability)
+        if (hit && shieldInvulnerability)
             return;
 
         shield = false;
