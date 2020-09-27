@@ -26,7 +26,10 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Play() {
-        GameStarter.instance.StartRunFromMainMenu();
+        if(ErrorPanel.instance.isUpdated)
+            GameStarter.instance.StartRunFromMainMenu();
+        else
+            ErrorPanel.instance.SetErrorText("Atualize seu jogo para continuar jogando!");
     }
 
     public void Quit() {
