@@ -50,8 +50,14 @@ public class RequestManager : MonoBehaviour {
             Debug.Log("Received: " + uwr.downloadHandler.text);
             if (uwr.responseCode == 200) // No error
                 callback(JsonUtility.FromJson<T>(uwr.downloadHandler.text));
-            else
-                errorCallback(JsonUtility.FromJson<Message>(uwr.downloadHandler.text).message);
+            else {
+                string message = JsonUtility.FromJson<Message>(uwr.downloadHandler.text).message;
+                if (message == "Atualize seu jogo para continuar jogando!") {
+                    ErrorPanel.instance.SetErrorText(message);
+                    ErrorPanel.instance.isUpdated = false;
+                }
+                errorCallback(message);
+            }
         }
     }
 
@@ -76,8 +82,15 @@ public class RequestManager : MonoBehaviour {
             Debug.Log("Received: " + uwr.downloadHandler.text);
             if (uwr.responseCode == 200) // No error
                 callback(JsonUtility.FromJson<T>(uwr.downloadHandler.text));
-            else
-                errorCallback(JsonUtility.FromJson<Message>(uwr.downloadHandler.text).message);
+            else {
+                string message = JsonUtility.FromJson<Message>(uwr.downloadHandler.text).message;
+                if (message == "Atualize seu jogo para continuar jogando!") {
+                    ErrorPanel.instance.isUpdated = false;
+
+                    ErrorPanel.instance.SetErrorText(message);
+                }
+                errorCallback(message);
+            }
         }
     }
 }
