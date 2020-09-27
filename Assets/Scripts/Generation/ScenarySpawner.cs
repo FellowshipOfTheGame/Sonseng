@@ -48,6 +48,7 @@ public class ScenarySpawner : MonoBehaviour
     protected SimpleObjectPooler _pooler = null;
     protected Transform _lastTransform = null;
     protected Vector3 playerPosition = Vector3.zero;
+    protected int _lastIndex = 0;
 
     protected virtual void Awake()
     {
@@ -103,21 +104,22 @@ public class ScenarySpawner : MonoBehaviour
         // Get random scenary from pool
         GameObject scenary = null;
         int tries = 0;
+        int random_index = -1;
         while (scenary == null)
         {
             if (tries >= StagePrefabsArray[CurrentStage].Length)
             {
-                Debug.Log($"No available object in pool of {gameObject.name}");
+                Debug.LogError($"No available object in pool of {gameObject.name}");
                 return;
             }
-            int random_index = UnityEngine.Random.Range((int)0, (int)StagePrefabsArray[CurrentStage].Length);
-            scenary = _pooler.GetObject(StagePrefabsArray[CurrentStage][random_index]);
-            if (scenary == null)
+            random_index = UnityEngine.Random.Range((int)0, (int)StagePrefabsArray[CurrentStage].Length);
+            if(random_index != _lastIndex)
             {
-                Debug.Log($"Couldnt find {StagePrefabsArray[CurrentStage][random_index].name} of index {random_index} from {gameObject.name}");
+                scenary = _pooler.GetObject(StagePrefabsArray[CurrentStage][random_index]);
             }
             tries++;
         }
+        _lastIndex = random_index;
 
         PositionObject(scenary);
     }
