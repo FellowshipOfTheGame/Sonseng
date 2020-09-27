@@ -47,17 +47,12 @@ public class RandomCollectableSystem : MonoBehaviour {
                 if (!UnlockedCollectables.Contains(magnetPrefab))
                     UnlockedCollectables.Add(magnetPrefab);
                 break;
-            case "coffee":
-                if (!UnlockedCollectables.Contains(coffeePrefab))
-                    UnlockedCollectables.Add(coffeePrefab);
-                break;
-            case "mirror":
-                if (!UnlockedCollectables.Contains(mirrorPrefab))
-                    UnlockedCollectables.Add(mirrorPrefab);
-                break;
             case "p-button":
                 if (!UnlockedCollectables.Contains(pbuttonPrefab))
                     UnlockedCollectables.Add(pbuttonPrefab);
+                break;
+            default:
+                Debug.Log($"Trying to add {powerUp}, not available");
                 break;
         }
     }

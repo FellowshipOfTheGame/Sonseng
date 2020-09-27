@@ -16,7 +16,7 @@ public class Login : MonoBehaviour {
     [SerializeField]
     private string webClientId;
 
-    public GameObject playButton, loginButton, bottomButtons;
+    public GameObject playButton, loginButton, bottomButtons, guestLoginBtn;
     // public TMPro.TextMeshProUGUI title;
 
     private bool isLogged, hasLogged;
@@ -53,7 +53,9 @@ public class Login : MonoBehaviour {
             RequestAuthCode = true,
             RequestEmail = true
         };
-
+#if UNITY_EDITOR
+        guestLoginBtn.SetActive(true);
+#endif
     }
 
     private void SetToken() {
