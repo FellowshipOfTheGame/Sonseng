@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShardBigMat
+  m_Name: EnergyAura
   m_Shader: {fileID: -6465566751694194690, guid: d65bd332e479ca94089a6651b1e7727f,
     type: 3}
   m_ShaderKeywords: _COLORCOLOR_ON
@@ -35,15 +35,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_1D1CCEF8:
-        m_Texture: {fileID: 2800000, guid: 6747af413df1e6e479025d92c26ff9bf, type: 3}
+        m_Texture: {fileID: 2800000, guid: a9d2d6b1086085c45a665dcbc2bb2ccd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_A9881C30:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b6c8aeeb6a7e00f429860d2da93a3073, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_B37509CE:
+        m_Texture: {fileID: 2800000, guid: b6c8aeeb6a7e00f429860d2da93a3073, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6747af413df1e6e479025d92c26ff9bf, type: 3}
+        m_Texture: {fileID: 2800000, guid: b6c8aeeb6a7e00f429860d2da93a3073, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -71,11 +75,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_4C5A6F84: 0
+    - Vector1_4C5A6F84: -1
     - Vector1_5806439B: 0
     - Vector1_58DC4AF3: 0
     - Vector1_8CEC490: 5
-    - Vector1_A1E0B4A6: 0.8
+    - Vector1_A1E0B4A6: 0.44
     - Vector1_E9436488: 0
     - _AlphaClip: 0
     - _BendingAmountX: 0.00176
@@ -120,8 +124,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - Color_6BB0029B: {r: 0, g: 0, b: 0, a: 0}
-    - Color_BC5FB862: {r: 0, g: 0, b: 0, a: 0}
+    - Color_6BB0029B: {r: 1, g: 1, b: 1, a: 0}
+    - Color_BC5FB862: {r: 1, g: 1, b: 1, a: 0}
+    - Color_CCC8A29E: {r: 0.5990566, g: 0.869873, b: 1, a: 0.70980394}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
