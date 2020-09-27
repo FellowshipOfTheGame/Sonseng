@@ -146,4 +146,9 @@ public class PowerUpBackend : MonoBehaviour {
         finishedGettingPrice = true;
     }
 
+    private void OnDisable()
+    {
+        LoadingCircle.instance.EnableOrDisable(false);
+    }
+
 }
