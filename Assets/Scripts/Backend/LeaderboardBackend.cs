@@ -10,6 +10,8 @@ public class LeaderboardBackend : MonoBehaviour {
 
     [SerializeField] private ScrollRect scroll;
 
+    private bool _loaded = false;
+
     [Serializable]
     public struct Leader {
         public string name;
@@ -22,9 +24,19 @@ public class LeaderboardBackend : MonoBehaviour {
     }
 
     void Start() {
+        _loaded = false;
         LoadingCircle.instance.EnableOrDisable(true);
         StartCoroutine(RequestManager.GetRequest<LRoot>("/leaderboard/getLeaders", FinishGetLeaders, LoadError));
         scroll = GetComponent<ScrollRect>();
+    }
+
+    private void OnEnable()
+    {
+        if (!_loaded)
+        {
+            LoadingCircle.instance.EnableOrDisable(true);
+            StartCoroutine(RequestManager.GetRequest<LRoot>("/leaderboard/getLeaders", FinishGetLeaders, LoadError));
+        }
     }
 
     public void LoadError(string message) {
@@ -48,6 +60,7 @@ public class LeaderboardBackend : MonoBehaviour {
         scroll.normalizedPosition = Vector2.up;
         LoadingCircle.instance.EnableOrDisable(false);
         container.SetActive(true);
+        _loaded = true;
     }
 
     private void OnDisable()
