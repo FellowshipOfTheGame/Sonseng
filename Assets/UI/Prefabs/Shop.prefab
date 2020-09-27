@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonClicked: {fileID: 0}
-  errorPanel: {fileID: 0}
   finishedGettingPrice: 0
   cogsText: {fileID: 8645597215021209095}
 --- !u!222 &4880587439883039051
@@ -5067,7 +5066,7 @@ PrefabInstance:
     - target: {fileID: 1010094860791136267, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: description
-      value: "B\xD4NUS DE PONTUA\xC7\xC3O EM INTERVALO DE TEMPO FIXO"
+      value: DOBRE DE PONTOS EM INTERVALO DE TEMPO
       objectReference: {fileID: 0}
     - target: {fileID: 1010094860791136267, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
@@ -5082,7 +5081,7 @@ PrefabInstance:
     - target: {fileID: 1010094860791136267, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}
       propertyPath: unidade
-      value: x
+      value: s
       objectReference: {fileID: 0}
     - target: {fileID: 1520738324202946383, guid: 2c7ffb390848cd230851c740756f9024,
         type: 3}

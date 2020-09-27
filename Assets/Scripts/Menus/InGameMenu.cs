@@ -103,7 +103,7 @@ public class InGameMenu : MonoBehaviour {
     public void GoBackToMenu() {
         Time.timeScale = 1f;
         mixer.SetFloat("masterVolume", 0f);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Loading");
     }
 
 }
