@@ -55,7 +55,6 @@ public class PowerUps : MonoBehaviour {
     [SerializeField] bool shield;
     [SerializeField] float shieldDuration;
     [SerializeField] bool shieldInvulnerability;
-    [SerializeField] float shieldInvulnerabilityDuration;
     [SerializeField] Sprite shieldLogo;
 
     [Space(5)]
