@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PowerUps : MonoBehaviour {
     public static PowerUps instance;
+    private Animator animator;
     public delegate void PSwitchEventHandler(float probability);
     public event PSwitchEventHandler OnPSwtichActivated;
     public event Action OnPowerPicked;
@@ -52,6 +53,8 @@ public class PowerUps : MonoBehaviour {
     [Space(5)]
     [SerializeField] bool shield;
     [SerializeField] float shieldDuration;
+    [SerializeField] bool shieldInvulnerability;
+    [SerializeField] float shieldInvulnerabilityDuration;
     [SerializeField] Sprite shieldLogo;
 
     [Space(5)]
@@ -71,7 +74,7 @@ public class PowerUps : MonoBehaviour {
     public bool Mirror => mirror;
     public bool Magnet => magnet;
     public bool Star   => star;
-    public bool Shield => shield;
+    public bool Shield => shield || shieldInvulnerability;
 
     private void Awake() {
         // Signleton
@@ -83,6 +86,7 @@ public class PowerUps : MonoBehaviour {
 
         powerUpUI.SetActive(false);
         ink.gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     public void SetPowerUpValue(UserBackend.Upgrade upgrade) {
@@ -208,7 +212,7 @@ public class PowerUps : MonoBehaviour {
                 sfxPlayer.PickUpPowerUp(false, true);
                 break;
 
-            case "DoubleScore":
+            case "Double":
                 DoubleScoreActivate();
                 CancelInvoke(nameof(DoubleScoreDeactivate));
                 Invoke(nameof(DoubleScoreDeactivate), doubleScoreDuration);
@@ -306,10 +310,28 @@ public class PowerUps : MonoBehaviour {
         powerUpUI.SetActive(true);
     }
 
-    public void ShieldDeactivate() {
+    public void ShieldDeactivate(bool hit = false) {
+        if (shieldInvulnerability)
+            return;
+
         shield = false;
         powerUpUI.SetActive(false);
+
+        if (hit) {
+            animator.Play("Invulnerability", 1);
+            shieldInvulnerability = true;
+        }
+        else {
+            shieldInvulnerability = false;
+        }
     }
+
+    public void EndInvulnerability()
+    {
+        shieldInvulnerability = false;
+    }
+
+
 
     // P-Switch
     private void PSwitchActivate() {
