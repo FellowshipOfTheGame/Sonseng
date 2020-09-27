@@ -30,7 +30,7 @@ public class CollisionDetector : MonoBehaviour {
                 }
 
                 if (!powerUps.Star) {
-                    powerUps.ShieldDeactivate();
+                    powerUps.ShieldDeactivate(true);
                 }
             } else {
                 OnDeath?.Invoke();
