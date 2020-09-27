@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1005387642478834260, guid: bfb286b4cdca5556f83127f301588adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2320616860476594285, guid: bfb286b4cdca5556f83127f301588adc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4326107391499481686, guid: bfb286b4cdca5556f83127f301588adc,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -71,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mediumAAAA - Reverse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761390818182983537, guid: bfb286b4cdca5556f83127f301588adc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfb286b4cdca5556f83127f301588adc, type: 3}

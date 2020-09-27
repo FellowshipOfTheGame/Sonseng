@@ -26,7 +26,10 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Play() {
-        GameStarter.instance.StartRunFromMainMenu();
+        if(ErrorPanel.instance.isUpdated)
+            GameStarter.instance.StartRunFromMainMenu();
+        else
+            ErrorPanel.instance.SetErrorText("Atualize seu jogo para continuar jogando!");
     }
 
     public void Quit() {
@@ -70,5 +73,11 @@ public class MainMenu : MonoBehaviour {
     }
     public void CloseErrorPanel(){
         errorPanel.SetActive(false);
+    }
+
+    public void OpenLink(string link) {
+        if(Application.platform != RuntimePlatform.WebGLPlayer) {
+            Application.OpenURL(link);
+        }
     }
 }
