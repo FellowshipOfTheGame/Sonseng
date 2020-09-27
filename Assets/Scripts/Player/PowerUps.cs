@@ -184,7 +184,7 @@ public class PowerUps : MonoBehaviour {
                 Invoke(nameof(StarDeactivate), starDuration);
                 Destroy(other.gameObject);
                 OnPowerPicked?.Invoke();
-                sfxPlayer.PickUpPowerUp();
+                sfxPlayer.PickUpStar();
                 
                 break;
 

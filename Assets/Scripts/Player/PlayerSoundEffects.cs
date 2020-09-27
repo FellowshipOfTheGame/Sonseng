@@ -18,7 +18,7 @@ public class PlayerSoundEffects : MonoBehaviour
     [SerializeField] AudioSource _audioCoins;
     [SerializeField] AudioSource _audioPowerUpSFX;
     [SerializeField] AudioSource _audioPowerUpLoop;
-    [SerializeField] AudioClip coin, powerUp, debuff, powerUpEnd;
+    [SerializeField] AudioClip coin, powerUp, powerUpLoop, starLoop, debuff, powerUpEnd;
     [SerializeField] float pitchAddedPerCoinChain;
     [SerializeField] float timeToResetCoinChain;
     
@@ -109,7 +109,17 @@ public class PlayerSoundEffects : MonoBehaviour
 
 
         if(!_audioPowerUpLoop.isPlaying && hasDuration)
+        {
+            _audioPowerUpLoop.clip = powerUpLoop;
             _audioPowerUpLoop.Play();
+        }
+    }
+
+    public void PickUpStar()
+    {
+        _audioPowerUpSFX.PlayOneShot(powerUp);
+        _audioPowerUpLoop.clip = starLoop;
+        _audioPowerUpLoop.Play();
     }
 
     public void PowerUpEnd()
