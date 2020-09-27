@@ -81,6 +81,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &897422682366454721
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3500613948984669928}
+    m_Modifications:
+    - target: {fileID: 7860836052113905252, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_Name
+      value: 4 Coin Arch With Power Up Slow
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.113672
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.41261148
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.13882741
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99031657
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -15.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 9008317328401920169, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21afc69fd2b9c0e4c9a35c04d69f9c53, type: 3}
 --- !u!1001 &2205604802523489969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,75 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34ce9bde53f2e724abe370f618eb6064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &8880303993560133515
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3500613948984669928}
-    m_Modifications:
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.113672
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.41261148
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.13882741
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99031657
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -15.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 741577315318936803, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900001171727421998, guid: dc1de145414816b4a85f410850cf93fc,
-        type: 3}
-      propertyPath: m_Name
-      value: 4 Coin Arch With Power Up Slow
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dc1de145414816b4a85f410850cf93fc, type: 3}
 --- !u!1001 &8986961046089744751
 PrefabInstance:
   m_ObjectHideFlags: 0

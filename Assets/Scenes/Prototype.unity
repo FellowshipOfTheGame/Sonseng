@@ -278,6 +278,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -8.365
       objectReference: {fileID: 0}
+    - target: {fileID: 4883869616057443412, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883869616057443412, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883869616057443412, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4957245808775859983, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
         type: 3}
       propertyPath: m_Material
@@ -2405,6 +2420,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObstacleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896881221797267818, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032633608066259283, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 130
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626d8fa3b1cd905428dd199c1f22909c, type: 3}
