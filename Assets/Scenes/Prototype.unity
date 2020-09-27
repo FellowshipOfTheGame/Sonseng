@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -277,6 +277,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -8.365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883869616057443412, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883869616057443412, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883869616057443412, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4957245808775859983, guid: a07e3ed5e5efd3d0eabb1df7fa80fc92,
         type: 3}
@@ -770,6 +785,16 @@ PrefabInstance:
       propertyPath: ink
       value: 
       objectReference: {fileID: 57129265}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: magnet
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773927840210352219, guid: f1672b6083801bc469cd67c02e37b6cf,
+        type: 3}
+      propertyPath: magnetRadius
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5773927840210352221, guid: f1672b6083801bc469cd67c02e37b6cf,
         type: 3}
       propertyPath: m_Name
@@ -2405,6 +2430,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ObstacleManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896881221797267818, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7032633608066259283, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 130
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 626d8fa3b1cd905428dd199c1f22909c, type: 3}

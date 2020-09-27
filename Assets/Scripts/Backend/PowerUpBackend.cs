@@ -115,6 +115,7 @@ public class PowerUpBackend : MonoBehaviour {
         PriceResponse temp = prices[res.powerUp];
         if (res.nextPrice == -1) {
             currentButton.DisableButton();
+            cogsText.text = res.cogs.ToString();
         } else {
             temp.price = res.nextPrice;
             temp.level++;
