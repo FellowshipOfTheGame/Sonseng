@@ -276,6 +276,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &448219689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 336967011210418291, guid: ae276ac5446a57736820d1161cd4a9dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 815984146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &815984146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -335,6 +341,26 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 336967011210418290, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011210418290, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011210418290, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011210418290, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 336967011479291162, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -365,6 +391,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291163, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291163, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291163, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011479291163, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 336967011569090700, guid: ae276ac5446a57736820d1161cd4a9dd,
+        type: 3}
+      propertyPath: guestLoginBtn
+      value: 
+      objectReference: {fileID: 448219689}
     - target: {fileID: 336967011617438523, guid: ae276ac5446a57736820d1161cd4a9dd,
         type: 3}
       propertyPath: m_textInfo.characterCount
