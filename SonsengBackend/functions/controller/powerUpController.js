@@ -57,6 +57,7 @@ router.post('/purchaseUpgrade', async (req, res) => {
   const { powerUp } = req.body
   const { uid } = req.user
   const coins = await admin.database().ref(`/users/${uid}/coins`).once('value')
+  
   const currentUpgrade = await admin
     .database()
     .ref(`/users/${uid}/bought-powerUps/${powerUp}`)
@@ -73,11 +74,12 @@ router.post('/purchaseUpgrade', async (req, res) => {
       .status(401)
       .send({ message: `!${powerUp}! Upgrade nível máximo` })
   }
+  //Comprou
   if (coins.val() >= upgrade.child('price').val()) {
+    const newCoinValue = coins.val() - upgrade.child('price').val()
     await coins.ref.parent.update({
-      coins: coins.val() - upgrade.child('price').val(),
+      coins: newCoinValue,
     })
-
     await currentUpgrade.ref.update({
       level: nextLevel,
       multiplier: upgrade.child('multiplier').val(),
@@ -91,7 +93,7 @@ router.post('/purchaseUpgrade', async (req, res) => {
     if (nextUpgrade.exists()) {
       return res.send({
         powerUp,
-        cogs: coins.val() - upgrade.child('price').val(),
+        cogs: newCoinValue,
         nextPrice: nextUpgrade.child('price').val(),
         nextMult: nextUpgrade.child('multiplier').val(),
         prevMult: upgrade.child('multiplier').val(),
@@ -99,7 +101,7 @@ router.post('/purchaseUpgrade', async (req, res) => {
     } else {
       return res.send({
         powerUp,
-        cogs: coins.val(),
+        cogs: newCoinValue,
         nextPrice: -1,
         prevMult: -1,
         nextMult: -1,
