@@ -73,7 +73,7 @@ router.post('/purchaseUpgrade', async (req, res) => {
       .status(401)
       .send({ message: `!${powerUp}! Upgrade nível máximo` })
   }
-  if (coins.val() > upgrade.child('price').val()) {
+  if (coins.val() >= upgrade.child('price').val()) {
     await coins.ref.parent.update({
       coins: coins.val() - upgrade.child('price').val(),
     })
