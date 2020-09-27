@@ -7,7 +7,7 @@ using UnityEngine;
 public class PowerUpBackend : MonoBehaviour {
 
     private UpgradeButton upgradeButton;
-    public GameObject buttonClicked, errorPanel;
+    public GameObject buttonClicked;
     private bool beingClicked = false;
     public bool finishedGettingPrice = false;
     public Dictionary<string, PriceResponse> prices = new Dictionary<string, PriceResponse>();
@@ -81,7 +81,7 @@ public class PowerUpBackend : MonoBehaviour {
     }
     public void LoadErrorPurchase(string errorMessage) {
         if (errorMessage == "Você não tem engrenagens suficientes!") {
-            errorPanel.SetActive(true);
+            ErrorPanel.instance.SetErrorText(errorMessage);
         }
     }
 
