@@ -49,4 +49,9 @@ public class LeaderboardBackend : MonoBehaviour {
         LoadingCircle.instance.EnableOrDisable(false);
         container.SetActive(true);
     }
+
+    private void OnDisable()
+    {
+        LoadingCircle.instance.EnableOrDisable(false);
+    }
 }
