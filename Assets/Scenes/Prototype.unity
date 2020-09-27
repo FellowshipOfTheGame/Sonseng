@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2238,7 +2238,7 @@ PrefabInstance:
     - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
       propertyPath: StagePrefabsArray.Array.data[1].Array.Array.size
-      value: 25
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}
@@ -2646,6 +2646,18 @@ PrefabInstance:
       propertyPath: StagePrefabsArray.Array.data[2].Array.Array.data[35]
       value: 
       objectReference: {fileID: 3485470552301022962, guid: e2a862725e069b34197e61073e5bcabc,
+        type: 3}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[1].Array.Array.data[25]
+      value: 
+      objectReference: {fileID: 758715669789351463, guid: 04f5efc3478a604cfa6eb0ff2a43da97,
+        type: 3}
+    - target: {fileID: 3293357986557787962, guid: 626d8fa3b1cd905428dd199c1f22909c,
+        type: 3}
+      propertyPath: StagePrefabsArray.Array.data[1].Array.Array.data[26]
+      value: 
+      objectReference: {fileID: 5652792379276932652, guid: b9a320aef0ce7a6f0b8183ee76a2677d,
         type: 3}
     - target: {fileID: 3293357986557787963, guid: 626d8fa3b1cd905428dd199c1f22909c,
         type: 3}

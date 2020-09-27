@@ -71,4 +71,10 @@ public class MainMenu : MonoBehaviour {
     public void CloseErrorPanel(){
         errorPanel.SetActive(false);
     }
+
+    public void OpenLink(string link) {
+        if(Application.platform != RuntimePlatform.WebGLPlayer) {
+            Application.OpenURL(link);
+        }
+    }
 }
