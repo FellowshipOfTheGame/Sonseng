@@ -4,11 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using GG.Infrastructure.Utils.Swipe;
 
 public class GameStarter : MonoBehaviour
 {
-
-
     public static GameStarter instance = null;
     [SerializeField] private string mainMenuSceneName = null;
     [SerializeField] private GameObject inGameUI = null;
@@ -52,6 +51,7 @@ public class GameStarter : MonoBehaviour
             TriggerInitialEffects();
             StartRun();
             tiraTampa.GetComponent<PlayerMovement>().enabled = true;
+            tiraTampa.GetComponent<SwipeListener>().enabled = true;
         }
     }
 
@@ -66,6 +66,7 @@ public class GameStarter : MonoBehaviour
             playerCamera.transform.DOMove(playerCamera.transform.position, waitToMoveTime/2).OnComplete(()=>{
                 playerCamera.transform.DOMove(bufferPosition, translationTime).OnComplete(()=>{
                     tiraTampa.GetComponent<PlayerMovement>().enabled = true;
+                    tiraTampa.GetComponent<SwipeListener>().enabled = true;
                 });
                 playerCamera.transform.DORotate(bufferRotation, rotationTime);
                 StartRun();
