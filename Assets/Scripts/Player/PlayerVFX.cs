@@ -7,6 +7,7 @@ public class PlayerVFX : MonoBehaviour
     public ParticleSystem explosionContainer;
     public ParticleSystem smokeContainer;
     public ParticleSystem batteryContainer;
+    public GameObject shieldContainer;
     public void PlayExplosion()
     {
         explosionContainer.Play(true);
@@ -23,6 +24,14 @@ public class PlayerVFX : MonoBehaviour
             batteryContainer.gameObject.SetActive(true);
         else
             batteryContainer.gameObject.SetActive(false);
+    }
+
+    public void PlayShield(bool status = true)
+    {
+        if(status)
+            shieldContainer.gameObject.SetActive(true);
+        else
+            shieldContainer.gameObject.SetActive(false);
     }
 
 }
