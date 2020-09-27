@@ -8,6 +8,9 @@ public class RandomCollectableSystem : MonoBehaviour {
     [SerializeField] private List<GameObject> UnlockedCollectables = new List<GameObject>();
     [SerializeField] private GameObject CoinPrefab, magnetPrefab, shieldPrefab, starPrefab, coffeePrefab, mirrorPrefab, pbuttonPrefab, doublePrefab;
 
+    private const int powerUpCount = 5;
+    private const int debuffCount = 2;
+
     // Start is called before the first frame update
     private void Awake() {
 #if UNITY_EDITOR
@@ -44,17 +47,12 @@ public class RandomCollectableSystem : MonoBehaviour {
                 if (!UnlockedCollectables.Contains(magnetPrefab))
                     UnlockedCollectables.Add(magnetPrefab);
                 break;
-            case "coffee":
-                if (!UnlockedCollectables.Contains(coffeePrefab))
-                    UnlockedCollectables.Add(coffeePrefab);
-                break;
-            case "mirror":
-                if (!UnlockedCollectables.Contains(mirrorPrefab))
-                    UnlockedCollectables.Add(mirrorPrefab);
-                break;
             case "p-button":
                 if (!UnlockedCollectables.Contains(pbuttonPrefab))
                     UnlockedCollectables.Add(pbuttonPrefab);
+                break;
+            default:
+                Debug.Log($"Trying to add {powerUp}, not available");
                 break;
         }
     }
@@ -63,12 +61,53 @@ public class RandomCollectableSystem : MonoBehaviour {
     /// Returns a random collectable prefab clone from the unlocked collectables.
     /// </summary>
     /// <returns></returns>
-    public GameObject GetRandomCollectable() {
+    public GameObject GetRandomCollectable()
+    {
         // Get random index
-        if (UnlockedCollectables.Count > 0 && !PowerUps.instance.PowerUpActive) {
+        if (!PowerUps.instance.PowerUpActive)
+        {
+            int index = UnityEngine.Random.Range(0, powerUpCount + debuffCount + 1);
+            if (index < UnlockedCollectables.Count)
+            {
+                return Instantiate(UnlockedCollectables[index]);
+            }
+            else if(index == 5 || index == 6)
+            {
+                return GetRandomDebuff();
+            }
+            else return GetCoin();
+        }
+        return GetCoin();
+    }
 
-            int index = UnityEngine.Random.Range(0, UnlockedCollectables.Count);
-            return Instantiate(UnlockedCollectables[index]);
+    /// <summary>
+    /// Returns a random powerUp prefab clone from the unlocked collectables.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetRandomPowerUp()
+    {
+        // Get random index
+        if (!PowerUps.instance.PowerUpActive)
+        {
+            int index = UnityEngine.Random.Range(0, powerUpCount);
+            if (index < UnlockedCollectables.Count)
+                return Instantiate(UnlockedCollectables[index]);
+            else return GetCoin();
+        }
+        return GetCoin();
+    }
+
+    /// <summary>
+    /// Returns a random collectable prefab clone from the unlocked collectables.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetRandomDebuff()
+    {
+        // Get random index
+        if (!PowerUps.instance.PowerUpActive)
+        {
+            // Choose random debuff. 50% each.
+            return UnityEngine.Random.Range(0, debuffCount) == 0 ? Instantiate(coffeePrefab) : Instantiate(mirrorPrefab);
         }
         return GetCoin();
     }
@@ -77,11 +116,13 @@ public class RandomCollectableSystem : MonoBehaviour {
     /// Returns a coin prefab clone.
     /// </summary>
     /// <returns></returns>
-    public GameObject GetCoin() {
+    public GameObject GetCoin()
+    {
         return Instantiate(CoinPrefab, Vector3.up * 32, Quaternion.identity); // Spawn at high altitude to not get on Magnet Detection Area on Instantiation
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         if (Instance == this)
             Instance = null;
     }
