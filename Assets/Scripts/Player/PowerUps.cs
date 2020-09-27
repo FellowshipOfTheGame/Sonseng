@@ -307,10 +307,11 @@ public class PowerUps : MonoBehaviour {
         shield = true;
         timeRemaining = shieldDuration;
         maxTimeRemaining = timeRemaining;
-
+        vfxPlayer.PlayShield(true);
         powerUpActive = true;
         powerUpLogo.sprite = shieldLogo;
         powerUpUI.SetActive(true);
+
     }
 
     public void ShieldDeactivate(bool hit = false) {
@@ -319,7 +320,7 @@ public class PowerUps : MonoBehaviour {
 
         shield = false;
         powerUpUI.SetActive(false);
-
+        vfxPlayer.PlayShield(false);
         if (hit) {
             animator.Play("Invulnerability", 1);
             shieldInvulnerability = true;
