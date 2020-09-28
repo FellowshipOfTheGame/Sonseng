@@ -25,8 +25,6 @@ public class LeaderboardBackend : MonoBehaviour {
 
     void Start() {
         _loaded = false;
-        LoadingCircle.instance.EnableOrDisable(true);
-        StartCoroutine(RequestManager.GetRequest<LRoot>("leaderboard/getLeaders", FinishGetLeaders, LoadError));
         scroll = GetComponent<ScrollRect>();
     }
 
