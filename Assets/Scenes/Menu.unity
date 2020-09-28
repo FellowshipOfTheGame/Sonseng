@@ -2265,9 +2265,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: i
+  m_text: \uf05a
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6416065fa212f950a8aa7854612976b7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d083006fda85d4c5f877dce87118704f, type: 2}
   m_sharedMaterial: {fileID: 4374137525365056752, guid: 6416065fa212f950a8aa7854612976b7,
     type: 2}
   m_fontSharedMaterials: []
@@ -2346,7 +2346,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -2744,21 +2744,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093502039}
   m_CullTransparentMesh: 0
---- !u!114 &1236125696786324188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6755329221965449989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0657cf3658e66478cb939be3b044ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: da49e8722677212409e08c0cb18b4e47, type: 2}
-  musicSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
 --- !u!222 &6755329221125866472
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2964,7 +2949,6 @@ GameObject:
   - component: {fileID: 6755329221965449985}
   - component: {fileID: 6755329221965449984}
   - component: {fileID: 6755329221965449991}
-  - component: {fileID: 1236125696786324188}
   m_Layer: 5
   m_Name: Credits Panel
   m_TagString: Untagged

@@ -1,6 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const admin = require('./fb')
+const verifyMiddleware = require('../middleware/verifyFirebaseToken')
+
+router.use(verifyMiddleware)
 
 router.get('/getLeaders', async (req, res) => {
   let leadersArray = []
