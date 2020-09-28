@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -304,24 +304,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Abner Santos
-
-    Daniel Barretto
-
-    Daniel Froes
-
-    Gabriel Malta
-
-    Gyovana
-    Moriyama
-
-    Henrique Camillo
-
-    Leandro Satoshi
-
-    Tiago Marino Silva
-
-'
+  m_text: "Abner Santos\nDaniel Barretto\nDaniel Froes\nGyovana Moriyama\nHenrique
+    Camillo\nLeandro Satoshi\nTiago Marino Silva\nUm agradecimento especial ao professor
+    Eduardo Sim\xF5es por ceder sua voz para nosso jogo!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d66c33202c52f8dc1ba9ac721854edfe, type: 2}
   m_sharedMaterial: {fileID: -909995903708610629, guid: d66c33202c52f8dc1ba9ac721854edfe,
