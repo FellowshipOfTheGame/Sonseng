@@ -76,7 +76,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5648,6 +5649,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7ffb390848cd230851c740756f9024, type: 3}
+--- !u!224 &8407474513704911772 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
+    type: 3}
+  m_PrefabInstance: {fileID: 8139756293301334164}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6341190420557669684 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2951641369175315872, guid: 2c7ffb390848cd230851c740756f9024,
@@ -5660,9 +5667,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8407474513704911772 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 313950970137670408, guid: 2c7ffb390848cd230851c740756f9024,
-    type: 3}
-  m_PrefabInstance: {fileID: 8139756293301334164}
-  m_PrefabAsset: {fileID: 0}
