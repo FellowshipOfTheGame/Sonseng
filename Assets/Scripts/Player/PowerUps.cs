@@ -60,7 +60,6 @@ public class PowerUps : MonoBehaviour {
     [Space(5)]
     [SerializeField] bool doubleScore;
     [SerializeField] float doubleScoreDuration;
-    [SerializeField] float doubleScoreMultiplier;
     [SerializeField] Sprite doubleScoreLogo;
 
     [Space(5)]
@@ -92,7 +91,7 @@ public class PowerUps : MonoBehaviour {
     public void SetPowerUpValue(UserBackend.Upgrade upgrade) {
         switch (upgrade.upgradeName) {
             case "double":
-                doubleScoreMultiplier = upgrade.baseValue * upgrade.multiplier;
+                doubleScoreDuration = upgrade.baseValue * upgrade.multiplier;
                 break;
             case "invincibility":
                 starDuration = upgrade.baseValue * upgrade.multiplier;
@@ -355,12 +354,12 @@ public class PowerUps : MonoBehaviour {
         powerUpActive = true;
         powerUpLogo.sprite = doubleScoreLogo;
         powerUpUI.SetActive(true);
-        Scoreboard.instance.scoreMultiplier = doubleScoreMultiplier;
+        Scoreboard.instance.scoreMultiplier *= 2f;
     }
 
     public void DoubleScoreDeactivate() {
         doubleScore = false;
-        Scoreboard.instance.scoreMultiplier = 1f;
+        Scoreboard.instance.scoreMultiplier /= 2f;
     }
 
     // Ink
