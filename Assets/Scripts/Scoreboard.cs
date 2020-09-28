@@ -9,7 +9,7 @@ public class Scoreboard : MonoBehaviour {
     [SerializeField] float defaultBonusScore;
     private bool isPlayerAlive = true;
     private float score;
-    public float scoreMultiplier = 1f;
+    public float scoreMultiplier;
 
     [SerializeField] Transform feedbackPos;
     [SerializeField] GameObject bonusPointFeedback;
