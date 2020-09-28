@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 const admin = require('./fb')
 const verifyMiddleWare = require('../middleware/verifyFirebaseToken')
+const checkHash = require('../middleware/checkHash')
 
 router.use(verifyMiddleWare)
 
-router.post('/saveStats', async (req, res) => {
+router.post('/saveStats',checkHash ,async (req, res) => {
   const { score, cogs } = req.body
   const { uid } = req.user
   const user = await admin.database().ref(`/users/${uid}`).once('value')
