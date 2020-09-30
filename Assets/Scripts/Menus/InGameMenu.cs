@@ -31,8 +31,12 @@ public class InGameMenu : MonoBehaviour {
         _audioIntro.clip = songIntro;
         _audioLoop.clip = songLoop;
         _audioIntro.Play();
-        _audioLoop.PlayDelayed(songIntro.length);
+        Invoke(nameof(StartSong), songIntro.length);
+    }
 
+    private void StartSong()
+    {
+        _audioLoop.Play();
     }
 
     void OnEnable() {
@@ -75,6 +79,7 @@ public class InGameMenu : MonoBehaviour {
 
     private void ShowEndGameMenu() {
         mixer.SetFloat("masterVolume", 0f);
+        CancelInvoke(nameof(StartSong));
         _audioLoop.Stop();
         _audioIntro.Stop();
         _audioIntro.clip = deathJingle;
@@ -94,6 +99,7 @@ public class InGameMenu : MonoBehaviour {
         endGameMenu.SetActive(true);
     }
     public void Restart() {
+        CancelInvoke(nameof(StartSong));
         Time.timeScale = 1f;
         mixer.SetFloat("masterVolume", 0f);
         TimeToSpeedManager.instance.StartNewGame();
@@ -101,6 +107,7 @@ public class InGameMenu : MonoBehaviour {
     }
 
     public void GoBackToMenu() {
+        CancelInvoke(nameof(StartSong));
         Time.timeScale = 1f;
         mixer.SetFloat("masterVolume", 0f);
         SceneManager.LoadScene("Loading");

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class ScoreBackend : MonoBehaviour {
@@ -10,7 +13,7 @@ public class ScoreBackend : MonoBehaviour {
     }
 
     [Serializable]
-    public struct HighestScore{
+    public struct HighestScore {
         public int highestScore;
     }
 
@@ -18,11 +21,28 @@ public class ScoreBackend : MonoBehaviour {
         GetHighestScore();
     }
 
+    private string Hash() {
+        Regex rx = new Regex(@"\.(.*?)\.");
+        Match match = rx.Match(RequestManager.token);
+        SHA256 sha = new SHA256CryptoServiceProvider();
+        byte[] bytes = Encoding.ASCII.GetBytes("saiHackerFedido" + Scoreboard.instance.ScoreRounded.ToString() + Scoreboard.instance.highestScore.ToString() + Scoreboard.instance.Cogs.ToString() + match.Groups[0]);
+        byte[] hashBytes = sha.ComputeHash(bytes);
+        string hash = ByteArrayToString(hashBytes);
+        return hash;
+    }
+    private static string ByteArrayToString(byte[] ba) {
+        StringBuilder hex = new StringBuilder(ba.Length * 2);
+        foreach (byte b in ba)
+            hex.AppendFormat("{0:x2}", b);
+        return hex.ToString();
+    }
     public void SaveScoreOnDeath() {
         Scoreboard.instance.StopScore();
         WWWForm form = new WWWForm();
-        form.AddField("score", Scoreboard.instance.ScoreRounded);
-        form.AddField("cogs", Scoreboard.instance.Cogs);
+        form.AddField("score", Scoreboard.instance.ScoreRounded.ToString());
+        form.AddField("highestScore", Scoreboard.instance.highestScore.ToString());
+        form.AddField("cogs", Scoreboard.instance.Cogs.ToString());
+        form.AddField("hash", Hash());
         StartCoroutine(RequestManager.PostRequest<ScoreResponse>("user/saveStats", form, FinishSaveScore, LoadError));
     }
 
