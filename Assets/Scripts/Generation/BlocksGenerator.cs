@@ -21,7 +21,6 @@ public class BlocksGenerator : MonoBehaviour
     private Dictionary<string, GameObject> _serializedObjects;
     private float _timeToSpawn { get => spawnTimeConstant * SpawnSpeedCurve.Evaluate(Speed); }
     private const string _spawnFuncName = "SpawnObjects";
-    [SerializeField] private CollisionDetector collisionDetector;
 
     private void Awake()
     {
@@ -34,11 +33,11 @@ public class BlocksGenerator : MonoBehaviour
     }
 
     private void OnEnable() {
-        collisionDetector.OnDeath += Stop;
+        CollisionDetector.OnDeath += Stop;
     }
 
     private void OnDisable() {
-        collisionDetector.OnDeath -= Stop;
+        CollisionDetector.OnDeath -= Stop;
     }
 
     private void Start()

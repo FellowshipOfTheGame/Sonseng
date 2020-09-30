@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 public class InGameMenu : MonoBehaviour {
-    [SerializeField] CollisionDetector collisionDetector;
     [SerializeField] GameObject endGameMenu;
     [SerializeField] GameObject pauseMenu, header, pauseButton;
     [SerializeField] AudioClip songIntro, songLoop;
@@ -40,11 +39,11 @@ public class InGameMenu : MonoBehaviour {
     }
 
     void OnEnable() {
-        collisionDetector.OnDeath += ShowEndGameMenu;
+        CollisionDetector.OnDeath += ShowEndGameMenu;
     }
 
     private void OnDisable() {
-        collisionDetector.OnDeath -= ShowEndGameMenu;
+        CollisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
     private void Update() {
@@ -87,7 +86,7 @@ public class InGameMenu : MonoBehaviour {
         pauseButton.SetActive(false);
         TimeToSpeedManager.instance.StopGame();
         StartCoroutine(WaitForJingleToEnd(3.3f));
-        collisionDetector.OnDeath -= ShowEndGameMenu;
+        CollisionDetector.OnDeath -= ShowEndGameMenu;
     }
 
     private IEnumerator WaitForJingleToEnd(float seconds) {

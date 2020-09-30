@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour {
     public LayerMask CollisionMask;
-    public Action OnDeath;
+    public static Action OnDeath;
     private PowerUps powerUps;
     private PlayerMovement movement;
 

@@ -124,11 +124,11 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnEnable() {
         collisionDetector = GetComponent<CollisionDetector>();
-        collisionDetector.OnDeath += Die;
+        CollisionDetector.OnDeath += Die;
     }
 
     private void OnDisable() {
-        collisionDetector.OnDeath -= Die;
+        CollisionDetector.OnDeath -= Die;
     }
 
     private void Update() {
