@@ -324,6 +324,7 @@ public class PowerUps : MonoBehaviour {
         shield = false;
         powerUpUI.SetActive(false);
         vfxPlayer.PlayShield(false);
+        timeRemaining = 0f;
         if (hit) {
             animator.Play("Invulnerability", 1);
             shieldInvulnerability = true;
