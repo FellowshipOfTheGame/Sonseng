@@ -124,11 +124,11 @@ public class PlayerMovement : MonoBehaviour {
 
     private void OnEnable() {
         collisionDetector = GetComponent<CollisionDetector>();
-        collisionDetector.OnDeath += Die;
+        CollisionDetector.OnDeath += Die;
     }
 
     private void OnDisable() {
-        collisionDetector.OnDeath -= Die;
+        CollisionDetector.OnDeath -= Die;
     }
 
     private void Update() {
@@ -291,6 +291,13 @@ public class PlayerMovement : MonoBehaviour {
     /// Moves the player away from the wall, resetting it to the nearest lane
     /// </summary>
     public void MoveAwayFromWall() {
+        // Updates the current lane, just in case the player made a double swipe and the current lane 
+        // wasn't updated. Without this, it can move away from wall until the center lane.
+        if (MoveDirection < 0)
+            currentLane = 1;
+        else if (MoveDirection > 0)
+            currentLane = 3;
+
         MoveSideways(-MoveDirection);
     } 
 
