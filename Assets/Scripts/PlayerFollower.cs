@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour {
     [SerializeField] PlayerMovement player;
-
     private int currentPosition;
     private int nextPosition;
     private int moveDirection;
+    private bool dead;
     
     [SerializeField] Transform[] positions;
+    [SerializeField] Transform deadPosition;
     [SerializeField] float speed;
+    [SerializeField] float deadAnimSpeed;
 
     private void OnEnable() {
         player.OnDestinationChange += UpdateDestination;
+        CollisionDetector.OnDeath += Death;
     }
 
     private void OnDisable() {
         player.OnDestinationChange -= UpdateDestination;
+        CollisionDetector.OnDeath -= Death;
     }
 
     /// <summary>
@@ -25,17 +29,28 @@ public class PlayerFollower : MonoBehaviour {
         if (moveDirection != 0) {
             this.transform.position = Vector3.MoveTowards(this.transform.position, positions[nextPosition].position, speed * Time.deltaTime);
         }
+
+        if (dead) {
+            this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x, deadPosition.position.y, deadPosition.position.z), deadAnimSpeed * Time.deltaTime);
+        }
     }
 
     /// <summary>
     /// Constantly checks if the camera arrive its destination, stopping its movement if so
     /// </summary>
     private void Update() {
-        if (ArrivedDestination()) {
+        if (moveDirection != 0 && ArrivedDestination()) {
             moveDirection = 0;
             currentPosition = nextPosition;
         }
     }
+
+    private void Death()
+    {
+        moveDirection = 0;
+        dead = true;
+    }
+    
 
     /// <summary>
     /// Method called when player's destination changes
