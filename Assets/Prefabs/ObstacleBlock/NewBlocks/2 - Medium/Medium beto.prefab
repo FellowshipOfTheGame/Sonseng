@@ -3116,15 +3116,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc1dcf3295466264a8c3f549bbe778a4, type: 3}
---- !u!198 &2991113281300343488 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7217384666576008332, guid: cc1dcf3295466264a8c3f549bbe778a4,
-    type: 3}
-  m_PrefabInstance: {fileID: 5596809627258920524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8651116210063479136 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3865545231977156396, guid: cc1dcf3295466264a8c3f549bbe778a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5596809627258920524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2991113281300343488 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7217384666576008332, guid: cc1dcf3295466264a8c3f549bbe778a4,
     type: 3}
   m_PrefabInstance: {fileID: 5596809627258920524}
   m_PrefabAsset: {fileID: 0}
@@ -3219,6 +3219,11 @@ PrefabInstance:
         type: 3}
       propertyPath: obstacles.Array.data[15]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571488776672675464, guid: 6864698a726915d49bab5db05edf24e2,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5262338768419333805, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}

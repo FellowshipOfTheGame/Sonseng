@@ -478,6 +478,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1005387642478834260, guid: 6864698a726915d49bab5db05edf24e2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1322578338482456160, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: obstacles.Array.size
@@ -578,6 +583,11 @@ PrefabInstance:
       propertyPath: obstacles.Array.data[18]
       value: 
       objectReference: {fileID: 5280741684981586616}
+    - target: {fileID: 1571488776672675464, guid: 6864698a726915d49bab5db05edf24e2,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5262338768419333805, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: m_RootOrder

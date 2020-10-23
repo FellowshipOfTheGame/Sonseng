@@ -1601,6 +1601,11 @@ PrefabInstance:
       propertyPath: obstacles.Array.data[19]
       value: 
       objectReference: {fileID: 4744009095940668042}
+    - target: {fileID: 1571488776672675464, guid: 6864698a726915d49bab5db05edf24e2,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3695687992119242243, guid: 6864698a726915d49bab5db05edf24e2,
         type: 3}
       propertyPath: m_LocalPosition.z
